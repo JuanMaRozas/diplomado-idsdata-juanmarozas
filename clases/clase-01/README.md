@@ -57,6 +57,10 @@ bash clases/clase-01/material/aws/aws_setup_s3.sh     # crea tu bucket y sube da
 
 ## Tarea para la próxima clase
 
-Elige **tu propio dataset** (distinto a Olist) que cumpla los criterios de "dataset rico" vistos en clase y tenga **al menos 2 fuentes/tablas**. Justifícalo en el README de tu propio repositorio. Será el dataset de tu **proyecto integrador**.
+1. **Conforma tu equipo de 4 personas** (serán ~7 grupos).
+2. **Elige uno de los 10 temas** del proyecto integrador (ver [`proyecto-integrador.md`](../../proyecto-integrador.md)). Todos se desarrollan sobre el dataset del curso (Olist).
+3. Deja tu **entorno y el dataset listos** (lo de hoy) para arrancar la próxima clase sin demoras.
+
+> **Opcional (suma valor):** complementar el proyecto con un dataset propio o una API externa, de las fuentes que vimos en clase.
 
 > **Seguridad:** nunca subas a Git tu `kaggle.json`, credenciales de AWS ni la carpeta `data/`.

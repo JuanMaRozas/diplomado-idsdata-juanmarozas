@@ -18,8 +18,9 @@
   .slide{position:absolute;inset:0;background:var(--white);overflow:hidden;opacity:0;visibility:hidden;transition:opacity .35s ease;}
   .slide.active{opacity:1;visibility:visible;}
 
-  .logo{position:absolute;top:26px;right:34px;z-index:6;background:var(--orange);color:var(--white);font-weight:800;font-size:18px;letter-spacing:.04em;padding:6px 13px;border-radius:5px;}
-  .logo--inv{background:var(--white);color:var(--orange);}
+  .logo{position:absolute;top:22px;right:30px;z-index:6;background:#fff;border-radius:8px;padding:6px 12px;box-shadow:0 2px 8px rgba(0,0,0,.15);display:flex;align-items:center;}
+  .logo-img{height:34px;display:block;}
+  .logo-txt{display:none;color:var(--orange);font-weight:800;font-size:20px;letter-spacing:.04em;}
   .header-bar{position:absolute;top:0;left:0;right:0;height:96px;display:flex;align-items:center;z-index:4;}
   .header-bar.orange{background:var(--orange);}
   .header-bar.black{background:var(--black);}
@@ -45,8 +46,8 @@
   .l1 .sub{position:absolute;left:64px;top:430px;color:var(--orange);font-size:23px;z-index:3;}
   .l1 .meta{position:absolute;left:64px;bottom:70px;color:#9a9a9a;font-size:17px;z-index:3;line-height:1.6;}
   .l1 .barbottom{position:absolute;left:0;bottom:0;width:55%;height:8px;background:var(--orange);z-index:3;}
-  .l1 .closing{left:0;width:100%;text-align:center;top:46%;transform:translateY(-50%);font-size:46px;}
-  .l1 .closing-sub{left:0;width:100%;text-align:center;top:62%;color:var(--orange);font-size:22px;}
+  .l1 .closing{left:0;width:100%;text-align:center;top:42%;transform:translateY(-50%);font-size:44px;}
+  .l1 .closing-sub{position:absolute;left:8%;width:84%;text-align:center;top:58%;color:var(--orange);font-size:22px;line-height:1.4;}
 
   /* L2 divider */
   .l2{background:var(--orange);}
@@ -76,6 +77,12 @@
   .cvlist li::before{content:"";position:absolute;left:0;top:7px;width:11px;height:11px;border-radius:50%;background:var(--orange);}
   .cvlist .role{font-size:21px;font-weight:700;color:var(--black);line-height:1.2;}
   .cvlist .org{font-size:16px;color:var(--dgray);margin-top:3px;}
+
+  /* temas del proyecto */
+  .themes{display:grid;grid-template-columns:1fr 1fr;gap:11px 40px;margin-top:8px;}
+  .themes .ti{position:relative;padding-left:36px;font-size:16px;color:var(--dgray);line-height:1.25;}
+  .themes .ti .n{position:absolute;left:0;top:-1px;color:#fff;background:var(--orange);width:25px;height:25px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+  .themes .ti b{color:var(--black);}
 
   /* cards row */
   .cards{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px;}
@@ -155,7 +162,7 @@
     <!-- 1 · PORTADA -->
     <section class="slide l1 active">
       <div class="accent"></div>
-      <div class="logo logo--inv">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="clase anim">CLASE 1</div>
       <h1 class="ttl anim">Python en la Industria Real:<br>por qué domina el dato</h1>
       <div class="sub anim">Diplomado en Ingeniería de Datos con Python</div>
@@ -165,7 +172,7 @@
 
     <!-- 2 · DIVISOR PRESENTACIÓN -->
     <section class="slide l2">
-      <div class="logo logo--inv">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="kicker anim">Bienvenida</div>
       <div class="stitle anim">Presentación</div>
       <div class="num">01</div>
@@ -174,7 +181,7 @@
     <!-- 3 · CV ACADÉMICA -->
     <section class="slide">
       <div class="header-bar orange"><h2>Presentación · Trayectoria académica</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <div style="font-size:25px;font-weight:700;color:var(--black);margin-bottom:14px;" class="anim">PhD. Juan Manuel Rozas</div>
         <ul class="cvlist">
@@ -193,7 +200,7 @@
     <!-- 4 · CV LABORAL -->
     <section class="slide">
       <div class="header-bar orange"><h2>Presentación · Trayectoria laboral</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <ul class="cvlist">
           <li class="anim"><div class="role">Amisoft — Lawtech &amp; Legaltech</div><div class="org">CRO &amp; COO</div></li>
@@ -211,7 +218,7 @@
 
     <!-- 5 · DIVISOR PROGRAMA -->
     <section class="slide l2">
-      <div class="logo logo--inv">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="kicker anim">Contexto</div>
       <div class="stitle anim">El programa del curso</div>
       <div class="num">02</div>
@@ -220,7 +227,7 @@
     <!-- 6 · IDENTIFICACIÓN DE LA ASIGNATURA -->
     <section class="slide">
       <div class="header-bar orange"><h2>Programa · Identificación de la asignatura</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <table class="idtab anim">
           <tr><td class="k">Sigla</td><td class="v">DPL1046</td></tr>
@@ -240,7 +247,7 @@
     <!-- 7 · DESCRIPCIÓN + RAA -->
     <section class="slide">
       <div class="header-bar orange"><h2>Programa · Descripción y resultados de aprendizaje</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <div class="subh anim">Descripción de la asignatura</div>
         <ul class="bul sm">
@@ -263,7 +270,7 @@
     <!-- 8 · PROGRAMA DEL CURSO (9 CLASES) -->
     <section class="slide">
       <div class="header-bar orange"><h2>Programa del curso · 9 sesiones</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <div style="font-size:14px;color:var(--caption);font-style:italic;margin-bottom:8px;" class="anim">9 sesiones · 3 horas por sesión · 19:15–22:30 · Online sincrónica (ZOOM)</div>
         <table class="brand anim" style="font-size:15px;">
@@ -289,7 +296,7 @@
     <!-- 9 · SISTEMA DE EVALUACIÓN -->
     <section class="slide">
       <div class="header-bar orange"><h2>Sistema de evaluación</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <div class="evalwrap">
           <div class="evaltop anim">
@@ -302,7 +309,7 @@
             </div>
           </div>
           <div>
-            <div class="projttl anim">Estructura del proyecto integrador</div>
+            <div class="projttl anim">Estructura del proyecto integrador <span style="color:var(--orange)">· equipos de 4 personas (~7 grupos)</span></div>
             <div class="projcards anim" style="margin-top:10px;">
               <div class="pc"><div class="u">Unidad 1<br>Clases 1–3</div><div class="d">Script ETL + 2 fuentes + reporte en GitHub</div></div>
               <div class="pc"><div class="u">Unidad 2<br>Clases 4–6</div><div class="d">Pipeline pandas + cloud (AWS) + tests</div></div>
@@ -316,10 +323,35 @@
       <div class="footer-bar"></div>
     </section>
 
+    <!-- 9b · TEMAS DEL PROYECTO -->
+    <section class="slide">
+      <div class="header-bar orange"><h2>Proyecto integrador · elige tu tema</h2></div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
+      <div class="body">
+        <div style="font-size:16px;color:var(--dgray);margin-bottom:10px;" class="anim">10 temas sobre el <b>dataset del curso (Olist)</b>. Cada equipo de 4 elige uno y lo desarrolla en las 3 unidades.</div>
+        <div class="themes anim">
+          <div class="ti"><span class="n">1</span><b>Radar de satisfacción</b> — reseñas (score + texto) por categoría y vendedor</div>
+          <div class="ti"><span class="n">2</span><b>Mapa logístico</b> — tiempos y retrasos de entrega por región</div>
+          <div class="ti"><span class="n">3</span><b>Segmentación de clientes</b> — análisis RFM y valor del cliente</div>
+          <div class="ti"><span class="n">4</span><b>Performance de vendedores</b> — ranking por ventas, flete y reseñas</div>
+          <div class="ti"><span class="n">5</span><b>Métodos de pago</b> — uso, cuotas y ticket por medio de pago</div>
+          <div class="ti"><span class="n">6</span><b>Pronóstico de demanda</b> — serie de tiempo y estacionalidad de ventas</div>
+          <div class="ti"><span class="n">7</span><b>Categorías de producto</b> — qué vende más y cómo se evalúa</div>
+          <div class="ti"><span class="n">8</span><b>Geografía de ventas</b> — distancia cliente-vendedor vs flete</div>
+          <div class="ti"><span class="n">9</span><b>Órdenes en riesgo</b> — predecir cancelaciones y malas reseñas</div>
+          <div class="ti"><span class="n">10</span><b>Dashboard 360</b> — panorama ejecutivo del negocio (KPIs)</div>
+        </div>
+        <div class="quote anim" style="font-size:18px;margin-top:16px;">Opcional: complementar con un dataset propio (los buscamos hoy). El detalle de cada tema está en el repo.</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
     <!-- 10 · REGLAS DEL JUEGO -->
     <section class="slide">
       <div class="header-bar black"><h2>Las reglas del juego</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l">
@@ -343,7 +375,7 @@
 
     <!-- 11 · DIVISOR PYTHON -->
     <section class="slide l2">
-      <div class="logo logo--inv">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="kicker anim">Bloque temático</div>
       <div class="stitle anim">Python en el<br>ecosistema de datos</div>
       <div class="num">03</div>
@@ -352,7 +384,7 @@
     <!-- 12 · POR QUÉ PYTHON -->
     <section class="slide">
       <div class="header-bar orange"><h2>¿Por qué Python domina el dato?</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <ul class="bul">
           <li class="anim"><b>Lenguaje #1 del mundo</b> según TIOBE: superó a Java y C en 2021 y no volvió atrás.</li>
@@ -370,7 +402,7 @@
     <!-- 13 · PYTHON + AWS -->
     <section class="slide">
       <div class="header-bar black"><h2>Python + AWS: el stack en la industria chilena</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l">
@@ -401,7 +433,7 @@
     <!-- 14 · MATRIZ -->
     <section class="slide">
       <div class="header-bar orange"><h2>¿Cuándo usar Python, SQL, R o Excel?</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <table class="brand anim">
           <thead><tr><th>Tarea</th><th>Python</th><th>SQL</th><th>R</th><th>Excel</th></tr></thead>
@@ -424,7 +456,7 @@
     <!-- 15 · STACK 2026 -->
     <section class="slide">
       <div class="header-bar black"><h2>El stack del ingeniero de datos 2026</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <div class="stack" style="height:430px">
           <div class="layer anim">
@@ -449,7 +481,7 @@
 
     <!-- 16 · DIVISOR DATASETS -->
     <section class="slide l2">
-      <div class="logo logo--inv">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="kicker anim">Bloque temático</div>
       <div class="stitle anim">El dato manda:<br>cómo encontrar datasets ricos</div>
       <div class="num">04</div>
@@ -458,7 +490,7 @@
     <!-- 17 · DÓNDE BUSCAR -->
     <section class="slide">
       <div class="header-bar orange"><h2>¿Dónde buscar datos reales?</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <div class="cards">
           <div class="card anim"><div class="ic">🇨🇱</div><div class="t">datos.gob.cl</div><div class="d">Portal de datos abiertos del Estado de Chile.</div></div>
@@ -479,7 +511,7 @@
     <!-- 18 · QUÉ HACE RICO -->
     <section class="slide">
       <div class="header-bar black"><h2>¿Qué hace RICO a un dataset?</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l">
@@ -504,7 +536,7 @@
     <!-- 19 · CHECKLIST -->
     <section class="slide">
       <div class="header-bar orange"><h2>Checklist: ¿sirve este dataset para el proyecto?</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <table class="brand anim">
           <thead><tr><th>Criterio</th><th>Por qué importa</th><th>Mínimo</th></tr></thead>
@@ -526,7 +558,7 @@
     <!-- 20 · OLIST -->
     <section class="slide">
       <div class="header-bar black"><h2>Nuestro dataset del curso: Olist</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l">
@@ -551,7 +583,7 @@
     <!-- 21 · ESPEJO AWS -->
     <section class="slide">
       <div class="header-bar orange"><h2>El mismo flujo, ahora en AWS</h2></div>
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="body">
         <ul class="bul">
           <li class="anim"><b>Hoy damos el primer paso del data lake:</b> creamos un bucket S3 y subimos el dataset crudo a la zona <code>raw/</code>.</li>
@@ -568,7 +600,7 @@
 
     <!-- 22 · DIVISOR CIERRE -->
     <section class="slide l2">
-      <div class="logo logo--inv">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="kicker anim">Cierre</div>
       <div class="stitle anim">Manos a la obra</div>
       <div class="num">05</div>
@@ -576,7 +608,7 @@
 
     <!-- 23 · PREGUNTA -->
     <section class="slide l6">
-      <div class="logo">▶ UDLA</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
       <div class="q anim">En tu trabajo actual, ¿cuál es la herramienta<br>que más usas para datos… y es siempre<br>la más adecuada?</div>
       <div class="uline"></div>
       <div class="hint anim">Responde en el chat de ZOOM — al final del diplomado tendrás otra respuesta.</div>
@@ -584,10 +616,9 @@
 
     <!-- 24 · CIERRE -->
     <section class="slide l1">
-      <div class="accent"></div>
-      <div class="logo logo--inv">▶ UDLA</div>
-      <h1 class="ttl closing anim">Tarea: elige tu dataset</h1>
-      <div class="closing-sub anim">Un dataset rico, con ≥2 fuentes — justifícalo en tu README de GitHub</div>
+      <div class="logo"><img class="logo-img" src="../../assets/logo-udla.png" alt="UDLA" onerror="this.style.display=&apos;none&apos;;this.parentNode.querySelector(&apos;.logo-txt&apos;).style.display=&apos;inline&apos;"><span class="logo-txt">UDLA</span></div>
+      <h1 class="ttl closing anim">Arma tu grupo y elige tu tema</h1>
+      <div class="closing-sub anim">Equipos de 4 · 10 temas sobre el dataset del curso · entorno y dataset listos para la próxima clase</div>
       <div class="meta anim">DPL1046 · Programación en Python y Manipulación de Datos · PhD. Juan Manuel Rozas · 2026</div>
       <div class="barbottom"></div>
     </section>
@@ -597,7 +628,7 @@
 
 <div class="nav">
   <button id="prev" title="Anterior (←)">◀</button>
-  <span class="count" id="count">1 / 24</span>
+  <span class="count" id="count">1 / 25</span>
   <button id="next" title="Siguiente (→)">▶</button>
 </div>
 <div class="hint-help">← → para navegar · F para pantalla completa</div>
