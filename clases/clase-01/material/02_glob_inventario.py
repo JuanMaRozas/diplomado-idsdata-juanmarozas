@@ -15,7 +15,19 @@ from pathlib import Path
 
 import pandas as pd
 
-DATA = Path("data/raw")
+
+def raiz_repo() -> Path:
+    """Encuentra la raíz del repo subiendo desde este archivo.
+    Así el script funciona sin importar desde qué carpeta se ejecute."""
+    aqui = Path(__file__).resolve()
+    for carpeta in [aqui, *aqui.parents]:
+        if (carpeta / ".git").exists() or (carpeta / "clases").is_dir():
+            return carpeta
+    return Path.cwd()  # fallback
+
+
+RAIZ = raiz_repo()
+DATA = RAIZ / "data" / "raw"
 
 
 def main() -> None:
@@ -57,7 +69,7 @@ def main() -> None:
     )
 
     # Guardamos el inventario como entregable inicial del proyecto
-    salida = Path("data/inventario_dataset.csv")
+    salida = RAIZ / "data" / "inventario_dataset.csv"
     inventario.to_csv(salida, index=False)
     print(f"--> Inventario guardado en: {salida.resolve()}")
 

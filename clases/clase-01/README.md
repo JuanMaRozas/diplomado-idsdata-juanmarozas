@@ -16,35 +16,43 @@
 
 ## Paso a paso
 
-```bash
-cd clases/clase-01/material
+> **Importante:** trabaja siempre dentro del repositorio que clonaste. El dataset va en `data/raw/` **en la raíz del repo**. Los scripts encuentran esa carpeta solos, sin importar desde dónde los ejecutes.
 
-# 1. Entorno
-bash setup_local.sh
+```bash
+# Entorno (desde la raíz del repo)
+cd ~/diplomado-idsdata-juanmarozas
+bash clases/clase-01/material/setup_local.sh
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
-
-# 2. Dataset Olist — elige UNA vía:
 ```
 
-**Vía A — rápida (recomendada en clase):** descarga `olist_raw.zip` desde **Blackboard**, déjalo en la carpeta del proyecto y descomprímelo:
+### Conseguir el dataset Olist — elige UNA vía
+
+**Vía A — rápida (recomendada en clase).** Descarga `olist_raw.zip` desde **Blackboard**, muévelo a la raíz del repo y descomprímelo ahí:
 ```bash
-unzip olist_raw.zip                 # crea data/raw/*.csv
+cd ~/diplomado-idsdata-juanmarozas      # raíz del repo
+mv ~/Downloads/olist_raw.zip .          # traer el zip desde Descargas
+unzip -o olist_raw.zip                  # crea data/raw/ con las 9 CSV
+ls data/raw/                            # verifica: deben aparecer las 9 tablas
 ```
 
-**Vía B — reproducible (tarea):** con tu token de Kaggle configurado (ver instrucciones dentro de `download_olist.py`):
+**Vía B — reproducible (tarea).** Con tu token de Kaggle configurado (ver instrucciones dentro de `download_olist.py`):
 ```bash
-python download_olist.py            # descarga las 9 tablas a data/raw/
+python clases/clase-01/material/download_olist.py   # descarga las 9 tablas a data/raw/
 ```
 
-```bash
-# 3. Tus primeros scripts
-python 01_leer_csv.py               # totales por tipo de pago y top vendedores
-python 02_glob_inventario.py        # inventario de las 9 tablas del dataset
+### Correr tus primeros scripts
 
-# 4. Espejo cloud (opcional)
+```bash
+python clases/clase-01/material/01_leer_csv.py        # totales por tipo de pago y top vendedores
+python clases/clase-01/material/02_glob_inventario.py # inventario de las 9 tablas del dataset
+```
+
+### Espejo cloud (opcional)
+
+```bash
 aws configure
 export ALUMNO="tu-nombre"
-bash aws/aws_setup_s3.sh            # crea tu bucket y sube data/raw/ a la zona raw/
+bash clases/clase-01/material/aws/aws_setup_s3.sh     # crea tu bucket y sube data/raw/ a la zona raw/
 ```
 
 ## Tarea para la próxima clase

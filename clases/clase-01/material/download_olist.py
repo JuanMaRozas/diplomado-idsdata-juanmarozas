@@ -20,8 +20,18 @@ from pathlib import Path
 
 import kagglehub
 
+
+def raiz_repo() -> Path:
+    """Encuentra la raíz del repo subiendo desde este archivo."""
+    aqui = Path(__file__).resolve()
+    for carpeta in [aqui, *aqui.parents]:
+        if (carpeta / ".git").exists() or (carpeta / "clases").is_dir():
+            return carpeta
+    return Path.cwd()
+
+
 DATASET = "olistbr/brazilian-ecommerce"
-DESTINO = Path("data/raw")
+DESTINO = raiz_repo() / "data" / "raw"
 
 
 def main() -> None:

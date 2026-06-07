@@ -16,7 +16,18 @@ from pathlib import Path
 
 import pandas as pd
 
-DATA = Path("data/raw")
+
+def raiz_repo() -> Path:
+    """Encuentra la raíz del repo subiendo desde este archivo.
+    Así el script funciona sin importar desde qué carpeta se ejecute."""
+    aqui = Path(__file__).resolve()
+    for carpeta in [aqui, *aqui.parents]:
+        if (carpeta / ".git").exists() or (carpeta / "clases").is_dir():
+            return carpeta
+    return Path.cwd()  # fallback
+
+
+DATA = raiz_repo() / "data" / "raw"
 
 
 def inspeccionar(df: pd.DataFrame, nombre: str) -> None:
