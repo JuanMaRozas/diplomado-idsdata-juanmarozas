@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPL1046 · Clase 1 — Python en la Industria Real</title>
+<style>
+  :root{
+    --orange:#FF6B1A; --black:#1A1A1A; --white:#FFFFFF; --dgray:#444444;
+    --tint:#FFF3ED; --lgray:#F2F2F2; --green:#2E7D32; --red:#C62828;
+    --caption:#AAAAAA;
+    --font:Calibri,"Segoe UI",Candara,Optima,"Trebuchet MS",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;background:#0d0d0d;font-family:var(--font);}
+  .stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .deck{position:relative;width:1280px;height:720px;transform-origin:center center;}
+  .slide{position:absolute;inset:0;background:var(--white);overflow:hidden;opacity:0;visibility:hidden;transition:opacity .35s ease;}
+  .slide.active{opacity:1;visibility:visible;}
+
+  .logo{position:absolute;top:26px;right:34px;z-index:6;background:var(--orange);color:var(--white);font-weight:800;font-size:18px;letter-spacing:.04em;padding:6px 13px;border-radius:5px;}
+  .logo--inv{background:var(--white);color:var(--orange);}
+  .header-bar{position:absolute;top:0;left:0;right:0;height:96px;display:flex;align-items:center;z-index:4;}
+  .header-bar.orange{background:var(--orange);}
+  .header-bar.black{background:var(--black);}
+  .header-bar h2{color:var(--white);font-size:30px;font-weight:700;padding-left:56px;max-width:1000px;line-height:1.15;}
+  .footer-bar{position:absolute;bottom:0;left:0;right:0;height:8px;background:var(--orange);z-index:4;}
+  .foot-prog{position:absolute;bottom:18px;left:56px;font-size:13px;color:var(--caption);z-index:5;}
+  .foot-num{position:absolute;bottom:18px;right:40px;font-size:14px;color:var(--caption);z-index:5;}
+  .body{position:absolute;top:128px;left:56px;right:56px;bottom:46px;}
+
+  .bul{list-style:none;}
+  .bul li{position:relative;padding-left:30px;margin-bottom:18px;font-size:21px;color:var(--dgray);line-height:1.4;}
+  .bul li::before{content:"";position:absolute;left:0;top:10px;width:11px;height:11px;border-radius:50%;background:var(--orange);}
+  .bul li b{color:var(--black);}
+  .bul.sm li{font-size:16px;margin-bottom:11px;line-height:1.35;}
+  .bul.sm li::before{top:7px;width:9px;height:9px;}
+  .subh{color:var(--orange);font-weight:700;font-size:20px;margin:4px 0 12px;}
+
+  /* L1 cover */
+  .l1{background:var(--black);}
+  .l1 .accent{position:absolute;right:0;top:0;width:45%;height:100%;background:var(--orange);clip-path:polygon(18% 0,100% 0,100% 100%,0 100%);}
+  .l1 .ttl{position:absolute;left:64px;top:215px;width:58%;color:var(--white);font-size:58px;font-weight:700;line-height:1.08;z-index:3;}
+  .l1 .clase{position:absolute;left:64px;top:150px;color:var(--orange);font-size:24px;font-weight:700;letter-spacing:.05em;z-index:3;}
+  .l1 .sub{position:absolute;left:64px;top:430px;color:var(--orange);font-size:23px;z-index:3;}
+  .l1 .meta{position:absolute;left:64px;bottom:70px;color:#9a9a9a;font-size:17px;z-index:3;line-height:1.6;}
+  .l1 .barbottom{position:absolute;left:0;bottom:0;width:55%;height:8px;background:var(--orange);z-index:3;}
+  .l1 .closing{left:0;width:100%;text-align:center;top:46%;transform:translateY(-50%);font-size:46px;}
+  .l1 .closing-sub{left:0;width:100%;text-align:center;top:62%;color:var(--orange);font-size:22px;}
+
+  /* L2 divider */
+  .l2{background:var(--orange);}
+  .l2 .num{position:absolute;right:48px;bottom:24px;font-size:150px;font-weight:800;color:rgba(255,255,255,.22);line-height:1;}
+  .l2 .stitle{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;color:var(--white);font-size:50px;font-weight:700;padding:0 80px;line-height:1.2;}
+  .l2 .kicker{position:absolute;left:0;right:0;top:34%;text-align:center;color:rgba(255,255,255,.85);font-size:20px;letter-spacing:.18em;text-transform:uppercase;}
+
+  /* L6 question */
+  .l6{background:var(--lgray);}
+  .l6 .q{position:absolute;left:0;right:0;top:46%;transform:translateY(-50%);text-align:center;color:var(--black);font-size:42px;font-weight:700;padding:0 120px;line-height:1.3;}
+  .l6 .uline{position:absolute;left:50%;transform:translateX(-50%);top:64%;width:90px;height:6px;border-radius:3px;background:var(--orange);}
+  .l6 .hint{position:absolute;left:0;right:0;top:72%;text-align:center;color:var(--dgray);font-size:19px;font-style:italic;}
+
+  /* two column (L4) */
+  .twocol{display:flex;gap:34px;height:100%;}
+  .col-l{flex:1.15;}
+  .col-r{flex:.85;background:var(--orange);border-radius:14px;color:var(--white);display:flex;flex-direction:column;justify-content:center;padding:34px;}
+  .col-r .big{font-size:30px;font-weight:700;line-height:1.15;margin-bottom:14px;}
+  .col-r .small{font-size:18px;line-height:1.5;opacity:.95;}
+  .col-r ul{list-style:none;}
+  .col-r ul li{position:relative;padding-left:24px;margin-bottom:12px;font-size:18px;line-height:1.35;}
+  .col-r ul li::before{content:"";position:absolute;left:0;top:9px;width:9px;height:9px;border-radius:50%;background:var(--white);}
+
+  /* CV list */
+  .cvlist{list-style:none;column-count:2;column-gap:48px;margin-top:8px;}
+  .cvlist li{position:relative;padding-left:28px;margin-bottom:22px;break-inside:avoid;}
+  .cvlist li::before{content:"";position:absolute;left:0;top:7px;width:11px;height:11px;border-radius:50%;background:var(--orange);}
+  .cvlist .role{font-size:21px;font-weight:700;color:var(--black);line-height:1.2;}
+  .cvlist .org{font-size:16px;color:var(--dgray);margin-top:3px;}
+
+  /* cards row */
+  .cards{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px;}
+  .card{flex:1;min-width:150px;background:var(--tint);border:1px solid #ffd9bf;border-radius:12px;padding:18px 16px;}
+  .card .ic{font-size:24px;}
+  .card .t{font-weight:700;color:var(--black);font-size:18px;margin:6px 0 4px;}
+  .card .d{font-size:15px;color:var(--dgray);line-height:1.35;}
+
+  /* table (L5) */
+  table.brand{width:100%;border-collapse:collapse;font-size:18px;}
+  table.brand th{background:var(--orange);color:var(--white);text-align:left;padding:11px 14px;font-weight:700;font-size:17px;}
+  table.brand td{padding:10px 14px;border-bottom:1px solid #eee;color:var(--dgray);}
+  table.brand tr:nth-child(even) td{background:var(--tint);}
+  table.brand td.u1{color:#1a4d8a;font-weight:700;}
+  table.brand td.u2{color:#1a6b40;font-weight:700;}
+  table.brand td.u3{color:#8a6000;font-weight:700;}
+  .ok{color:var(--green);font-weight:700;}
+  .no{color:var(--red);font-weight:700;}
+  .mid{color:#c9870a;font-weight:700;}
+
+  /* identificación table */
+  table.idtab{width:100%;border-collapse:collapse;font-size:18px;}
+  table.idtab td{padding:9px 14px;border-bottom:1px solid #eee;}
+  table.idtab td.k{color:var(--black);font-weight:700;width:42%;}
+  table.idtab td.v{color:var(--dgray);}
+  table.idtab tr:nth-child(even) td{background:var(--tint);}
+
+  /* stack */
+  .stack{display:flex;gap:20px;height:100%;}
+  .stack .layer{flex:1;display:flex;flex-direction:column;}
+  .stack .lhead{height:62px;border-radius:8px 8px 0 0;display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:700;font-size:22px;}
+  .stack .lbody{flex:1;background:var(--lgray);border:1px solid #e3e3e3;border-top:none;border-radius:0 0 8px 8px;padding:20px;}
+  .stack .lbody ul{list-style:none;}
+  .stack .lbody li{position:relative;padding-left:22px;margin-bottom:13px;font-size:17px;color:var(--dgray);line-height:1.3;}
+  .stack .lbody li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;border-radius:50%;background:var(--orange);}
+
+  /* evaluación */
+  .evalwrap{display:flex;flex-direction:column;gap:18px;height:100%;}
+  .evaltop{display:flex;gap:22px;flex:0 0 auto;}
+  .bigbox{background:var(--orange);color:#fff;border-radius:14px;width:210px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;}
+  .bigbox .pct{font-size:60px;font-weight:800;line-height:1;}
+  .bigbox .lbl{font-size:15px;margin-top:6px;text-align:center;opacity:.95;}
+  .evalrows{flex:1;display:flex;flex-direction:column;gap:9px;}
+  .evalrow{border:1px solid #eee;border-radius:10px;padding:10px 18px;display:flex;gap:16px;align-items:baseline;}
+  .evalrow .k{color:var(--orange);font-weight:700;font-size:17px;width:130px;flex-shrink:0;}
+  .evalrow .v{color:var(--dgray);font-size:17px;}
+  .projttl{font-weight:700;color:var(--black);font-size:18px;margin-top:2px;}
+  .projcards{display:flex;gap:16px;}
+  .projcards .pc{flex:1;background:var(--tint);border:1px solid #ffd9bf;border-radius:12px;padding:14px;}
+  .projcards .pc .u{color:var(--orange);font-weight:700;font-size:16px;text-align:center;line-height:1.25;}
+  .projcards .pc .d{color:var(--dgray);font-size:14px;text-align:center;margin-top:8px;line-height:1.35;}
+
+  .quote{font-style:italic;color:var(--orange);font-size:24px;font-weight:500;margin-top:18px;}
+
+  .slide.active .anim{animation:rise .5s ease both;}
+  .slide.active .anim:nth-child(1){animation-delay:.05s}
+  .slide.active .anim:nth-child(2){animation-delay:.13s}
+  .slide.active .anim:nth-child(3){animation-delay:.21s}
+  .slide.active .anim:nth-child(4){animation-delay:.29s}
+  .slide.active .anim:nth-child(5){animation-delay:.37s}
+  .slide.active .anim:nth-child(6){animation-delay:.45s}
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+  .nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;z-index:50;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);padding:8px 16px;border-radius:30px;}
+  .nav button{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;opacity:.85;}
+  .nav button:hover{opacity:1;color:var(--orange);}
+  .nav .count{color:#ddd;font-size:13px;font-variant-numeric:tabular-nums;}
+  .progress{position:fixed;top:0;left:0;height:3px;background:var(--orange);z-index:60;transition:width .3s;}
+  .hint-help{position:fixed;bottom:18px;right:18px;color:#777;font-size:12px;z-index:50;}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="stage">
+  <div class="deck" id="deck">
+
+    <!-- 1 · PORTADA -->
+    <section class="slide l1 active">
+      <div class="accent"></div>
+      <div class="logo logo--inv">▶ UDLA</div>
+      <div class="clase anim">CLASE 1</div>
+      <h1 class="ttl anim">Python en la Industria Real:<br>por qué domina el dato</h1>
+      <div class="sub anim">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="meta anim">PhD. Juan Manuel Rozas<br>Unidad 1 · Martes 09-06-2026 · 19:15–22:30</div>
+      <div class="barbottom"></div>
+    </section>
+
+    <!-- 2 · DIVISOR PRESENTACIÓN -->
+    <section class="slide l2">
+      <div class="logo logo--inv">▶ UDLA</div>
+      <div class="kicker anim">Bienvenida</div>
+      <div class="stitle anim">Presentación</div>
+      <div class="num">01</div>
+    </section>
+
+    <!-- 3 · CV ACADÉMICA -->
+    <section class="slide">
+      <div class="header-bar orange"><h2>Presentación · Trayectoria académica</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <div style="font-size:25px;font-weight:700;color:var(--black);margin-bottom:14px;" class="anim">PhD. Juan Manuel Rozas</div>
+        <ul class="cvlist">
+          <li class="anim"><div class="role">PhD. Ingeniería en Sistemas Complejos</div><div class="org">Universidad Adolfo Ibáñez</div></li>
+          <li class="anim"><div class="role">Ingeniero en Biotecnología</div><div class="org">Universidad de Chile</div></li>
+          <li class="anim"><div class="role">CORe — Credential of Readiness</div><div class="org">Business Analytics, Economics for Managers &amp; Financial Accounting · Harvard Business School Online</div></li>
+          <li class="anim"><div class="role">Miembro del Club CDO</div><div class="org">Chief Data Officer · Spain &amp; Latam</div></li>
+          <li class="anim"><div class="role">Miembro de DAMA</div><div class="org">Data Management International</div></li>
+        </ul>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 4 · CV LABORAL -->
+    <section class="slide">
+      <div class="header-bar orange"><h2>Presentación · Trayectoria laboral</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <ul class="cvlist">
+          <li class="anim"><div class="role">Amisoft — Lawtech &amp; Legaltech</div><div class="org">CRO &amp; COO</div></li>
+          <li class="anim"><div class="role">Lemontech — Legaltech</div><div class="org">Head of Data and Analytics</div></li>
+          <li class="anim"><div class="role">Alto La Cruz</div><div class="org">CRO</div></li>
+          <li class="anim"><div class="role">South-Am Freeze Dried</div><div class="org">Business Intelligence Manager</div></li>
+          <li class="anim"><div class="role">Profesor</div><div class="org">UDLA · UAI · Universidad de Chile</div></li>
+        </ul>
+        <div class="quote anim">Datos, operaciones y negocio — la teoría de este curso viene de la cancha.</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 5 · DIVISOR PROGRAMA -->
+    <section class="slide l2">
+      <div class="logo logo--inv">▶ UDLA</div>
+      <div class="kicker anim">Contexto</div>
+      <div class="stitle anim">El programa del curso</div>
+      <div class="num">02</div>
+    </section>
+
+    <!-- 6 · IDENTIFICACIÓN DE LA ASIGNATURA -->
+    <section class="slide">
+      <div class="header-bar orange"><h2>Programa · Identificación de la asignatura</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <table class="idtab anim">
+          <tr><td class="k">Sigla</td><td class="v">DPL1046</td></tr>
+          <tr><td class="k">Nombre</td><td class="v">Programación en Python y Manipulación de Datos</td></tr>
+          <tr><td class="k">Créditos Totales (SCUDLA)</td><td class="v">2</td></tr>
+          <tr><td class="k">Método educativo · Régimen</td><td class="v">EL · A Distancia Executive</td></tr>
+          <tr><td class="k">Vigencia / Última actualización</td><td class="v">202610</td></tr>
+          <tr><td class="k">Distribución semanal de horas</td><td class="v">Clases teóricas 2 · Trabajo personal 1 · Total 3 (Presencial 2 / No presencial 1)</td></tr>
+        </table>
+        <div class="quote anim">Diplomado en Ingeniería de Datos con Python · Facultad de Ingeniería y Negocios.</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 7 · DESCRIPCIÓN + RAA -->
+    <section class="slide">
+      <div class="header-bar orange"><h2>Programa · Descripción y resultados de aprendizaje</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <div class="subh anim">Descripción de la asignatura</div>
+        <ul class="bul sm">
+          <li class="anim">Dominio práctico de Python para extraer, manipular y transformar datos en contextos profesionales reales, usando librerías como pandas y automatizando flujos de ingeniería de datos.</li>
+          <li class="anim">Integración de múltiples fuentes —archivos, APIs y servicios externos— con énfasis en eficiencia, buenas prácticas y toma de decisiones basada en datos.</li>
+          <li class="anim">Metodología 100% online sincrónica con talleres aplicados, casos reales y evaluación por proyecto integrador.</li>
+        </ul>
+        <div class="subh anim" style="margin-top:18px;">Resultados de aprendizaje</div>
+        <ul class="bul sm">
+          <li class="anim"><b>RAA1.</b> Desarrollar scripts en Python para la extracción y manipulación de datos, utilizando librerías especializadas, en contextos aplicados de análisis y gestión de información.</li>
+          <li class="anim"><b>RAA2.</b> Optimizar procesos de carga y transformación de datos mediante el uso eficiente de librerías como Pandas, integrando buenas prácticas en flujos de trabajo automatizados.</li>
+          <li class="anim"><b>RAA3.</b> Integrar datos provenientes de APIs externas mediante Python, para incorporarlos en aplicaciones y procesos orientados a la toma de decisiones basada en datos.</li>
+        </ul>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 8 · PROGRAMA DEL CURSO (9 CLASES) -->
+    <section class="slide">
+      <div class="header-bar orange"><h2>Programa del curso · 9 sesiones</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <div style="font-size:14px;color:var(--caption);font-style:italic;margin-bottom:8px;" class="anim">9 sesiones · 3 horas por sesión · 19:15–22:30 · Online sincrónica (ZOOM)</div>
+        <table class="brand anim" style="font-size:15px;">
+          <thead><tr><th>Clase</th><th>Fecha</th><th>Unidad</th><th>Título de la sesión</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>09-06-2026</td><td class="u1">Unidad 1</td><td>Python en la Industria Real: por qué domina el dato</td></tr>
+            <tr><td>2</td><td>11-06-2026</td><td class="u1">Unidad 1</td><td>Estructuras de Datos y Control de Flujo con Foco Industrial</td></tr>
+            <tr><td>3</td><td>16-06-2026</td><td class="u1">Unidad 1</td><td>Lectura de Datos del Mundo Real: Archivos, APIs y Fuentes Industriales</td></tr>
+            <tr><td>4</td><td>18-06-2026</td><td class="u2">Unidad 2</td><td>Pandas en Profundidad: el Motor de la Ingeniería de Datos</td></tr>
+            <tr><td>5</td><td>23-06-2026</td><td class="u2">Unidad 2</td><td>Transformaciones Avanzadas y Cloud: de Local a AWS</td></tr>
+            <tr><td>6</td><td>25-06-2026</td><td class="u2">Unidad 2</td><td>Automatización, Orquestación y Buenas Prácticas de Producción</td></tr>
+            <tr><td>7</td><td>30-06-2026</td><td class="u3">Unidad 3</td><td>Integración de APIs Avanzada: Ecosistema Real de la Industria</td></tr>
+            <tr><td>8</td><td>02-07-2026</td><td class="u3">Unidad 3</td><td>IA Aplicada a Datos: LLMs, Embeddings y el Futuro del Rol</td></tr>
+            <tr><td>9</td><td>07-07-2026</td><td class="u3">Unidad 3</td><td>Proyecto Integrador: Presentaciones y Cierre del Diplomado</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 9 · SISTEMA DE EVALUACIÓN -->
+    <section class="slide">
+      <div class="header-bar orange"><h2>Sistema de evaluación</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <div class="evalwrap">
+          <div class="evaltop anim">
+            <div class="bigbox"><div class="pct">100%</div><div class="lbl">Examen<br>(Proyecto)</div></div>
+            <div class="evalrows">
+              <div class="evalrow"><div class="k">Aprobación</div><div class="v">Nota mínima 4.0 sobre el promedio final</div></div>
+              <div class="evalrow"><div class="k">Asistencia</div><div class="v">Mínimo 70% de clases sincrónicas (ZOOM)</div></div>
+              <div class="evalrow"><div class="k">Proyecto</div><div class="v">Integrador — entregables parciales por unidad</div></div>
+              <div class="evalrow"><div class="k">Instrumento</div><div class="v">Rúbrica de desempeño con criterios explícitos</div></div>
+            </div>
+          </div>
+          <div>
+            <div class="projttl anim">Estructura del proyecto integrador</div>
+            <div class="projcards anim" style="margin-top:10px;">
+              <div class="pc"><div class="u">Unidad 1<br>Clases 1–3</div><div class="d">Script ETL + 2 fuentes + reporte en GitHub</div></div>
+              <div class="pc"><div class="u">Unidad 2<br>Clases 4–6</div><div class="d">Pipeline pandas + cloud (AWS) + tests</div></div>
+              <div class="pc"><div class="u">Unidad 3<br>Clases 7–9</div><div class="d">APIs + IA + demo ejecutiva</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 10 · REGLAS DEL JUEGO -->
+    <section class="slide">
+      <div class="header-bar black"><h2>Las reglas del juego</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l">
+            <ul class="bul">
+              <li class="anim"><b>La IA está permitida y esperada.</b> Copilot, Claude y ChatGPT son parte del trabajo real.</li>
+              <li class="anim"><b>Foco en entregables reales</b>, no en ejercicios de juguete.</li>
+              <li class="anim"><b>Local-first</b> en VS Code, con espejo en la nube (AWS) en cada clase.</li>
+              <li class="anim">Trabajamos con un <b>dataset real</b> de principio a fin.</li>
+            </ul>
+          </div>
+          <div class="col-r anim">
+            <div class="big">"La IA es tu copiloto,<br>no el piloto."</div>
+            <div class="small">El curso entrena <b>vibe coding supervisado</b>: entender y revisar lo que la IA genera — nunca copiar a ciegas.</div>
+          </div>
+        </div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 11 · DIVISOR PYTHON -->
+    <section class="slide l2">
+      <div class="logo logo--inv">▶ UDLA</div>
+      <div class="kicker anim">Bloque temático</div>
+      <div class="stitle anim">Python en el<br>ecosistema de datos</div>
+      <div class="num">03</div>
+    </section>
+
+    <!-- 12 · POR QUÉ PYTHON -->
+    <section class="slide">
+      <div class="header-bar orange"><h2>¿Por qué Python domina el dato?</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <ul class="bul">
+          <li class="anim"><b>Lenguaje #1 del mundo</b> según TIOBE: superó a Java y C en 2021 y no volvió atrás.</li>
+          <li class="anim"><b>El estándar en la industria de datos</b>: banca, retail, minería y logística lo usan para sus pipelines.</li>
+          <li class="anim"><b>El favorito de los LLMs</b> para generar código (Copilot, Claude, ChatGPT) — multiplica tu productividad.</li>
+          <li class="anim"><b>Integración nativa con la nube</b>: boto3 para AWS, conectores para S3, Glue y Athena.</li>
+        </ul>
+        <div class="quote anim">"Python es el pegamento que une todo el stack de datos."</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 13 · PYTHON + AWS -->
+    <section class="slide">
+      <div class="header-bar black"><h2>Python + AWS: el stack en la industria chilena</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l">
+            <ul class="bul">
+              <li class="anim">En consultoría de datos, el <b>80% de los pipelines</b> pasan por Python.</li>
+              <li class="anim">El dato ya no vive en un servidor local: vive en <b>S3</b> y se consulta con <b>Athena</b>.</li>
+              <li class="anim">Python orquesta todo el flujo: <b>ingesta → transformación → visualización</b>.</li>
+              <li class="anim">Por eso el curso es local-first <b>pero con espejo en AWS</b> en cada clase.</li>
+            </ul>
+          </div>
+          <div class="col-r anim">
+            <div class="big">AWS + Python</div>
+            <ul>
+              <li>boto3 · S3 · IAM</li>
+              <li>Glue (ETL)</li>
+              <li>Athena (SQL sobre S3)</li>
+              <li>QuickSight (visualización)</li>
+              <li>EC2 (entorno remoto)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 14 · MATRIZ -->
+    <section class="slide">
+      <div class="header-bar orange"><h2>¿Cuándo usar Python, SQL, R o Excel?</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <table class="brand anim">
+          <thead><tr><th>Tarea</th><th>Python</th><th>SQL</th><th>R</th><th>Excel</th></tr></thead>
+          <tbody>
+            <tr><td>ETL / pipelines automatizados</td><td class="ok">✅ Ideal</td><td class="mid">⚡ Apoyo</td><td class="no">❌</td><td class="no">❌</td></tr>
+            <tr><td>Consultas ad-hoc a una base de datos</td><td class="mid">⚡</td><td class="ok">✅ Ideal</td><td class="mid">⚡</td><td class="no">❌</td></tr>
+            <tr><td>Modelos estadísticos / ML</td><td class="ok">✅ Ideal</td><td class="no">❌</td><td class="ok">✅ Ideal</td><td class="no">❌</td></tr>
+            <tr><td>Reporte simple para gerencia</td><td class="mid">⚡</td><td class="mid">⚡</td><td class="no">❌</td><td class="ok">✅ Ideal</td></tr>
+            <tr><td>APIs e integración de sistemas</td><td class="ok">✅ Ideal</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td></tr>
+            <tr><td>Automatización con IA integrada</td><td class="ok">✅ Ideal</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:14px;font-size:15px;color:var(--caption)" class="anim">✅ Ideal &nbsp;·&nbsp; ⚡ Posible pero no óptimo &nbsp;·&nbsp; ❌ Evitar</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 15 · STACK 2026 -->
+    <section class="slide">
+      <div class="header-bar black"><h2>El stack del ingeniero de datos 2026</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <div class="stack" style="height:430px">
+          <div class="layer anim">
+            <div class="lhead" style="background:#065A82">Ingestar</div>
+            <div class="lbody"><ul><li>S3 (data lake)</li><li>APIs · requests</li><li>boto3</li><li>Glue Crawlers</li></ul></div>
+          </div>
+          <div class="layer anim">
+            <div class="lhead" style="background:var(--orange)">Procesar</div>
+            <div class="lbody"><ul><li>Python + pandas</li><li>AWS Glue (ETL)</li><li>Athena (SQL)</li><li>IA: enriquecer / clasificar</li></ul></div>
+          </div>
+          <div class="layer anim">
+            <div class="lhead" style="background:var(--green)">Entregar</div>
+            <div class="lbody"><ul><li>QuickSight (dashboards)</li><li>Parquet en S3</li><li>Bases de datos</li><li>Reportes ejecutivos</li></ul></div>
+          </div>
+        </div>
+        <div class="quote anim" style="text-align:center;margin-top:22px">Python + Cloud + IA: las tres capas que definen el rol en 2026.</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 16 · DIVISOR DATASETS -->
+    <section class="slide l2">
+      <div class="logo logo--inv">▶ UDLA</div>
+      <div class="kicker anim">Bloque temático</div>
+      <div class="stitle anim">El dato manda:<br>cómo encontrar datasets ricos</div>
+      <div class="num">04</div>
+    </section>
+
+    <!-- 17 · DÓNDE BUSCAR -->
+    <section class="slide">
+      <div class="header-bar orange"><h2>¿Dónde buscar datos reales?</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <div class="cards">
+          <div class="card anim"><div class="ic">🇨🇱</div><div class="t">datos.gob.cl</div><div class="d">Portal de datos abiertos del Estado de Chile.</div></div>
+          <div class="card anim"><div class="ic">📊</div><div class="t">INE · Banco Central · CMF</div><div class="d">Estadística, economía y mercado de capitales chileno.</div></div>
+          <div class="card anim"><div class="ic">🏆</div><div class="t">Kaggle</div><div class="d">Miles de datasets reales, documentados y descargables.</div></div>
+        </div>
+        <div class="cards" style="margin-top:18px">
+          <div class="card anim"><div class="ic">☁️</div><div class="t">AWS Open Data</div><div class="d">Datasets enormes ya alojados en S3, listos para Athena.</div></div>
+          <div class="card anim"><div class="ic">🤗</div><div class="t">Hugging Face</div><div class="d">Datasets con foco en texto e IA.</div></div>
+          <div class="card anim"><div class="ic">🔌</div><div class="t">APIs públicas</div><div class="d">SII, Banco Central, CMF — datos vivos, no archivos estáticos.</div></div>
+        </div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 18 · QUÉ HACE RICO -->
+    <section class="slide">
+      <div class="header-bar black"><h2>¿Qué hace RICO a un dataset?</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l">
+            <ul class="bul">
+              <li class="anim"><b>Volumen suficiente</b> para que valga la pena automatizar.</li>
+              <li class="anim"><b>Varias tablas o fuentes</b> que se puedan cruzar (joins).</li>
+              <li class="anim"><b>Tipos mixtos</b>: números, fechas y texto libre.</li>
+              <li class="anim"><b>Suciedad real</b>: nulos, duplicados, formatos inconsistentes.</li>
+            </ul>
+          </div>
+          <div class="col-r anim">
+            <div class="big">La regla de oro</div>
+            <div class="small">Un dataset perfecto no enseña nada. Buscamos datos <b>reales y desordenados</b>, con <b>documentación</b> y, ojalá, <b>actualización periódica</b>.</div>
+          </div>
+        </div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 19 · CHECKLIST -->
+    <section class="slide">
+      <div class="header-bar orange"><h2>Checklist: ¿sirve este dataset para el proyecto?</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <table class="brand anim">
+          <thead><tr><th>Criterio</th><th>Por qué importa</th><th>Mínimo</th></tr></thead>
+          <tbody>
+            <tr><td>≥ 2 fuentes / tablas</td><td>Permite practicar joins e integración</td><td class="ok">Obligatorio</td></tr>
+            <tr><td>Campo de fecha/hora</td><td>Series de tiempo y window functions</td><td class="ok">Deseable</td></tr>
+            <tr><td>Campo de texto libre</td><td>Insumo para el componente de IA (U3)</td><td class="mid">Recomendado</td></tr>
+            <tr><td>Volumen (&gt; 50k filas)</td><td>Justifica cloud, Parquet y Athena</td><td class="mid">Recomendado</td></tr>
+            <tr><td>Documentación / diccionario</td><td>Saber qué significa cada columna</td><td class="ok">Obligatorio</td></tr>
+            <tr><td>Licencia de uso clara</td><td>Poder publicarlo en GitHub</td><td class="ok">Obligatorio</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 20 · OLIST -->
+    <section class="slide">
+      <div class="header-bar black"><h2>Nuestro dataset del curso: Olist</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l">
+            <ul class="bul">
+              <li class="anim"><b>9 tablas relacionales</b>: órdenes, clientes, productos, vendedores, pagos, reseñas, geolocalización.</li>
+              <li class="anim"><b>~100.000 órdenes</b> de e-commerce, con fechas reales de compra, envío y entrega.</li>
+              <li class="anim"><b>Reseñas en texto</b> → insumo natural para la IA de la Unidad 3.</li>
+              <li class="anim"><b>Datos anonimizados</b> (empresas reemplazadas por casas de <i>Game of Thrones</i>) → gancho para PII en la Clase 3.</li>
+            </ul>
+          </div>
+          <div class="col-r anim">
+            <div class="big">Retail + Logística</div>
+            <div class="small">Cubre todo el arco del curso: cruces de tablas (U2), APIs e IA sobre las reseñas (U3) y un pipeline cloud completo S3 → Glue → Athena → QuickSight.</div>
+          </div>
+        </div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 21 · ESPEJO AWS -->
+    <section class="slide">
+      <div class="header-bar orange"><h2>El mismo flujo, ahora en AWS</h2></div>
+      <div class="logo">▶ UDLA</div>
+      <div class="body">
+        <ul class="bul">
+          <li class="anim"><b>Hoy damos el primer paso del data lake:</b> creamos un bucket S3 y subimos el dataset crudo a la zona <code>raw/</code>.</li>
+          <li class="anim"><b>EC2 como entorno remoto (opcional):</b> el código y los datos viven en AWS; tu laptop es solo la pantalla, vía VS Code Remote-SSH.</li>
+          <li class="anim"><b>Seguridad desde el inicio:</b> credenciales fuera del código, IAM Roles y principio de mínimo privilegio.</li>
+          <li class="anim"><b>El curso es local-first:</b> todo lo que hacemos en local tiene su espejo en la nube, clase a clase.</li>
+        </ul>
+        <div class="quote anim">S3 (raw → curated) → Glue → Athena → QuickSight: lo construiremos pieza por pieza.</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 22 · DIVISOR CIERRE -->
+    <section class="slide l2">
+      <div class="logo logo--inv">▶ UDLA</div>
+      <div class="kicker anim">Cierre</div>
+      <div class="stitle anim">Manos a la obra</div>
+      <div class="num">05</div>
+    </section>
+
+    <!-- 23 · PREGUNTA -->
+    <section class="slide l6">
+      <div class="logo">▶ UDLA</div>
+      <div class="q anim">En tu trabajo actual, ¿cuál es la herramienta<br>que más usas para datos… y es siempre<br>la más adecuada?</div>
+      <div class="uline"></div>
+      <div class="hint anim">Responde en el chat de ZOOM — al final del diplomado tendrás otra respuesta.</div>
+    </section>
+
+    <!-- 24 · CIERRE -->
+    <section class="slide l1">
+      <div class="accent"></div>
+      <div class="logo logo--inv">▶ UDLA</div>
+      <h1 class="ttl closing anim">Tarea: elige tu dataset</h1>
+      <div class="closing-sub anim">Un dataset rico, con ≥2 fuentes — justifícalo en tu README de GitHub</div>
+      <div class="meta anim">DPL1046 · Programación en Python y Manipulación de Datos · PhD. Juan Manuel Rozas · 2026</div>
+      <div class="barbottom"></div>
+    </section>
+
+  </div>
+</div>
+
+<div class="nav">
+  <button id="prev" title="Anterior (←)">◀</button>
+  <span class="count" id="count">1 / 24</span>
+  <button id="next" title="Siguiente (→)">▶</button>
+</div>
+<div class="hint-help">← → para navegar · F para pantalla completa</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const deck=document.getElementById('deck');
+  const progress=document.getElementById('progress');
+  const count=document.getElementById('count');
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    count.textContent=(i+1)+' / '+slides.length;
+    progress.style.width=((i+1)/slides.length*100)+'%';
+  }
+  function scaleDeck(){
+    const s=Math.min(window.innerWidth/1280, window.innerHeight/720);
+    deck.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize',scaleDeck);
+  document.getElementById('next').onclick=()=>show(i+1);
+  document.getElementById('prev').onclick=()=>show(i-1);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key.toLowerCase()==='f'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+  });
+  // Numeración automática por posición (dividers/portada/cierre/pregunta no llevan .foot-num)
+  slides.forEach((s,k)=>{const fn=s.querySelector('.foot-num'); if(fn) fn.textContent=k+1;});
+  scaleDeck();show(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+# ============================================================
+# .gitignore · Diplomado en Ingeniería de Datos con Python
+# ============================================================
+
+# --- Datos: NUNCA subir datasets al repo ---
+data/*
+!data/.gitkeep
+*.csv
+*.parquet
+*.xlsx
+*.zip
+
+# --- Material solo-docente (guías, soluciones, demos privadas) ---
+_privado/
+
+# --- Secretos y credenciales ---
+.env
+.env.*
+kaggle.json
+*.pem
+.aws/
+credentials
+secrets.*
+
+# --- Entorno de Python ---
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# --- Sistema / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
