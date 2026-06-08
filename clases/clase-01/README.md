@@ -5,6 +5,10 @@
 - **Teoría:** abre [`teoria.html`](teoria.html) en el navegador (navega con ← →, tecla `F` para pantalla completa).
 - **Práctica:** los scripts están en [`material/`](material/).
 
+### 📋 Guías de instalación (haz esto primero)
+- 🔧 [**Guía de GitHub, VS Code y tu entorno**](guia_github_alumno.md) — crea tu cuenta, instala Git y deja todo listo.
+- ☁️ [**Guía de AWS**](guia_aws_alumno.md) — referencia para la Unidad 2 (hoy la nube es solo demostración del profe).
+
 ---
 
 ## Qué harás hoy
