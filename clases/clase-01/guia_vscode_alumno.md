@@ -1,134 +1,127 @@
-# Guía del alumno — VS Code: descarga y primeros pasos
+# Guía 1 de 2 — VS Code: instala y conoce tu entorno de trabajo
 
-**DPL1046 · Clase 1.** Deja VS Code listo antes de la clase. Al terminar esta guía estarás en condiciones de seguir con la **[Guía de GitHub y tu entorno](guia_github_alumno.md)**.
+**DPL1046 · Haz esto ANTES de la Clase 1.**
+Tiempo estimado: 15–20 min.
+
+Cuando termines esta guía tendrás VS Code listo. Luego, en clase, continuarás con la **[Guía 2 → GitHub y tu entorno](guia_github_alumno.md)** donde clonarás el repositorio, crearás el entorno Python y correrás tus primeros scripts.
 
 ---
 
 ## ¿Qué es VS Code?
 
-VS Code (Visual Studio Code) es el editor de código que usaremos todo el curso. Es gratuito, funciona en Mac, Windows y Linux, y tiene integración directa con Python, Git y la terminal — todo en una sola ventana.
+VS Code (Visual Studio Code) es el editor que usaremos todo el curso. Es gratuito, funciona en Mac, Windows y Linux, y reúne en una sola ventana el editor de código, la terminal y la integración con Git y Python.
 
 ---
 
-## Paso 1 · Descarga e instala VS Code
+## Paso 1 · Instala VS Code
 
-1. Entra a **https://code.visualstudio.com**
-2. Haz clic en el botón de descarga (detecta tu sistema automáticamente).
-3. Instala normalmente:
-   - **Windows:** ejecuta el `.exe`. En el paso *"Tareas adicionales"*, marca **"Agregar al PATH"** y **"Abrir con Code"** (facilita la vida).
-   - **macOS:** arrastra el ícono a la carpeta *Aplicaciones*. Luego abre VS Code y ejecuta: `Cmd + Shift + P` → escribe `Shell Command: Install 'code' command in PATH` → Enter.
+1. Descarga desde **https://code.visualstudio.com** (detecta tu sistema automáticamente).
+2. Instala:
+   - **Windows:** en el paso *"Tareas adicionales"* marca **"Agregar al PATH"** y **"Abrir con Code"**.
+   - **macOS:** arrastra a *Aplicaciones*. Luego abre VS Code → `Cmd + Shift + P` → escribe `Shell Command: Install 'code' command in PATH` → Enter.
 
-Verifica que quedó bien abriendo una terminal y escribiendo:
+Verifica en la terminal:
 ```bash
-code --version   # debe mostrar un número de versión
+code --version    # debe mostrar un número de versión
 ```
 
 ---
 
-## Paso 2 · Instala las extensiones esenciales
+## Paso 2 · Instala Python 3.12
 
-Abre VS Code → haz clic en el ícono de **Extensiones** (cuadrados en la barra izquierda, o `Ctrl/Cmd + Shift + X`) → busca e instala:
+Descarga desde **https://www.python.org/downloads/** e instala.
+- **Windows:** marca la casilla **"Add Python to PATH"** antes de continuar (importante).
 
-| Extensión | Para qué sirve |
+Verifica:
+```bash
+python --version    # debe decir 3.10 o superior
+```
+
+---
+
+## Paso 3 · Instala las extensiones esenciales
+
+En VS Code → ícono de **Extensiones** en la barra izquierda (o `Ctrl/Cmd + Shift + X`) → instala:
+
+| Extensión | Por qué |
 |---|---|
-| **Python** (Microsoft) | Soporte completo de Python: autocompletado, errores, intérprete |
-| **Jupyter** (Microsoft) | Correr notebooks `.ipynb` si los necesitas |
-| **GitLens** (GitKraken) | Ver el historial de Git directamente en el editor |
+| **Python** (Microsoft) | Autocompletado, errores y soporte de intérprete |
+| **Jupyter** (Microsoft) | Soporte de notebooks si los necesitas |
+| **GitLens** (GitKraken) | Ver el historial de Git directo en el editor |
+| **Data Wrangler** (Microsoft) | Ver archivos CSV como tabla antes de escribir código |
+| **GitHub Copilot** (GitHub) | IA para explicar, completar y mejorar código |
+| **Rainbow CSV** (mechatroner) | Colorea las columnas del CSV para leerlo más fácil |
 
-Con estas tres tienes todo lo que necesitas para el curso.
+> **Data Wrangler y GitHub Copilot** son las más importantes del curso. Asegúrate de instalarlas.
+
+### Activar GitHub Copilot
+Después de instalar la extensión, inicia sesión con tu cuenta de GitHub cuando lo pida. Con la cuenta gratuita ya tienes acceso al chat y al autocompletado.
 
 ---
 
-## Paso 3 · Conoce la interfaz (5 min)
+## Paso 4 · Conoce la interfaz
 
 ```
-┌─────────────────────────────────────────────┐
-│  Barra de actividad (izquierda)             │
-│  ├── 📁 Explorador de archivos              │
-│  ├── 🔍 Búsqueda                            │
-│  ├── 🔀 Control de versiones (Git)          │
-│  └── 🧩 Extensiones                         │
-│                                             │
-│  Editor (centro) — donde escribes código    │
-│                                             │
-│  Terminal integrada (abajo)                 │
-│  → Ctrl/Cmd + ñ   o   Ver → Terminal        │
-└─────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────┐
+│  Barra de actividad (izquierda)                  │
+│  ├── 📁 Explorador      → archivos del proyecto  │
+│  ├── 🔍 Búsqueda        → buscar en el código    │
+│  ├── 🔀 Source Control  → Git (commits, cambios) │
+│  └── 🧩 Extensiones    → instalar plugins        │
+│                                                  │
+│  Editor (centro)        → donde escribes código  │
+│                                                  │
+│  Terminal integrada (abajo)                      │
+│  → Ctrl/Cmd + J   o   Ver → Terminal             │
+└──────────────────────────────────────────────────┘
 ```
+
+> **Source Control** solo aparece cuando abres una carpeta que tiene un repositorio Git. Lo verás en clase cuando clones el repo.
 
 Las tres cosas que más usarás:
-
-- **Explorador** — ver y abrir archivos del proyecto.
-- **Terminal integrada** — correr scripts sin salir de VS Code.
-- **Paleta de comandos** (`Ctrl/Cmd + Shift + P`) — el acceso rápido a todo.
+- **Explorador** — navegar y abrir archivos del proyecto.
+- **Terminal integrada** — correr comandos sin salir de VS Code.
+- **Paleta de comandos** (`Ctrl/Cmd + Shift + P`) — acceso rápido a cualquier función.
 
 ---
 
-## Paso 4 · Abre una carpeta de proyecto
+## Paso 5 · Abre una carpeta (no un archivo)
 
-VS Code trabaja con **carpetas**, no con archivos sueltos. Siempre abre la raíz del proyecto:
+VS Code trabaja con **carpetas de proyecto**, no con archivos sueltos. La forma correcta de abrir el repositorio del curso será:
 
 ```bash
-# Desde la terminal, parado en la carpeta del repo:
-code .
+cd ~/diplomado-idsdata-juanmarozas    # en clase, después de clonar
+code .                                 # el punto = "abre esta carpeta"
 ```
 
-O usa **Archivo → Abrir carpeta** y navega hasta ella.
-
-> Cuando VS Code te pregunte *"¿Confías en los autores de esta carpeta?"*, di que **sí**.
+Cuando VS Code pregunte *"¿Confías en los autores de esta carpeta?"*, di **Sí**.
 
 ---
 
-## Paso 5 · Selecciona el intérprete de Python
-
-Después de crear el entorno virtual (lo harás en la guía de GitHub), necesitas decirle a VS Code cuál Python usar:
-
-1. `Ctrl/Cmd + Shift + P` → escribe **Python: Select Interpreter** → Enter.
-2. Elige la opción que diga **`.venv`** (la que está dentro de la carpeta del proyecto).
-
-Verás el intérprete seleccionado en la barra inferior izquierda. A partir de ahí, al correr cualquier script usa automáticamente las librerías del curso.
-
----
-
-## Paso 6 · Corre tu primer script
-
-Con una carpeta abierta y el intérprete seleccionado:
-
-- **Opción A** — botón ▶ en la esquina superior derecha del archivo `.py`.
-- **Opción B** — terminal integrada:
-  ```bash
-  python clases/clase-01/material/01_leer_csv.py
-  ```
-
-La salida aparece directamente en la terminal de abajo.
-
----
-
-## Atajos que usarás todo el tiempo
+## Atajos clave
 
 | Atajo | Acción |
 |---|---|
-| `Ctrl/Cmd + Shift + P` | Paleta de comandos (acceso a todo) |
-| `Ctrl/Cmd + ñ` | Abrir/cerrar terminal integrada |
-| `Ctrl/Cmd + \`` | Nueva terminal |
-| `Ctrl/Cmd + S` | Guardar archivo |
+| `Ctrl/Cmd + Shift + P` | Paleta de comandos |
+| `Ctrl/Cmd + J` | Abrir/cerrar terminal |
+| `Ctrl/Cmd + S` | Guardar |
 | `Ctrl/Cmd + Z` | Deshacer |
-| `F5` | Correr script en modo debug |
 | `Ctrl/Cmd + Shift + X` | Extensiones |
+| `Ctrl/Cmd + =` / `-` | Aumentar / reducir tamaño de fuente |
 
 ---
 
-## ¿Algo no funciona?
+## Problemas típicos
 
 | Problema | Solución |
 |---|---|
-| `code .` no abre VS Code | Reinstala el comando de shell (paso 1, macOS) o verifica el PATH (Windows) |
-| No aparece `.venv` al seleccionar intérprete | El entorno virtual aún no fue creado; ve a la guía de GitHub |
-| La terminal muestra un Python distinto | Selecciona el intérprete `.venv` (paso 5) |
-| Autocompletado no funciona | Verifica que la extensión **Python** de Microsoft está instalada |
+| `code .` no hace nada (macOS) | Instala el comando de shell (paso 1) y reinicia la terminal |
+| `code .` no funciona (Windows) | Reinstala VS Code marcando "Agregar al PATH" |
+| Python no se encuentra | Reinstala marcando "Add Python to PATH" |
+| Source Control no aparece | Normal — aparece al abrir una carpeta con Git (lo harás en clase) |
 
 ---
 
-## Siguiente paso
+## ¿Listo?
 
-Con VS Code listo, continúa con la **[Guía de GitHub, Git y tu entorno](guia_github_alumno.md)** para clonar el repositorio del curso, crear el entorno virtual y dejar todo listo para la clase.
+Tienes VS Code y Python instalados. En clase harás la **[Guía 2 → GitHub y tu entorno](guia_github_alumno.md)**: crear tu cuenta de GitHub, clonar el repo, crear el entorno virtual e instalar las librerías.
