@@ -64,11 +64,10 @@ Cuando VS Code pregunte si confías en la carpeta, di **Sí**. Deberías ver la 
 
 ## Paso 5 · Crea el entorno virtual e instala las librerías
 
-Desde la terminal integrada de VS Code (o la terminal externa), **dentro de la carpeta `material`**:
+Desde la terminal integrada de VS Code (o la terminal externa), **desde la raíz del repo**:
 
 ```bash
-cd clases/clase-01/material
-bash setup_local.sh
+bash clases/clase-01/material/setup_local.sh
 ```
 
 Este script:
@@ -149,7 +148,7 @@ source .venv/bin/activate       # activa el entorno
 |---|---|
 | `git: command not found` | No instalaste Git (paso 2) |
 | Error de permisos al clonar | El repo puede ser privado; avísale al profe |
-| `bash setup_local.sh` → `requirements.txt not found` | Debes estar dentro de `clases/clase-01/material/` |
+| `bash setup_local.sh` → `requirements.txt not found` | Corre el script con la ruta completa desde la raíz: `bash clases/clase-01/material/setup_local.sh` |
 | `.venv` no aparece al seleccionar intérprete | El `setup_local.sh` no terminó bien; vuelve a correrlo |
 | `unzip` no crea `data/raw/` | Asegúrate de ejecutar el `unzip` en la **raíz del repo** |
 | `No module named pandas` | El intérprete activo no es `.venv`; revisa el paso 6 |
