@@ -55,7 +55,7 @@ git config --global user.email "tucorreo@ejemplo.com"
 
 Verifica en la terminal:
 ```bash
-python --version   # o:  python3 --version   (debe decir 3.10 o superior)
+python --version   # o:  python3 --version
 ```
 
 ---
@@ -84,12 +84,13 @@ cd diplomado-idsdata-juanmarozas
 
 ---
 
-## Paso 7 · Prepara el entorno y deja todo listo
+## Paso 7 · Prepara el entorno y deja todo listo (Comienzo del Taller)
 
 Desde la terminal **dentro del repo**:
 
 ```bash
-bash clases/clase-01/material/setup_local.sh
+cd ~/diplomado-idsdata-juanmarozas/clases/clase-01/material
+bash setup_local.sh
 ```
 
 Esto crea tu entorno virtual (`.venv`) e instala las librerías. Al terminar, actívalo:
