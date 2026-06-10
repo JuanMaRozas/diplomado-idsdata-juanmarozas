@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de instalación — macOS · DPL1046</title>
+<style>
+  :root {
+    --orange: #FF6B1A; --dark: #1A1A1A; --gray: #444; --light: #F5F5F5;
+    --white: #FFFFFF; --green: #2E7D32; --red: #C62828; --amber: #E65100;
+    --border: #E0E0E0; --tint: #FFF3ED;
+    --font: -apple-system, "Segoe UI", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--light); color: var(--dark); line-height: 1.65; }
+  .site-header { background: var(--dark); padding: 18px 40px; display: flex; align-items: center; gap: 20px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.3); }
+  .site-header .badge { background: var(--orange); color: #fff; font-weight: 700; font-size: 14px; padding: 4px 10px; border-radius: 4px; letter-spacing: .05em; }
+  .site-header h1 { color: #fff; font-size: 17px; font-weight: 600; }
+  .site-header .os-tag { margin-left: auto; background: rgba(255,107,26,.2); border: 1px solid var(--orange); color: var(--orange); font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+  .container { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+  .toc { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--orange); border-radius: 8px; padding: 20px 24px; margin-bottom: 40px; }
+  .toc h2 { font-size: 15px; color: var(--orange); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px; }
+  .toc ol { padding-left: 18px; }
+  .toc li { padding: 4px 0; font-size: 15px; }
+  .toc a { color: var(--dark); text-decoration: none; }
+  .toc a:hover { color: var(--orange); }
+  .section { margin-bottom: 56px; }
+  .section-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+  .section-num { background: var(--orange); color: #fff; font-size: 22px; font-weight: 800; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .section-title { font-size: 24px; font-weight: 700; color: var(--dark); line-height: 1.2; }
+  .section-sub { font-size: 15px; color: var(--gray); margin-top: 4px; }
+  p { font-size: 16px; color: var(--gray); margin-bottom: 14px; }
+  strong { color: var(--dark); }
+  .steps { counter-reset: step; margin: 20px 0; }
+  .step { display: flex; gap: 16px; margin-bottom: 20px; background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .step-num { background: var(--dark); color: #fff; font-weight: 700; font-size: 14px; min-width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .step-body { flex: 1; }
+  .step-body p { margin-bottom: 10px; }
+  .step-body p:last-child { margin-bottom: 0; }
+  code { background: #1e1e2e; color: #cdd6f4; font-family: "Cascadia Code","Fira Code",Consolas,monospace; font-size: 14px; padding: 2px 7px; border-radius: 4px; }
+  .code-block { background: #1e1e2e; color: #cdd6f4; font-family: "Cascadia Code","Fira Code",Consolas,monospace; font-size: 14px; padding: 16px 20px; border-radius: 8px; margin: 12px 0; overflow-x: auto; line-height: 1.7; white-space: pre; }
+  .code-block .comment { color: #6c7086; }
+  .code-block .cmd { color: #89dceb; }
+  .code-block .out { color: #a6e3a1; }
+  .callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; font-size: 15px; }
+  .callout-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .callout.tip { background: var(--tint); border: 1px solid #ffc999; color: var(--amber); }
+  .callout.ok { background: #e8f5e9; border: 1px solid #a5d6a7; color: var(--green); }
+  .callout.ok strong { color: var(--green); }
+  .callout.warn { background: #fff3e0; border: 1px solid #ffcc80; color: #e65100; }
+  .callout.warn strong { color: #bf360c; }
+  .callout.info { background: #e3f2fd; border: 1px solid #90caf9; color: #1565c0; }
+  .callout.info strong { color: #0d47a1; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+  .illustration { margin: 20px 0; text-align: center; }
+  .caption { font-size: 13px; color: #999; margin-top: 8px; font-style: italic; }
+  .verify { background: var(--dark); border-radius: 10px; padding: 16px 20px; margin: 16px 0; }
+  .verify .verify-label { color: var(--orange); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
+  .verify code { background: transparent; color: #89dceb; padding: 0; font-size: 15px; }
+  .verify .expected { color: #a6e3a1; font-size: 14px; margin-top: 8px; font-family: monospace; }
+  .concept { background: linear-gradient(135deg,#fff8f5 0%,#fff 100%); border: 1px solid #ffd0b0; border-left: 4px solid var(--orange); border-radius: 8px; padding: 16px 20px; margin: 20px 0; }
+  .concept h4 { color: var(--orange); font-size: 14px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+  .concept p { margin-bottom: 0; font-size: 15px; }
+  .link-btn { display: inline-block; background: var(--orange); color: #fff; font-weight: 700; font-size: 15px; padding: 10px 20px; border-radius: 8px; text-decoration: none; margin: 8px 0; }
+  .link-btn:hover { background: #e55a00; }
+  .kbd { display: inline-block; background: #f0f0f0; border: 1px solid #ccc; border-bottom: 3px solid #aaa; border-radius: 4px; padding: 2px 8px; font-family: monospace; font-size: 13px; color: #333; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="badge">DPL1046</div>
+  <h1>Guía de instalación completa</h1>
+  <div class="os-tag">🍎 macOS</div>
+</header>
+
+<div class="container">
+
+  <div class="toc">
+    <h2>En esta guía</h2>
+    <ol>
+      <li><a href="#s1">¿Qué vamos a instalar y para qué?</a></li>
+      <li><a href="#s2">Python 3.12 — el lenguaje del curso</a></li>
+      <li><a href="#s3">VS Code — tu editor de código</a></li>
+      <li><a href="#s4">Git — control de versiones</a></li>
+      <li><a href="#s5">GitHub — tu cuenta en la nube</a></li>
+      <li><a href="#s6">Clonar el repositorio del curso</a></li>
+      <li><a href="#s7">El entorno virtual — tu caja de herramientas</a></li>
+      <li><a href="#s8">Seleccionar el intérprete en VS Code</a></li>
+      <li><a href="#s9">Verificación final</a></li>
+    </ol>
+  </div>
+
+  <!-- ══════ S1 ══════ -->
+  <section class="section" id="s1">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div>
+        <div class="section-title">¿Qué vamos a instalar y para qué?</div>
+        <div class="section-sub">El mapa completo antes de empezar</div>
+      </div>
+    </div>
+
+    <p>Vamos a instalar <strong>4 herramientas</strong> que trabajan juntas. Necesitas todas:</p>
+
+    <div class="illustration">
+      <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#999"/>
+          </marker>
+        </defs>
+        <rect x="10" y="50" width="155" height="100" rx="10" fill="#fff3ed" stroke="#FF6B1A" stroke-width="2"/>
+        <text x="87" y="82" text-anchor="middle" font-family="Arial" font-weight="700" font-size="13" fill="#FF6B1A">Python 3.12</text>
+        <text x="87" y="100" text-anchor="middle" font-family="Arial" font-size="11" fill="#666">Ejecuta tu código</text>
+        <text x="87" y="116" text-anchor="middle" font-family="Arial" font-size="11" fill="#666">y las librerías</text>
+        <line x1="165" y1="100" x2="187" y2="100" stroke="#999" stroke-width="2" marker-end="url(#arr)"/>
+        <rect x="190" y="50" width="155" height="100" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+        <text x="267" y="82" text-anchor="middle" font-family="Arial" font-weight="700" font-size="13" fill="#1565c0">VS Code</text>
+        <text x="267" y="100" text-anchor="middle" font-family="Arial" font-size="11" fill="#666">Editor donde</text>
+        <text x="267" y="116" text-anchor="middle" font-family="Arial" font-size="11" fill="#666">escribes código</text>
+        <line x1="345" y1="100" x2="367" y2="100" stroke="#999" stroke-width="2" marker-end="url(#arr)"/>
+        <rect x="370" y="50" width="155" height="100" rx="10" fill="#fce4ec" stroke="#c62828" stroke-width="2"/>
+        <text x="447" y="82" text-anchor="middle" font-family="Arial" font-weight="700" font-size="13" fill="#c62828">Git</text>
+        <text x="447" y="100" text-anchor="middle" font-family="Arial" font-size="11" fill="#666">Sincroniza código</text>
+        <text x="447" y="116" text-anchor="middle" font-family="Arial" font-size="11" fill="#666">con la nube</text>
+        <line x1="525" y1="100" x2="547" y2="100" stroke="#999" stroke-width="2" marker-end="url(#arr)"/>
+        <rect x="550" y="50" width="155" height="100" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+        <text x="627" y="82" text-anchor="middle" font-family="Arial" font-weight="700" font-size="13" fill="#2e7d32">GitHub</text>
+        <text x="627" y="100" text-anchor="middle" font-family="Arial" font-size="11" fill="#666">Material del</text>
+        <text x="627" y="116" text-anchor="middle" font-family="Arial" font-size="11" fill="#666">curso en la nube</text>
+        <text x="360" y="178" text-anchor="middle" font-family="Arial" font-size="12" fill="#999">Las 4 herramientas trabajan juntas. Necesitas todas.</text>
+      </svg>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">⚠️</div>
+      <div><strong>Importante:</strong> Este curso usa <strong>Python 3.12</strong>. Las versiones 3.13 y 3.14 tienen incompatibilidades con algunas librerías del curso. Instala exactamente la 3.12.</div>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-icon">💡</div>
+      <div><strong>¿Cómo abrir la Terminal en Mac?</strong> Presiona <span class="kbd">Cmd</span> + <span class="kbd">Espacio</span>, escribe <strong>Terminal</strong> y presiona Enter. La Terminal es la ventana de texto negra donde escribirás comandos.</div>
+    </div>
+  </section>
+
+  <!-- ══════ S2 ══════ -->
+  <section class="section" id="s2">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div>
+        <div class="section-title">Python 3.12</div>
+        <div class="section-sub">El lenguaje de programación del curso</div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h4>¿Qué es Python?</h4>
+      <p>Python es el lenguaje de programación que usaremos todo el curso. Es como el "motor" que entiende y ejecuta tu código. Sin Python instalado, nada funciona. Piénsalo como instalar el motor de un auto antes de poder manejar.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>Primero verifica si ya tienes Python 3.12. Abre la Terminal y escribe:</p>
+          <div class="code-block"><span class="cmd">python3 --version</span></div>
+          <p>Si muestra <code>Python 3.12.x</code> puedes saltarte esta sección. Si muestra 3.13, 3.14 o nada, sigue los pasos.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Ve a la página oficial:</p>
+          <a class="link-btn" href="https://www.python.org/downloads/macos/" target="_blank">🔗 python.org/downloads/macos</a>
+          <p style="margin-top:10px">Busca la sección <strong>"Python 3.12"</strong>. Descarga el archivo <strong>"macOS 64-bit universal2 installer"</strong> (.pkg).</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>Abre el archivo <code>.pkg</code> descargado y sigue el asistente haciendo clic en <strong>"Continuar"</strong> en cada paso hasta completar la instalación.</p>
+          <div class="callout tip">
+            <div class="callout-icon">💡</div>
+            <div>Si Mac te pide permiso para instalar, introduce tu contraseña de usuario. Es normal y necesario.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p>Instala los certificados SSL necesarios. Al terminar la instalación, abre la carpeta de Python 3.12 en Finder y haz doble clic en <strong>"Install Certificates.command"</strong>.</p>
+          <p>Alternativamente, desde la Terminal:</p>
+          <div class="code-block"><span class="cmd">/Applications/Python\ 3.12/Install\ Certificates.command</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="verify">
+      <div class="verify-label">✅ Verificación — en la Terminal escribe:</div>
+      <div class="code-block"><span class="cmd">python3 --version</span></div>
+      <div class="expected">Debe mostrar: Python 3.12.x</div>
+    </div>
+  </section>
+
+  <!-- ══════ S3 ══════ -->
+  <section class="section" id="s3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div>
+        <div class="section-title">VS Code</div>
+        <div class="section-sub">Tu editor de código</div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h4>¿Qué es VS Code?</h4>
+      <p>VS Code es donde escribirás y ejecutarás tu código. Tiene un editor, una terminal integrada y se conecta directamente con Python y Git. Piénsalo como el Word del código, pero con superpoderes.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>Descarga VS Code:</p>
+          <a class="link-btn" href="https://code.visualstudio.com" target="_blank">🔗 code.visualstudio.com</a>
+          <p style="margin-top:10px">Haz clic en <strong>"Download for Mac"</strong>. Descargará un archivo <code>.zip</code>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Abre el <code>.zip</code> descargado — aparecerá el ícono de VS Code. <strong>Arrastra el ícono de VS Code a tu carpeta Aplicaciones.</strong></p>
+          <div class="illustration">
+            <svg viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="20" width="100" height="60" rx="8" fill="#e3f2fd" stroke="#1565c0"/>
+              <text x="60" y="52" text-anchor="middle" font-family="Arial" font-size="24">💻</text>
+              <text x="60" y="72" text-anchor="middle" font-family="Arial" font-size="11" fill="#1565c0">VS Code.app</text>
+              <text x="200" y="55" text-anchor="middle" font-family="Arial" font-size="28" fill="#FF6B1A">→</text>
+              <rect x="280" y="20" width="110" height="60" rx="8" fill="#f5f5f5" stroke="#999"/>
+              <text x="335" y="52" text-anchor="middle" font-family="Arial" font-size="20">📁</text>
+              <text x="335" y="72" text-anchor="middle" font-family="Arial" font-size="11" fill="#555">Aplicaciones</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>Abre VS Code desde Aplicaciones. La primera vez macOS puede preguntarte si confías — haz clic en <strong>"Abrir"</strong>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p>Instala el comando <code>code</code> en la Terminal para poder abrir proyectos con un solo comando:</p>
+          <p>Presiona <span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">P</span> → escribe <strong>Shell Command: Install 'code' command in PATH</strong> → Enter.</p>
+          <div class="callout ok">
+            <div class="callout-icon">✅</div>
+            <div>Después de esto podrás escribir <code>code .</code> en la Terminal para abrir cualquier carpeta en VS Code.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <p>Instala las extensiones esenciales con <span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">X</span>:</p>
+          <p>Busca e instala: <strong>Python</strong> (Microsoft), <strong>Data Wrangler</strong> (Microsoft), <strong>GitHub Copilot</strong> (GitHub), <strong>GitLens</strong> (GitKraken), <strong>Rainbow CSV</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ S4 ══════ -->
+  <section class="section" id="s4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div>
+        <div class="section-title">Git</div>
+        <div class="section-sub">Control de versiones</div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h4>¿Qué es Git?</h4>
+      <p>Git registra cada cambio en el código y lo sincroniza con GitHub. Piénsalo como el historial de versiones de un documento Word, pero para código y mucho más poderoso. Te permite traer el material nuevo del curso con un solo comando.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>Verifica si ya tienes Git. Abre la Terminal y escribe:</p>
+          <div class="code-block"><span class="cmd">git --version</span></div>
+          <p>Si aparece un número de versión, ya está instalado. Si macOS te ofrece instalar las <strong>Command Line Tools</strong>, acepta — incluye Git.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Si Git no está instalado, la forma más simple es instalarlo a través de Homebrew. Primero instala Homebrew (si no lo tienes):</p>
+          <div class="code-block"><span class="cmd">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</span></div>
+          <p>Luego instala Git:</p>
+          <div class="code-block"><span class="cmd">brew install git</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>Configura tu identidad (usa el mismo correo de GitHub):</p>
+          <div class="code-block"><span class="cmd">git config --global user.name "Tu Nombre"</span>
+<span class="cmd">git config --global user.email "tucorreo@gmail.com"</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="verify">
+      <div class="verify-label">✅ Verificación:</div>
+      <div class="code-block"><span class="cmd">git --version</span></div>
+      <div class="expected">Debe mostrar: git version 2.x.x</div>
+    </div>
+  </section>
+
+  <!-- ══════ S5 ══════ -->
+  <section class="section" id="s5">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div>
+        <div class="section-title">GitHub — tu cuenta en la nube</div>
+        <div class="section-sub">Donde vive el código del curso</div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h4>¿Qué es GitHub?</h4>
+      <p>GitHub es donde el profe guarda todo el material del curso. Piénsalo como Google Drive para código. Tú solo necesitas <strong>descargar</strong> el material — no tienes que subir nada.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>Ve a <a class="link-btn" href="https://github.com" target="_blank" style="font-size:13px;padding:6px 14px">🔗 github.com</a> → <strong>Sign up</strong>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Crea tu cuenta con un correo que uses. <strong>Elige un nombre de usuario profesional</strong> — será parte de tu portafolio.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>Confirma tu correo haciendo clic en el enlace que GitHub te envió.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ S6 ══════ -->
+  <section class="section" id="s6">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div>
+        <div class="section-title">Clonar el repositorio del curso</div>
+        <div class="section-sub">Descargar el material a tu Mac</div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h4>¿Qué es un repositorio?</h4>
+      <p>Un repositorio es una carpeta que contiene el código <strong>y todo su historial</strong>. "Clonar" significa descargar una copia completa a tu computador. Después, con <code>git pull</code> traes los cambios nuevos del profe antes de cada clase.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>Abre la Terminal (<span class="kbd">Cmd</span> + <span class="kbd">Espacio</span> → escribe Terminal).</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Ve a tu carpeta personal y clona el repo:</p>
+          <div class="code-block"><span class="comment"># Ir a la carpeta personal</span>
+<span class="cmd">cd ~</span>
+
+<span class="comment"># Descargar el repo del curso</span>
+<span class="cmd">git clone https://github.com/JuanMaRozas/diplomado-idsdata-juanmarozas.git</span>
+
+<span class="comment"># Entrar a la carpeta</span>
+<span class="cmd">cd diplomado-idsdata-juanmarozas</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>Abre la carpeta en VS Code:</p>
+          <div class="code-block"><span class="cmd">code .</span></div>
+          <p>VS Code se abrirá con toda la estructura del curso. Si pregunta si confías en la carpeta, haz clic en <strong>"Sí, confío"</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-icon">💡</div>
+      <div><strong>Antes de cada clase</strong>, trae el material nuevo:
+        <div class="code-block" style="margin-top:8px"><span class="cmd">cd ~/diplomado-idsdata-juanmarozas</span>
+<span class="cmd">git pull</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ S7 ══════ -->
+  <section class="section" id="s7">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div>
+        <div class="section-title">El entorno virtual</div>
+        <div class="section-sub">Tu caja de herramientas del curso</div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h4>¿Qué es un entorno virtual?</h4>
+      <p>Un entorno virtual (<code>.venv</code>) es una carpeta aislada con las librerías específicas de este curso. Imagina una caja de herramientas exclusiva: tiene exactamente lo que necesitas (pandas, boto3, etc.), en las versiones correctas, sin interferir con otros proyectos de tu Mac.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>En la Terminal, asegúrate de estar en la raíz del repo:</p>
+          <div class="code-block"><span class="cmd">cd ~/diplomado-idsdata-juanmarozas</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Ejecuta el script de instalación:</p>
+          <div class="code-block"><span class="cmd">bash clases/clase-01/material/setup_local.sh</span></div>
+          <p>El script tomará 3–5 minutos instalando las librerías. Al finalizar verás:</p>
+          <div class="code-block"><span class="out">OK -> pandas 2.2.2
+================================================
+ Entorno listo en: /Users/TuNombre/diplomado-idsdata-juanmarozas/.venv
+ Activa con:
+   Mac/Linux -> source .venv/bin/activate
+================================================</span></div>
+          <div class="callout info">
+            <div class="callout-icon">💡</div>
+            <div><strong>¿Tienes otras versiones de Python instaladas?</strong> No hay problema — el script busca específicamente la 3.12 y crea el entorno con ella, sin tocar las otras versiones.</div>
+          </div>
+          <div class="callout warn">
+            <div class="callout-icon">⚠️</div>
+            <div><strong>Si ves "ERROR: No se encontró Python 3.12":</strong> necesitas instalarlo. Descárgalo desde <strong>python.org/downloads</strong> — no desinstales lo que ya tienes, solo agrega la 3.12.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>Activa el entorno virtual:</p>
+          <div class="code-block"><span class="cmd">source .venv/bin/activate</span></div>
+          <p>Cuando está activo, verás <code>(.venv)</code> al inicio de la línea:</p>
+          <div class="code-block"><span class="out">(.venv) JuanMa@Mac diplomado-idsdata-juanmarozas %</span></div>
+          <div class="callout ok">
+            <div class="callout-icon">✅</div>
+            <div>El <strong>(.venv)</strong> indica que el entorno está activo. Actívalo siempre antes de trabajar con el código del curso.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-icon">💡</div>
+      <div><strong>Rutina antes de cada clase:</strong>
+        <div class="code-block" style="margin-top:8px"><span class="cmd">cd ~/diplomado-idsdata-juanmarozas</span>
+<span class="cmd">git pull</span>
+<span class="cmd">source .venv/bin/activate</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ S8 ══════ -->
+  <section class="section" id="s8">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <div>
+        <div class="section-title">Seleccionar el intérprete en VS Code</div>
+        <div class="section-sub">Decirle a VS Code qué Python usar</div>
+      </div>
+    </div>
+
+    <p>VS Code necesita saber que debe usar el Python del <code>.venv</code> del curso, no el Python del sistema.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>Con la carpeta del repo abierta en VS Code, presiona <span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">P</span>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Escribe <strong>Python: Select Interpreter</strong> y presiona Enter.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>Elige la opción que contenga <strong>.venv</strong>:</p>
+          <div class="illustration">
+            <svg viewBox="0 0 500 100" xmlns="http://www.w3.org/2000/svg">
+              <rect width="500" height="100" rx="8" fill="#252526"/>
+              <rect x="10" y="10" width="480" height="30" rx="4" fill="#094771"/>
+              <text x="20" y="30" font-family="Arial" font-size="13" fill="#fff" font-weight="700">✓ Python 3.12.x ('.venv': venv)</text>
+              <text x="390" y="30" font-family="Arial" font-size="11" fill="#a6e3a1" font-weight="700">← Elige este</text>
+              <rect x="10" y="48" width="480" height="24" rx="4" fill="#2a2d2e"/>
+              <text x="20" y="64" font-family="Arial" font-size="12" fill="#888">Python 3.12.x (Global)</text>
+              <rect x="10" y="76" width="480" height="18" rx="4" fill="#252526"/>
+              <text x="20" y="89" font-family="Arial" font-size="11" fill="#666">Otros intérpretes...</text>
+            </svg>
+          </div>
+          <p>Elige <strong>'.venv': venv</strong>. Verás el intérprete activo en la barra inferior de VS Code.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">⚠️</div>
+      <div><strong>Si .venv no aparece:</strong> el entorno no se creó correctamente. Vuelve a la sección 7 y corre el <code>setup_local.sh</code> de nuevo.</div>
+    </div>
+  </section>
+
+  <!-- ══════ S9 ══════ -->
+  <section class="section" id="s9">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <div>
+        <div class="section-title">Verificación final</div>
+        <div class="section-sub">Confirma que todo funciona</div>
+      </div>
+    </div>
+
+    <p>Con el <code>.venv</code> activo en la Terminal, ejecuta:</p>
+    <div class="code-block"><span class="cmd">python3 -c "import pandas, numpy, boto3, sweetviz; print('✅ Todo OK ->', pandas.__version__)"</span></div>
+
+    <div class="callout ok">
+      <div class="callout-icon">✅</div>
+      <div><strong>Si ves:</strong> <code>✅ Todo OK -> 2.2.2</code> — tu entorno está perfectamente configurado.</div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">❌</div>
+      <div><strong>Si ves "ModuleNotFoundError":</strong> el entorno no está activo. Corre <code>source .venv/bin/activate</code> y vuelve a intentarlo.</div>
+    </div>
+
+    <hr>
+    <p style="text-align:center; color: var(--green); font-weight:700; font-size:18px; margin-top:32px">
+      🎉 ¡Listo! Tu entorno macOS está completamente configurado.
+    </p>
+    <p style="text-align:center; color: var(--gray); font-size:15px">
+      Antes de cada clase: <code>cd ~/diplomado-idsdata-juanmarozas &amp;&amp; git pull &amp;&amp; source .venv/bin/activate</code>
+    </p>
+  </section>
+
+</div>
+</body>
+</html>

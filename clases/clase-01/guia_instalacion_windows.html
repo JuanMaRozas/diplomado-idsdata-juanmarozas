@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de instalación — Windows · DPL1046</title>
+<style>
+  :root {
+    --orange: #FF6B1A;
+    --dark: #1A1A1A;
+    --gray: #444;
+    --light: #F5F5F5;
+    --white: #FFFFFF;
+    --green: #2E7D32;
+    --red: #C62828;
+    --amber: #E65100;
+    --border: #E0E0E0;
+    --tint: #FFF3ED;
+    --font: -apple-system, "Segoe UI", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--light); color: var(--dark); line-height: 1.65; }
+
+  /* Header */
+  .site-header {
+    background: var(--dark);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+  }
+  .site-header .badge {
+    background: var(--orange);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: .05em;
+  }
+  .site-header h1 { color: #fff; font-size: 17px; font-weight: 600; }
+  .site-header .os-tag {
+    margin-left: auto;
+    background: rgba(255,107,26,.2);
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  /* Layout */
+  .container { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* Progress / TOC */
+  .toc {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--orange);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+  }
+  .toc h2 { font-size: 15px; color: var(--orange); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px; }
+  .toc ol { padding-left: 18px; }
+  .toc li { padding: 4px 0; font-size: 15px; }
+  .toc a { color: var(--dark); text-decoration: none; }
+  .toc a:hover { color: var(--orange); }
+
+  /* Section */
+  .section { margin-bottom: 56px; }
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .section-num {
+    background: var(--orange);
+    color: #fff;
+    font-size: 22px;
+    font-weight: 800;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .section-title { font-size: 24px; font-weight: 700; color: var(--dark); line-height: 1.2; }
+  .section-sub { font-size: 15px; color: var(--gray); margin-top: 4px; }
+
+  p { font-size: 16px; color: var(--gray); margin-bottom: 14px; }
+  strong { color: var(--dark); }
+
+  /* Steps */
+  .steps { counter-reset: step; margin: 20px 0; }
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .step-num {
+    background: var(--dark);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-body { flex: 1; }
+  .step-body p { margin-bottom: 10px; }
+  .step-body p:last-child { margin-bottom: 0; }
+
+  /* Code */
+  code {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
+    font-size: 14px;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+  .code-block {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
+    font-size: 14px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 12px 0;
+    overflow-x: auto;
+    line-height: 1.7;
+    white-space: pre;
+  }
+  .code-block .comment { color: #6c7086; }
+  .code-block .cmd { color: #89dceb; }
+  .code-block .out { color: #a6e3a1; }
+  .code-block .err { color: #f38ba8; }
+
+  /* Callouts */
+  .callout {
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 15px;
+  }
+  .callout-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .callout.tip { background: var(--tint); border: 1px solid #ffc999; color: var(--amber); }
+  .callout.tip strong { color: var(--amber); }
+  .callout.ok { background: #e8f5e9; border: 1px solid #a5d6a7; color: var(--green); }
+  .callout.ok strong { color: var(--green); }
+  .callout.warn { background: #fff3e0; border: 1px solid #ffcc80; color: #e65100; }
+  .callout.warn strong { color: #bf360c; }
+  .callout.info { background: #e3f2fd; border: 1px solid #90caf9; color: #1565c0; }
+  .callout.info strong { color: #0d47a1; }
+
+  /* Divider */
+  hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+  /* Illustration wrapper */
+  .illustration { margin: 20px 0; text-align: center; }
+  .illustration svg { max-width: 100%; height: auto; }
+  .caption { font-size: 13px; color: #999; margin-top: 8px; font-style: italic; }
+
+  /* Verify box */
+  .verify {
+    background: var(--dark);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .verify .verify-label {
+    color: var(--orange);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .verify code { background: transparent; color: #89dceb; padding: 0; font-size: 15px; }
+  .verify .expected { color: #a6e3a1; font-size: 14px; margin-top: 8px; font-family: monospace; }
+
+  /* Concept box */
+  .concept {
+    background: linear-gradient(135deg, #fff8f5 0%, #fff 100%);
+    border: 1px solid #ffd0b0;
+    border-left: 4px solid var(--orange);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 20px 0;
+  }
+  .concept h4 { color: var(--orange); font-size: 14px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+  .concept p { margin-bottom: 0; font-size: 15px; }
+
+  .link-btn {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin: 8px 0;
+  }
+  .link-btn:hover { background: #e55a00; }
+
+  .tag { display: inline-block; background: var(--dark); color: #fff; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin: 0 2px; vertical-align: middle; }
+  .tag.orange { background: var(--orange); }
+  .tag.green { background: var(--green); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="badge">DPL1046</div>
+  <h1>Guía de instalación completa</h1>
+  <div class="os-tag">🪟 Windows</div>
+</header>
+
+<div class="container">
+
+  <div class="toc">
+    <h2>En esta guía</h2>
+    <ol>
+      <li><a href="#s1">¿Qué vamos a instalar y para qué?</a></li>
+      <li><a href="#s2">Python 3.12 — el lenguaje del curso</a></li>
+      <li><a href="#s3">VS Code — tu editor de código</a></li>
+      <li><a href="#s4">Git y Git Bash — control de versiones</a></li>
+      <li><a href="#s5">GitHub — tu cuenta en la nube</a></li>
+      <li><a href="#s6">Clonar el repositorio del curso</a></li>
+      <li><a href="#s7">El entorno virtual — tu caja de herramientas</a></li>
+      <li><a href="#s8">Seleccionar el intérprete en VS Code</a></li>
+      <li><a href="#s9">Verificación final</a></li>
+    </ol>
+  </div>
+
+  <!-- ══════ SECCIÓN 1 ══════ -->
+  <section class="section" id="s1">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div>
+        <div class="section-title">¿Qué vamos a instalar y para qué?</div>
+        <div class="section-sub">El mapa completo antes de empezar</div>
+      </div>
+    </div>
+
+    <p>Antes de tocar cualquier cosa, entiende el para qué. Vamos a instalar <strong>4 herramientas</strong> que trabajan juntas:</p>
+
+    <div class="illustration">
+      <svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" style="max-width:700px">
+        <defs>
+          <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#999"/>
+          </marker>
+        </defs>
+        <!-- Python -->
+        <rect x="10" y="60" width="150" height="100" rx="10" fill="#fff3ed" stroke="#FF6B1A" stroke-width="2"/>
+        <text x="85" y="95" text-anchor="middle" font-family="Arial" font-weight="700" font-size="14" fill="#FF6B1A">Python 3.12</text>
+        <text x="85" y="115" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">El lenguaje.</text>
+        <text x="85" y="130" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">Ejecuta tu código</text>
+        <text x="85" y="145" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">y las librerías</text>
+        <!-- VS Code -->
+        <rect x="190" y="60" width="150" height="100" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+        <text x="265" y="95" text-anchor="middle" font-family="Arial" font-weight="700" font-size="14" fill="#1565c0">VS Code</text>
+        <text x="265" y="115" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">El editor.</text>
+        <text x="265" y="130" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">Donde escribes</text>
+        <text x="265" y="145" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">y corres código</text>
+        <!-- Git -->
+        <rect x="370" y="60" width="150" height="100" rx="10" fill="#fce4ec" stroke="#c62828" stroke-width="2"/>
+        <text x="445" y="95" text-anchor="middle" font-family="Arial" font-weight="700" font-size="14" fill="#c62828">Git + Git Bash</text>
+        <text x="445" y="115" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">La terminal.</text>
+        <text x="445" y="130" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">Sincroniza código</text>
+        <text x="445" y="145" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">con GitHub</text>
+        <!-- GitHub -->
+        <rect x="550" y="60" width="150" height="100" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+        <text x="625" y="95" text-anchor="middle" font-family="Arial" font-weight="700" font-size="14" fill="#2e7d32">GitHub</text>
+        <text x="625" y="115" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">La nube.</text>
+        <text x="625" y="130" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">Donde vive el</text>
+        <text x="625" y="145" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">código del curso</text>
+        <!-- Flechas -->
+        <line x1="160" y1="110" x2="185" y2="110" stroke="#999" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="340" y1="110" x2="365" y2="110" stroke="#999" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="520" y1="110" x2="545" y2="110" stroke="#999" stroke-width="2" marker-end="url(#arr)"/>
+        <!-- Nota -->
+        <text x="360" y="195" text-anchor="middle" font-family="Arial" font-size="13" fill="#999">Las 4 herramientas trabajan juntas. Necesitas todas.</text>
+      </svg>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">⚠️</div>
+      <div><strong>Importante:</strong> Este curso usa <strong>Python 3.12</strong>. Las versiones 3.13 y 3.14 tienen incompatibilidades con algunas librerías. Instala exactamente la 3.12 siguiendo esta guía.</div>
+    </div>
+  </section>
+
+  <!-- ══════ SECCIÓN 2 ══════ -->
+  <section class="section" id="s2">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div>
+        <div class="section-title">Python 3.12</div>
+        <div class="section-sub">El lenguaje de programación del curso</div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h4>¿Qué es Python?</h4>
+      <p>Python es el lenguaje de programación que usaremos todo el curso. Piénsalo como el "motor" que entiende y ejecuta tu código. Sin Python instalado, nada funciona. Es como instalar el motor de un auto antes de poder manejarlo.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>Abre tu navegador y ve a la página oficial de Python:</p>
+          <a class="link-btn" href="https://www.python.org/downloads/windows/" target="_blank">🔗 python.org/downloads/windows</a>
+          <p style="margin-top:10px">Busca la sección <strong>"Python 3.12"</strong>. Fíjate bien — no descargues la versión más reciente si es 3.13 o superior.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Descarga el instalador de 64 bits: busca el enlace que diga <strong>"Windows installer (64-bit)"</strong> para Python 3.12.x</p>
+          <div class="illustration">
+            <svg viewBox="0 0 560 120" xmlns="http://www.w3.org/2000/svg">
+              <rect width="560" height="120" rx="8" fill="#fff" stroke="#e0e0e0"/>
+              <rect x="0" y="0" width="560" height="36" rx="8" fill="#1565c0"/>
+              <rect x="0" y="28" width="560" height="8" fill="#1565c0"/>
+              <text x="16" y="22" font-family="Arial" font-size="13" fill="#fff" font-weight="700">Python Releases for Windows</text>
+              <rect x="16" y="48" width="530" height="28" rx="4" fill="#e3f2fd" stroke="#90caf9"/>
+              <text x="28" y="67" font-family="Arial" font-size="13" fill="#1a1a1a" font-weight="700">Python 3.12.x - </text>
+              <text x="130" y="67" font-family="Arial" font-size="13" fill="#666">Windows installer (64-bit)</text>
+              <rect x="430" y="52" width="100" height="20" rx="4" fill="#FF6B1A"/>
+              <text x="480" y="66" text-anchor="middle" font-family="Arial" font-size="12" fill="#fff" font-weight="700">⬇ Descargar</text>
+              <path d="M 270,50 L 270,44 L 285,44" stroke="#FF6B1A" stroke-width="2" fill="none" stroke-dasharray="4"/>
+              <text x="288" y="41" font-family="Arial" font-size="12" fill="#FF6B1A" font-weight="700">← Este</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>Ejecuta el instalador que descargaste. Aparecerá una ventana. <strong>Antes de hacer clic en "Install Now", marca estas dos casillas:</strong></p>
+          <div class="illustration">
+            <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg">
+              <rect width="480" height="200" rx="8" fill="#f0f0f0" stroke="#ccc"/>
+              <rect x="0" y="0" width="480" height="40" rx="8" fill="#1e3a5f"/>
+              <rect x="0" y="32" width="480" height="8" fill="#1e3a5f"/>
+              <circle cx="32" cy="32" r="18" fill="#FF6B1A"/>
+              <text x="32" y="37" text-anchor="middle" font-family="Arial" font-size="14" fill="#fff" font-weight="700">Py</text>
+              <text x="60" y="25" font-family="Arial" font-size="13" fill="#fff" font-weight="700">Install Python 3.12</text>
+              <!-- Opción 1 -->
+              <rect x="20" y="60" width="18" height="18" rx="3" fill="#FF6B1A" stroke="#e55a00"/>
+              <text x="31" y="73" text-anchor="middle" font-family="Arial" font-size="14" fill="#fff" font-weight="900">✓</text>
+              <text x="46" y="73" font-family="Arial" font-size="13" fill="#1a1a1a" font-weight="700">Add Python 3.12 to PATH</text>
+              <rect x="18" y="58" width="22" height="22" rx="3" fill="none" stroke="#FF6B1A" stroke-width="3"/>
+              <text x="220" y="90" text-anchor="middle" font-family="Arial" font-size="11" fill="#FF6B1A" font-weight="700">⬅ MARCA ESTO — MUY IMPORTANTE</text>
+              <!-- Opción 2 -->
+              <rect x="20" y="105" width="18" height="18" rx="3" fill="#fff" stroke="#999"/>
+              <text x="46" y="118" font-family="Arial" font-size="13" fill="#666">Install launcher for all users</text>
+              <!-- Botón -->
+              <rect x="140" y="150" width="200" height="36" rx="6" fill="#1e3a5f"/>
+              <text x="240" y="173" text-anchor="middle" font-family="Arial" font-size="14" fill="#fff" font-weight="700">Install Now</text>
+              <!-- Flecha señalando checkbox -->
+              <line x1="218" y1="84" x2="60" y2="76" stroke="#FF6B1A" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+            </svg>
+          </div>
+          <div class="callout warn">
+            <div class="callout-icon">⚠️</div>
+            <div><strong>"Add Python 3.12 to PATH"</strong> es la casilla más importante. Si no la marcas, tu computador no encontrará Python y nada funcionará. Asegúrate de que esté marcada antes de continuar.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p>Haz clic en <strong>"Install Now"</strong> y espera que termine. Puede tomar 2–3 minutos.</p>
+          <p>Al finalizar, haz clic en <strong>"Close"</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="verify">
+      <div class="verify-label">✅ Verificación — abre CMD (busca "cmd" en el menú inicio) y escribe:</div>
+      <div class="code-block"><span class="cmd">python --version</span></div>
+      <div class="expected">Debe mostrar: Python 3.12.x</div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">⚠️</div>
+      <div><strong>Si dice "Python 3.13" o "3.14":</strong> desinstálalo desde Configuración → Aplicaciones y vuelve a instalar la 3.12 siguiendo el paso 1.</div>
+    </div>
+  </section>
+
+  <!-- ══════ SECCIÓN 3 ══════ -->
+  <section class="section" id="s3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div>
+        <div class="section-title">VS Code</div>
+        <div class="section-sub">Tu editor de código</div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h4>¿Qué es VS Code?</h4>
+      <p>VS Code es el programa donde escribirás tu código, lo correrás y verás los resultados. Piénsalo como el Word del código — pero mucho más poderoso. Tiene un editor, una terminal integrada y se conecta directamente con Python y Git.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>Descarga VS Code desde la página oficial:</p>
+          <a class="link-btn" href="https://code.visualstudio.com" target="_blank">🔗 code.visualstudio.com</a>
+          <p style="margin-top:10px">Haz clic en el botón azul grande <strong>"Download for Windows"</strong>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Ejecuta el instalador. En el paso <strong>"Seleccionar tareas adicionales"</strong>, marca estas opciones:</p>
+          <div class="illustration">
+            <svg viewBox="0 0 480 180" xmlns="http://www.w3.org/2000/svg">
+              <rect width="480" height="180" rx="8" fill="#f0f0f0" stroke="#ccc"/>
+              <rect x="0" y="0" width="480" height="36" rx="8" fill="#1565c0"/>
+              <rect x="0" y="28" width="480" height="8" fill="#1565c0"/>
+              <text x="16" y="22" font-family="Arial" font-size="13" fill="#fff" font-weight="700">Seleccionar tareas adicionales</text>
+              <!-- Checkboxes -->
+              <rect x="18" y="52" width="16" height="16" rx="2" fill="#FF6B1A"/>
+              <text x="26" y="64" text-anchor="middle" font-family="Arial" font-size="11" fill="#fff">✓</text>
+              <text x="42" y="64" font-family="Arial" font-size="13" fill="#1a1a1a" font-weight="700">Agregar al PATH</text>
+              <rect x="18" y="78" width="16" height="16" rx="2" fill="#FF6B1A"/>
+              <text x="26" y="90" text-anchor="middle" font-family="Arial" font-size="11" fill="#fff">✓</text>
+              <text x="42" y="90" font-family="Arial" font-size="13" fill="#1a1a1a" font-weight="700">Registrar como editor predeterminado</text>
+              <rect x="18" y="104" width="16" height="16" rx="2" fill="#FF6B1A"/>
+              <text x="26" y="116" text-anchor="middle" font-family="Arial" font-size="11" fill="#fff">✓</text>
+              <text x="42" y="116" font-family="Arial" font-size="13" fill="#1a1a1a" font-weight="700">Agregar acción "Abrir con Code" al menú contextual</text>
+              <rect x="18" y="130" width="16" height="16" rx="2" fill="#fff" stroke="#999"/>
+              <text x="42" y="142" font-family="Arial" font-size="13" fill="#888">Crear icono en el escritorio</text>
+              <text x="240" y="165" text-anchor="middle" font-family="Arial" font-size="12" fill="#FF6B1A" font-weight="700">Marca las tres primeras</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>Haz clic en <strong>"Siguiente"</strong> e <strong>"Instalar"</strong>. Cuando termine, abre VS Code.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p>Instala las extensiones esenciales. En VS Code, haz clic en el ícono de extensiones en la barra izquierda (el que parece 4 cuadrados) o presiona <code>Ctrl + Shift + X</code>.</p>
+          <p>Busca e instala estas extensiones una por una:</p>
+          <div class="illustration">
+            <svg viewBox="0 0 540 220" xmlns="http://www.w3.org/2000/svg">
+              <rect width="540" height="220" rx="8" fill="#1e1e1e"/>
+              <!-- Sidebar -->
+              <rect x="0" y="0" width="48" height="220" rx="8" fill="#252526"/>
+              <rect x="48" y="0" width="2" height="220" fill="#333"/>
+              <!-- Icons sidebar -->
+              <text x="24" y="32" text-anchor="middle" font-family="Arial" font-size="18">📄</text>
+              <text x="24" y="72" text-anchor="middle" font-family="Arial" font-size="18">🔍</text>
+              <text x="24" y="112" text-anchor="middle" font-family="Arial" font-size="18">🔀</text>
+              <rect x="8" y="140" width="32" height="32" rx="4" fill="#FF6B1A" opacity=".3"/>
+              <text x="24" y="162" text-anchor="middle" font-family="Arial" font-size="18">🧩</text>
+              <text x="24" y="215" text-anchor="middle" font-family="Arial" font-size="18">⚙️</text>
+              <!-- Search bar -->
+              <rect x="56" y="12" width="250" height="26" rx="4" fill="#3c3c3c"/>
+              <text x="68" y="29" font-family="Arial" font-size="12" fill="#888">Buscar extensiones...</text>
+              <!-- Extensions list -->
+              <rect x="56" y="48" width="476" height="40" rx="4" fill="#2a2d2e"/>
+              <text x="70" y="65" font-family="Arial" font-size="13" fill="#fff" font-weight="700">Python</text>
+              <text x="70" y="80" font-family="Arial" font-size="11" fill="#888">Microsoft · 150M+ installs</text>
+              <rect x="450" y="55" width="70" height="22" rx="4" fill="#FF6B1A"/>
+              <text x="485" y="70" text-anchor="middle" font-family="Arial" font-size="11" fill="#fff" font-weight="700">Instalar</text>
+              <rect x="56" y="96" width="476" height="40" rx="4" fill="#252526"/>
+              <text x="70" y="113" font-family="Arial" font-size="13" fill="#ccc" font-weight="700">Data Wrangler</text>
+              <text x="70" y="128" font-family="Arial" font-size="11" fill="#888">Microsoft</text>
+              <rect x="450" y="103" width="70" height="22" rx="4" fill="#FF6B1A"/>
+              <text x="485" y="118" text-anchor="middle" font-family="Arial" font-size="11" fill="#fff" font-weight="700">Instalar</text>
+              <rect x="56" y="144" width="476" height="40" rx="4" fill="#2a2d2e"/>
+              <text x="70" y="161" font-family="Arial" font-size="13" fill="#ccc" font-weight="700">GitHub Copilot</text>
+              <text x="70" y="176" font-family="Arial" font-size="11" fill="#888">GitHub</text>
+              <rect x="450" y="151" width="70" height="22" rx="4" fill="#FF6B1A"/>
+              <text x="485" y="166" text-anchor="middle" font-family="Arial" font-size="11" fill="#fff" font-weight="700">Instalar</text>
+              <rect x="56" y="192" width="476" height="24" rx="4" fill="#252526"/>
+              <text x="70" y="208" font-family="Arial" font-size="12" fill="#666">GitLens · Rainbow CSV · Jupyter ...</text>
+            </svg>
+          </div>
+          <p>Instala: <strong>Python</strong> (Microsoft), <strong>Data Wrangler</strong> (Microsoft), <strong>GitHub Copilot</strong> (GitHub), <strong>GitLens</strong> (GitKraken), <strong>Rainbow CSV</strong>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <p><strong>Cambia la terminal de VS Code a Git Bash</strong> (esto es muy importante en Windows):</p>
+          <p>Presiona <code>Ctrl + Shift + P</code> → escribe <strong>Terminal: Select Default Profile</strong> → elige <strong>Git Bash</strong>.</p>
+          <div class="callout tip">
+            <div class="callout-icon">💡</div>
+            <div>Si Git Bash no aparece en la lista, primero instala Git (sección 4 de esta guía) y luego vuelve a este paso.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ SECCIÓN 4 ══════ -->
+  <section class="section" id="s4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div>
+        <div class="section-title">Git y Git Bash</div>
+        <div class="section-sub">La terminal y el control de versiones</div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h4>¿Qué es Git?</h4>
+      <p>Git es la herramienta que registra cada cambio en tu código y lo sincroniza con GitHub (la nube). Piénsalo como el historial de cambios de un documento de Word, pero para código y mucho más poderoso. <strong>Git Bash</strong> es una terminal (ventana de comandos) que viene con Git y funciona igual que en Mac — es la que usaremos en este curso.</p>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">⚠️</div>
+      <div><strong>En Windows hay varias terminales (PowerShell, CMD, Git Bash).</strong> Para este curso usa SIEMPRE <strong>Git Bash</strong>. Los comandos del curso no funcionan en PowerShell ni en CMD.</div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>Descarga Git para Windows:</p>
+          <a class="link-btn" href="https://git-scm.com/download/win" target="_blank">🔗 git-scm.com/download/win</a>
+          <p style="margin-top:10px">La descarga comenzará automáticamente. Si no, haz clic en el enlace de "64-bit Git for Windows Setup".</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Ejecuta el instalador. La mayoría de las opciones pueden dejarse por defecto. <strong>Solo presta atención a esta pantalla:</strong></p>
+          <div class="illustration">
+            <svg viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg">
+              <rect width="500" height="160" rx="8" fill="#f0f0f0" stroke="#ccc"/>
+              <rect x="0" y="0" width="500" height="36" rx="8" fill="#bf360c"/>
+              <rect x="0" y="28" width="500" height="8" fill="#bf360c"/>
+              <text x="16" y="22" font-family="Arial" font-size="13" fill="#fff" font-weight="700">Adjusting your PATH environment</text>
+              <!-- Options -->
+              <circle cx="30" cy="62" r="8" fill="#fff" stroke="#999" stroke-width="2"/>
+              <text x="46" y="66" font-family="Arial" font-size="12" fill="#888">Use Git from Git Bash only</text>
+              <!-- Selected option -->
+              <circle cx="30" cy="92" r="8" fill="#FF6B1A" stroke="#FF6B1A" stroke-width="2"/>
+              <circle cx="30" cy="92" r="4" fill="#fff"/>
+              <text x="46" y="96" font-family="Arial" font-size="12" fill="#1a1a1a" font-weight="700">Git from the command line and also from 3rd-party software</text>
+              <rect x="380" y="83" width="110" height="24" rx="4" fill="#FF6B1A" opacity=".15" stroke="#FF6B1A"/>
+              <text x="435" y="99" text-anchor="middle" font-family="Arial" font-size="11" fill="#FF6B1A" font-weight="700">← Elige esta</text>
+              <circle cx="30" cy="122" r="8" fill="#fff" stroke="#999" stroke-width="2"/>
+              <text x="46" y="126" font-family="Arial" font-size="12" fill="#888">Use Git and optional Unix tools from Command Prompt</text>
+            </svg>
+          </div>
+          <p>Selecciona <strong>"Git from the command line and also from 3rd-party software"</strong>. Todo lo demás déjalo por defecto.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>Completa la instalación haciendo clic en <strong>"Next"</strong> en cada pantalla y finalmente <strong>"Install"</strong>.</p>
+          <p>Cuando termine, <strong>cierra y vuelve a abrir VS Code</strong> para que detecte Git.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p>Configura tu identidad en Git. Abre <strong>Git Bash</strong> (búscalo en el menú inicio) y escribe estos dos comandos, reemplazando con tu nombre y correo:</p>
+          <div class="code-block"><span class="cmd">git config --global user.name "Tu Nombre Aquí"</span>
+<span class="cmd">git config --global user.email "tucorreo@gmail.com"</span></div>
+          <p>Esto le pone tu "firma" a cada cambio que hagas en el código.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="verify">
+      <div class="verify-label">✅ Verificación — en Git Bash escribe:</div>
+      <div class="code-block"><span class="cmd">git --version</span></div>
+      <div class="expected">Debe mostrar: git version 2.4x.x.windows.x</div>
+    </div>
+  </section>
+
+  <!-- ══════ SECCIÓN 5 ══════ -->
+  <section class="section" id="s5">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div>
+        <div class="section-title">GitHub — tu cuenta en la nube</div>
+        <div class="section-sub">Donde vive el código del curso</div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h4>¿Qué es GitHub?</h4>
+      <p>GitHub es el servicio en la nube donde el profe guarda todo el material del curso (scripts, guías, presentaciones). Piénsalo como Google Drive, pero para código. Tú vas a <strong>descargar</strong> el material desde ahí antes de cada clase. No necesitas subir nada — solo descargar.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>Ve a <a class="link-btn" href="https://github.com" target="_blank" style="font-size:13px;padding:6px 14px">🔗 github.com</a> y haz clic en <strong>"Sign up"</strong>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Ingresa tu correo electrónico, crea una contraseña y elige un nombre de usuario. <strong>Elige un nombre profesional</strong> — será parte de tu portafolio técnico.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>Confirma tu correo haciendo clic en el enlace que te enviará GitHub.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ SECCIÓN 6 ══════ -->
+  <section class="section" id="s6">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div>
+        <div class="section-title">Clonar el repositorio del curso</div>
+        <div class="section-sub">Descargar el material a tu computador</div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h4>¿Qué es un repositorio?</h4>
+      <p>Un repositorio (o "repo") es una carpeta especial que guarda el código <strong>y todo su historial de cambios</strong>. "Clonar" significa descargar una copia completa de esa carpeta a tu computador. Una vez clonado, puedes traer los cambios nuevos del profe con un solo comando: <code>git pull</code>.</p>
+    </div>
+
+    <div class="illustration">
+      <svg viewBox="0 0 600 140" xmlns="http://www.w3.org/2000/svg">
+        <!-- GitHub cloud -->
+        <rect x="20" y="30" width="200" height="80" rx="12" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="58" text-anchor="middle" font-family="Arial" font-size="13" fill="#2e7d32" font-weight="700">☁️ GitHub</text>
+        <text x="120" y="76" text-anchor="middle" font-family="Arial" font-size="12" fill="#555">Repo del profe</text>
+        <text x="120" y="93" text-anchor="middle" font-family="Arial" font-size="11" fill="#888">código + historial</text>
+        <!-- Arrow git clone -->
+        <line x1="225" y1="70" x2="335" y2="70" stroke="#FF6B1A" stroke-width="2.5" marker-end="url(#arr)"/>
+        <text x="280" y="62" text-anchor="middle" font-family="Arial" font-size="12" fill="#FF6B1A" font-weight="700">git clone</text>
+        <text x="280" y="90" text-anchor="middle" font-family="Arial" font-size="11" fill="#999">(solo la primera vez)</text>
+        <!-- Local folder -->
+        <rect x="340" y="30" width="200" height="80" rx="12" fill="#fff3ed" stroke="#FF6B1A" stroke-width="2"/>
+        <text x="440" y="58" text-anchor="middle" font-family="Arial" font-size="13" fill="#FF6B1A" font-weight="700">💻 Tu computador</text>
+        <text x="440" y="76" text-anchor="middle" font-family="Arial" font-size="12" fill="#555">Copia local del repo</text>
+        <text x="440" y="93" text-anchor="middle" font-family="Arial" font-size="11" fill="#888">mismo código + historial</text>
+        <!-- Arrow git pull -->
+        <path d="M 225,90 Q 280,120 335,90" stroke="#1565c0" stroke-width="2" fill="none" stroke-dasharray="6,3" marker-end="url(#arr)"/>
+        <text x="280" y="125" text-anchor="middle" font-family="Arial" font-size="11" fill="#1565c0" font-weight="700">git pull (antes de cada clase)</text>
+      </svg>
+      <div class="caption">Clonas una vez. Después solo haces git pull para traer lo nuevo.</div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>Abre <strong>Git Bash</strong> desde el menú inicio.</p>
+          <div class="callout warn">
+            <div class="callout-icon">⚠️</div>
+            <div>Usa <strong>Git Bash</strong>, no PowerShell ni CMD. Si usas PowerShell los comandos no funcionarán.</div>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Ve a tu carpeta personal y clona el repositorio:</p>
+          <div class="code-block"><span class="comment"># Ir a la carpeta personal</span>
+<span class="cmd">cd ~</span>
+
+<span class="comment"># Descargar el repo del curso</span>
+<span class="cmd">git clone https://github.com/JuanMaRozas/diplomado-idsdata-juanmarozas.git</span>
+
+<span class="comment"># Entrar a la carpeta</span>
+<span class="cmd">cd diplomado-idsdata-juanmarozas</span></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>Abre la carpeta en VS Code:</p>
+          <div class="code-block"><span class="cmd">code .</span></div>
+          <p>VS Code se abre con toda la estructura del curso visible. Si te pregunta si confías en la carpeta, haz clic en <strong>"Sí, confío"</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ SECCIÓN 7 ══════ -->
+  <section class="section" id="s7">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div>
+        <div class="section-title">El entorno virtual</div>
+        <div class="section-sub">Tu caja de herramientas del curso</div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h4>¿Qué es un entorno virtual?</h4>
+      <p>Un entorno virtual (<code>.venv</code>) es una carpeta aislada donde instalas las librerías de <em>este</em> proyecto sin afectar el resto del computador. Imagina que es una caja de herramientas exclusiva para el curso: tiene exactamente las herramientas que necesitas, en las versiones correctas, y no interfiere con otros proyectos.</p>
+    </div>
+
+    <div class="illustration">
+      <svg viewBox="0 0 560 150" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="20" width="250" height="110" rx="10" fill="#fff" stroke="#e0e0e0" stroke-width="2" stroke-dasharray="6,3"/>
+        <text x="135" y="42" text-anchor="middle" font-family="Arial" font-size="12" fill="#999">🖥 Tu computador</text>
+        <rect x="26" y="52" width="100" height="34" rx="6" fill="#e8f5e9" stroke="#2e7d32"/>
+        <text x="76" y="74" text-anchor="middle" font-family="Arial" font-size="12" fill="#2e7d32" font-weight="700">Python global</text>
+        <rect x="138" y="52" width="106" height="34" rx="6" fill="#fff3ed" stroke="#FF6B1A" stroke-width="2"/>
+        <text x="191" y="68" text-anchor="middle" font-family="Arial" font-size="11" fill="#FF6B1A" font-weight="700">.venv del curso</text>
+        <text x="191" y="82" text-anchor="middle" font-family="Arial" font-size="10" fill="#888">pandas, boto3...</text>
+        <text x="135" y="120" text-anchor="middle" font-family="Arial" font-size="11" fill="#999">Las librerías del curso van aquí ↑</text>
+        <!-- Right side -->
+        <text x="310" y="80" font-family="Arial" font-size="13" fill="#666">← El .venv está dentro</text>
+        <text x="310" y="98" font-family="Arial" font-size="13" fill="#666">   del repo, en la raíz.</text>
+        <text x="310" y="118" font-family="Arial" font-size="12" fill="#999">   Git lo ignora (.gitignore)</text>
+      </svg>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>En <strong>Git Bash</strong>, asegúrate de estar en la raíz del repo:</p>
+          <div class="code-block"><span class="cmd">cd ~/diplomado-idsdata-juanmarozas</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Ejecuta el script de instalación:</p>
+          <div class="code-block"><span class="cmd">bash clases/clase-01/material/setup_local.sh</span></div>
+          <p>El script tomará 3–5 minutos. Verás texto descargando. Si todo sale bien, al final aparecerá:</p>
+          <div class="code-block"><span class="out">OK -> pandas 2.2.2
+================================================
+ Entorno listo en: /c/Users/TuNombre/diplomado-idsdata-juanmarozas/.venv
+ Activa con:
+   Windows   -> source .venv/Scripts/activate
+================================================</span></div>
+          <div class="callout info">
+            <div class="callout-icon">💡</div>
+            <div><strong>¿Tienes otras versiones de Python instaladas?</strong> No hay problema — el script busca específicamente la 3.12 y crea el entorno con ella, sin tocar las otras versiones.</div>
+          </div>
+          <div class="callout warn">
+            <div class="callout-icon">⚠️</div>
+            <div><strong>Si ves "ERROR: No se encontró Python 3.12":</strong> necesitas instalarlo. Descárgalo desde <strong>python.org/downloads</strong> — no desinstales lo que ya tienes, solo agrega la 3.12.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>Activa el entorno virtual:</p>
+          <div class="code-block"><span class="cmd">source .venv/Scripts/activate</span></div>
+          <p>Cuando está activo, verás <code>(.venv)</code> al inicio de la línea:</p>
+          <div class="code-block"><span class="out">(.venv) TuNombre@PC ~/diplomado-idsdata-juanmarozas $</span></div>
+          <div class="callout ok">
+            <div class="callout-icon">✅</div>
+            <div>El <strong>(.venv)</strong> al inicio indica que el entorno está activo. Siempre actívalo antes de trabajar con el código del curso.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-icon">💡</div>
+      <div><strong>Rutina antes de cada clase:</strong>
+        <div class="code-block" style="margin-top:8px"><span class="cmd">cd ~/diplomado-idsdata-juanmarozas</span>
+<span class="cmd">git pull</span>
+<span class="cmd">source .venv/Scripts/activate</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ SECCIÓN 8 ══════ -->
+  <section class="section" id="s8">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <div>
+        <div class="section-title">Seleccionar el intérprete en VS Code</div>
+        <div class="section-sub">Decirle a VS Code qué Python usar</div>
+      </div>
+    </div>
+
+    <p>VS Code necesita saber que debe usar el Python del <code>.venv</code> del curso, no el Python global del sistema.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>Con la carpeta del repo abierta en VS Code, presiona <code>Ctrl + Shift + P</code>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Escribe <strong>Python: Select Interpreter</strong> y presiona Enter.</p>
+          <div class="illustration">
+            <svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg">
+              <rect width="500" height="80" rx="8" fill="#252526"/>
+              <rect x="10" y="12" width="480" height="28" rx="4" fill="#3c3c3c"/>
+              <text x="20" y="30" font-family="Arial" font-size="13" fill="#ccc">&#62; Python: Select Interpreter</text>
+              <rect x="10" y="48" width="480" height="22" rx="2" fill="#094771"/>
+              <text x="20" y="63" font-family="Arial" font-size="12" fill="#fff">Python: Select Interpreter</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>Aparece una lista de intérpretes disponibles. Elige el que contenga <strong>.venv</strong>:</p>
+          <div class="illustration">
+            <svg viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg">
+              <rect width="500" height="120" rx="8" fill="#252526"/>
+              <rect x="10" y="10" width="480" height="28" rx="4" fill="#094771"/>
+              <text x="20" y="28" font-family="Arial" font-size="12" fill="#fff" font-weight="700">✓ Python 3.12.x ('.venv': venv)</text>
+              <text x="400" y="28" font-family="Arial" font-size="11" fill="#a6e3a1">← Elige este</text>
+              <rect x="10" y="46" width="480" height="26" rx="4" fill="#2a2d2e"/>
+              <text x="20" y="63" font-family="Arial" font-size="12" fill="#888">Python 3.12.x (Global)</text>
+              <rect x="10" y="80" width="480" height="26" rx="4" fill="#2a2d2e"/>
+              <text x="20" y="97" font-family="Arial" font-size="12" fill="#888">Python 3.13.x</text>
+            </svg>
+          </div>
+          <p>Elige la opción que diga <strong>'.venv': venv</strong> o simplemente <strong>.venv</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">⚠️</div>
+      <div><strong>Si .venv no aparece en la lista:</strong> el entorno virtual no se creó correctamente. Vuelve a la sección 7 y corre el <code>setup_local.sh</code> de nuevo.</div>
+    </div>
+  </section>
+
+  <!-- ══════ SECCIÓN 9 ══════ -->
+  <section class="section" id="s9">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <div>
+        <div class="section-title">Verificación final</div>
+        <div class="section-sub">Confirma que todo funciona</div>
+      </div>
+    </div>
+
+    <p>Con el <code>.venv</code> activo en Git Bash, corre este comando:</p>
+
+    <div class="code-block"><span class="cmd">python -c "import pandas, numpy, boto3, sweetviz; print('✅ Todo OK ->', pandas.__version__)"</span></div>
+
+    <div class="callout ok">
+      <div class="callout-icon">✅</div>
+      <div><strong>Si ves:</strong> <code>✅ Todo OK -> 2.2.2</code> — tu entorno está perfectamente configurado y estás listo para la clase.</div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">❌</div>
+      <div><strong>Si ves "ModuleNotFoundError":</strong> el intérprete activo no es el <code>.venv</code>. Asegúrate de haber activado el entorno con <code>source .venv/Scripts/activate</code> y de haber seleccionado el intérprete <code>.venv</code> en VS Code.</div>
+    </div>
+
+    <hr>
+
+    <p style="text-align:center; color: var(--green); font-weight:700; font-size:18px; margin-top:32px">
+      🎉 ¡Listo! Tu entorno Windows está completamente configurado.
+    </p>
+    <p style="text-align:center; color: var(--gray); font-size:15px">
+      Antes de cada clase solo necesitas correr: <code>cd ~/diplomado-idsdata-juanmarozas &amp;&amp; git pull &amp;&amp; source .venv/Scripts/activate</code>
+    </p>
+  </section>
+
+</div>
+</body>
+</html>
