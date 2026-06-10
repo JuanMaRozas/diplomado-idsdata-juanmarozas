@@ -5,7 +5,9 @@
 # Funciona en macOS y Linux. En Windows usar Git Bash o WSL.
 # Uso:   bash clases/clase-01/material/setup_local.sh   (desde la raíz del repo)
 # =============================================================================
-set -euo pipefail
+set -eu
+# pipefail no está disponible en todos los shells de Windows (Git Bash)
+# set -euo pipefail  ← solo macOS/Linux
 
 # --- Encontrar la raíz del repo y el directorio del script ------------------
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
