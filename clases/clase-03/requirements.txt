@@ -1,0 +1,6 @@
+# DPL1046 - Programación en Python y Manipulación de Datos
+# Clase 3 - Dependencias adicionales
+# Instalar con: pip install -r clases/clase-03/requirements.txt
+
+pytest==8.2.2          # framework de testing (se usa desde esta clase)
+pytest-cov==5.0.0      # reporte de cobertura de tests
