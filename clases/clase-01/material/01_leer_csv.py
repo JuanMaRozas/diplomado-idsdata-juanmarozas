@@ -42,7 +42,7 @@ def inspeccionar(df: pd.DataFrame, nombre: str) -> None:
 
 def main() -> None:
     # ---- Pagos: ¿cuánto se paga por cada forma de pago? --------------------
-    pagos = pd.read_csv(DATA / "olist_order_payments_dataset_1.csv")
+    pagos = pd.read_csv(DATA / "olist_order_payments_dataset.csv")
     inspeccionar(pagos, "PAGOS (olist_order_payments_dataset)")
 
     total_por_tipo = (
