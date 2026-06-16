@@ -238,18 +238,19 @@
       <div class="num">01</div>
     </section>
 
-    <!-- 5 · LAS 4 ESTRUCTURAS -->
+    <!-- 5 · PANORAMA DE LAS 4 ESTRUCTURAS -->
     <section class="slide">
-      <div class="header-bar orange"><h2>Las 4 estructuras nativas, con Olist</h2></div>
+      <div class="header-bar orange"><h2>Las 4 estructuras nativas: el mapa</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
       <div class="body">
+        <p class="subh anim" style="margin-top:0;">Hoy las vemos una por una, con un caso real de Olist para cada una</p>
         <table class="brand anim">
-          <thead><tr><th>Estructura</th><th>Qué garantiza</th><th>Ejemplo en Olist</th></tr></thead>
+          <thead><tr><th>Estructura</th><th>Qué garantiza</th><th>Caso Olist de hoy</th></tr></thead>
           <tbody>
-            <tr><td><b>list [ ]</b></td><td>Orden, mutable, duplicados</td><td>El flujo de estados de una orden: created → … → delivered</td></tr>
-            <tr><td><b>tuple ( )</b></td><td>Inmutable, hasheable</td><td>La huella <code>(order_id, estado)</code> que no debe cambiar</td></tr>
-            <tr><td><b>set { }</b></td><td>Sin duplicados, búsqueda O(1)</td><td>Órdenes únicas que tienen reseña</td></tr>
-            <tr><td><b>dict { }</b></td><td>Clave→valor, O(1)</td><td>Mapeo de traducción de estados; una orden como registro</td></tr>
+            <tr><td><b>list [ ]</b></td><td>Orden · mutable · admite duplicados</td><td>El flujo de estados de una orden</td></tr>
+            <tr><td><b>tuple ( )</b></td><td>Inmutable · hasheable</td><td>La huella <code>(order_id, estado)</code></td></tr>
+            <tr><td><b>set { }</b></td><td>Sin duplicados · búsqueda O(1)</td><td>Órdenes únicas con reseña</td></tr>
+            <tr><td><b>dict { }</b></td><td>Clave→valor · acceso O(1)</td><td>Mapeo de estados; una orden como registro</td></tr>
           </tbody>
         </table>
         <div class="quote anim">Elegir bien la estructura no es estética: es la diferencia entre un pipeline de 8 horas y uno de 12 minutos.</div>
@@ -259,37 +260,156 @@
       <div class="footer-bar"></div>
     </section>
 
-    <!-- 6 · SET DEMO -->
+    <!-- 6 · LISTA -->
     <section class="slide">
-      <div class="header-bar black"><h2>El set en acción: órdenes con y sin reseña</h2></div>
+      <div class="header-bar orange"><h2>list [ ] · secuencia ordenada y mutable</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l">
+            <div class="subh anim" style="margin-top:0;">Cuándo usarla</div>
             <ul class="bul">
-              <li class="anim">Un <b>set</b> elimina duplicados automáticamente.</li>
-              <li class="anim">Preguntar <code>x in conjunto</code> es <b>instantáneo</b> (O(1)), aunque haya 100.000 órdenes.</li>
-              <li class="anim">La <b>diferencia de conjuntos</b> responde "¿qué órdenes NO tienen reseña?" en una línea.</li>
-              <li class="anim">Lo verán corriendo en <code>03_estructuras_olist.py</code>.</li>
+              <li class="anim">Cuando el <b>orden importa</b> y vas a recorrer los elementos uno por uno.</li>
+              <li class="anim">Cuando necesitas <b>agregar, quitar o modificar</b> elementos (es mutable).</li>
+              <li class="anim">Cuando los <b>duplicados son válidos</b> (varias órdenes con el mismo estado).</li>
+            </ul>
+            <div class="subh anim">Caso Olist</div>
+            <ul class="bul sm">
+              <li class="anim">El <b>flujo de estados</b> de una orden: <code>created → approved → shipped → delivered</code>. El orden es el dato.</li>
             </ul>
           </div>
           <div class="col-r anim">
-            <div class="big">Una línea</div>
+            <div class="big">En código</div>
             <div class="small" style="font-family:monospace;font-size:13px;line-height:1.7;color:#333;">
-              con_review = <span style="color:#569cd6;">set</span>(reviews[<span style="color:#ce9178;">"order_id"</span>])<br>
-              totales = <span style="color:#569cd6;">set</span>(orders[<span style="color:#ce9178;">"order_id"</span>])<br><br>
-              sin_review = totales - con_review<br>
-              <span style="color:#6a9955;"># diferencia de conjuntos ✓</span>
+              estados = [<span style="color:#ce9178;">"created"</span>,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ce9178;">"approved"</span>,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ce9178;">"shipped"</span>,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ce9178;">"delivered"</span>]<br><br>
+              estados.append(<span style="color:#ce9178;">"invoiced"</span>)<br>
+              primero = estados[<span style="color:#b5cea8;">0</span>]<br>
+              ultimo&nbsp;&nbsp;= estados[-<span style="color:#b5cea8;">1</span>]<br>
+              <span style="color:#6a9955;"># ordenada y editable ✓</span>
             </div>
           </div>
         </div>
+        <div class="quote anim" style="margin-top:14px;">Dato útil: una lista mantiene el orden de inserción siempre. Si pierdes el orden, perdiste el significado.</div>
       </div>
       <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
 
-    <!-- 7 · COMPREHENSIONS -->
+    <!-- 7 · TUPLA -->
+    <section class="slide">
+      <div class="header-bar orange"><h2>tuple ( ) · inmutable y hasheable</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l">
+            <div class="subh anim" style="margin-top:0;">Cuándo usarla</div>
+            <ul class="bul">
+              <li class="anim">Cuando el dato <b>no debe cambiar</b>: el lenguaje te protege de modificarlo por accidente.</li>
+              <li class="anim">Cuando necesitas usarlo como <b>clave de un diccionario</b> o meterlo en un <code>set</code> (las listas no pueden).</li>
+              <li class="anim">Para <b>registros pequeños y fijos</b>: pares, coordenadas, "huellas".</li>
+            </ul>
+            <div class="subh anim">Caso Olist</div>
+            <ul class="bul sm">
+              <li class="anim">La <b>huella</b> de una orden: <code>(order_id, estado)</code>. La usamos como identidad estable que no queremos que mute.</li>
+            </ul>
+          </div>
+          <div class="col-r anim">
+            <div class="big">En código</div>
+            <div class="small" style="font-family:monospace;font-size:12.5px;line-height:1.7;color:#333;">
+              huella = (<span style="color:#ce9178;">"abc123"</span>, <span style="color:#ce9178;">"delivered"</span>)<br><br>
+              oid, estado = huella&nbsp;&nbsp;<span style="color:#6a9955;"># desempaca</span><br><br>
+              <span style="color:#6a9955;"># clave de dict (válido)</span><br>
+              conteo = {huella: <span style="color:#b5cea8;">1</span>}<br><br>
+              <span style="color:#6a9955;"># huella[0] = "x" → ERROR</span><br>
+              <span style="color:#6a9955;"># TypeError: inmutable ✓</span>
+            </div>
+          </div>
+        </div>
+        <div class="quote anim" style="margin-top:14px;">Regla práctica: si el dato representa "un hecho que ya ocurrió", una tupla comunica esa intención.</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 8 · SET -->
+    <section class="slide">
+      <div class="header-bar black"><h2>set { } · sin duplicados y búsqueda O(1)</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l">
+            <div class="subh anim" style="margin-top:0;">Cuándo usarla</div>
+            <ul class="bul">
+              <li class="anim">Para <b>eliminar duplicados</b> al instante: <code>set(lista)</code>.</li>
+              <li class="anim">Para preguntar <b>"¿x está aquí?"</b> de forma instantánea (O(1)) aunque haya 100.000 elementos.</li>
+              <li class="anim">Para <b>operaciones de conjuntos</b>: diferencia, intersección, unión.</li>
+            </ul>
+            <div class="subh anim">Caso Olist</div>
+            <ul class="bul sm">
+              <li class="anim"><b>Órdenes únicas con reseña</b>, y cuáles <b>no</b> tienen reseña, con una resta de conjuntos.</li>
+            </ul>
+          </div>
+          <div class="col-r anim">
+            <div class="big">Una línea</div>
+            <div class="small" style="font-family:monospace;font-size:12.5px;line-height:1.7;color:#333;">
+              con_review = <span style="color:#569cd6;">set</span>(reviews[<span style="color:#ce9178;">"order_id"</span>])<br>
+              totales&nbsp;&nbsp;&nbsp;&nbsp;= <span style="color:#569cd6;">set</span>(orders[<span style="color:#ce9178;">"order_id"</span>])<br><br>
+              sin_review = totales - con_review<br>
+              <span style="color:#6a9955;"># diferencia de conjuntos ✓</span><br><br>
+              <span style="color:#ce9178;">"abc"</span> <span style="color:#569cd6;">in</span> con_review&nbsp;&nbsp;<span style="color:#6a9955;"># O(1)</span>
+            </div>
+          </div>
+        </div>
+        <div class="quote anim" style="margin-top:14px;">El cambio de <code>x in lista</code> a <code>x in set</code> es lo que bajó un pipeline real de 8 h a 12 min.</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 9 · DICCIONARIO -->
+    <section class="slide">
+      <div class="header-bar orange"><h2>dict { } · clave→valor, la estructura del pipeline</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l">
+            <div class="subh anim" style="margin-top:0;">Cuándo usarla</div>
+            <ul class="bul">
+              <li class="anim">Para <b>asociar clave con valor</b>: códigos→nombres, id→registro. Acceso O(1).</li>
+              <li class="anim">Es la forma natural de un <b>registro</b>: cada fila de Olist es un dict de columna→valor.</li>
+              <li class="anim">Usa <code>.get(clave, defecto)</code> para <b>no romper</b> si la clave no existe.</li>
+            </ul>
+            <div class="subh anim">Caso Olist</div>
+            <ul class="bul sm">
+              <li class="anim"><b>Traducir estados</b> (<code>delivered → Entregado</code>) y tratar <b>una orden como registro</b> con <code>to_dict()</code>.</li>
+            </ul>
+          </div>
+          <div class="col-r anim">
+            <div class="big">En código</div>
+            <div class="small" style="font-family:monospace;font-size:12.5px;line-height:1.7;color:#333;">
+              trad = {<span style="color:#ce9178;">"delivered"</span>: <span style="color:#ce9178;">"Entregado"</span>,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ce9178;">"shipped"</span>:&nbsp;&nbsp;<span style="color:#ce9178;">"Enviado"</span>}<br><br>
+              trad.get(<span style="color:#ce9178;">"delivered"</span>, <span style="color:#ce9178;">"?"</span>)<br>
+              <span style="color:#6a9955;"># → "Entregado"</span><br>
+              trad.get(<span style="color:#ce9178;">"invoiced"</span>, <span style="color:#ce9178;">"?"</span>)<br>
+              <span style="color:#6a9955;"># → "?"  (no rompe) ✓</span>
+            </div>
+          </div>
+        </div>
+        <div class="quote anim" style="margin-top:14px;">El diccionario es el caballo de batalla: APIs, mapeos y cachés son todos dicts por dentro.</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <!-- 10 · COMPREHENSIONS -->
     <section class="slide">
       <div class="header-bar orange"><h2>Comprehensions: transformar en una línea</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
@@ -318,7 +438,7 @@ conteo = {
       <div class="footer-bar"></div>
     </section>
 
-    <!-- 8 · TALLER B1 -->
+    <!-- 11 · TALLER B1 -->
     <section class="slide">
       <div class="header-bar orange"><h2>Taller · ejecuta 03_estructuras_olist.py</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
@@ -335,7 +455,7 @@ conteo = {
       <div class="footer-bar"></div>
     </section>
 
-    <!-- 9 · PAUSA 1 -->
+    <!-- 12 · PAUSA 1 -->
     <section class="slide l6">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
       <div class="q anim">Pausa · 10 minutos</div>
@@ -343,7 +463,7 @@ conteo = {
       <div class="hint anim">Volvemos a las 20:25 con control de flujo y validación.</div>
     </section>
 
-    <!-- 10 · BLOQUE 2 DIVISOR -->
+    <!-- 13 · BLOQUE 2 DIVISOR -->
     <section class="slide l2">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
       <div class="kicker anim">Bloque 2 · 20:25 – 21:25</div>
@@ -351,7 +471,7 @@ conteo = {
       <div class="num">02</div>
     </section>
 
-    <!-- 11 · PATRON ETL -->
+    <!-- 14 · PATRON ETL -->
     <section class="slide">
       <div class="header-bar orange"><h2>El patrón ETL: leer → validar → separar</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
@@ -383,7 +503,7 @@ conteo = {
       <div class="footer-bar"></div>
     </section>
 
-    <!-- 12 · TRY EXCEPT -->
+    <!-- 15 · TRY EXCEPT -->
     <section class="slide">
       <div class="header-bar black"><h2>Try / Except / Finally · pipelines que no mueren solos</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
@@ -414,7 +534,7 @@ conteo = {
       <div class="footer-bar"></div>
     </section>
 
-    <!-- 13 · LOGGING -->
+    <!-- 16 · LOGGING -->
     <section class="slide">
       <div class="header-bar orange"><h2>Logging vs print · la memoria del pipeline</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
@@ -454,7 +574,7 @@ logging.info(
       <div class="footer-bar"></div>
     </section>
 
-    <!-- 14 · TALLER B2 -->
+    <!-- 17 · TALLER B2 -->
     <section class="slide">
       <div class="header-bar orange"><h2>Taller · ejecuta 04_validar_olist.py</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
@@ -471,7 +591,7 @@ logging.info(
       <div class="footer-bar"></div>
     </section>
 
-    <!-- 15 · PAUSA 2 -->
+    <!-- 18 · PAUSA 2 -->
     <section class="slide l6">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
       <div class="q anim">Pausa · 10 minutos</div>
@@ -479,7 +599,7 @@ logging.info(
       <div class="hint anim">Volvemos a las 21:35 con el taller de refactorización y pytest.</div>
     </section>
 
-    <!-- 16 · BLOQUE 3 DIVISOR -->
+    <!-- 19 · BLOQUE 3 DIVISOR -->
     <section class="slide l2">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
       <div class="kicker anim">Bloque 3 · 21:35 – 22:30</div>
@@ -487,7 +607,7 @@ logging.info(
       <div class="num">03</div>
     </section>
 
-    <!-- 17 · ESPAGUETI -->
+    <!-- 20 · ESPAGUETI -->
     <section class="slide">
       <div class="header-bar black"><h2>El espagueti: resumen de reseñas de Olist</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
@@ -526,7 +646,7 @@ logging.info(
       <div class="footer-bar"></div>
     </section>
 
-    <!-- 18 · REFACTOR -->
+    <!-- 21 · REFACTOR -->
     <section class="slide">
       <div class="header-bar orange"><h2>Refactorizado con IA · mismo resultado, código limpio</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
@@ -549,7 +669,7 @@ logging.info(
       <div class="footer-bar"></div>
     </section>
 
-    <!-- 19 · PYTEST -->
+    <!-- 22 · PYTEST -->
     <section class="slide">
       <div class="header-bar orange"><h2>pytest · tests que protegen tu pipeline</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
@@ -579,7 +699,7 @@ logging.info(
       <div class="footer-bar"></div>
     </section>
 
-    <!-- 20 · DEMO AWS -->
+    <!-- 23 · DEMO AWS -->
     <section class="slide">
       <div class="header-bar black"><h2>El espejo en la nube (demo del profe)</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
@@ -597,7 +717,7 @@ logging.info(
       <div class="footer-bar"></div>
     </section>
 
-    <!-- 21 · CIERRE -->
+    <!-- 24 · CIERRE -->
     <section class="slide l1 slide-closing">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA"><use href="#udla-logo"/></svg></div>
       <h1 class="ttl closing anim">Comprende lo que la IA escribe por ti</h1>
@@ -612,7 +732,7 @@ logging.info(
 
 <div class="nav">
   <button id="prev" title="Anterior (←)">◀</button>
-  <span class="count" id="count">1 / 21</span>
+  <span class="count" id="count">1 / 24</span>
   <button id="next" title="Siguiente (→)">▶</button>
 </div>
 <div class="hint-help">← → navegar · F pantalla completa</div>
