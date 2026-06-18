@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wiki Python — Clase 1 · DPL1046</title>
+<style>
+:root {
+  --orange:#FF6B1A; --dark:#1A1A1A; --gray:#444; --light:#F4F4F6;
+  --white:#fff; --green:#2E7D32; --red:#C62828; --blue:#1565C0;
+  --border:#E0E0E0; --tint:#FFF3ED; --sidebar-w:260px;
+  --font:-apple-system,"Segoe UI",Arial,sans-serif;
+  --mono:"Cascadia Code","Fira Code",Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--light);color:var(--dark);line-height:1.7;}
+
+/* ── Header ── */
+.top-bar{background:var(--dark);padding:14px 32px;display:flex;align-items:center;gap:16px;
+  position:sticky;top:0;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,.4);}
+.top-bar .badge{background:var(--orange);color:#fff;font-weight:700;font-size:13px;
+  padding:3px 10px;border-radius:4px;letter-spacing:.05em;}
+.top-bar h1{color:#fff;font-size:16px;font-weight:600;}
+.top-bar .tag{margin-left:auto;background:rgba(255,107,26,.15);border:1px solid var(--orange);
+  color:var(--orange);font-size:12px;font-weight:700;padding:2px 10px;border-radius:20px;}
+
+/* ── Layout ── */
+.layout{display:flex;min-height:calc(100vh - 50px);}
+
+/* ── Sidebar ── */
+.sidebar{width:var(--sidebar-w);flex-shrink:0;background:var(--dark);
+  position:sticky;top:50px;height:calc(100vh - 50px);overflow-y:auto;padding:20px 0;}
+.sidebar::-webkit-scrollbar{width:4px;}
+.sidebar::-webkit-scrollbar-thumb{background:#444;border-radius:2px;}
+.sidebar .s-label{font-size:10px;font-weight:700;color:#666;letter-spacing:.12em;
+  text-transform:uppercase;padding:8px 20px 4px;}
+.sidebar a{display:block;padding:7px 20px;font-size:13px;color:#aaa;text-decoration:none;
+  border-left:3px solid transparent;transition:.15s;}
+.sidebar a:hover{color:#fff;background:rgba(255,255,255,.05);}
+.sidebar a.active{color:var(--orange);border-left-color:var(--orange);background:rgba(255,107,26,.08);}
+.sidebar .s-sub{padding-left:32px;font-size:12px;}
+
+/* ── Content ── */
+.content{flex:1;padding:40px 48px 80px;max-width:820px;}
+
+/* ── Sections ── */
+.section{margin-bottom:64px;}
+.section-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:6px;}
+.s-num{background:var(--orange);color:#fff;font-size:18px;font-weight:800;width:40px;height:40px;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;}
+.s-title{font-size:26px;font-weight:700;line-height:1.2;}
+.s-sub{font-size:14px;color:#888;margin-top:3px;}
+.divider{width:48px;height:3px;background:var(--orange);border-radius:2px;margin:12px 0 20px;}
+
+p{font-size:15px;color:var(--gray);margin-bottom:14px;}
+strong{color:var(--dark);}
+h3{font-size:17px;font-weight:700;color:var(--dark);margin:28px 0 10px;}
+h4{font-size:14px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin:20px 0 8px;}
+
+/* ── Code ── */
+code{background:#252530;color:#cdd6f4;font-family:var(--mono);font-size:13px;
+  padding:2px 6px;border-radius:4px;}
+.code-block{background:#1e1e2e;border-radius:10px;margin:14px 0;overflow:hidden;}
+.code-block .cb-header{background:#181825;padding:8px 16px;display:flex;align-items:center;gap:8px;}
+.code-block .cb-lang{font-size:11px;font-weight:700;color:var(--orange);letter-spacing:.05em;}
+.code-block .cb-file{font-size:11px;color:#666;margin-left:auto;font-family:var(--mono);}
+.code-block pre{padding:16px 20px;font-family:var(--mono);font-size:13.5px;line-height:1.75;
+  overflow-x:auto;color:#cdd6f4;}
+/* Syntax tokens */
+.kw{color:#cba6f7;}     /* keywords */
+.fn{color:#89b4fa;}     /* function names */
+.bi{color:#89dceb;}     /* built-ins */
+.st{color:#a6e3a1;}     /* strings */
+.cm{color:#6c7086;}     /* comments */
+.nu{color:#fab387;}     /* numbers */
+.tp{color:#94e2d5;}     /* types */
+.op{color:#89dceb;}     /* operators */
+.de{color:#f38ba8;}     /* decorator */
+.at{color:#f9e2af;}     /* attribute */
+.out{color:#a6e3a1;}    /* terminal output */
+.ou2{color:#89dceb;}    /* terminal output 2 */
+.err{color:#f38ba8;}    /* error */
+
+/* ── Callouts ── */
+.callout{border-radius:8px;padding:14px 18px;margin:16px 0;display:flex;gap:12px;font-size:14px;}
+.callout-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+.callout.tip{background:var(--tint);border:1px solid #ffc999;color:#a04000;}
+.callout.ok{background:#e8f5e9;border:1px solid #a5d6a7;color:var(--green);}
+.callout.info{background:#e3f2fd;border:1px solid #90caf9;color:var(--blue);}
+.callout.warn{background:#fff3e0;border:1px solid #ffcc80;color:#e65100;}
+
+/* ── Concept box ── */
+.concept{background:linear-gradient(135deg,#fff8f5,#fff);border:1px solid #ffd0b0;
+  border-left:4px solid var(--orange);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.concept h4{margin-top:0;}
+.concept p{margin-bottom:0;}
+
+/* ── "En el código" box ── */
+.in-code{background:#1e1e2e;border:1px solid #313244;border-left:4px solid var(--orange);
+  border-radius:8px;padding:12px 16px;margin:14px 0;}
+.in-code .ic-label{font-size:10px;font-weight:700;color:var(--orange);letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:8px;}
+.in-code pre{font-family:var(--mono);font-size:13px;line-height:1.6;color:#cdd6f4;overflow-x:auto;}
+
+/* ── Output box ── */
+.output{background:#0d1117;border:1px solid #30363d;border-radius:8px;margin:14px 0;overflow:hidden;}
+.output .out-label{background:#161b22;padding:6px 14px;font-size:10px;font-weight:700;
+  color:#7d8590;letter-spacing:.1em;text-transform:uppercase;}
+.output pre{padding:12px 16px;font-family:var(--mono);font-size:13px;line-height:1.6;
+  color:#a6e3a1;overflow-x:auto;}
+
+/* ── Table ── */
+table.wiki{width:100%;border-collapse:collapse;font-size:14px;margin:14px 0;}
+table.wiki th{background:var(--orange);color:#fff;padding:9px 14px;text-align:left;font-weight:700;}
+table.wiki td{padding:9px 14px;border-bottom:1px solid #eee;color:var(--gray);}
+table.wiki tr:nth-child(even) td{background:var(--tint);}
+table.wiki td code{font-size:12px;}
+
+hr.section-divider{border:none;border-top:1px solid var(--border);margin:48px 0;}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="badge">DPL1046</div>
+  <h1>Wiki Python — Clase 1</h1>
+  <div class="tag">📖 Referencia técnica</div>
+</div>
+
+<div class="layout">
+
+<!-- ════ SIDEBAR ════ -->
+<nav class="sidebar">
+  <div class="s-label">Contenidos</div>
+  <a href="#s1" class="active">1. El entorno</a>
+  <a href="#s1a" class="s-sub">Librerías y dependencias</a>
+  <a href="#s1b" class="s-sub">Entorno virtual (.venv)</a>
+  <a href="#s1c" class="s-sub">requirements.txt</a>
+  <a href="#s2">2. Imports</a>
+  <a href="#s2a" class="s-sub">import … as</a>
+  <a href="#s2b" class="s-sub">from … import</a>
+  <a href="#s3">3. Variables y constantes</a>
+  <a href="#s4">4. Definir funciones (def)</a>
+  <a href="#s4a" class="s-sub">Parámetros y tipos</a>
+  <a href="#s4b" class="s-sub">Docstrings</a>
+  <a href="#s4c" class="s-sub">Valor de retorno</a>
+  <a href="#s5">5. Llamar funciones</a>
+  <a href="#s6">6. Print y f-strings</a>
+  <a href="#s6a" class="s-sub">print()</a>
+  <a href="#s6b" class="s-sub">f-strings</a>
+  <a href="#s6c" class="s-sub">Formatos numéricos</a>
+  <a href="#s7">7. Pathlib — rutas de archivos</a>
+  <a href="#s8">8. DataFrames con pandas</a>
+  <a href="#s8a" class="s-sub">Leer un CSV</a>
+  <a href="#s8b" class="s-sub">Inspeccionar</a>
+  <a href="#s8c" class="s-sub">Columnas calculadas</a>
+  <a href="#s8d" class="s-sub">groupby</a>
+  <a href="#s9">9. glob — múltiples archivos</a>
+  <a href="#s10">10. Bucles for</a>
+  <a href="#s11">11. if __name__ == "__main__"</a>
+</nav>
+
+<!-- ════ CONTENT ════ -->
+<main class="content">
+
+<!-- ══ 1. El entorno ══ -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <div class="s-num">1</div>
+    <div>
+      <div class="s-title">El entorno de trabajo</div>
+      <div class="s-sub">Python, librerías, entorno virtual y dependencias</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="concept">
+    <h4>¿Qué es el "entorno"?</h4>
+    <p>El entorno es el conjunto de herramientas con las que corre tu código: la versión de Python, las librerías instaladas y sus versiones exactas. Un entorno bien definido garantiza que tu código funcione igual en tu máquina, en la del compañero y en la nube.</p>
+  </div>
+
+  <h3 id="s1a">Librerías y dependencias</h3>
+  <p>Python viene con herramientas básicas, pero para trabajar con datos necesitamos <strong>librerías adicionales</strong> — código escrito por otros que extiende las capacidades del lenguaje. Las que usamos en el curso:</p>
+
+  <table class="wiki">
+    <thead><tr><th>Librería</th><th>Para qué sirve</th><th>Cómo se importa</th></tr></thead>
+    <tbody>
+      <tr><td><strong>pandas</strong></td><td>Manipular tablas de datos (el motor del curso)</td><td><code>import pandas as pd</code></td></tr>
+      <tr><td><strong>numpy</strong></td><td>Cálculo numérico, base de pandas</td><td><code>import numpy as np</code></td></tr>
+      <tr><td><strong>pathlib</strong></td><td>Manejar rutas de archivos de forma segura</td><td><code>from pathlib import Path</code></td></tr>
+      <tr><td><strong>glob</strong></td><td>Buscar archivos por patrón (ej: todos los .csv)</td><td><code>from glob import glob</code></td></tr>
+      <tr><td><strong>boto3</strong></td><td>SDK para hablar con AWS (S3, etc.)</td><td><code>import boto3</code></td></tr>
+      <tr><td><strong>python-dotenv</strong></td><td>Cargar credenciales desde un archivo .env</td><td><code>from dotenv import load_dotenv</code></td></tr>
+      <tr><td><strong>sweetviz</strong></td><td>Generar reportes automáticos de calidad de datos</td><td><code>import sweetviz as sv</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3 id="s1b">El entorno virtual (.venv)</h3>
+  <p>Un <strong>entorno virtual</strong> es una carpeta aislada donde se instalan las librerías <em>de un proyecto específico</em>, sin afectar otros proyectos ni el sistema. Cada proyecto tiene su propio entorno con sus propias versiones.</p>
+
+  <div class="output">
+    <div class="out-label">Estructura del proyecto</div>
+    <pre>diplomado-idsdata-juanmarozas/    ← raíz del repo
+├── .venv/                        ← entorno virtual (no se sube a Git)
+│   └── lib/python3.12/
+│       └── site-packages/        ← pandas, boto3, etc. viven aquí
+├── clases/
+└── data/</pre>
+  </div>
+
+  <p>Para <strong>activar</strong> el entorno (hay que hacerlo en cada sesión):</p>
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">BASH</span><span class="cb-file">Terminal</span></div>
+    <pre><span class="cm"># macOS / Linux</span>
+<span class="op">source</span> .venv/bin/activate
+
+<span class="cm"># Windows (Git Bash)</span>
+<span class="op">source</span> .venv/Scripts/activate
+
+<span class="cm"># Cuando está activo ves esto al inicio de la línea:</span>
+<span class="out">(.venv) JuanMa@Mac diplomado-idsdata-juanmarozas %</span></pre>
+  </div>
+
+  <div class="callout ok">
+    <div class="callout-icon">✅</div>
+    <div><strong>(.venv) al inicio = entorno activo.</strong> Siempre actívalo antes de correr los scripts del curso.</div>
+  </div>
+
+  <h3 id="s1c">requirements.txt — la lista de dependencias</h3>
+  <p>El archivo <code>requirements.txt</code> lista las librerías del proyecto con sus versiones exactas. Al correr <code>pip install -r requirements.txt</code>, Python instala exactamente lo que está en esa lista — ni más, ni menos.</p>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">TXT</span><span class="cb-file">clases/clase-01/material/requirements.txt</span></div>
+    <pre><span class="cm"># Cada línea es: librería==versión</span>
+<span class="st">pandas</span><span class="op">==</span><span class="nu">2.2.2</span>          <span class="cm"># motor de manipulación de datos</span>
+<span class="st">numpy</span><span class="op">==</span><span class="nu">1.26.4</span>          <span class="cm"># cálculo numérico</span>
+<span class="st">openpyxl</span><span class="op">==</span><span class="nu">3.1.5</span>        <span class="cm"># leer/escribir Excel</span>
+<span class="st">python-dotenv</span><span class="op">==</span><span class="nu">1.0.1</span>   <span class="cm"># variables de entorno</span>
+<span class="st">kagglehub</span><span class="op">==</span><span class="nu">0.3.4</span>       <span class="cm"># descargar datasets de Kaggle</span>
+<span class="st">boto3</span><span class="op">==</span><span class="nu">1.34.131</span>        <span class="cm"># SDK de AWS</span>
+<span class="st">sweetviz</span><span class="op">==</span><span class="nu">2.3.3</span>        <span class="cm"># reportes de calidad de datos</span></pre>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-icon">💡</div>
+    <div><strong>¿Por qué fijar las versiones?</strong> Si no lo haces, cada instalación podría traer versiones distintas — y lo que funciona hoy puede no funcionar mañana. Fijar versiones garantiza <em>reproducibilidad</em>: mismo código, mismos resultados, siempre.</div>
+  </div>
+
+  <div class="callout warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Este curso usa Python 3.12.</strong> Las versiones 3.13 y 3.14 tienen incompatibilidades con algunas librerías del curso. El <code>setup_local.sh</code> verifica esto automáticamente y te avisa si la versión no es correcta.</div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══ 2. Imports ══ -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <div class="s-num">2</div>
+    <div>
+      <div class="s-title">Imports</div>
+      <div class="s-sub">Cómo traer librerías y funciones al script</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <p>Un <code>import</code> le dice a Python: <em>"necesito usar esta librería"</em>. Sin importarla, no puedes usarla, aunque esté instalada. Los imports van siempre al <strong>inicio del archivo</strong>.</p>
+
+  <h3 id="s2a">import … as (alias)</h3>
+  <p>Cuando la librería tiene un nombre largo o hay una convención universal, se le pone un <strong>alias</strong> más corto con <code>as</code>. El alias es el nombre que usas en el resto del código.</p>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span><span class="cb-file">01_leer_csv.py — línea 17</span></div>
+    <pre><span class="kw">import</span> pandas <span class="kw">as</span> pd
+
+<span class="cm"># A partir de aquí, en vez de escribir "pandas.read_csv(...)"</span>
+<span class="cm"># escribes "pd.read_csv(...)"  ← mucho más corto</span>
+pagos <span class="op">=</span> pd.<span class="fn">read_csv</span>(<span class="st">"archivo.csv"</span>)</pre>
+  </div>
+
+  <table class="wiki">
+    <thead><tr><th>Convención del mundo</th><th>Lo que significa</th></tr></thead>
+    <tbody>
+      <tr><td><code>import pandas as pd</code></td><td>pandas se llama <code>pd</code> en todo el código</td></tr>
+      <tr><td><code>import numpy as np</code></td><td>numpy se llama <code>np</code></td></tr>
+      <tr><td><code>import matplotlib.pyplot as plt</code></td><td>pyplot se llama <code>plt</code></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout tip">
+    <div class="callout-icon">💡</div>
+    <div>Son convenciones universales. Si escribes <code>import pandas as datos</code> funciona, pero confundirás a cualquier persona que lea tu código. Sigue siempre las convenciones.</div>
+  </div>
+
+  <h3 id="s2b">from … import (importar algo específico)</h3>
+  <p>En vez de importar toda la librería, puedes traer solo lo que necesitas. Esto es más eficiente y el código queda más limpio.</p>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span><span class="cb-file">01_leer_csv.py — línea 15 | 02_glob_inventario.py — líneas 13-14</span></div>
+    <pre><span class="kw">from</span> pathlib <span class="kw">import</span> Path
+<span class="cm"># Ahora puedes usar directamente "Path(...)" en vez de "pathlib.Path(...)"</span>
+
+<span class="kw">from</span> glob <span class="kw">import</span> glob
+<span class="cm"># Ahora puedes usar directamente "glob(...)" en vez de "glob.glob(...)"</span></pre>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-icon">📌</div>
+    <div><strong>Regla práctica:</strong> usa <code>import X as alias</code> para librerías grandes (pandas, numpy). Usa <code>from X import Y</code> cuando solo necesitas una función específica de una librería.</div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══ 3. Variables ══ -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <div class="s-num">3</div>
+    <div>
+      <div class="s-title">Variables y constantes</div>
+      <div class="s-sub">Guardar valores para usarlos después</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <p>Una <strong>variable</strong> es un nombre que guarda un valor en memoria. En Python no necesitas declarar el tipo — Python lo infiere automáticamente.</p>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span></div>
+    <pre><span class="cm"># Asignar un valor a una variable</span>
+nombre  <span class="op">=</span> <span class="st">"Juan"</span>         <span class="cm"># str (texto)</span>
+edad    <span class="op">=</span> <span class="nu">35</span>             <span class="cm"># int (entero)</span>
+precio  <span class="op">=</span> <span class="nu">99.9</span>           <span class="cm"># float (decimal)</span>
+activo  <span class="op">=</span> <span class="kw">True</span>           <span class="cm"># bool (verdadero/falso)</span>
+
+<span class="cm"># Reasignar (Python permite cambiar el valor)</span>
+precio <span class="op">=</span> <span class="nu">120.0</span>           <span class="cm"># ahora precio vale 120.0</span></pre>
+  </div>
+
+  <p>Las <strong>constantes</strong> son variables que por convención no se modifican. Se escriben en MAYÚSCULAS.</p>
+
+  <div class="in-code">
+    <div class="ic-label">En el código del curso — 01_leer_csv.py línea 30</div>
+    <pre><span class="cm"># DATA es una constante: la ruta a los datos del curso</span>
+<span class="cm"># Se define una vez y se usa en todo el script</span>
+DATA <span class="op">=</span> <span class="fn">raiz_repo</span>() <span class="op">/</span> <span class="st">"data"</span> <span class="op">/</span> <span class="st">"raw"</span>
+
+<span class="cm"># Más adelante, usamos DATA para leer archivos:</span>
+pagos <span class="op">=</span> pd.<span class="fn">read_csv</span>(DATA <span class="op">/</span> <span class="st">"olist_order_payments_dataset.csv"</span>)</pre>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-icon">💡</div>
+    <div><strong>Convención de nombres:</strong> variables en <code>minusculas_con_guion</code>, constantes en <code>MAYUSCULAS</code>, clases en <code>PalabrasJuntas</code>. No es obligatorio pero es el estándar universal de Python (PEP 8).</div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══ 4. Funciones ══ -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <div class="s-num">4</div>
+    <div>
+      <div class="s-title">Definir funciones (def)</div>
+      <div class="s-sub">Empaquetar código reutilizable</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="concept">
+    <h4>¿Para qué sirve una función?</h4>
+    <p>Una función es un bloque de código con nombre que puedes ejecutar ("llamar") cuando quieras. En vez de repetir 10 líneas cada vez que inspeccionas un DataFrame, las empaquetas en una función y la llamas con una sola línea. Regla de oro: <strong>si copias y pegas el mismo código más de dos veces, ahí va una función.</strong></p>
+  </div>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span><span class="cb-file">Anatomía de una función</span></div>
+    <pre><span class="kw">def</span> <span class="fn">nombre_de_la_funcion</span>(parametro1, parametro2):
+    <span class="st">"""Docstring: describe qué hace la función."""</span>
+    <span class="cm"># Cuerpo de la función (indentado con 4 espacios)</span>
+    resultado <span class="op">=</span> parametro1 <span class="op">+</span> parametro2
+    <span class="kw">return</span> resultado    <span class="cm"># valor que devuelve</span></pre>
+  </div>
+
+  <h3 id="s4a">Parámetros y type hints</h3>
+  <p>Los <strong>parámetros</strong> son los datos que recibe la función. Los <strong>type hints</strong> (anotaciones de tipo) documentan qué tipo de dato se espera — Python no los exige, pero hacen el código mucho más legible y Copilot los usa para dar mejores sugerencias.</p>
+
+  <div class="in-code">
+    <div class="ic-label">En el código del curso — 01_leer_csv.py líneas 33-40</div>
+    <pre><span class="kw">def</span> <span class="fn">inspeccionar</span>(df: pd.<span class="tp">DataFrame</span>, nombre: <span class="tp">str</span>) <span class="op">-></span> <span class="tp">None</span>:
+<span class="cm">#                 ↑                    ↑              ↑</span>
+<span class="cm">#          parámetro 1          parámetro 2     no retorna nada</span>
+<span class="cm">#        (type hint: DataFrame)  (type hint: str)</span>
+    <span class="st">"""Imprime una ficha rápida de un DataFrame."""</span>
+    <span class="bi">print</span>(<span class="st">f"\n{'='*60}\n {nombre}\n{'='*60}"</span>)
+    <span class="bi">print</span>(<span class="st">f"Filas x Columnas : {df.shape[<span class="nu">0</span>]:,} x {df.shape[<span class="nu">1</span>]}"</span>)
+    <span class="bi">print</span>(<span class="st">f"Columnas         : {<span class="bi">list</span>(df.columns)}"</span>)
+    <span class="bi">print</span>(<span class="st">f"Memoria          : {df.memory_usage(deep=<span class="kw">True</span>).sum() / <span class="nu">1e6</span>:.1f} MB"</span>)
+    <span class="bi">print</span>(<span class="st">"Primeras filas:"</span>)
+    <span class="bi">print</span>(df.<span class="fn">head</span>(<span class="nu">3</span>).<span class="fn">to_string</span>(index=<span class="kw">False</span>))</pre>
+  </div>
+
+  <table class="wiki">
+    <thead><tr><th>Type hint</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><code>str</code></td><td>Texto</td><td><code>nombre: str</code></td></tr>
+      <tr><td><code>int</code></td><td>Número entero</td><td><code>edad: int</code></td></tr>
+      <tr><td><code>float</code></td><td>Número decimal</td><td><code>precio: float</code></td></tr>
+      <tr><td><code>bool</code></td><td>Verdadero/Falso</td><td><code>activo: bool</code></td></tr>
+      <tr><td><code>pd.DataFrame</code></td><td>Tabla de pandas</td><td><code>df: pd.DataFrame</code></td></tr>
+      <tr><td><code>Path</code></td><td>Ruta de archivo</td><td><code>ruta: Path</code></td></tr>
+      <tr><td><code>None</code></td><td>No retorna nada</td><td><code>-> None</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3 id="s4b">Docstrings</h3>
+  <p>El <strong>docstring</strong> es la descripción de la función. Va entre triple comillas justo después de la línea <code>def</code>. Es lo que aparece cuando preguntas a Copilot o escribes <code>help(funcion)</code>.</p>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span></div>
+    <pre><span class="kw">def</span> <span class="fn">calcular_ticket</span>(facturacion: <span class="tp">float</span>, n_ordenes: <span class="tp">int</span>) <span class="op">-></span> <span class="tp">float</span>:
+    <span class="st">"""
+    Calcula el ticket promedio dividiendo la facturación total
+    por el número de órdenes distintas.
+
+    Parámetros:
+        facturacion: suma total de ventas en R$
+        n_ordenes:   número de órdenes únicas
+
+    Retorna:
+        ticket promedio en R$
+    """</span>
+    <span class="kw">return</span> facturacion <span class="op">/</span> n_ordenes</pre>
+  </div>
+
+  <h3 id="s4c">Valor de retorno (return)</h3>
+  <p><code>return</code> termina la función y devuelve un valor. Si la función no tiene <code>return</code> (o tiene <code>-> None</code>), solo ejecuta acciones sin devolver nada.</p>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span></div>
+    <pre><span class="cm"># Función que RETORNA un valor</span>
+<span class="kw">def</span> <span class="fn">doble</span>(n: <span class="tp">int</span>) <span class="op">-></span> <span class="tp">int</span>:
+    <span class="kw">return</span> n <span class="op">*</span> <span class="nu">2</span>
+
+resultado <span class="op">=</span> <span class="fn">doble</span>(<span class="nu">5</span>)   <span class="cm"># resultado = 10</span>
+
+<span class="cm"># Función que NO retorna (solo imprime)</span>
+<span class="kw">def</span> <span class="fn">saludar</span>(nombre: <span class="tp">str</span>) <span class="op">-></span> <span class="tp">None</span>:
+    <span class="bi">print</span>(<span class="st">f"Hola, {nombre}!"</span>)
+
+<span class="fn">saludar</span>(<span class="st">"Ana"</span>)   <span class="cm"># imprime "Hola, Ana!" pero no devuelve nada</span></pre>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══ 5. Llamar funciones ══ -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <div class="s-num">5</div>
+    <div>
+      <div class="s-title">Llamar funciones</div>
+      <div class="s-sub">Cómo ejecutar una función definida</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <p>Llamar una función significa ejecutarla. Escribes el nombre, abres paréntesis, pasas los argumentos y cierras paréntesis.</p>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span><span class="cb-file">Patrón general</span></div>
+    <pre><span class="cm"># Definición (se hace UNA vez)</span>
+<span class="kw">def</span> <span class="fn">inspeccionar</span>(df: pd.<span class="tp">DataFrame</span>, nombre: <span class="tp">str</span>) <span class="op">-></span> <span class="tp">None</span>:
+    <span class="bi">print</span>(df.<span class="at">shape</span>)
+
+<span class="cm"># Llamada (se puede hacer MUCHAS veces)</span>
+<span class="fn">inspeccionar</span>(pagos, <span class="st">"Pagos"</span>)   <span class="cm"># primera llamada</span>
+<span class="fn">inspeccionar</span>(items, <span class="st">"Ítems"</span>)   <span class="cm"># segunda llamada, mismo código</span></pre>
+  </div>
+
+  <div class="in-code">
+    <div class="ic-label">En el código del curso — 01_leer_csv.py líneas 46 y 59</div>
+    <pre><span class="cm"># En main(), llamamos inspeccionar() con distintos DataFrames</span>
+pagos <span class="op">=</span> pd.<span class="fn">read_csv</span>(DATA <span class="op">/</span> <span class="st">"olist_order_payments_dataset.csv"</span>)
+<span class="fn">inspeccionar</span>(pagos, <span class="st">"PAGOS (olist_order_payments_dataset)"</span>)
+<span class="cm">#             ↑           ↑</span>
+<span class="cm">#      argumento 1    argumento 2</span>
+<span class="cm">#      (el DataFrame) (el nombre a mostrar)</span>
+
+items <span class="op">=</span> pd.<span class="fn">read_csv</span>(DATA <span class="op">/</span> <span class="st">"olist_order_items_dataset.csv"</span>)
+<span class="fn">inspeccionar</span>(items, <span class="st">"ITEMS (olist_order_items_dataset)"</span>)</pre>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-icon">💡</div>
+    <div><strong>Definición vs llamada:</strong> defines la función <em>una vez</em> (arriba del archivo). La llamas <em>muchas veces</em> (donde la necesitas). Cada llamada ejecuta exactamente el mismo bloque de código, pero con datos distintos.</div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══ 6. Print y f-strings ══ -->
+<section class="section" id="s6">
+  <div class="section-header">
+    <div class="s-num">6</div>
+    <div>
+      <div class="s-title">Print y f-strings</div>
+      <div class="s-sub">Mostrar información en la terminal</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <h3 id="s6a">print()</h3>
+  <p><code>print()</code> muestra texto o valores en la terminal. Es la herramienta más básica para ver qué está pasando en tu código.</p>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span></div>
+    <pre><span class="bi">print</span>(<span class="st">"Hola mundo"</span>)             <span class="cm"># texto simple</span>
+<span class="bi">print</span>(<span class="nu">42</span>)                        <span class="cm"># número</span>
+<span class="bi">print</span>(<span class="st">"Filas:"</span>, df.<span class="at">shape</span>[<span class="nu">0</span>])    <span class="cm"># texto + variable</span>
+<span class="bi">print</span>()                           <span class="cm"># línea vacía</span></pre>
+  </div>
+
+  <div class="output">
+    <div class="out-label">Salida en terminal</div>
+    <pre><span class="out">Hola mundo
+42
+Filas: 103886</span></pre>
+  </div>
+
+  <h3 id="s6b">f-strings — la forma moderna de combinar texto y variables</h3>
+  <p>Una <strong>f-string</strong> (formatted string) permite insertar variables directamente dentro del texto. Se escribe con una <code>f</code> antes de las comillas y las variables van entre <code>{ }</code>.</p>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span></div>
+    <pre>nombre <span class="op">=</span> <span class="st">"Ana"</span>
+edad   <span class="op">=</span> <span class="nu">28</span>
+
+<span class="cm"># Sin f-string (engorroso)</span>
+<span class="bi">print</span>(<span class="st">"Hola, "</span> <span class="op">+</span> nombre <span class="op">+</span> <span class="st">". Tienes "</span> <span class="op">+</span> <span class="bi">str</span>(edad) <span class="op">+</span> <span class="st">" años."</span>)
+
+<span class="cm"># Con f-string (limpio y directo)</span>
+<span class="bi">print</span>(<span class="st">f"Hola, {nombre}. Tienes {edad} años."</span>)
+<span class="cm">#      ↑ la f indica que es una f-string</span>
+<span class="cm">#              ↑ variable insertada   ↑ otra variable</span></pre>
+  </div>
+
+  <div class="output">
+    <div class="out-label">Salida (ambas líneas dan lo mismo)</div>
+    <pre><span class="out">Hola, Ana. Tienes 28 años.</span></pre>
+  </div>
+
+  <div class="in-code">
+    <div class="ic-label">En el código del curso — 01_leer_csv.py líneas 66-68</div>
+    <pre><span class="bi">print</span>(<span class="st">f"    Facturación total : R$ {facturacion:,.0f}"</span>)
+<span class="bi">print</span>(<span class="st">f"    Órdenes distintas : {n_ordenes:,}"</span>)
+<span class="bi">print</span>(<span class="st">f"    Ticket promedio   : R$ {facturacion / n_ordenes:,.1f}"</span>)</pre>
+  </div>
+
+  <h3 id="s6c">Formatos numéricos dentro de f-strings</h3>
+  <p>Dentro de las <code>{ }</code> puedes indicar cómo formatear el número con <code>:formato</code>.</p>
+
+  <table class="wiki">
+    <thead><tr><th>Formato</th><th>Significado</th><th>Ejemplo</th><th>Resultado</th></tr></thead>
+    <tbody>
+      <tr><td><code>{n:,}</code></td><td>Separador de miles</td><td><code>f"{103886:,}"</code></td><td>103,886</td></tr>
+      <tr><td><code>{n:.1f}</code></td><td>1 decimal</td><td><code>f"{3.14159:.1f}"</code></td><td>3.1</td></tr>
+      <tr><td><code>{n:.2f}</code></td><td>2 decimales</td><td><code>f"{3.14159:.2f}"</code></td><td>3.14</td></tr>
+      <tr><td><code>{n:,.0f}</code></td><td>Miles sin decimales</td><td><code>f"{13500000:,.0f}"</code></td><td>13,500,000</td></tr>
+      <tr><td><code>{n:.1%}</code></td><td>Porcentaje</td><td><code>f"{0.856:.1%}"</code></td><td>85.6%</td></tr>
+      <tr><td><code>{s:*60}</code></td><td>Repetir carácter</td><td><code>f"{'='*60}"</code></td><td>====...====</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══ 7. Pathlib ══ -->
+<section class="section" id="s7">
+  <div class="section-header">
+    <div class="s-num">7</div>
+    <div>
+      <div class="s-title">Pathlib — rutas de archivos</div>
+      <div class="s-sub">Manejar carpetas y archivos de forma segura</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="concept">
+    <h4>¿Por qué pathlib y no strings?</h4>
+    <p>En Windows las rutas usan <code>\</code> y en Mac/Linux usan <code>/</code>. Si escribes la ruta como texto (<code>"data/raw/archivo.csv"</code>), tu código puede fallar en otro sistema. <code>pathlib.Path</code> maneja esto automáticamente — funciona igual en todos los sistemas.</p>
+  </div>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span><span class="cb-file">01_leer_csv.py líneas 15, 23-27, 30</span></div>
+    <pre><span class="kw">from</span> pathlib <span class="kw">import</span> Path
+
+<span class="kw">def</span> <span class="fn">raiz_repo</span>() <span class="op">-></span> <span class="tp">Path</span>:
+    <span class="st">"""Encuentra la raíz del repo desde este archivo."""</span>
+    aqui <span class="op">=</span> Path(<span class="at">__file__</span>).<span class="fn">resolve</span>()
+    <span class="cm">#     ↑ __file__ es la ruta del script actual</span>
+    <span class="cm">#       .resolve() la convierte en ruta absoluta</span>
+    <span class="kw">for</span> carpeta <span class="kw">in</span> [aqui, <span class="op">*</span>aqui.<span class="at">parents</span>]:
+        <span class="kw">if</span> (carpeta <span class="op">/</span> <span class="st">".git"</span>).<span class="fn">exists</span>() <span class="kw">or</span> (carpeta <span class="op">/</span> <span class="st">"clases"</span>).<span class="fn">is_dir</span>():
+            <span class="kw">return</span> carpeta
+    <span class="kw">return</span> Path.<span class="fn">cwd</span>()
+
+<span class="cm"># El operador / construye rutas</span>
+DATA <span class="op">=</span> <span class="fn">raiz_repo</span>() <span class="op">/</span> <span class="st">"data"</span> <span class="op">/</span> <span class="st">"raw"</span>
+<span class="cm">#                  ↑         ↑</span>
+<span class="cm">#       / une carpetas igual que os.path.join() pero más legible</span></pre>
+  </div>
+
+  <table class="wiki">
+    <thead><tr><th>Método / atributo</th><th>Qué hace</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><code>Path("ruta")</code></td><td>Crea un objeto Path</td><td><code>Path("data/raw")</code></td></tr>
+      <tr><td><code>p / "carpeta"</code></td><td>Une partes de la ruta</td><td><code>DATA / "archivo.csv"</code></td></tr>
+      <tr><td><code>p.resolve()</code></td><td>Ruta absoluta completa</td><td><code>Path(".").resolve()</code></td></tr>
+      <tr><td><code>p.exists()</code></td><td>¿Existe el archivo/carpeta?</td><td><code>if ruta.exists():</code></td></tr>
+      <tr><td><code>p.is_dir()</code></td><td>¿Es una carpeta?</td><td><code>if p.is_dir():</code></td></tr>
+      <tr><td><code>p.name</code></td><td>Solo el nombre del archivo</td><td><code>Path("/data/a.csv").name → "a.csv"</code></td></tr>
+      <tr><td><code>p.parents</code></td><td>Carpetas padre</td><td><code>Path("/a/b/c").parents → [/a/b, /a, /]</code></td></tr>
+      <tr><td><code>Path(__file__)</code></td><td>Ruta del script actual</td><td>El script sabe dónde está</td></tr>
+      <tr><td><code>Path.cwd()</code></td><td>Carpeta de trabajo actual</td><td>Donde está el terminal</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══ 8. DataFrames ══ -->
+<section class="section" id="s8">
+  <div class="section-header">
+    <div class="s-num">8</div>
+    <div>
+      <div class="s-title">DataFrames con pandas</div>
+      <div class="s-sub">La tabla de datos de Python</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="concept">
+    <h4>¿Qué es un DataFrame?</h4>
+    <p>Un DataFrame es una tabla de datos dentro de Python — como una hoja de Excel, pero con superpoderes. Tiene filas (registros) y columnas (campos). Pandas es la librería que los crea y manipula, y es el motor del curso.</p>
+  </div>
+
+  <h3 id="s8a">Leer un CSV</h3>
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span><span class="cb-file">01_leer_csv.py línea 45</span></div>
+    <pre><span class="cm"># pd.read_csv() lee un archivo CSV y lo convierte en DataFrame</span>
+pagos <span class="op">=</span> pd.<span class="fn">read_csv</span>(DATA <span class="op">/</span> <span class="st">"olist_order_payments_dataset.csv"</span>)
+<span class="cm">#                  ↑ ruta al archivo (usando Path)</span>
+<span class="cm"># Ahora "pagos" es un DataFrame con todas las filas y columnas del CSV</span></pre>
+  </div>
+
+  <h3 id="s8b">Inspeccionar un DataFrame</h3>
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span></div>
+    <pre><span class="cm"># ¿Cuántas filas y columnas tiene?</span>
+<span class="bi">print</span>(pagos.<span class="at">shape</span>)          <span class="cm"># (103886, 5) → 103886 filas, 5 columnas</span>
+<span class="bi">print</span>(pagos.<span class="at">shape</span>[<span class="nu">0</span>])       <span class="cm"># 103886 → solo las filas</span>
+<span class="bi">print</span>(pagos.<span class="at">shape</span>[<span class="nu">1</span>])       <span class="cm"># 5       → solo las columnas</span>
+
+<span class="cm"># ¿Qué columnas tiene?</span>
+<span class="bi">print</span>(pagos.<span class="at">columns</span>)        <span class="cm"># Index(['order_id', 'payment_type', ...])</span>
+<span class="bi">print</span>(<span class="bi">list</span>(pagos.<span class="at">columns</span>)) <span class="cm"># ['order_id', 'payment_type', ...]</span>
+
+<span class="cm"># ¿Cómo se ven las primeras filas?</span>
+<span class="bi">print</span>(pagos.<span class="fn">head</span>(<span class="nu">3</span>))        <span class="cm"># primeras 3 filas</span>
+<span class="bi">print</span>(pagos.<span class="fn">head</span>())         <span class="cm"># primeras 5 filas (por defecto)</span>
+
+<span class="cm"># ¿Cuánta RAM ocupa?</span>
+bytes_usados <span class="op">=</span> pagos.<span class="fn">memory_usage</span>(deep<span class="op">=</span><span class="kw">True</span>).<span class="fn">sum</span>()
+mb <span class="op">=</span> bytes_usados <span class="op">/</span> <span class="nu">1e6</span>   <span class="cm"># convertir bytes a megabytes</span></pre>
+  </div>
+
+  <div class="output">
+    <div class="out-label">Salida esperada de inspeccionar(pagos, "PAGOS")</div>
+    <pre><span class="ou2">============================================================
+ PAGOS (olist_order_payments_dataset)
+============================================================
+Filas x Columnas : 103,886 x 5
+Columnas         : ['order_id', 'payment_sequential', 'payment_type', 'payment_installments', 'payment_value']
+Memoria          : 4.5 MB
+Primeras filas:
+                           order_id  payment_sequential payment_type  payment_installments  payment_value
+ b81ef226f3dc1a233da...             1  credit_card                     8         99.33</span></pre>
+  </div>
+
+  <h3 id="s8c">Columnas calculadas</h3>
+  <p>Puedes crear columnas nuevas operando sobre columnas existentes. Pandas opera sobre columnas completas de una vez (vectorización) — no necesitas un bucle.</p>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span><span class="cb-file">01_leer_csv.py línea 61</span></div>
+    <pre><span class="cm"># Crear una columna nueva: precio + flete</span>
+items[<span class="st">"total"</span>] <span class="op">=</span> items[<span class="st">"price"</span>] <span class="op">+</span> items[<span class="st">"freight_value"</span>]
+<span class="cm">#    ↑ columna nueva  ↑ columna existente  ↑ otra columna existente</span>
+<span class="cm"># Pandas suma las dos columnas FILA POR FILA automáticamente</span>
+<span class="cm"># sin necesitar un bucle for</span>
+
+<span class="cm"># Otras operaciones vectorizadas</span>
+items[<span class="st">"precio_usd"</span>] <span class="op">=</span> items[<span class="st">"price"</span>] <span class="op">*</span> <span class="nu">0.19</span>   <span class="cm"># multiplicar</span>
+items[<span class="st">"con_iva"</span>]    <span class="op">=</span> items[<span class="st">"price"</span>] <span class="op">*</span> <span class="nu">1.19</span>   <span class="cm"># precio con 19% IVA</span></pre>
+  </div>
+
+  <h3 id="s8d">groupby — agrupar y resumir</h3>
+  <div class="concept">
+    <h4>¿Qué es groupby?</h4>
+    <p>groupby agrupa filas según los valores de una columna y calcula estadísticas por grupo. Es como una tabla dinámica de Excel, pero en una línea de Python. Por ejemplo: suma de ventas por tipo de pago, ticket promedio por categoría, etc.</p>
+  </div>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span><span class="cb-file">01_leer_csv.py líneas 48-53</span></div>
+    <pre><span class="cm"># Agrupar pagos por tipo y calcular: conteo, suma y promedio</span>
+total_por_tipo <span class="op">=</span> (
+    pagos
+    .<span class="fn">groupby</span>(<span class="st">"payment_type"</span>)  <span class="cm"># agrupar por esta columna</span>
+    [<span class="st">"payment_value"</span>]          <span class="cm"># sobre esta columna calcular</span>
+    .<span class="fn">agg</span>([<span class="st">"count"</span>, <span class="st">"sum"</span>, <span class="st">"mean"</span>])  <span class="cm"># estas estadísticas</span>
+    .<span class="fn">sort_values</span>(<span class="st">"sum"</span>, ascending<span class="op">=</span><span class="kw">False</span>)  <span class="cm"># ordenar por suma</span>
+    .<span class="fn">round</span>(<span class="nu">2</span>)                    <span class="cm"># redondear a 2 decimales</span>
+)
+<span class="bi">print</span>(total_por_tipo.<span class="fn">to_string</span>())</pre>
+  </div>
+
+  <div class="output">
+    <div class="out-label">Salida — Total pagado por TIPO de pago</div>
+    <pre><span class="out">                   count          sum      mean
+payment_type
+credit_card        76795  12542084.19    163.32
+boleto             19784   2869361.77    145.03
+voucher             5775    377740.62     65.41
+debit_card          1529    218864.24    143.14</span></pre>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══ 9. glob ══ -->
+<section class="section" id="s9">
+  <div class="section-header">
+    <div class="s-num">9</div>
+    <div>
+      <div class="s-title">glob — automatizar con patrones</div>
+      <div class="s-sub">Encontrar y leer múltiples archivos de una vez</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="concept">
+    <h4>¿Qué es glob?</h4>
+    <p><code>glob</code> busca archivos que coincidan con un patrón. El patrón <code>*.csv</code> significa "todos los archivos que terminen en .csv". En vez de abrir 9 archivos a mano, una sola llamada te devuelve la lista de todos.</p>
+  </div>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span><span class="cb-file">02_glob_inventario.py línea 34</span></div>
+    <pre><span class="kw">from</span> glob <span class="kw">import</span> glob
+
+<span class="cm"># glob devuelve una lista de rutas que coinciden con el patrón</span>
+archivos <span class="op">=</span> <span class="fn">sorted</span>(<span class="fn">glob</span>(<span class="bi">str</span>(DATA <span class="op">/</span> <span class="st">"*.csv"</span>)))
+<span class="cm">#                        ↑           ↑</span>
+<span class="cm">#                  str() convierte  *.csv = todos los CSV</span>
+<span class="cm">#                  Path a string</span>
+
+<span class="bi">print</span>(archivos)
+<span class="cm"># ['/ruta/data/raw/olist_customers_dataset.csv',</span>
+<span class="cm">#  '/ruta/data/raw/olist_geolocation_dataset.csv', ...]</span>
+
+<span class="bi">print</span>(<span class="st">f"Encontré {<span class="bi">len</span>(archivos)} archivos"</span>)
+<span class="cm"># Encontré 9 archivos</span></pre>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══ 10. Bucles for ══ -->
+<section class="section" id="s10">
+  <div class="section-header">
+    <div class="s-num">10</div>
+    <div>
+      <div class="s-title">Bucles for</div>
+      <div class="s-sub">Repetir una acción para cada elemento de una lista</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <p>Un bucle <code>for</code> ejecuta un bloque de código una vez por cada elemento de una lista, rango o colección. Es la forma de automatizar tareas repetitivas.</p>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span><span class="cb-file">02_glob_inventario.py líneas 44-55</span></div>
+    <pre><span class="cm"># Para CADA archivo en la lista de archivos:</span>
+filas_inventario <span class="op">=</span> []   <span class="cm"># lista vacía donde iremos acumulando</span>
+
+<span class="kw">for</span> ruta <span class="kw">in</span> archivos:
+<span class="cm">#   ↑         ↑</span>
+<span class="cm"># variable   lista de archivos (9 en total)</span>
+<span class="cm"># En cada iteración, "ruta" toma el valor del siguiente archivo</span>
+
+    df <span class="op">=</span> pd.<span class="fn">read_csv</span>(ruta)              <span class="cm"># leer el CSV</span>
+    nulos_pct <span class="op">=</span> <span class="fn">round</span>(df.<span class="fn">isna</span>().<span class="fn">mean</span>().<span class="fn">mean</span>() <span class="op">*</span> <span class="nu">100</span>, <span class="nu">1</span>)
+
+    filas_inventario.<span class="fn">append</span>({          <span class="cm"># agregar una fila al inventario</span>
+        <span class="st">"archivo"</span>: Path(ruta).<span class="at">name</span>,
+        <span class="st">"filas"</span>: df.<span class="at">shape</span>[<span class="nu">0</span>],
+        <span class="st">"columnas"</span>: df.<span class="at">shape</span>[<span class="nu">1</span>],
+        <span class="st">"memoria_MB"</span>: <span class="fn">round</span>(df.<span class="fn">memory_usage</span>(deep<span class="op">=</span><span class="kw">True</span>).<span class="fn">sum</span>() <span class="op">/</span> <span class="nu">1e6</span>, <span class="nu">1</span>),
+        <span class="st">"nulos_%"</span>: nulos_pct,
+    })
+<span class="cm"># Después del bucle, filas_inventario tiene 9 diccionarios</span>
+<span class="cm"># uno por cada archivo</span></pre>
+  </div>
+
+  <div class="output">
+    <div class="out-label">Lo que produce el bucle</div>
+    <pre><span class="out">INVENTARIO DEL DATASET OLIST
+                              archivo   filas  columnas  memoria_MB  nulos_%
+             olist_orders_dataset.csv   99441         8         6.1      4.0
+         olist_order_items_dataset.csv  112650         7         7.0      0.0
+     olist_order_payments_dataset.csv  103886         5         4.5      0.0
+       olist_customers_dataset.csv      99441         5         5.5      0.0
+     olist_geolocation_dataset.csv    1000163         5        55.8      0.0
+  olist_order_reviews_dataset.csv      99224         7        13.3     16.9
+      olist_products_dataset.csv        32951        10         2.8      0.3
+         olist_sellers_dataset.csv       3095         4         0.2      0.0
+product_category_name_translation.csv     71         2         0.0      0.0</span></pre>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══ 11. if __name__ ══ -->
+<section class="section" id="s11">
+  <div class="section-header">
+    <div class="s-num">11</div>
+    <div>
+      <div class="s-title">if __name__ == "__main__"</div>
+      <div class="s-sub">El punto de entrada del script</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="concept">
+    <h4>¿Para qué sirve?</h4>
+    <p>Esta línea le dice a Python: <em>"ejecuta lo que sigue solo cuando este archivo se corre directamente"</em>. Si otro script importa este archivo como librería, el código dentro del <code>if</code> <strong>no</strong> se ejecuta automáticamente. Es una buena práctica que hace el código más modular y testeable.</p>
+  </div>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span><span class="cb-file">01_leer_csv.py líneas 81-82</span></div>
+    <pre><span class="cm"># Definición de funciones (arriba del archivo)</span>
+<span class="kw">def</span> <span class="fn">inspeccionar</span>(df, nombre): ...
+<span class="kw">def</span> <span class="fn">main</span>(): ...
+
+<span class="cm"># Punto de entrada — al final del archivo</span>
+<span class="kw">if</span> __name__ <span class="op">==</span> <span class="st">"__main__"</span>:
+    <span class="fn">main</span>()
+<span class="cm"># ↑ Si corres "python 01_leer_csv.py" → __name__ vale "__main__"</span>
+<span class="cm">#   → se ejecuta main()</span>
+<span class="cm"># ↑ Si otro script hace "import 01_leer_csv" → __name__ vale</span>
+<span class="cm">#   el nombre del módulo → main() NO se ejecuta solo</span></pre>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-icon">💡</div>
+    <div><strong>Regla de oro:</strong> todo el código ejecutable va dentro de funciones (como <code>main()</code>). Al final del archivo, llamas a <code>main()</code> dentro del <code>if __name__ == "__main__"</code>. Esto es el patrón estándar en Python profesional.</div>
+  </div>
+
+  <div class="code-block">
+    <div class="cb-header"><span class="cb-lang">PYTHON</span><span class="cb-file">Patrón completo de un script profesional</span></div>
+    <pre><span class="cm"># 1. Imports (siempre primero)</span>
+<span class="kw">from</span> pathlib <span class="kw">import</span> Path
+<span class="kw">import</span> pandas <span class="kw">as</span> pd
+
+<span class="cm"># 2. Constantes</span>
+DATA <span class="op">=</span> Path(<span class="st">"data/raw"</span>)
+
+<span class="cm"># 3. Definición de funciones</span>
+<span class="kw">def</span> <span class="fn">procesar</span>(ruta: Path) <span class="op">-></span> pd.<span class="tp">DataFrame</span>:
+    <span class="kw">return</span> pd.<span class="fn">read_csv</span>(ruta)
+
+<span class="kw">def</span> <span class="fn">main</span>() <span class="op">-></span> <span class="tp">None</span>:
+    df <span class="op">=</span> <span class="fn">procesar</span>(DATA <span class="op">/</span> <span class="st">"archivo.csv"</span>)
+    <span class="bi">print</span>(df.<span class="fn">head</span>())
+
+<span class="cm"># 4. Punto de entrada</span>
+<span class="kw">if</span> __name__ <span class="op">==</span> <span class="st">"__main__"</span>:
+    <span class="fn">main</span>()</pre>
+  </div>
+
+</section>
+
+</main>
+</div>
+
+<script>
+// Highlight active sidebar link on scroll
+const sections = document.querySelectorAll('section[id], h3[id]');
+const links = document.querySelectorAll('.sidebar a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>

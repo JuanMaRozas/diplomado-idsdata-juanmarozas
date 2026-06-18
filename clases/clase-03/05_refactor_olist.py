@@ -91,7 +91,7 @@ def contar_resenas_negativas_con_texto(
 
 
 # ═════════════════════════════════════════════════════════════════════════
-# PARTE C · FUNCIONES PURAS TESTEABLES  (las prueba test_clase2.py)
+# PARTE C · FUNCIONES PURAS TESTEABLES  (las prueba test_clase3.py)
 # ─────────────────────────────────────────────────────────────────────────
 # Funciones pequeñas, sin efectos secundarios, fáciles de testear.
 # Son las mismas operaciones de limpieza que necesitaremos en el proyecto.

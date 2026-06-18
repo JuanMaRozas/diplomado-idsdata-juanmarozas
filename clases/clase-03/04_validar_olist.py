@@ -146,6 +146,12 @@ def main() -> None:
     print(f"\nRevisa el log de la corrida en: "
           f"{(RAIZ / 'data' / 'clase3_pipeline.log').name}")
 
+    print("")
+    print("Payments: Data Frame - payments.head(5)")
+    print(payments.head(5))
+    print("")
+    print("Payments: Dict row 0 - payments.to_dict(records)[0]")
+    print(payments.to_dict("records")[0])
 
 if __name__ == "__main__":
     main()

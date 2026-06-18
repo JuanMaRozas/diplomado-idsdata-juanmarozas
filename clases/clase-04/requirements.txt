@@ -1,0 +1,22 @@
+# Clase 4 · DPL1046 Programación en Python y Manipulación de Datos · UDLA
+# Dependencias NUEVAS para los scripts 06 a 09.
+#
+# El curso usa un solo entorno virtual (.venv) en la raíz del repo, que se
+# va completando clase a clase. pandas, requests, openpyxl y python-dotenv
+# YA están instalados desde la Clase 1 — NO se repiten aquí para no
+# reinstalar de más.
+#
+# Instalación (con el .venv del curso ya activado):
+#     pip install -r clases/clase-04/requirements.txt
+#     pip freeze > requirements.txt    (actualiza el requirements.txt raíz del repo)
+#
+# Qué usa la librería nueva:
+#   pyarrow  -> motor para leer/escribir Parquet (script 06, sección 4)
+#
+# Ya instaladas en clases anteriores (NO reinstalar):
+#   pandas         -> Clase 1
+#   requests       -> Clase 1
+#   openpyxl       -> Clase 1
+#   python-dotenv  -> Clase 1
+
+pyarrow>=15.0
