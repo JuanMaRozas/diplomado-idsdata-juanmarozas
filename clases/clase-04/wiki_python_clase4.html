@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wiki Python — Clase 4 · DPL1046</title>
+<style>
+:root {
+  --orange:#FF6B1A; --dark:#1A1A1A; --gray:#444; --light:#F4F4F6;
+  --white:#fff; --green:#2E7D32; --red:#C62828; --blue:#1565C0;
+  --border:#E0E0E0; --tint:#FFF3ED; --sidebar-w:260px;
+  --font:-apple-system,"Segoe UI",Arial,sans-serif;
+  --mono:"Cascadia Code","Fira Code",Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--light);color:var(--dark);line-height:1.7;}
+
+/* ── Header ── */
+.top-bar{background:var(--dark);padding:14px 32px;display:flex;align-items:center;gap:16px;
+  position:sticky;top:0;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,.4);}
+.top-bar .badge{background:var(--orange);color:#fff;font-weight:700;font-size:13px;
+  padding:3px 10px;border-radius:4px;letter-spacing:.05em;}
+.top-bar h1{color:#fff;font-size:16px;font-weight:600;}
+.top-bar .tag{margin-left:auto;background:rgba(255,107,26,.15);border:1px solid var(--orange);
+  color:var(--orange);font-size:12px;font-weight:700;padding:2px 10px;border-radius:20px;}
+
+/* ── Layout ── */
+.layout{display:flex;min-height:calc(100vh - 50px);}
+
+/* ── Sidebar ── */
+.sidebar{width:var(--sidebar-w);flex-shrink:0;background:var(--dark);
+  position:sticky;top:50px;height:calc(100vh - 50px);overflow-y:auto;padding:20px 0;}
+.sidebar::-webkit-scrollbar{width:4px;}
+.sidebar::-webkit-scrollbar-thumb{background:#444;border-radius:2px;}
+.sidebar .s-label{font-size:10px;font-weight:700;color:#666;letter-spacing:.12em;
+  text-transform:uppercase;padding:8px 20px 4px;}
+.sidebar a{display:block;padding:7px 20px;font-size:13px;color:#aaa;text-decoration:none;
+  border-left:3px solid transparent;transition:.15s;}
+.sidebar a:hover{color:#fff;background:rgba(255,255,255,.05);}
+.sidebar a.active{color:var(--orange);border-left-color:var(--orange);background:rgba(255,107,26,.08);}
+.sidebar .s-sub{padding-left:32px;font-size:12px;}
+
+/* ── Content ── */
+.content{flex:1;padding:40px 48px 80px;max-width:820px;}
+
+/* ── Sections ── */
+.section{margin-bottom:64px;}
+.section-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:6px;}
+.s-num{background:var(--orange);color:#fff;font-size:18px;font-weight:800;width:40px;height:40px;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;}
+.s-title{font-size:26px;font-weight:700;line-height:1.2;}
+.s-sub{font-size:14px;color:#888;margin-top:3px;}
+.divider{width:48px;height:3px;background:var(--orange);border-radius:2px;margin:12px 0 20px;}
+
+p{font-size:15px;color:var(--gray);margin-bottom:14px;}
+strong{color:var(--dark);}
+h3{font-size:17px;font-weight:700;color:var(--dark);margin:28px 0 10px;}
+h4{font-size:14px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin:20px 0 8px;}
+
+/* ── Code ── */
+code{background:#252530;color:#cdd6f4;font-family:var(--mono);font-size:13px;
+  padding:2px 6px;border-radius:4px;}
+.code-block{background:#1e1e2e;border-radius:10px;margin:14px 0;overflow:hidden;}
+.code-block .cb-header{background:#181825;padding:8px 16px;display:flex;align-items:center;gap:8px;}
+.code-block .cb-lang{font-size:11px;font-weight:700;color:var(--orange);letter-spacing:.05em;}
+.code-block .cb-file{font-size:11px;color:#666;margin-left:auto;font-family:var(--mono);}
+.code-block pre{padding:16px 20px;font-family:var(--mono);font-size:13.5px;line-height:1.75;
+  overflow-x:auto;color:#cdd6f4;}
+/* Syntax tokens */
+.kw{color:#cba6f7;}     /* keywords */
+.fn{color:#89b4fa;}     /* function names */
+.bi{color:#89dceb;}     /* built-ins */
+.st{color:#a6e3a1;}     /* strings */
+.cm{color:#6c7086;}     /* comments */
+.nu{color:#fab387;}     /* numbers */
+.tp{color:#94e2d5;}     /* types */
+.op{color:#89dceb;}     /* operators */
+.de{color:#f38ba8;}     /* decorator */
+.at{color:#f9e2af;}     /* attribute */
+.out{color:#a6e3a1;}    /* terminal output */
+.ou2{color:#89dceb;}    /* terminal output 2 */
+.err{color:#f38ba8;}    /* error */
+
+/* ── Callouts ── */
+.callout{border-radius:8px;padding:14px 18px;margin:16px 0;display:flex;gap:12px;font-size:14px;}
+.callout-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+.callout.tip{background:var(--tint);border:1px solid #ffc999;color:#a04000;}
+.callout.ok{background:#e8f5e9;border:1px solid #a5d6a7;color:var(--green);}
+.callout.info{background:#e3f2fd;border:1px solid #90caf9;color:var(--blue);}
+.callout.warn{background:#fff3e0;border:1px solid #ffcc80;color:#e65100;}
+
+/* ── Concept box ── */
+.concept{background:linear-gradient(135deg,#fff8f5,#fff);border:1px solid #ffd0b0;
+  border-left:4px solid var(--orange);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.concept h4{margin-top:0;}
+.concept p{margin-bottom:0;}
+
+/* ── "En el código" box ── */
+.in-code{background:#1e1e2e;border:1px solid #313244;border-left:4px solid var(--orange);
+  border-radius:8px;padding:12px 16px;margin:14px 0;}
+.in-code .ic-label{font-size:10px;font-weight:700;color:var(--orange);letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:8px;}
+.in-code pre{font-family:var(--mono);font-size:13px;line-height:1.6;color:#cdd6f4;overflow-x:auto;}
+
+/* ── Output box ── */
+.output{background:#0d1117;border:1px solid #30363d;border-radius:8px;margin:14px 0;overflow:hidden;}
+.output .out-label{background:#161b22;padding:6px 14px;font-size:10px;font-weight:700;
+  color:#7d8590;letter-spacing:.1em;text-transform:uppercase;}
+.output pre{padding:12px 16px;font-family:var(--mono);font-size:13px;line-height:1.6;
+  color:#a6e3a1;overflow-x:auto;}
+
+/* ── Table ── */
+table.wiki{width:100%;border-collapse:collapse;font-size:14px;margin:14px 0;}
+table.wiki th{background:var(--orange);color:#fff;padding:9px 14px;text-align:left;font-weight:700;}
+table.wiki td{padding:9px 14px;border-bottom:1px solid #eee;color:var(--gray);}
+table.wiki tr:nth-child(even) td{background:var(--tint);}
+table.wiki td code{font-size:12px;}
+
+hr.section-divider{border:none;border-top:1px solid var(--border);margin:48px 0;}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="badge">DPL1046</div>
+  <h1>Wiki Python — Clase 4</h1>
+  <div class="tag">📖 Referencia técnica</div>
+</div>
+
+<div class="layout">
+
+<!-- ════ SIDEBAR ════ -->
+<nav class="sidebar">
+  <div class="s-label">Contenidos</div>
+  <a href="#s1" class="active">1. Una idea, cuatro envases</a>
+  <a href="#s2">2. CSV avanzado</a>
+  <a href="#s2a" class="s-sub">Parámetros de read_csv</a>
+  <a href="#s2b" class="s-sub">Encoding y separador</a>
+  <a href="#s3">3. Excel multi-hoja</a>
+  <a href="#s4">4. JSON anidado</a>
+  <a href="#s4a" class="s-sub">json_normalize</a>
+  <a href="#s5">5. Parquet</a>
+  <a href="#s6">6. APIs REST</a>
+  <a href="#s6a" class="s-sub">Qué es una API</a>
+  <a href="#s6b" class="s-sub">Códigos de respuesta</a>
+  <a href="#s7">7. requests en Python</a>
+  <a href="#s7a" class="s-sub">get, timeout, json</a>
+  <a href="#s7b" class="s-sub">raise_for_status</a>
+  <a href="#s7c" class="s-sub">try/except de red</a>
+  <a href="#s8">8. Secretos y .env</a>
+  <a href="#s8a" class="s-sub">Nunca hardcodear</a>
+  <a href="#s8b" class="s-sub">python-dotenv</a>
+  <a href="#s8c" class="s-sub">Retry con backoff</a>
+  <a href="#s9">9. Proteger datos (PII)</a>
+  <a href="#s9a" class="s-sub">Qué es PII</a>
+  <a href="#s9b" class="s-sub">Hashing</a>
+  <a href="#s9c" class="s-sub">Enmascarar</a>
+  <a href="#s10">10. Ley 19.628</a>
+</nav>
+
+<main class="content">
+<!-- ════════════════════ 1. UNA IDEA, CUATRO ENVASES ════════════════════ -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <div class="s-num">1</div>
+    <div>
+      <div class="s-title">Una idea, cuatro envases</div>
+      <div class="s-sub">Todo dato del mundo real termina siendo un DataFrame de pandas</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="concept">
+    <h4>La idea central de la clase</h4>
+    <p>Desde la Clase 1 ya sabes manejar <strong>tablas de pandas</strong>: <code>.head()</code>, <code>.shape</code>, <code>groupby</code>, columnas calculadas. Lo único nuevo de hoy es <strong>cómo abrir cada envase</strong> en que vienen los datos. Una vez abierto, es territorio conocido. Cuatro funciones distintas para abrir, un solo mundo familiar adentro.</p>
+  </div>
+
+  <table class="wiki">
+    <thead><tr><th>Formato</th><th>Función pandas</th><th>Dónde aparece en la industria</th></tr></thead>
+    <tbody>
+      <tr><td><code>CSV</code></td><td><code>pd.read_csv()</code></td><td>El más común. Exportes de sistemas, datasets públicos</td></tr>
+      <tr><td><code>Excel</code></td><td><code>pd.read_excel()</code></td><td>Reportes de gerencia, casi siempre con varias hojas</td></tr>
+      <tr><td><code>JSON</code></td><td><code>pd.json_normalize()</code></td><td>Respuestas de APIs y sistemas web (datos anidados)</td></tr>
+      <tr><td><code>Parquet</code></td><td><code>pd.read_parquet()</code></td><td>El formato preferido en la nube (comprimido y rápido)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout ok">
+    <span class="callout-icon">🎯</span>
+    <div>El script <code>06_leer_formatos.py</code> recorre los cuatro formatos en una sola corrida, e imprime qué hace y por qué en cada paso. Es autosuficiente: si no encuentra Olist, crea sus propios archivos de ejemplo.</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ 2. CSV AVANZADO ════════════════════ -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <div class="s-num">2</div>
+    <div>
+      <div class="s-title">CSV avanzado</div>
+      <div class="s-sub">El formato más común casi nunca viene limpio</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <p>Un CSV es texto plano: filas separadas por saltos de línea, columnas separadas por comas. La mayoría aprende <code>read_csv()</code> "pelado", pero en la industria un CSV real trae acentos, a veces usa <code>;</code> en vez de <code>,</code>, y conviene leer solo las columnas que se necesitan.</p>
+
+  <h3 id="s2a">Los parámetros que más se usan</h3>
+  <div class="in-code">
+    <div class="ic-label">En el código del curso — 06_leer_formatos.py · leer_csv_avanzado()</div>
+    <pre>df <span class="op">=</span> pd.<span class="fn">read_csv</span>(
+    ruta,
+    sep<span class="op">=</span><span class="st">","</span>,            <span class="cm"># separador de columnas (a veces ';' en Chile/Excel)</span>
+    encoding<span class="op">=</span><span class="st">"utf-8"</span>,   <span class="cm"># cómo están codificados los acentos y la ñ</span>
+    usecols<span class="op">=</span><span class="kw">None</span>,       <span class="cm"># ["col1","col2"] para leer SOLO esas columnas</span>
+    nrows<span class="op">=</span><span class="kw">None</span>,         <span class="cm"># 1000 para "espiar" un archivo enorme sin abrirlo entero</span>
+)
+df.<span class="fn">head</span>(<span class="nu">3</span>)            <span class="cm"># el primer gesto al abrir cualquier dato</span></pre>
+  </div>
+
+  <h3 id="s2b">Encoding y separador: los dos que rompen todo</h3>
+  <table class="wiki">
+    <thead><tr><th>Parámetro</th><th>Para qué sirve</th><th>Valor típico en Chile</th></tr></thead>
+    <tbody>
+      <tr><td><code>encoding</code></td><td>Cómo se leen acentos y ñ</td><td><code>"utf-8"</code> o <code>"latin-1"</code></td></tr>
+      <tr><td><code>sep</code></td><td>Carácter que separa columnas</td><td><code>","</code> o <code>";"</code></td></tr>
+      <tr><td><code>usecols</code></td><td>Leer menos columnas = menos memoria</td><td><code>["fecha","monto"]</code></td></tr>
+      <tr><td><code>nrows</code></td><td>Leer solo las primeras N filas</td><td><code>1000</code></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn">
+    <span class="callout-icon">⚠️</span>
+    <div><strong>Error típico:</strong> <code>UnicodeDecodeError</code> al leer un CSV con acentos. Es el encoding equivocado. Prueba <code>encoding="latin-1"</code> o <code>encoding="utf-8-sig"</code>. No es que el archivo esté "roto".</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ 3. EXCEL MULTI-HOJA ════════════════════ -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <div class="s-num">3</div>
+    <div>
+      <div class="s-title">Excel con varias hojas</div>
+      <div class="s-sub">Los reportes corporativos casi nunca tienen una sola pestaña</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <p>Los reportes de gerencia llegan en Excel con muchas hojas (una por mes, una por sucursal). La regla de oro: <strong>no asumas qué hojas tiene</strong> — primero pregunta, después lee la que necesitas. Por detrás, pandas usa la librería <code>openpyxl</code>.</p>
+
+  <div class="in-code">
+    <div class="ic-label">En el código del curso — 06_leer_formatos.py · leer_excel_multihoja()</div>
+    <pre><span class="cm"># Paso A: averiguar qué hojas tiene (NO asumir)</span>
+hojas <span class="op">=</span> pd.<span class="fn">ExcelFile</span>(ruta).sheet_names
+<span class="cm"># -> ['Ventas', 'Clientes']</span>
+
+<span class="cm"># Paso B: leer una hoja específica por su nombre</span>
+df_ventas <span class="op">=</span> pd.<span class="fn">read_excel</span>(ruta, sheet_name<span class="op">=</span><span class="st">"Ventas"</span>)</pre>
+  </div>
+
+  <div class="callout info">
+    <span class="callout-icon">💡</span>
+    <div>Si <code>sheet_name=None</code>, pandas te devuelve <strong>un diccionario</strong> con todas las hojas a la vez: <code>{"Ventas": df1, "Clientes": df2}</code>. Útil cuando quieres procesarlas todas en un bucle.</div>
+  </div>
+
+  <div class="callout warn">
+    <span class="callout-icon">⚠️</span>
+    <div><strong>Error típico:</strong> <code>ModuleNotFoundError: openpyxl</code>. Es el motor que Excel necesita. Se instala con <code>pip install openpyxl</code> (en este curso ya viene desde la Clase 1).</div>
+  </div>
+</section>
+<div class="section-divider"></div>
+
+<!-- ════════════════════ 4. JSON ANIDADO ════════════════════ -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <div class="s-num">4</div>
+    <div>
+      <div class="s-title">JSON anidado</div>
+      <div class="s-sub">El idioma de las APIs: cajas dentro de cajas</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="concept">
+    <h4>¿Qué es un JSON?</h4>
+    <p>Un <strong>JSON</strong> es la forma en que los sistemas web se pasan datos. En Python es exactamente un <strong>diccionario</strong> (lo que viste en la Clase 3): claves y valores, donde un valor puede ser otra caja, y dentro otra lista. Las APIs no devuelven tablas: devuelven JSON anidado. El trabajo es <strong>aplanarlo</strong> a una tabla.</p>
+  </div>
+
+  <h3 id="s4a">json_normalize: de anidado a tabla</h3>
+  <div class="in-code">
+    <div class="ic-label">En el código del curso — 06_leer_formatos.py · leer_json_anidado()</div>
+    <pre><span class="cm"># La respuesta de una API: un dict con una lista anidada adentro</span>
+respuesta_api <span class="op">=</span> {
+    <span class="st">"empresa"</span>: <span class="st">"Amisoft"</span>,
+    <span class="st">"proyectos"</span>: [
+        {<span class="st">"cliente"</span>: <span class="st">"Minera Norte"</span>, <span class="st">"sector"</span>: <span class="st">"minería"</span>, <span class="st">"monto"</span>: <span class="nu">50000</span>},
+        {<span class="st">"cliente"</span>: <span class="st">"Retail Sur"</span>, <span class="st">"sector"</span>: <span class="st">"retail"</span>, <span class="st">"monto"</span>: <span class="nu">32000</span>},
+    ],
+}
+
+<span class="cm"># json_normalize "aplana" la lista anidada en una tabla ordenada</span>
+df <span class="op">=</span> pd.<span class="fn">json_normalize</span>(respuesta_api[<span class="st">"proyectos"</span>])</pre>
+  </div>
+
+  <div class="output">
+    <div class="out-label">Resultado</div>
+    <pre>     cliente  sector  monto
+Minera Norte minería  50000
+  Retail Sur  retail  32000</pre>
+  </div>
+
+  <div class="callout tip">
+    <span class="callout-icon">🔗</span>
+    <div><strong>Por qué importa hoy:</strong> esta sección es el puente al bloque de APIs. Cuando en la sección 7 traigamos datos de internet, llegarán como JSON exactamente así, y los aplanaremos con la misma herramienta.</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ 5. PARQUET ════════════════════ -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <div class="s-num">5</div>
+    <div>
+      <div class="s-title">Parquet</div>
+      <div class="s-sub">El formato del cloud: pesa menos y se lee más rápido</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <p>Un CSV guarda los datos <strong>por filas</strong> y como texto. Parquet los guarda <strong>por columnas</strong> y comprimido. ¿El resultado? El mismo dato pesa mucho menos y se lee mucho más rápido. Por eso AWS, Azure y GCP lo prefieren para datos a escala.</p>
+
+  <div class="in-code">
+    <div class="ic-label">En el código del curso — 06_leer_formatos.py · demostrar_parquet()</div>
+    <pre><span class="cm"># Escribir y leer Parquet es tan fácil como CSV</span>
+df.<span class="fn">to_parquet</span>(<span class="st">"tabla.parquet"</span>, index<span class="op">=</span><span class="kw">False</span>)   <span class="cm"># requiere pyarrow</span>
+df_leido <span class="op">=</span> pd.<span class="fn">read_parquet</span>(<span class="st">"tabla.parquet"</span>)</pre>
+  </div>
+
+  <table class="wiki">
+    <thead><tr><th>Aspecto</th><th>CSV</th><th>Parquet</th></tr></thead>
+    <tbody>
+      <tr><td>Cómo guarda</td><td>Por filas, texto</td><td>Por columnas, binario</td></tr>
+      <tr><td>Tamaño</td><td>Más pesado</td><td>Comprimido (menos)</td></tr>
+      <tr><td>Velocidad de lectura</td><td>Más lenta</td><td>Más rápida</td></tr>
+      <tr><td>¿Se abre en Excel?</td><td>Sí</td><td>No (es para máquinas)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn">
+    <span class="callout-icon">⚠️</span>
+    <div><strong>Error típico en clase:</strong> <code>Unable to find a usable engine... pyarrow</code>. Parquet necesita el motor <code>pyarrow</code>. El script no se cae: avisa con un mensaje claro y te dice <code>pip install pyarrow</code>. Esa es la única librería nueva de la Clase 4.</div>
+  </div>
+
+  <div class="callout info">
+    <span class="callout-icon">💡</span>
+    <div>La ventaja de tamaño se nota con <strong>muchas filas y texto repetido</strong>. Con un dataset chico la diferencia es mínima; por eso el script genera 100.000 filas a propósito para que el ahorro sea visible.</div>
+  </div>
+</section>
+<div class="section-divider"></div>
+
+<!-- ════════════════════ 6. APIs REST ════════════════════ -->
+<section class="section" id="s6">
+  <div class="section-header">
+    <div class="s-num">6</div>
+    <div>
+      <div class="s-title">APIs REST</div>
+      <div class="s-sub">Pedir datos a otro sistema por internet</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="concept">
+    <h4 id="s6a">¿Qué es una API? — la analogía del mozo</h4>
+    <p>Una <strong>API</strong> es como el <strong>mozo de un restaurante</strong>. Tú no entras a la cocina a cocinar: le pides al mozo lo que quieres, él va a la cocina y te trae el plato. Con una API es igual: tú no entras al servidor de otra empresa; le haces un <strong>pedido</strong> ("dame el dólar de hoy") y te trae el plato (los datos, casi siempre en JSON). REST es simplemente el estilo de conversación más común para esos pedidos.</p>
+  </div>
+
+  <h3 id="s6b">Códigos de respuesta: cómo te dice el mozo cómo le fue</h3>
+  <table class="wiki">
+    <thead><tr><th>Código</th><th>Significa</th><th>En la analogía</th></tr></thead>
+    <tbody>
+      <tr><td><code>200</code></td><td>OK, aquí están tus datos</td><td>Te trajo el plato</td></tr>
+      <tr><td><code>404</code></td><td>No existe lo que pediste</td><td>Ese plato no está en la carta</td></tr>
+      <tr><td><code>401 / 403</code></td><td>No autorizado / prohibido</td><td>No tienes reserva</td></tr>
+      <tr><td><code>500</code></td><td>Error del servidor</td><td>La cocina se incendió</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout info">
+    <span class="callout-icon">💡</span>
+    <div><strong>Cuidado:</strong> un código <code>200</code> significa que la comunicación fue bien, <em>no</em> que los datos sean correctos. Igual debes validarlos, como aprendiste en la Clase 3. La red puede estar OK y los datos venir vacíos.</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ 7. requests EN PYTHON ════════════════════ -->
+<section class="section" id="s7">
+  <div class="section-header">
+    <div class="s-num">7</div>
+    <div>
+      <div class="s-title">requests en Python</div>
+      <div class="s-sub">La librería para hablar con APIs</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <p>El script <code>07_consumir_api.py</code> consume una API real, pública y chilena —<code>mindicador.cl</code>— que devuelve el dólar, euro, UF y UTM del día. No pide clave. Es el caso perfecto para ver, de punta a punta, cómo internet se convierte en una tabla de pandas.</p>
+
+  <h3 id="s7a">Las cuatro líneas que importan</h3>
+  <div class="in-code">
+    <div class="ic-label">En el código del curso — 07_consumir_api.py · consultar_indicadores()</div>
+    <pre>respuesta <span class="op">=</span> requests.<span class="fn">get</span>(URL_API, timeout<span class="op">=</span><span class="nu">10</span>)  <span class="cm"># tocar la puerta</span>
+respuesta.<span class="fn">raise_for_status</span>()                  <span class="cm"># si fue 404/500, error aquí</span>
+datos <span class="op">=</span> respuesta.<span class="fn">json</span>()                    <span class="cm"># texto JSON -> dict de Python</span>
+df <span class="op">=</span> <span class="fn">a_tabla</span>(datos)                         <span class="cm"># dict -> DataFrame</span></pre>
+  </div>
+
+  <table class="wiki">
+    <thead><tr><th>Pieza</th><th>Qué hace</th><th>Por qué importa</th></tr></thead>
+    <tbody>
+      <tr><td><code>requests.get()</code></td><td>Pide datos (GET)</td><td>Es como escribir la URL en el navegador</td></tr>
+      <tr><td><code>timeout=10</code></td><td>Corta si no responde en 10 s</td><td><strong>Nunca</strong> pidas sin timeout, o el programa cuelga para siempre</td></tr>
+      <tr><td><code>.json()</code></td><td>Convierte la respuesta a dict</td><td>De ahí ya sabes llegar a un DataFrame</td></tr>
+    </tbody>
+  </table>
+
+  <h3 id="s7b">raise_for_status: convertir un error HTTP en un error de Python</h3>
+  <p>Sin esta línea, una respuesta <code>404</code> o <code>500</code> pasaría como si nada y seguirías con datos vacíos. <code>raise_for_status()</code> lanza una excepción que puedes atrapar y manejar.</p>
+
+  <h3 id="s7c">try/except: la red SIEMPRE puede fallar</h3>
+  <div class="in-code">
+    <div class="ic-label">En el código del curso — 07_consumir_api.py</div>
+    <pre><span class="kw">try</span>:
+    respuesta <span class="op">=</span> requests.<span class="fn">get</span>(URL_API, timeout<span class="op">=</span><span class="nu">10</span>)
+    respuesta.<span class="fn">raise_for_status</span>()
+    <span class="kw">return</span> respuesta.<span class="fn">json</span>()
+<span class="kw">except</span> requests.exceptions.<span class="tp">Timeout</span>:
+    logging.<span class="fn">error</span>(<span class="st">"La API tardó demasiado. ¿Internet lento?"</span>)
+<span class="kw">except</span> requests.exceptions.<span class="tp">ConnectionError</span>:
+    logging.<span class="fn">error</span>(<span class="st">"No hay conexión. ¿Estás conectado a internet?"</span>)</pre>
+  </div>
+
+  <div class="callout ok">
+    <span class="callout-icon">🛡️</span>
+    <div>Si no hay internet, el programa <strong>no explota</strong>: avisa con un mensaje claro y termina ordenado. Eso es código de producción — la misma idea de manejo de errores de la Clase 3, aplicada a la red.</div>
+  </div>
+</section>
+<div class="section-divider"></div>
+
+<!-- ════════════════════ 8. SECRETOS Y .env ════════════════════ -->
+<section class="section" id="s8">
+  <div class="section-header">
+    <div class="s-num">8</div>
+    <div>
+      <div class="s-title">Secretos y archivo .env</div>
+      <div class="s-sub">La clave NUNCA va en el código</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <p>La mayoría de las APIs de la industria —el SII, la CMF, SAP— piden una <strong>clave secreta</strong>. Y aquí viene el error #1 del principiante: escribir la clave directo en el código y subirla a GitHub.</p>
+
+  <h3 id="s8a">El error que cuesta caro</h3>
+  <div class="in-code">
+    <div class="ic-label">❌ JAMÁS hagas esto</div>
+    <pre><span class="cm"># Hardcodear la clave = dejar la llave pegada en la puerta</span>
+API_KEY <span class="op">=</span> <span class="st">"sk-prod-9f8a7b6c5d4e3f2a1b0c"</span>   <span class="cm"># ¡y subirlo a GitHub!</span></pre>
+  </div>
+
+  <div class="callout warn">
+    <span class="callout-icon">⚠️</span>
+    <div><strong>Caso real:</strong> en un proyecto de Amisoft, credenciales filtradas en un repositorio causaron un incidente de seguridad. Una clave en GitHub es pública para siempre, aunque la borres después.</div>
+  </div>
+
+  <h3 id="s8b">La forma correcta: python-dotenv</h3>
+  <div class="in-code">
+    <div class="ic-label">En el código del curso — 08_api_segura.py</div>
+    <pre><span class="kw">from</span> dotenv <span class="kw">import</span> load_dotenv
+<span class="kw">import</span> os
+
+<span class="fn">load_dotenv</span>()                     <span class="cm"># lee el archivo .env de la carpeta</span>
+clave <span class="op">=</span> os.<span class="fn">getenv</span>(<span class="st">"API_KEY"</span>)     <span class="cm"># saca la clave SIN escribirla en el código</span></pre>
+  </div>
+
+  <p>Y el archivo <code>.env</code>, que va en el <code>.gitignore</code> y <strong>nunca</strong> se sube:</p>
+  <div class="in-code">
+    <div class="ic-label">Archivo .env (local, fuera de Git)</div>
+    <pre>API_KEY<span class="op">=</span>mi_clave_secreta_real</pre>
+  </div>
+
+  <h3 id="s8c">Reintentos con backoff exponencial</h3>
+  <p>Las APIs reales se caen a veces. Un cliente profesional reintenta con paciencia creciente: espera 1 segundo, luego 2, luego 4. Eso es <strong>backoff exponencial</strong>.</p>
+  <div class="in-code">
+    <div class="ic-label">En el código del curso — 08_api_segura.py</div>
+    <pre>espera <span class="op">=</span> <span class="nu">1</span>
+<span class="kw">for</span> intento <span class="kw">in</span> <span class="bi">range</span>(<span class="nu">1</span>, MAX_INTENTOS <span class="op">+</span> <span class="nu">1</span>):
+    <span class="kw">try</span>:
+        r <span class="op">=</span> requests.<span class="fn">get</span>(url, headers<span class="op">=</span>headers, timeout<span class="op">=</span><span class="nu">10</span>)
+        r.<span class="fn">raise_for_status</span>()
+        <span class="kw">return</span> r
+    <span class="kw">except</span> requests.exceptions.<span class="tp">RequestException</span>:
+        time.<span class="fn">sleep</span>(espera)
+        espera <span class="op">*=</span> <span class="nu">2</span>     <span class="cm"># 1 -> 2 -> 4  (el "backoff")</span></pre>
+  </div>
+
+  <div class="callout info">
+    <span class="callout-icon">💡</span>
+    <div><strong>¿Por qué esperar el doble?</strong> Si la API está saturada, bombardearla con pedidos idénticos empeora todo. Darle tiempo creciente le permite recuperarse, y a ti te evita que te bloqueen por exceso de pedidos (rate limiting).</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ 9. PROTEGER PII ════════════════════ -->
+<section class="section" id="s9">
+  <div class="section-header">
+    <div class="s-num">9</div>
+    <div>
+      <div class="s-title">Proteger datos personales (PII)</div>
+      <div class="s-sub">A las personas detrás de los datos se las protege siempre</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="concept">
+    <h4 id="s9a">¿Qué es PII?</h4>
+    <p><strong>PII</strong> (<em>Personally Identifiable Information</em>) es todo dato que identifica a una persona: RUT, nombre, email, teléfono, dirección. Un ingeniero de datos responsable nunca manda RUTs "en crudo" a la nube ni a una IA externa si lo puede evitar.</p>
+  </div>
+
+  <h3 id="s9b">Hashing: seudonimizar el RUT</h3>
+  <div class="in-code">
+    <div class="ic-label">En el código del curso — 09_proteger_pii.py · hashear_rut()</div>
+    <pre><span class="kw">import</span> hashlib
+
+<span class="kw">def</span> <span class="fn">hashear_rut</span>(rut):
+    texto <span class="op">=</span> (SALT <span class="op">+</span> <span class="bi">str</span>(rut)).<span class="fn">encode</span>(<span class="st">"utf-8"</span>)
+    <span class="kw">return</span> hashlib.<span class="fn">sha256</span>(texto).<span class="fn">hexdigest</span>()[:<span class="nu">16</span>]</pre>
+  </div>
+  <p>El mismo RUT siempre da el mismo código, así que <strong>todavía puedes cruzar tablas</strong>. Pero del código no se puede volver al RUT. Proteges a la persona sin perder la capacidad de analizar.</p>
+
+  <div class="callout tip">
+    <span class="callout-icon">💡</span>
+    <div><strong>Analogía:</strong> el hashing es como ponerle a cada persona una pulsera con un número de festival. Sigues sabiendo que dos compras son del mismo cliente (misma pulsera), pero no sabes su nombre real. El <code>SALT</code> es un texto secreto que se mezcla antes de hashear, para que nadie adivine el RUT probando combinaciones — y en un proyecto real ese salt viviría en el <code>.env</code>.</div>
+  </div>
+
+  <h3 id="s9c">Enmascarar el email</h3>
+  <div class="in-code">
+    <div class="ic-label">En el código del curso — 09_proteger_pii.py · enmascarar_email()</div>
+    <pre><span class="kw">def</span> <span class="fn">enmascarar_email</span>(email):
+    usuario, dominio <span class="op">=</span> email.<span class="fn">split</span>(<span class="st">"@"</span>, <span class="nu">1</span>)
+    <span class="kw">return</span> <span class="st">f"{usuario[0]}***@{dominio}"</span>     <span class="cm"># j***@gmail.com</span></pre>
+  </div>
+
+  <table class="wiki">
+    <thead><tr><th>Técnica</th><th>Cuándo usarla</th><th>Resultado</th></tr></thead>
+    <tbody>
+      <tr><td>Hashing</td><td>Necesitas cruzar el dato entre tablas</td><td>RUT → código irreversible y estable</td></tr>
+      <tr><td>Enmascarar</td><td>El dato debe seguir siendo legible en un reporte</td><td>email → <code>j***@gmail.com</code></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn">
+    <span class="callout-icon">⚠️</span>
+    <div><strong>Error típico:</strong> olvidar <strong>borrar las columnas crudas</strong> después de anonimizar. El script lo hace explícito con <code>.drop(columns=["rut", "email"])</code>. No basta con crear la columna hasheada; hay que eliminar la original, o no protegiste nada.</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ 10. LEY 19.628 ════════════════════ -->
+<section class="section" id="s10">
+  <div class="section-header">
+    <div class="s-num">10</div>
+    <div>
+      <div class="s-title">Ley 19.628 (Chile)</div>
+      <div class="s-sub">El marco legal de los datos personales</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <p>En Chile, la <strong>Ley 19.628 sobre protección de la vida privada</strong> regula cómo se pueden tratar los datos personales. No necesitas ser abogado, pero sí saber que cuando trabajas con RUTs, nombres o correos, hay obligaciones legales detrás. Las técnicas de la sección 9 —hashing y enmascarado— son la forma práctica de cumplir con ese deber de cuidado.</p>
+
+  <div class="callout info">
+    <span class="callout-icon">💡</span>
+    <div>Seguridad de secretos (sección 8) y protección de datos personales (sección 9) son <strong>la misma mentalidad</strong>: tratar la información sensible con cuidado por defecto, no como un agregado al final. Esa actitud es lo que separa a un ingeniero de datos profesional de un aficionado.</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="section" id="cierre">
+  <div class="concept">
+    <h4>Resumen de la Clase 4</h4>
+    <p><strong>1. Cuatro envases:</strong> CSV avanzado, Excel multi-hoja, JSON anidado y Parquet. Todos terminan en un DataFrame de pandas.<br>
+    <strong>2. Datos de internet:</strong> APIs REST con <code>requests</code> (GET, timeout, <code>raise_for_status</code>, <code>.json()</code>), siempre dentro de <code>try/except</code>.<br>
+    <strong>3. Seguridad:</strong> los secretos van en <code>.env</code>, nunca en el código; a las personas se las protege con hash (para cruzar) y máscara (para mostrar), según la Ley 19.628.</p>
+  </div>
+  <div class="callout ok">
+    <span class="callout-icon">🎯</span>
+    <div><strong>Próxima clase:</strong> Pandas en profundidad — el motor de la ingeniería de datos. Filtrar, limpiar, combinar tablas y agrupar millones de filas sin un solo <code>for</code>. Asegúrate de que <code>06</code> a <code>09</code> corran, e instala el motor nuevo con <code>pip install pyarrow</code>.</div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+// Highlight active sidebar link on scroll
+const sections = document.querySelectorAll('section[id], h3[id]');
+const links = document.querySelectorAll('.sidebar a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>
