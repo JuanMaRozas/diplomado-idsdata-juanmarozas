@@ -1,0 +1,15 @@
+2026-06-25 22:02:44.061 | INFO     | __main__:main:80 - ================ PIPELINE NOCTURNO: INICIO ================
+2026-06-25 22:02:44.062 | INFO     | __main__:traer_con_reintentos:46 - Leyendo fuente (intento 1)...
+2026-06-25 22:02:44.070 | SUCCESS  | __main__:validar:66 - Contrato de datos: OK
+2026-06-25 22:02:44.076 | SUCCESS  | __main__:main:98 - Reporte guardado en '/Users/JuanMa/diplomado-idsdata-juanmarozas/clases/clase-06/salida/resumen_categorias.csv'
+2026-06-25 22:02:44.078 | INFO     | __main__:main:104 - ================ PIPELINE NOCTURNO: FIN ================
+2026-06-25 22:06:47.858 | INFO     | __main__:main:80 - ================ PIPELINE NOCTURNO: INICIO ================
+2026-06-25 22:06:47.859 | INFO     | __main__:main:87 - '/Users/JuanMa/diplomado-idsdata-juanmarozas/clases/clase-06/salida/resumen_categorias.csv' ya existe hoy. No rehago. (idempotente)
+2026-06-25 22:06:47.859 | INFO     | __main__:main:88 - ================ PIPELINE NOCTURNO: FIN ================
+2026-06-25 22:07:52.489 | INFO     | __main__:main:80 - ================ PIPELINE NOCTURNO: INICIO ================
+2026-06-25 22:07:52.490 | INFO     | __main__:traer_con_reintentos:46 - Leyendo fuente (intento 1)...
+2026-06-25 22:09:05.169 | INFO     | __main__:main:80 - ================ PIPELINE NOCTURNO: INICIO ================
+2026-06-25 22:09:05.170 | INFO     | __main__:traer_con_reintentos:46 - Leyendo fuente (intento 1)...
+2026-06-25 22:09:05.178 | SUCCESS  | __main__:validar:66 - Contrato de datos: OK
+2026-06-25 22:09:05.182 | SUCCESS  | __main__:main:98 - Reporte guardado en '/Users/JuanMa/diplomado-idsdata-juanmarozas/clases/clase-06/salida/resumen_categorias.csv'
+2026-06-25 22:09:05.184 | INFO     | __main__:main:104 - ================ PIPELINE NOCTURNO: FIN ================

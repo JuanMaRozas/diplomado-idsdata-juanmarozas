@@ -9,7 +9,7 @@ entrada:
   n_pedidos: 200          # cuántos pedidos generar para la demo
 
 reglas_negocio:
-  umbral_caro: 200        # precio sobre el cual un pedido es "caro"
+  umbral_caro: 100        # precio sobre el cual un pedido es "caro"
   ciudad_objetivo: "sao paulo"   # ciudad que nos interesa analizar
 
 salida:
