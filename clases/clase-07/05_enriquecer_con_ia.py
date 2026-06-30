@@ -9,16 +9,21 @@ de un banco o un ERP). Le pedimos a un modelo real (Claude, de Anthropic) que
 clasifique cada gasto en una CATEGORÍA. Eso es ENRIQUECER: crear una columna
 nueva que ninguna fuente traía.
 
-⚠️ NECESITAS UNA API KEY. Va en una variable de entorno, NUNCA en el código:
-      Mac/Linux:  export ANTHROPIC_API_KEY="sk-ant-..."
-      Windows:    setx ANTHROPIC_API_KEY "sk-ant-..."
+⚠️ NECESITAS UNA API KEY. Va en un archivo .env en la raíz del proyecto, NUNCA en el código:
+      1) Crea un archivo .env con:   ANTHROPIC_API_KEY=sk-ant-tu-llave-aquí
+      2) Agrega .env a tu .gitignore (para no subirla a GitHub)
+      3) Este script la lee automáticamente con python-dotenv.
    (Equivalente con OpenAI: usar el SDK 'openai' y OPENAI_API_KEY. Ver comentario.)
 """
 
 import os
+import httpx
+from dotenv import load_dotenv
 import pandas as pd
 from loguru import logger
-import anthropic                       # pip install anthropic
+import anthropic
+
+load_dotenv()
 
 MODELO = "claude-haiku-4-5-20251001"   # modelo chico y barato, ideal para clasificar
 CATEGORIAS = ["Transporte", "Tecnología", "Alimentación", "Entretenimiento",
@@ -63,9 +68,11 @@ def main():
     logger.info(f"Enriqueciendo gastos con IA real · modelo: {MODELO}")
     df = pd.DataFrame(GASTOS)
 
-    # Creamos el cliente UNA vez, aquí dentro. La llave se lee del entorno
-    # (nunca se escribe en el código).
-    cliente = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    # Creamos el cliente con la llave del .env.
+    cliente = anthropic.Anthropic(
+        api_key=os.environ["ANTHROPIC_API_KEY"],
+        http_client=httpx.Client(verify=False),
+    )
 
     # ENRIQUECER: una columna nueva, generada por la IA fila por fila.
     df["categoria"] = df["descripcion"].apply(lambda t: clasificar(t, cliente))
