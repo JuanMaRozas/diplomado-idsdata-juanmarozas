@@ -1,0 +1,7 @@
+# Clase 07 · Dependencias externas
+requests        # llamadas HTTP a APIs reales
+pandas          # manipulación de datos
+sqlalchemy      # conexión a bases de datos (SQLite / PostgreSQL)
+loguru          # logging legible
+anthropic       # SDK para la API de Claude (script 05)
+python-dotenv   # leer llaves desde .env (nunca en el código)
