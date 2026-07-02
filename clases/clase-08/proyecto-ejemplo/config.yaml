@@ -1,0 +1,11 @@
+datos:
+  carpeta: "/Users/JuanMa/diplomado-idsdata-juanmarozas/data/raw"
+
+pronostico:
+  semanas: 8
+
+base_datos:
+  uri: "sqlite:///salida/demanda.db"
+
+salida:
+  carpeta: "salida"
