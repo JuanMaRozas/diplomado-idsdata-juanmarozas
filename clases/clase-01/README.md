@@ -58,7 +58,7 @@ python clases/clase-01/material/02_glob_inventario.py # inventario de las 9 tabl
 
 ## Tarea para la próxima clase
 
-1. **Conforma tu equipo de 4 personas.**
+1. **Conforma tu equipo (el tamaño se define en clase).**
 2. **Elige uno de los 10 temas** del proyecto integrador (ver [`proyecto-integrador.md`](../../proyecto-integrador.md)). Todos se desarrollan sobre el dataset del curso (Olist).
 3. Deja tu **entorno y el dataset listos** (lo de hoy) para arrancar la próxima clase sin demoras.
 4. Antes de la próxima clase, **actualiza el material** con `git pull` (Guía 3).

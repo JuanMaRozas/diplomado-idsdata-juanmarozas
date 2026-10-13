@@ -69,7 +69,7 @@ Trabajamos con **Olist Brazilian E-Commerce** (Kaggle), un dataset relacional de
 
 ## Proyecto integrador
 
-Es el 100% del examen. Se desarrolla en **equipos de 4 personas** y se presenta en la Clase 9. Cada equipo elige uno de **10 temas** sobre el dataset del curso.
+Es el 100% del examen. Se desarrolla en **equipos** y se presenta en la Clase 9. Cada equipo elige uno de **10 temas** sobre el dataset del curso.
 
 ➡️ **Temas, entregables y rúbrica:** [`proyecto-integrador.md`](proyecto-integrador.md)
 

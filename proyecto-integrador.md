@@ -8,7 +8,7 @@ El proyecto integrador es la **evaluación central del curso (100% del examen)**
 
 ## Cómo funciona
 
-- **Equipos de 4 personas.**
+- **Se trabaja en equipos** (el tamaño se define en clase).
 - Cada equipo **elige uno de los 10 temas** de abajo, todos sobre el **dataset del curso (Olist Brazilian E-Commerce)**.
 - El tema se desarrolla en **tres entregas**, una por unidad, que se van construyendo en las prácticas de cada clase.
 - **Opcional (suma valor):** complementar el análisis con un **dataset propio** (datos.gob.cl, INE, Banco Central, CMF, Kaggle, etc.) o con una **API externa**.
