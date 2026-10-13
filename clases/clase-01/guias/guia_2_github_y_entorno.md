@@ -1,7 +1,7 @@
-# Guía 2 de 2 — GitHub, Git y tu entorno Python
+# Guía 2 de 3 — GitHub, Git y tu entorno Python
 
-**DPL1046 · Esta guía se hace EN CLASE durante el taller.**
-Prerequisito: tener VS Code y Python instalados ([Guía 1 → VS Code](guia_vscode_alumno.md)).
+**DPL1046 · Versión escrita de la parte final del taller** (GitHub, entorno y primeros scripts; en clase la hacemos con `teoria_anexo_instalacion.html`).
+Prerequisito: tener VS Code y Python instalados ([Guía 1 → VS Code](guia_1_vscode_y_python.md)).
 
 Tiempo estimado: 25–35 min en clase.
 
@@ -71,9 +71,9 @@ bash clases/clase-01/material/setup_local.sh
 ```
 
 Este script:
-1. Verifica que tienes Python 3.10 o superior.
+1. Verifica que tienes **Python 3.12** (si no, te avisa cómo instalarlo).
 2. Crea una carpeta `.venv` — el entorno virtual del curso.
-3. Instala todas las librerías del curso (pandas, boto3, etc.).
+3. Instala todas las librerías del curso (pandas, numpy, etc.).
 
 Al terminar, activa el entorno:
 ```bash
@@ -105,9 +105,14 @@ Descarga **`olist_raw.zip`** desde **Blackboard**, muévelo a la **raíz del rep
 ```bash
 cd ~/diplomado-idsdata-juanmarozas     # asegúrate de estar en la raíz
 mv ~/Downloads/olist_raw.zip .         # mueve el zip aquí
-unzip -o olist_raw.zip                 # crea data/raw/ con las 9 tablas
+unzip -o olist_raw.zip                 # Mac: crea data/raw/ con las 9 tablas
 ls data/raw/                           # verifica que aparecen los .csv
 ```
+
+> **Windows (Git Bash):** suele no traer `unzip`. Con el entorno activo usa:
+> ```bash
+> python -m zipfile -e olist_raw.zip .
+> ```
 
 > Los datos **no van a GitHub** — el `.gitignore` los bloquea. Es una buena práctica: código en el repo, datos en otro lado.
 
@@ -150,5 +155,6 @@ source .venv/bin/activate       # activa el entorno
 | Error de permisos al clonar | El repo puede ser privado; avísale al profe |
 | `bash setup_local.sh` → `requirements.txt not found` | Corre el script con la ruta completa desde la raíz: `bash clases/clase-01/material/setup_local.sh` |
 | `.venv` no aparece al seleccionar intérprete | El `setup_local.sh` no terminó bien; vuelve a correrlo |
+| `unzip: command not found` (Windows) | Usa `python -m zipfile -e olist_raw.zip .` con el entorno activo |
 | `unzip` no crea `data/raw/` | Asegúrate de ejecutar el `unzip` en la **raíz del repo** |
 | `No module named pandas` | El intérprete activo no es `.venv`; revisa el paso 6 |

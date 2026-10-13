@@ -1,9 +1,9 @@
-# Guía 1 de 2 — VS Code: instala y conoce tu entorno de trabajo
+# Guía 1 de 3 — VS Code: instala y conoce tu entorno de trabajo
 
-**DPL1046 · Haz esto ANTES de la Clase 1.**
+**DPL1046 · Versión escrita del taller de instalación** (en clase lo hacemos juntos con `teoria_anexo_instalacion.html`; esta guía es tu apoyo).
 Tiempo estimado: 15–20 min.
 
-Cuando termines esta guía tendrás VS Code listo. Luego, en clase, continuarás con la **[Guía 2 → GitHub y tu entorno](guia_github_alumno.md)** donde clonarás el repositorio, crearás el entorno Python y correrás tus primeros scripts.
+Cuando termines esta guía tendrás VS Code listo. Luego, en clase, continuarás con la **[Guía 2 → GitHub y tu entorno](guia_2_github_y_entorno.md)** donde clonarás el repositorio, crearás el entorno Python y correrás tus primeros scripts.
 
 ---
 
@@ -29,13 +29,16 @@ code --version    # debe mostrar un número de versión
 
 ## Paso 2 · Instala Python 3.12
 
-Descarga desde **https://www.python.org/downloads/** e instala.
+Descarga **Python 3.12** desde **https://www.python.org/downloads/release/python-3129/** (tabla *Files*: `macOS 64-bit universal2 installer` o `Windows installer (64-bit)`) e instala.
 - **Windows:** marca la casilla **"Add Python to PATH"** antes de continuar (importante).
 
 Verifica:
 ```bash
-python --version    # debe decir 3.10 o superior
+python3.12 --version    # macOS: debe decir Python 3.12.x
+py -3.12 --version      # Windows (en Git Bash): debe decir Python 3.12.x
 ```
+
+> Ojo: la versión debe ser **3.12**; el script del curso la exige.
 
 ---
 
@@ -124,4 +127,4 @@ Cuando VS Code pregunte *"¿Confías en los autores de esta carpeta?"*, di **Sí
 
 ## ¿Listo?
 
-Tienes VS Code y Python instalados. En clase harás la **[Guía 2 → GitHub y tu entorno](guia_github_alumno.md)**: crear tu cuenta de GitHub, clonar el repo, crear el entorno virtual e instalar las librerías.
+Tienes VS Code y Python instalados. En clase harás la **[Guía 2 → GitHub y tu entorno](guia_2_github_y_entorno.md)**: crear tu cuenta de GitHub, clonar el repo, crear el entorno virtual e instalar las librerías.

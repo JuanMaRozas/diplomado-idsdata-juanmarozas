@@ -9,9 +9,18 @@ data/*
 *.parquet
 *.xlsx
 *.zip
+*.db
+*.sqlite
 
-# --- Material solo-docente (guías, soluciones, demos privadas) ---
+# --- Salidas generadas al correr los scripts ---
+salida/
+*.log
+
+# --- Material solo-docente (guiones, guías, archivo antiguo, demos privadas) ---
 _privado/
+
+# --- Trabajo propio de cada alumno (no se mezcla con el material del curso) ---
+mis_trabajos/
 
 # --- Secretos y credenciales ---
 .env
@@ -29,11 +38,10 @@ __pycache__/
 *.pyc
 *.pyo
 .ipynb_checkpoints/
+.pytest_cache/
 
 # --- Sistema / editor ---
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-data/
-.env

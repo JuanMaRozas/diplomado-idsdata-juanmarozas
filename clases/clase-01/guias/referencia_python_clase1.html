@@ -189,9 +189,8 @@ hr.section-divider{border:none;border-top:1px solid var(--border);margin:48px 0;
       <tr><td><strong>numpy</strong></td><td>Cálculo numérico, base de pandas</td><td><code>import numpy as np</code></td></tr>
       <tr><td><strong>pathlib</strong></td><td>Manejar rutas de archivos de forma segura</td><td><code>from pathlib import Path</code></td></tr>
       <tr><td><strong>glob</strong></td><td>Buscar archivos por patrón (ej: todos los .csv)</td><td><code>from glob import glob</code></td></tr>
-      <tr><td><strong>boto3</strong></td><td>SDK para hablar con AWS (S3, etc.)</td><td><code>import boto3</code></td></tr>
       <tr><td><strong>python-dotenv</strong></td><td>Cargar credenciales desde un archivo .env</td><td><code>from dotenv import load_dotenv</code></td></tr>
-      <tr><td><strong>sweetviz</strong></td><td>Generar reportes automáticos de calidad de datos</td><td><code>import sweetviz as sv</code></td></tr>
+      <tr><td><strong>ydata-profiling</strong></td><td>Generar reportes automáticos de calidad de datos</td><td><code>from ydata_profiling import ProfileReport</code></td></tr>
     </tbody>
   </table>
 
@@ -203,7 +202,7 @@ hr.section-divider{border:none;border-top:1px solid var(--border);margin:48px 0;
     <pre>diplomado-idsdata-juanmarozas/    ← raíz del repo
 ├── .venv/                        ← entorno virtual (no se sube a Git)
 │   └── lib/python3.12/
-│       └── site-packages/        ← pandas, boto3, etc. viven aquí
+│       └── site-packages/        ← pandas, numpy, etc. viven aquí
 ├── clases/
 └── data/</pre>
   </div>
@@ -237,8 +236,7 @@ hr.section-divider{border:none;border-top:1px solid var(--border);margin:48px 0;
 <span class="st">openpyxl</span><span class="op">==</span><span class="nu">3.1.5</span>        <span class="cm"># leer/escribir Excel</span>
 <span class="st">python-dotenv</span><span class="op">==</span><span class="nu">1.0.1</span>   <span class="cm"># variables de entorno</span>
 <span class="st">kagglehub</span><span class="op">==</span><span class="nu">0.3.4</span>       <span class="cm"># descargar datasets de Kaggle</span>
-<span class="st">boto3</span><span class="op">==</span><span class="nu">1.34.131</span>        <span class="cm"># SDK de AWS</span>
-<span class="st">sweetviz</span><span class="op">==</span><span class="nu">2.3.3</span>        <span class="cm"># reportes de calidad de datos</span></pre>
+<span class="st">ydata-profiling</span><span class="op">==</span><span class="nu">4.9.0</span> <span class="cm"># reportes de calidad de datos</span></pre>
   </div>
 
   <div class="callout tip">

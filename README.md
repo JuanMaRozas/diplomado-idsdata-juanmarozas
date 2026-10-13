@@ -2,70 +2,90 @@
 
 **DPL1046 · Programación en Python y Manipulación de Datos**
 Facultad de Ingeniería y Negocios · Instituto de Matemática, Física y Estadística · UDLA
-Docente: PhD. Juan Manuel Rozas · Junio–Julio 2026
+Docente: PhD. Juan Manuel Rozas
 
-Repositorio de material para los alumnos del diplomado. Cada clase tiene su carpeta con los **scripts** que ejecutaremos en vivo y el **material teórico**.
-
-> **Antes de cada clase:** `git pull` para tener la última versión del material.
+Aquí está todo el material del curso: por cada clase, la **presentación**, las **instrucciones** y los **scripts** que ejecutamos en vivo. El curso es **100% local**: todo corre en tu propio computador, sin cuentas ni servicios en la nube.
 
 ---
 
-## Cómo empezar
+## Empieza aquí
 
-```bash
-# 1. Clonar el repositorio (una sola vez)
-git clone https://github.com/JuanMaRozas/diplomado-idsdata-juanmarozas.git
-cd diplomado-idsdata-juanmarozas
-
-# 2. Preparar el entorno (ver instrucciones de cada clase)
-cd clases/clase-01/material
-bash setup_local.sh
-```
+1. **Clase 1** → abre [`clases/clase-01/README.md`](clases/clase-01/README.md). Ahí está el paso a paso para armar tu entorno (Mac y Windows).
+2. **Cada clase** → entra a su carpeta y sigue este orden: `README.md` (qué hacer) → `teoria.html` (presentación) → `material/` (scripts).
+3. **Antes de cada clase** → actualiza tu copia con `git pull` (ver abajo).
 
 ---
 
 ## Programa del curso
 
-9 sesiones · 3 horas por sesión · 19:15–22:30 · Modalidad online sincrónica (ZOOM)
+9 sesiones · 3 horas por sesión · modalidad online sincrónica. Cada clase aparece aquí a medida que se publica su material.
 
 ### Unidad 1 — Fundamentos de Programación en Python para el Trabajo con Datos
-| Clase | Fecha | Sesión | Material |
-|---|---|---|---|
-| 1 | 09-06-2026 | Python en la Industria Real: por qué domina el dato | [clase-01](clases/clase-01/) |
-| 2 | 11-06-2026 | Estructuras de Datos y Control de Flujo con Foco Industrial | *próximamente* |
-| 3 | 16-06-2026 | Lectura de Datos del Mundo Real: Archivos, APIs y Fuentes Industriales | *próximamente* |
+| Clase | Sesión | Material |
+|---|---|---|
+| 1 | Python en la Industria Real: por qué domina el dato | [clase-01](clases/clase-01/) |
+| 2 | Estructuras de Datos y Control de Flujo con Foco Industrial | *próximamente* |
+| 3 | Lectura de Datos del Mundo Real: Archivos, APIs y Fuentes Locales | *próximamente* |
 
 ### Unidad 2 — Manipulación y Transformación de Datos con Python
-| Clase | Fecha | Sesión | Material |
-|---|---|---|---|
-| 4 | 18-06-2026 | Pandas en Profundidad: el Motor de la Ingeniería de Datos | *próximamente* |
-| 5 | 23-06-2026 | Transformaciones Avanzadas y Cloud: de Local a AWS | *próximamente* |
-| 6 | 25-06-2026 | Automatización, Orquestación y Buenas Prácticas de Producción | *próximamente* |
+| Clase | Sesión | Material |
+|---|---|---|
+| 4 | Pandas en Profundidad: Seleccionar, Limpiar, Combinar y Agrupar | *próximamente* |
+| 5 | Persistencia Local: De pandas a una Base de Datos | *próximamente* |
+| 6 | Automatización, Orquestación y Buenas Prácticas de Producción | *próximamente* |
 
 ### Unidad 3 — Integración de Datos y Automatización con Python
-| Clase | Fecha | Sesión | Material |
-|---|---|---|---|
-| 7 | 30-06-2026 | Integración de APIs Avanzada: Ecosistema Real de la Industria | *próximamente* |
-| 8 | 02-07-2026 | IA Aplicada a Datos: LLMs, Embeddings y el Futuro del Rol | *próximamente* |
-| 9 | 07-07-2026 | Proyecto Integrador: Presentaciones y Cierre del Diplomado | *próximamente* |
+| Clase | Sesión | Material |
+|---|---|---|
+| 7 | Integración Avanzada de APIs: Pedir, Combinar y Enriquecer | *próximamente* |
+| 8 | IA Aplicada a Datos, 100% Local (+ rúbrica y proyecto de referencia) | *próximamente* |
+| 9 | Presentaciones del Proyecto Integrador | *próximamente* |
+
+---
+
+## Actualizar tu copia del curso
+
+Los materiales se van completando durante el curso. Antes de cada clase, desde la terminal (Terminal en Mac, **Git Bash** en Windows):
+
+```bash
+cd ~/diplomado-idsdata-juanmarozas     # la carpeta del curso
+git pull                               # trae el material nuevo
+source .venv/bin/activate              # Windows (Git Bash): source .venv/Scripts/activate
+```
+
+Si `git pull` da un error, no te preocupes: está resuelto paso a paso en [`clases/clase-01/guias/guia_3_actualizar_el_material.md`](clases/clase-01/guias/guia_3_actualizar_el_material.md).
+
+> **Regla simple para no tener conflictos:** no edites los archivos del curso. Si quieres experimentar, **copia** el script a una carpeta llamada `mis_trabajos/` (Git la ignora) y modifícalo ahí.
+
+## Primera vez (instalar todo)
+
+Sigue [`clases/clase-01/README.md`](clases/clase-01/README.md). Resumen de lo que se instala: Git, Python 3.12, VS Code, y luego el entorno virtual del curso (`.venv`) con sus librerías.
 
 ---
 
 ## Dataset del curso
 
-Trabajamos con **Olist Brazilian E-Commerce** (Kaggle), un dataset relacional de ~100.000 órdenes en 9 tablas. Se entrega comprimido en Blackboard; también puede descargarse con `download_olist.py` usando tu token de Kaggle. Los datos **no** viven en este repositorio.
+Trabajamos con **Olist Brazilian E-Commerce** (Kaggle), un dataset relacional de ~100.000 órdenes en 9 tablas. Se entrega comprimido en Blackboard (`olist_raw.zip`). Los datos **no** viven en este repositorio.
 
 ## Proyecto integrador
 
-Es el 100% del examen. Se desarrolla en **equipos de 4 personas** (~7 grupos) a lo largo del curso y se presenta en la Clase 9. Cada equipo elige uno de **10 temas** sobre el dataset del curso; cada unidad tiene un entregable parcial que se construye en las prácticas de clase.
+Es el 100% del examen. Se desarrolla en **equipos de 4 personas** y se presenta en la Clase 9. Cada equipo elige uno de **10 temas** sobre el dataset del curso.
 
-➡️ **Detalle completo, temas y rúbrica:** [`proyecto-integrador.md`](proyecto-integrador.md)
+➡️ **Temas, entregables y rúbrica:** [`proyecto-integrador.md`](proyecto-integrador.md)
+
+---
 
 ## Estructura del repositorio
 
 ```
-clases/clase-NN/
-├── teoria.html        # presentación teórica de la clase
-├── README.md          # qué hacer en la sesión
-└── material/          # scripts .py y .sh para ejecutar
+diplomado-idsdata-juanmarozas/
+├── README.md                   # este archivo: por dónde empezar
+├── proyecto-integrador.md      # temas, entregables y rúbrica
+└── clases/
+    └── clase-NN/
+        ├── README.md           # qué hacer en la sesión
+        ├── teoria.html         # presentación de la clase (flechas ← → para navegar)
+        └── material/           # scripts y requirements de la clase
 ```
+
+La Clase 1 además trae `teoria_anexo_instalacion.html` (paso a paso de instalación) y la carpeta `guias/`.
