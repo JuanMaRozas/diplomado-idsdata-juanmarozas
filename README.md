@@ -18,7 +18,7 @@ Aquí está todo el material del curso: por cada clase, la **presentación**, la
 
 ## Programa del curso
 
-9 sesiones · 3 horas por sesión · modalidad online sincrónica. Cada clase aparece aquí a medida que se publica su material.
+9 sesiones · 3 horas por sesión (teoría y práctica en la misma clase) · modalidad online sincrónica. La sesión 9 es la presentación de los proyectos. Cada clase aparece aquí a medida que se publica su material.
 
 ### Unidad 1 — Fundamentos de Programación en Python para el Trabajo con Datos
 | Clase | Sesión | Material |
