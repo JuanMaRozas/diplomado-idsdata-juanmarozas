@@ -8,10 +8,74 @@ El material del curso se va completando y corrigiendo durante el diplomado. Tu c
 
 ---
 
+## 0. ¿Dónde quedó mi carpeta? (y cómo moverla)
+
+Al clonar, Git crea la carpeta `diplomado-idsdata-juanmarozas` **en la carpeta donde estaba la terminal**. Si seguiste el anexo, está en tu carpeta personal (`~`).
+
+**Ver dónde está** (estando dentro de la carpeta del curso):
+
+```bash
+pwd
+```
+
+| | Mac | Windows (Git Bash) |
+|---|---|---|
+| `pwd` muestra | `/Users/tunombre/diplomado-idsdata-juanmarozas` | `/c/Users/tunombre/diplomado-idsdata-juanmarozas` |
+| Equivale a | la misma ruta | `C:\Users\tunombre\diplomado-idsdata-juanmarozas` |
+| Verla como carpeta | `open .` | `explorer .` |
+| Abrirla en VS Code | `code .` | `code .` |
+
+**Si no sabes dónde la dejaste**, búscala (Mac y Git Bash):
+
+```bash
+find ~ -maxdepth 4 -type d -name "diplomado-idsdata-juanmarozas" 2>/dev/null
+```
+
+Te muestra la ruta exacta. Entra con `cd` y esa ruta.
+
+### Si quieres moverla a otra carpeta
+
+Git no se entera de dónde vive la carpeta: **`git pull` funciona igual en cualquier lugar**. Lo que sí cambia al mover es el entorno virtual (`.venv`), que guarda rutas fijas y deja de funcionar. Sigue estos pasos:
+
+1. Cierra VS Code y todas las terminales.
+2. Mueve la carpeta (ejemplo: a una carpeta `cursos` dentro de tu carpeta personal):
+
+```bash
+mkdir -p ~/cursos
+mv ~/diplomado-idsdata-juanmarozas ~/cursos/
+```
+
+3. Entra a la nueva ubicación y **vuelve a crear el entorno** (tarda unos minutos; los datos de `data/` no se pierden porque van dentro de la carpeta):
+
+```bash
+cd ~/cursos/diplomado-idsdata-juanmarozas
+rm -rf .venv
+bash clases/clase-01/material/setup_local.sh
+```
+
+4. Ábrela de nuevo y activa el entorno:
+
+```bash
+code .
+source .venv/bin/activate              # Mac
+source .venv/Scripts/activate          # Windows (Git Bash)
+```
+
+5. Desde ahora actualizas **desde la nueva ruta**:
+
+```bash
+cd ~/cursos/diplomado-idsdata-juanmarozas
+git pull
+```
+
+> **Consejos:** no la muevas a una carpeta sincronizada (OneDrive, iCloud, Google Drive): sincronizan miles de archivos del `.venv` y pueden dar errores. Si en Windows `~/Documents` está dentro de OneDrive, evítala. Lo más simple es dejarla donde quedó al clonar.
+
+---
+
 ## La rutina normal (casi siempre basta con esto)
 
 ```bash
-cd ~/diplomado-idsdata-juanmarozas
+cd ~/diplomado-idsdata-juanmarozas      # o la ruta donde la dejaste (ver sección 0)
 git pull
 ```
 

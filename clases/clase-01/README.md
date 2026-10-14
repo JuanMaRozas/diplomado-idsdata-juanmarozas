@@ -13,7 +13,7 @@
 | 3 | **Tus dos primeros scripts** | [`material/`](material/) | En clase, al terminar la instalación |
 | 4 | Guía escrita 1: VS Code y Python (versión texto del taller) | [`guias/guia_1_vscode_y_python.md`](guias/guia_1_vscode_y_python.md) | Apoyo, si te quedaste atrás |
 | 5 | Guía escrita 2: GitHub y tu entorno (versión texto del taller) | [`guias/guia_2_github_y_entorno.md`](guias/guia_2_github_y_entorno.md) | Apoyo, si te quedaste atrás |
-| 6 | Guía escrita 3: **actualizar el material** (`git pull` y qué hacer si da error) | [`guias/guia_3_actualizar_el_material.md`](guias/guia_3_actualizar_el_material.md) | Antes de cada clase |
+| 6 | Guía escrita 3: **dónde está mi carpeta, cómo moverla y actualizar el material** (`git pull` y qué hacer si da error) | [`guias/guia_3_actualizar_el_material.md`](guias/guia_3_actualizar_el_material.md) | Antes de cada clase |
 | 7 | Referencia rápida de Python (consulta) | [`guias/referencia_python_clase1.html`](guias/referencia_python_clase1.html) | Cuando la necesites |
 
 ## Qué harás hoy

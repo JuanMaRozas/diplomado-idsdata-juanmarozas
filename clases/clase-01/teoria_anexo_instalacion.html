@@ -443,7 +443,7 @@ x64</pre><div class="small">Un número de versión y una arquitectura (x64 o arm
               <li>Menú <b>Terminal → New Terminal</b>. Por defecto abre <b>PowerShell</b>: hay que cambiarlo.</li>
               <li>En el panel de la terminal, clic en la flecha <b>▾</b> junto al <b>+</b> → <b>Select Default Profile</b> → <b>Git Bash</b>.</li>
               <li>Cierra esa terminal (ícono de basurero) y abre otra con <b>Terminal → New Terminal</b>.</li>
-              <li>Atajo para mostrar/ocultar: <b>Ctrl + J</b>. Debe verse <b>MINGW64</b> en el prompt.</li>
+              <li>Atajo para mostrar/ocultar: <b>Ctrl + J</b>. En el prompt debe verse <b>MINGW64</b> o <b>UCRT64</b> (según la versión de Git).</li>
             </ul>
           </div>
         </div>
@@ -481,16 +481,18 @@ user.email=tucorreo@ejemplo.com</pre><div class="small">GitHub es donde vive el 
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">Ve a tu carpeta personal:<pre class="cmd">cd ~</pre></li>
+              <li class="anim">Ve a tu carpeta personal y confirma dónde estás:<pre class="cmd">cd ~
+pwd</pre></li>
               <li class="anim">Clona (descarga una copia) el repo del curso:<pre class="cmd">git clone https://github.com/JuanMaRozas/diplomado-idsdata-juanmarozas.git</pre></li>
-              <li class="anim">Entra a la carpeta y ábrela en VS Code:<pre class="cmd">cd diplomado-idsdata-juanmarozas
+              <li class="anim">Entra a la carpeta, mírala y ábrela en VS Code:<pre class="cmd">cd diplomado-idsdata-juanmarozas
+pwd
 code .</pre></li>
             </ol>
           </div>
           <div class="col-r ok anim">
             <div class="big">Debes ver</div>
             <div class="small">VS Code se abre y pregunta <b>"¿Confías en los autores?"</b> → <b>Sí</b>. En el Explorador de la izquierda aparece la carpeta <b>clases</b>.</div>
-            <div class="small" style="margin-top:10px;">Tu carpeta queda en:<br><b>Mac:</b> <code>/Users/tunombre/diplomado-idsdata-juanmarozas</code><br><b>Windows:</b> <code>C:\Users\tunombre\diplomado-idsdata-juanmarozas</code></div>
+            <div class="small" style="margin-top:10px;">Tu carpeta queda en:<br><b>Mac:</b> <code>/Users/tunombre/diplomado-idsdata-juanmarozas</code><br><b>Windows:</b> <code>/c/Users/tunombre/diplomado-idsdata-juanmarozas</code> (es <code>C:\Users\tunombre\...</code>)<br>Para verla como carpeta: <b>Mac</b> <code>open .</code> · <b>Windows</b> <code>explorer .</code></div>
             <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Error de permisos al clonar: avísale al profe. <code>code .</code> no abre nada: revisa el paso 3.</div></div>
           </div>
         </div>
