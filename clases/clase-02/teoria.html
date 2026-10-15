@@ -273,7 +273,7 @@
           <tr><th style="width:120px">Bloque</th><th>Qué hacemos</th></tr>
           <tr><td>1</td><td><b>Entorno listo y validado</b> (el tiempo que haga falta)</td></tr>
           <tr><td>2</td><td>Teoría: qué es cada cosa de tu stack y GitHub en la web</td></tr>
-          <tr><td>3</td><td>Cómo leer un script y cómo correr solo una parte en VS Code</td></tr>
+          <tr><td>3</td><td>Cómo leer un script y cómo ejecutarlo en VS Code, un archivo a la vez</td></tr>
           <tr><td>4</td><td>Las 4 estructuras de Python, una por una: lista, tupla, set y diccionario</td></tr>
           <tr><td>5</td><td>Comparación, cierre y tarea</td></tr>
         </table>
@@ -486,7 +486,7 @@ source .venv/Scripts/activate    # Windows</pre></li>
     <section class="slide l2">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="kicker anim">Bloque 3</div>
-      <div class="stitle anim">Leer un script y<br>correr solo una parte</div>
+      <div class="stitle anim">Leer un script y<br>ejecutarlo paso a paso</div>
       <div class="num">03</div>
     </section>
 
@@ -518,20 +518,20 @@ print(<span class="s">"Órdenes:"</span>, total)</pre>
     </section>
 
     <section class="slide">
-      <div class="header-bar black"><h2>Abre el script de hoy en VS Code</h2></div>
+      <div class="header-bar black"><h2>Abre tu primer script en VS Code</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
               <li class="anim">En el Explorador (izquierda): <b>clases</b> → <b>clase-02</b> → <b>material</b>.</li>
-              <li class="anim">Doble clic en <code>03_estructuras_paso_a_paso.py</code>.</li>
-              <li class="anim">Baja con la rueda y mira: está dividido en <b>PASO 0, PASO 1... PASO 4</b>.</li>
+              <li class="anim">Doble clic en <code>03a_leer_datos.py</code>.</li>
+              <li class="anim">Mira el archivo: <b>texto verde = comentarios</b>, lo demás son instrucciones para Python.</li>
             </ol>
           </div>
           <div class="col-r ok anim">
             <div class="big">Debes ver</div>
-            <div class="small">Texto verde = comentarios (explicaciones para ti). Texto blanco o de colores = instrucciones para Python.<br><br>Cada PASO tiene un título con <b>=====</b> arriba y abajo.</div>
+            <div class="small">Hoy hay <b>5 scripts cortos</b>, uno por tema:<br><code>03a</code> leer datos · <code>03b</code> listas · <code>03c</code> tuplas · <code>03d</code> sets · <code>03e</code> diccionarios.<br><br>Cada uno se abre, se lee y se ejecuta por separado.</div>
           </div>
         </div>
       </div>
@@ -547,9 +547,9 @@ print(<span class="s">"Órdenes:"</span>, total)</pre>
         <div class="cards">
           <div class="card anim"><div class="t"><code>python</code></div><div class="d">El programa que ejecuta código Python. Con <code>(.venv)</code> activo es el Python 3.12 del curso.</div></div>
           <div class="card anim"><div class="t"><code>clases/clase-02/material/</code></div><div class="d">La <b>ruta</b>: en qué carpeta está el archivo. Se cuenta desde la raíz del repo.</div></div>
-          <div class="card anim"><div class="t"><code>03_estructuras_paso_a_paso.py</code></div><div class="d">El <b>archivo</b>. La terminación <code>.py</code> significa "script de Python".</div></div>
+          <div class="card anim"><div class="t"><code>03a_leer_datos.py</code></div><div class="d">El <b>archivo</b>. La terminación <code>.py</code> significa "script de Python".</div></div>
         </div>
-        <div class="quote anim">Escrito junto: <code>python clases/clase-02/material/03_estructuras_paso_a_paso.py</code> = "Python, ejecuta este archivo". Si dice <code>No such file</code>, usa <code>pwd</code>: casi siempre estás en otra carpeta.</div>
+        <div class="quote anim">Escrito junto: <code>python clases/clase-02/material/03a_leer_datos.py</code> = "Python, ejecuta este archivo". Si dice <code>No such file</code>, usa <code>pwd</code>: casi siempre estás en otra carpeta.</div>
       </div>
       <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
       <div class="foot-num"></div>
@@ -557,16 +557,16 @@ print(<span class="s">"Órdenes:"</span>, total)</pre>
     </section>
 
     <section class="slide">
-      <div class="header-bar black"><h2>Tres formas de correr código en VS Code</h2></div>
+      <div class="header-bar black"><h2>Cómo ejecutar un script en VS Code</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <table class="brand">
           <tr><th style="width:230px">Forma</th><th style="width:330px">Qué hace</th><th>Cuándo la usamos</th></tr>
-          <tr><td><b>Botón ▶</b> (arriba a la derecha)</td><td>Ejecuta <b>todo</b> el archivo, de arriba a abajo</td><td>Cuando ya entendimos el script</td></tr>
-          <tr><td><b>Seleccionar + Shift + Enter</b></td><td>Ejecuta <b>solo las líneas seleccionadas</b> y recuerda lo anterior</td><td><b>Hoy</b>: aprender un paso a la vez</td></tr>
-          <tr><td><b>Comando en la terminal</b></td><td>Ejecuta todo el archivo: <code>python ruta/archivo.py</code></td><td>Automatizar y trabajar "como en el trabajo"</td></tr>
+          <tr><td><b>Botón ▶</b> (arriba a la derecha)</td><td>Ejecuta el archivo abierto, de arriba a abajo</td><td><b>Hoy</b>: la forma más fácil</td></tr>
+          <tr><td><b>Comando en la terminal</b></td><td>Lo mismo: <code>python ruta/archivo.py</code></td><td>Si el botón no aparece; y "como en el trabajo"</td></tr>
+          <tr><td><b>Seleccionar + Shift + Enter</b></td><td>Ejecuta solo las líneas seleccionadas</td><td>Opcional, para más adelante</td></tr>
         </table>
-        <div class="quote anim">Hoy usamos la segunda: seleccionas un PASO y presionas Shift + Enter.</div>
+        <div class="quote anim">Para ejecutar "solo una parte", elegimos qué archivo correr: cada tema tiene el suyo.</div>
       </div>
       <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
       <div class="foot-num"></div>
@@ -574,16 +574,17 @@ print(<span class="s">"Órdenes:"</span>, total)</pre>
     </section>
 
     <section class="slide">
-      <div class="header-bar orange"><h2>Leamos el PASO 0 línea por línea</h2></div>
+      <div class="header-bar orange"><h2>Leamos <code>03a_leer_datos.py</code> línea por línea</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top wide">
             <pre class="code">import pandas as pd   <span class="c"># trae la herramienta pandas</span>
 
-<span class="c"># Leemos dos tablas de Olist y las guardamos en variables.</span>
-<span class="c"># Una variable es un nombre que guarda un valor:  nombre = valor</span>
+<span class="c"># Una variable guarda un valor:  nombre = valor</span>
 RUTA = <span class="s">"data/raw/"</span>   <span class="c"># texto guardado en una variable</span>
+
+<span class="c"># Leemos dos tablas de Olist.</span>
 orders = pd.read_csv(RUTA + <span class="s">"olist_orders_dataset.csv"</span>)
 reviews = pd.read_csv(
     RUTA + <span class="s">"olist_order_reviews_dataset.csv"</span>)
@@ -608,22 +609,22 @@ print(<span class="s">"Filas en reviews:"</span>, len(reviews))</pre>
     </section>
 
     <section class="slide">
-      <div class="header-bar black"><h2>Practica: corre solo el PASO 0</h2></div>
+      <div class="header-bar black"><h2>Practica: ejecuta <code>03a_leer_datos.py</code></h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">Con el mouse, <b>selecciona todas las líneas del PASO 0</b> (desde <code>import pandas</code> hasta el último <code>print</code>).</li>
-              <li class="anim">Presiona <b>Shift + Enter</b> (Mac y Windows).</li>
-              <li class="anim">Mira la terminal de abajo: se abre una consola con <code>&gt;&gt;&gt;</code> y aparece el resultado.</li>
+              <li class="anim">Con <code>03a_leer_datos.py</code> abierto, haz clic en el botón <b>▶</b> (arriba a la derecha).</li>
+              <li class="anim">Mira la terminal de abajo: aparece el resultado.</li>
+              <li class="anim">Si no ves el botón ▶, escribe este comando en la terminal:<pre class="cmd">python clases/clase-02/material/03a_leer_datos.py</pre></li>
             </ol>
           </div>
           <div class="col-r ok anim">
             <div class="big">Debes ver</div>
             <pre class="cmd out">Filas en orders: 99441
 Filas en reviews: 99224</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">No pasa nada: revisa que abajo a la derecha diga tu <code>.venv</code> como intérprete. Plan B: escribe <code>python</code> en la terminal, pega las líneas y Enter. Para salir de la consola: <code>exit()</code>.</div></div>
+            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small"><code>No such file</code>: estás en otra carpeta, usa <code>pwd</code>. Un error con letras rojas: léelo, la <b>última línea</b> dice qué pasó. Avísame y lo vemos.</div></div>
           </div>
         </div>
       </div>
@@ -687,7 +688,7 @@ Filas en reviews: 99224</pre>
     </section>
 
     <section class="slide">
-      <div class="header-bar black"><h2>PASO 1 · Leamos la lista línea por línea (1/2)</h2></div>
+      <div class="header-bar black"><h2>03b · Leamos las listas línea por línea (1/2)</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
@@ -717,7 +718,7 @@ print(<span class="s">"El último:"</span>, estados[-1])</pre>
     </section>
 
     <section class="slide">
-      <div class="header-bar black"><h2>PASO 1 · Leamos la lista línea por línea (2/2)</h2></div>
+      <div class="header-bar black"><h2>03b · Leamos las listas línea por línea (2/2)</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
@@ -743,15 +744,15 @@ for estado in estados:      <span class="c"># repite para cada elemento</span>
     </section>
 
     <section class="slide">
-      <div class="header-bar black"><h2>PASO 1 · Corre las listas</h2></div>
+      <div class="header-bar black"><h2>03b · Ejecuta las listas</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">Selecciona las líneas del <b>PASO 1</b> (desde <code>estados = [</code> hasta el <code>print</code> del <code>for</code>).</li>
-              <li class="anim">Presiona <b>Shift + Enter</b>.</li>
-              <li class="anim">Compara con el "Debes ver". <b>Prueba cambiar algo</b>: agrega otro estado y vuelve a correr.</li>
+              <li class="anim">Abre <code>03b_listas.py</code> (Explorador → clase-02 → material).</li>
+              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-02/material/03b_listas.py</pre></li>
+              <li class="anim"><b>Pruébalo</b>: agrega otro estado con <code>append</code>, <b>guarda</b> (Cmd+S / Ctrl+S) y vuelve a ▶.</li>
             </ol>
           </div>
           <div class="col-r ok anim">
@@ -760,11 +761,10 @@ for estado in estados:      <span class="c"># repite para cada elemento</span>
 Cuántos: 5
 El primero: created
 El último: delivered
-Ahora: [..., &#x27;delivered&#x27;, &#x27;canceled&#x27;]
+Ahora: [..., &#x27;canceled&#x27;]
  - estado: created
- - estado: approved
  ... (uno por línea)</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small"><code>NameError</code>: faltó correr el PASO 0 primero. Córrelo y repite.</div></div>
+            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
           </div>
         </div>
       </div>
@@ -781,7 +781,7 @@ Ahora: [..., &#x27;delivered&#x27;, &#x27;canceled&#x27;]
           <div class="col-l top">
             <ul class="bul">
               <li class="anim">Entendemos qué es una lista, una variable y un <code>print</code>.</li>
-              <li class="anim">Sabemos correr solo un PASO con Shift + Enter.</li>
+              <li class="anim">Sabemos ejecutar un script con el botón ▶.</li>
               <li class="anim">Si algo no calza, es el momento de preguntar.</li>
             </ul>
           </div>
@@ -823,7 +823,7 @@ Orden       sí         sí</pre>
     </section>
 
     <section class="slide">
-      <div class="header-bar orange"><h2>PASO 2 · Leamos la tupla línea por línea</h2></div>
+      <div class="header-bar orange"><h2>03c · Leamos las tuplas línea por línea</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
@@ -838,14 +838,14 @@ print(<span class="s">"Id:"</span>, huella[0])
 print(<span class="s">"Estado:"</span>, huella[1])
 
 <span class="c"># huella[1] = &quot;otro&quot;</span>
-<span class="c"># Si quitas el # de arriba y corres esa línea, Python</span></pre>
+<span class="c"># Si quitas el # de arriba, guardas y corres de nuevo,</span></pre>
           </div>
           <div class="col-r narrow ann anim">
             <div class="big">Qué significa</div>
             <div class="row anim"><code>.tolist()</code> convierte una columna de la tabla en una <b>lista</b>.</div>
             <div class="row anim"><code>(ids[0], estado_orden[0])</code> los paréntesis crean una <b>tupla</b> con dos datos.</div>
             <div class="row anim"><code>huella[0]</code> se accede por posición, igual que una lista.</div>
-            <div class="row anim"><code># huella[1] = ...</code> si quitas el <code>#</code> y la corres: <code>TypeError</code>. Python te protege.</div>
+            <div class="row anim"><code># huella[1] = ...</code> si quitas el <code>#</code>, guardas y corres: <code>TypeError</code>. Python te protege.</div>
           </div>
         </div>
       </div>
@@ -855,15 +855,15 @@ print(<span class="s">"Estado:"</span>, huella[1])
     </section>
 
     <section class="slide">
-      <div class="header-bar black"><h2>PASO 2 · Corre las tuplas</h2></div>
+      <div class="header-bar black"><h2>03c · Ejecuta las tuplas</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">Selecciona las líneas del <b>PASO 2</b>.</li>
-              <li class="anim">Presiona <b>Shift + Enter</b>.</li>
-              <li class="anim"><b>Prueba el error</b>: quita el <code>#</code> de la línea comentada y córrela. Un error es información, no un fracaso.</li>
+              <li class="anim">Abre <code>03c_tuplas.py</code> (Explorador → clase-02 → material).</li>
+              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-02/material/03c_tuplas.py</pre></li>
+              <li class="anim"><b>Prueba el error</b>: quita el <code>#</code> de la línea comentada, guarda y vuelve a ▶. Un error es información, no un fracaso.</li>
             </ol>
           </div>
           <div class="col-r ok anim">
@@ -871,7 +871,7 @@ print(<span class="s">"Estado:"</span>, huella[1])
             <pre class="cmd out">La tupla: (&#x27;e481f51c...&#x27;, &#x27;delivered&#x27;)
 Id: e481f51cbdc54678...
 Estado: delivered</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small"><code>NameError</code>: faltó correr el PASO 0.</div></div>
+            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
           </div>
         </div>
       </div>
@@ -908,12 +908,13 @@ todas − con reseña
     </section>
 
     <section class="slide">
-      <div class="header-bar orange"><h2>PASO 3 · Leamos el set línea por línea (1/2)</h2></div>
+      <div class="header-bar orange"><h2>03d · Leamos los sets línea por línea (1/2)</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top wide">
-            <pre class="code">print(<span class="s">"Con repetidos:"</span>, len(estado_orden))
+            <pre class="code">estado_orden = orders[<span class="s">"order_status"</span>].tolist()
+print(<span class="s">"Con repetidos:"</span>, len(estado_orden))
 
 estados_unicos = set(estado_orden)  <span class="c"># sin repetidos</span>
 print(<span class="s">"Distintos:"</span>, estados_unicos)
@@ -933,7 +934,7 @@ print(<span class="s">"Cuántos:"</span>, len(estados_unicos))</pre>
     </section>
 
     <section class="slide">
-      <div class="header-bar orange"><h2>PASO 3 · Leamos el set línea por línea (2/2)</h2></div>
+      <div class="header-bar orange"><h2>03d · Leamos los sets línea por línea (2/2)</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
@@ -959,15 +960,15 @@ print(<span class="s">"Sin reseña:"</span>, len(sin_resena))</pre>
     </section>
 
     <section class="slide">
-      <div class="header-bar black"><h2>PASO 3 · Corre los sets</h2></div>
+      <div class="header-bar black"><h2>03d · Ejecuta los sets</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">Selecciona las líneas del <b>PASO 3</b>.</li>
-              <li class="anim">Presiona <b>Shift + Enter</b>.</li>
-              <li class="anim">Corre el mismo paso <b>dos veces</b> y mira: ¿cambia el orden de los estados? Los sets no tienen orden.</li>
+              <li class="anim">Abre <code>03d_sets.py</code> (Explorador → clase-02 → material).</li>
+              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-02/material/03d_sets.py</pre></li>
+              <li class="anim">Ejecútalo <b>dos veces</b> y mira los estados distintos: ¿cambió el orden? Los sets no tienen orden.</li>
             </ol>
           </div>
           <div class="col-r ok anim">
@@ -976,7 +977,7 @@ print(<span class="s">"Sin reseña:"</span>, len(sin_resena))</pre>
 Distintos: {&#x27;delivered&#x27;, &#x27;shipped&#x27;, ...}
 Cuántos: 8
 Sin reseña: 768</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small"><code>NameError</code>: faltó el PASO 0 o el PASO 2 (de ahí sale <code>estado_orden</code>).</div></div>
+            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
           </div>
         </div>
       </div>
@@ -1012,7 +1013,7 @@ Sin reseña: 768</pre>
     </section>
 
     <section class="slide">
-      <div class="header-bar orange"><h2>PASO 4 · Leamos el diccionario línea por línea (1/2)</h2></div>
+      <div class="header-bar orange"><h2>03e · Leamos los diccionarios línea por línea (1/2)</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
@@ -1025,7 +1026,8 @@ Sin reseña: 768</pre>
 
 print(<span class="s">"El diccionario:"</span>, traduccion)
 print(<span class="s">"delivered:"</span>, traduccion[<span class="s">"delivered"</span>])
-print(<span class="s">"invoiced:"</span>,</pre>
+print(<span class="s">"invoiced:"</span>,
+      traduccion.get(<span class="s">"invoiced"</span>, <span class="s">"no lo tengo"</span>))</pre>
           </div>
           <div class="col-r narrow ann anim">
             <div class="big">Qué significa</div>
@@ -1041,7 +1043,7 @@ print(<span class="s">"invoiced:"</span>,</pre>
     </section>
 
     <section class="slide">
-      <div class="header-bar orange"><h2>PASO 4 · Leamos el diccionario línea por línea (2/2)</h2></div>
+      <div class="header-bar orange"><h2>03e · Leamos los diccionarios línea por línea (2/2)</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
@@ -1068,15 +1070,15 @@ print(<span class="s">"En español:"</span>, traduccion[orden[<span class="s">"e
     </section>
 
     <section class="slide">
-      <div class="header-bar black"><h2>PASO 4 · Corre los diccionarios</h2></div>
+      <div class="header-bar black"><h2>03e · Ejecuta los diccionarios</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">Selecciona las líneas del <b>PASO 4</b>.</li>
-              <li class="anim">Presiona <b>Shift + Enter</b>.</li>
-              <li class="anim"><b>Prueba</b>: agrega <code>"invoiced": "Facturado"</code> al diccionario y vuelve a correr.</li>
+              <li class="anim">Abre <code>03e_diccionarios.py</code> (Explorador → clase-02 → material).</li>
+              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-02/material/03e_diccionarios.py</pre></li>
+              <li class="anim"><b>Prueba</b>: agrega <code>"invoiced": "Facturado"</code> al diccionario, guarda y vuelve a ▶.</li>
             </ol>
           </div>
           <div class="col-r ok anim">
@@ -1087,7 +1089,7 @@ invoiced: no lo tengo
 Ahora: {..., &#x27;processing&#x27;: &#x27;En proceso&#x27;}
 Una orden: {&#x27;id&#x27;: &#x27;e481f51c...&#x27;, &#x27;estado&#x27;: &#x27;delivered&#x27;}
 En español: Entregado</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small"><code>NameError</code>: faltó el PASO 0 o el PASO 2 (de ahí salen <code>ids</code> y <code>estado_orden</code>).</div></div>
+            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
           </div>
         </div>
       </div>
@@ -1122,7 +1124,7 @@ En español: Entregado</pre>
           <div class="col-l top">
             <ol class="steps">
               <li class="anim">Haz los pasos 1, 2 y 3 de la puesta al día.</li>
-              <li class="anim">Corre el PASO 0 y luego cada PASO, de a uno.</li>
+              <li class="anim">Ejecuta 03a y luego 03b, 03c, 03d y 03e, de a uno.</li>
               <li class="anim">Compara con el "Debes ver" de cada diapositiva.</li>
               <li class="anim">Anota dudas: las revisamos al inicio de la Clase 3.</li>
             </ol>
@@ -1148,7 +1150,7 @@ En español: Entregado</pre>
     <section class="slide l1 slide-closing">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <h1 class="ttl closing anim">Lista, tupla, set y diccionario</h1>
-      <div class="closing-sub anim">Repite los PASOS, cámbiales algo y observa · trae tus dudas</div>
+      <div class="closing-sub anim">Ejecuta los scripts, cámbiales algo y observa · trae tus dudas</div>
       <div class="meta anim">DPL1046 · Programación en Python y Manipulación de Datos · PhD. Juan Manuel Rozas</div>
       <div class="barbottom"></div>
     </section>
@@ -1160,14 +1162,14 @@ En español: Entregado</pre>
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">Repite el <b>PASO 0 al PASO 4</b> en tu computador, de a uno, con Shift + Enter.</li>
-              <li class="anim">Cambia algo en cada paso (agrega un estado, una traducción...) y <b>anota qué pasó</b>.</li>
+              <li class="anim">Ejecuta de nuevo <b>03a a 03e</b> en tu computador, de a uno, con el botón ▶.</li>
+              <li class="anim">Cambia algo en cada script (agrega un estado, una traducción...), <b>guarda</b> y vuelve a ejecutar. Anota qué pasó.</li>
               <li class="anim">Escribe con tus palabras: ¿cuándo usarías una lista, una tupla, un set y un diccionario?</li>
             </ol>
           </div>
           <div class="col-r anim">
             <div class="big">Qué sigue</div>
-            <div class="small">En la Clase 3 usamos estas estructuras para leer datos del mundo real: archivos, APIs y fuentes locales. Trae tus dudas.<br><br><b>Opcional:</b> corre <code>03_estructuras_olist.py</code>, la versión "profesional" del mismo contenido.</div>
+            <div class="small">En la Clase 3 usamos estas estructuras para leer datos del mundo real: archivos, APIs y fuentes locales. Trae tus dudas.<br><br><b>Opcional:</b> corre <code>07_estructuras_avanzado_opcional.py</code>, la versión "profesional" del mismo contenido.</div>
           </div>
         </div>
       </div>
@@ -1214,7 +1216,7 @@ else:
         <div class="twocol">
           <div class="col-l top">
             <ul class="bul">
-              <li class="anim"><code>03_estructuras_olist.py</code>: las mismas 4 estructuras, escritas como un programa "profesional" con funciones.</li>
+              <li class="anim"><code>07_estructuras_avanzado_opcional.py</code>: las mismas 4 estructuras, escritas como un programa "profesional" con funciones.</li>
               <li class="anim"><code>04_validar_olist.py</code>: validar pagos con <code>if</code>, <code>try/except</code> y logging.</li>
               <li class="anim"><code>05_refactor_olist.py</code> y <code>test_clase2.py</code>: refactorizar código con IA y probarlo con <code>pytest</code>.</li>
             </ul>

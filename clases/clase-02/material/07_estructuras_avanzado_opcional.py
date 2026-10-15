@@ -1,5 +1,5 @@
 """
-DPL1046 · Clase 2 · Script 3 · 03_estructuras_olist.py
+DPL1046 · Clase 2 · Script 7 (opcional) · 07_estructuras_avanzado_opcional.py
 ---------------------------------------------------------------------------
 Objetivo pedagógico: dominar las 4 estructuras nativas de Python
 (list, tuple, set, dict) y las comprehensions, aplicadas al MISMO
@@ -171,9 +171,9 @@ def main(argv: list[str] | None = None) -> None:
     """Sin argumentos corre todo. Con argumentos corre solo esas secciones.
 
     Ejemplos (desde la raíz del repo, con el entorno activo):
-        python clases/clase-02/material/03_estructuras_olist.py listas
-        python clases/clase-02/material/03_estructuras_olist.py tuplas sets
-        python clases/clase-02/material/03_estructuras_olist.py          # todo
+        python clases/clase-02/material/07_estructuras_avanzado_opcional.py listas
+        python clases/clase-02/material/07_estructuras_avanzado_opcional.py tuplas sets
+        python clases/clase-02/material/07_estructuras_avanzado_opcional.py          # todo
     """
     import sys
 
