@@ -24,7 +24,7 @@ Aquí está todo el material del curso: por cada clase, la **presentación**, la
 | Clase | Sesión | Material |
 |---|---|---|
 | 1 | Python en la Industria Real: por qué domina el dato | [clase-01](clases/clase-01/) |
-| 2 | Estructuras de Datos y Control de Flujo con Foco Industrial | *próximamente* |
+| 2 | Estructuras de Datos y Control de Flujo con Foco Industrial | [clase-02](clases/clase-02/) |
 | 3 | Lectura de Datos del Mundo Real: Archivos, APIs y Fuentes Locales | *próximamente* |
 
 ### Unidad 2 — Manipulación y Transformación de Datos con Python

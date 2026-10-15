@@ -1,0 +1,7 @@
+# DPL1046 - Programación en Python y Manipulación de Datos
+# Clase 2 - Dependencias adicionales
+# Instalar con (desde la raíz del repo, con el entorno activado):
+#   pip install -r clases/clase-02/material/requirements.txt
+
+pytest==8.2.2          # framework de testing (se usa desde esta clase)
+pytest-cov==5.0.0      # reporte de cobertura de tests
