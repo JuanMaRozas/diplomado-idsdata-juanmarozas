@@ -28,13 +28,15 @@ Si el último comando termina con **TODO LISTO**, estás al día. Si algo dice *
 
 ## Qué haremos hoy (3 horas)
 
+El primer bloque es **exclusivo para dejar el entorno listo y validado**: preparar un entorno es lento y tiene dificultades, pero el objetivo es que todos tengamos las mismas herramientas, sin importar el computador o sistema operativo. Es una etapa clave de buenas prácticas para trabajar en equipo. Levanta la mano y pregunta: para eso estamos.
+
 | Minutos | Qué hacemos |
 |---|---|
-| 0 – 30 | Puesta al día: abrir, activar y verificar el entorno |
-| 30 – 85 | Las 4 estructuras nativas (list, tuple, set, dict) y comprehensions, una por una |
-| 85 – 95 | Descanso |
-| 95 – 135 | Control de flujo y errores: validador de pagos con `try/except` y logging |
-| 135 – 170 | Taller: refactorizar con IA y proteger con `pytest` |
+| 0 – 50 | **Entorno listo y validado** (bloque exclusivo; se extiende el tiempo que haga falta) |
+| 50 – 95 | Las 4 estructuras nativas (list, tuple, set, dict) y comprehensions, una por una |
+| 95 – 105 | Descanso |
+| 105 – 140 | Control de flujo y errores: validador de pagos con `try/except` y logging |
+| 140 – 170 | Taller: refactorizar con IA y proteger con `pytest` |
 | 170 – 180 | Cierre y tarea |
 
 El contenido sobre **cómo encontrar datasets ricos** (que quedó pendiente de la Clase 1) está al final de la presentación, como **anexo para leer en casa**.

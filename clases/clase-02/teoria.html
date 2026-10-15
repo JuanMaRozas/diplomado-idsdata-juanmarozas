@@ -170,6 +170,7 @@
   .col-r .warnbox .wt{font-weight:800;color:var(--red);font-size:16px;margin-bottom:4px;letter-spacing:.02em;}
   .col-r.ok .small,.col-r .warnbox .small{font-size:19px;line-height:1.4;}
   .col-l.top{justify-content:flex-start;}
+  .card .t{font-size:21px;} .card .d{font-size:17px;line-height:1.4;} .card .ic{font-size:28px;}
 
   /* ========= ANIMATIONS ========= */
   .slide.active .anim{animation:rise .5s ease both;}
@@ -261,12 +262,13 @@
       <div class="body">
         <table class="brand">
           <tr><th style="width:120px">Minutos</th><th>Qué hacemos</th></tr>
-          <tr><td>0 – 50</td><td><b>Entorno listo y validado</b> (el tiempo que haga falta)</td></tr>
-          <tr><td>50 – 95</td><td>Las 4 estructuras + comprehensions, una por una</td></tr>
-          <tr><td>95 – 105</td><td>Descanso</td></tr>
-          <tr><td>105 – 140</td><td>Control de flujo y errores: validar pagos</td></tr>
-          <tr><td>140 – 170</td><td>Taller: refactorizar con IA y correr los tests</td></tr>
-          <tr><td>170 – 180</td><td>Cierre y tarea</td></tr>
+          <tr><td>0 – 45</td><td><b>Entorno listo y validado</b> (el tiempo que haga falta)</td></tr>
+          <tr><td>45 – 65</td><td>Teoría: qué es cada cosa de tu stack y GitHub en la web</td></tr>
+          <tr><td>65 – 105</td><td>Las 4 estructuras + comprehensions, una por una</td></tr>
+          <tr><td>105 – 115</td><td>Descanso</td></tr>
+          <tr><td>115 – 145</td><td>Control de flujo y errores: validar pagos</td></tr>
+          <tr><td>145 – 172</td><td>Taller: refactorizar con IA y correr los tests</td></tr>
+          <tr><td>172 – 180</td><td>Cierre y tarea</td></tr>
         </table>
         <div class="quote anim">Si el entorno necesita más tiempo, lo tomamos: lo que no alcancemos queda como práctica guiada para la casa.</div>
       </div>
@@ -395,6 +397,70 @@ source .venv/Scripts/activate    # Windows</pre></li>
           <div class="col-r anim">
             <div class="big">¿Todos aquí?</div>
             <div class="small">Levanta la mano o escribe "listo" en el chat. Quien no lo logre se queda conmigo un momento: <b>no seguimos hasta que la mayoría esté lista</b>.</div>
+          </div>
+        </div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar orange"><h2>Tu stack completo: qué es cada cosa que instalamos</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <table class="brand">
+          <tr><th style="width:190px">Herramienta</th><th style="width:380px">Qué es</th><th>Para qué la usamos</th></tr>
+          <tr><td><b>Terminal / Git Bash</b></td><td>La ventana donde escribes comandos</td><td>Ejecutar todo el curso</td></tr>
+          <tr><td><b>Git</b></td><td>Programa que guarda el historial de cambios</td><td>Clonar y actualizar (<code>pull</code>)</td></tr>
+          <tr><td><b>GitHub</b></td><td>Sitio web donde vive el repositorio</td><td>Fuente oficial del material</td></tr>
+          <tr><td><b>Python 3.12</b></td><td>El lenguaje y su intérprete</td><td>Correr nuestro código</td></tr>
+          <tr><td><b>.venv</b></td><td>Entorno virtual: una "caja" aislada</td><td>Mismas librerías para todos</td></tr>
+          <tr><td><b>pip</b></td><td>El instalador de librerías de Python</td><td>Instalar pandas, pytest</td></tr>
+          <tr><td><b>VS Code</b></td><td>Editor de código</td><td>Leer, escribir y ejecutar</td></tr>
+        </table>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar black"><h2>Cómo se conectan las piezas</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="cards">
+          <div class="card anim"><div class="ic">☁️</div><div class="t">1 · GitHub</div><div class="d">El repo en la nube. Yo subo aquí cada clase.</div></div>
+          <div class="card anim"><div class="ic">⬇️</div><div class="t">2 · git pull</div><div class="d">Trae lo nuevo a tu computador.</div></div>
+          <div class="card anim"><div class="ic">📁</div><div class="t">3 · Tu carpeta</div><div class="d">Tu copia local del repo, con <code>.venv</code> y <code>data/</code>.</div></div>
+        </div>
+        <div class="cards" style="margin-top:18px">
+          <div class="card anim"><div class="ic">📝</div><div class="t">4 · VS Code</div><div class="d">Abres la carpeta y lees o editas los scripts.</div></div>
+          <div class="card anim"><div class="ic">⚙️</div><div class="t">5 · Terminal + .venv</div><div class="d">Activas el entorno y ejecutas con Python.</div></div>
+          <div class="card anim"><div class="ic">📊</div><div class="t">6 · Resultado</div><div class="d">Salidas en consola y archivos en <code>data/</code>.</div></div>
+        </div>
+        <div class="quote anim">Tú trabajas en tu computador; GitHub es la fuente. El flujo siempre va de 1 a 6.</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar orange"><h2>Mira tu repositorio en GitHub (en la web)</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l top">
+            <ol class="steps">
+              <li class="anim">Abre en el navegador:<pre class="cmd">github.com/JuanMaRozas/diplomado-idsdata-juanmarozas</pre></li>
+              <li class="anim">Entra a <b>clases</b> → <b>clase-02</b>: es lo mismo que ves en VS Code.</li>
+              <li class="anim">Haz clic en el <b>reloj / "commits"</b>: es el historial de cambios con fecha.</li>
+            </ol>
+          </div>
+          <div class="col-r anim">
+            <div class="big">Qué estás viendo</div>
+            <div class="small"><b>README</b>: la portada de cada carpeta.<br><b>Code</b> (botón verde): la dirección para clonar.<br><b>Commits</b>: cada cambio guardado, quién y cuándo.<br><br>Tú <b>lees</b> aquí; lo que traes a tu computador es con <code>git pull</code>.</div>
           </div>
         </div>
       </div>
