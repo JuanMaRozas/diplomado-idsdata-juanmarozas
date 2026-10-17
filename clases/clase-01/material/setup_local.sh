@@ -32,7 +32,7 @@ fi
 if [ -z "$PYBIN" ]; then
   for candidate in python3 python; do
     if command -v "$candidate" &>/dev/null; then
-      VER=$("$candidate" -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>/dev/null)
+      VER=$("$candidate" -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>/dev/null || true)
       if [ "$VER" = "3.12" ]; then
         PYBIN="$candidate"
         break

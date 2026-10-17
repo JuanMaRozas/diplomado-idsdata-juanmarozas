@@ -1,4 +1,4 @@
-# Clase 02 — Estructuras de Datos, paso a paso
+# Clase 02 — Entorno listo y primeros pasos en Python
 
 **Unidad 1 · Fundamentos de Programación en Python para el Trabajo con Datos**
 
@@ -7,7 +7,7 @@
 
 > Continúa directamente desde la Clase 1: mismo entorno (`.venv`), mismo dataset (Olist en `data/raw/`). Lo único nuevo es `pytest`.
 
-**No necesitas saber Python.** Esta clase lo explica desde cero, leyendo cada línea de lo que ejecutamos. Vamos paso a paso; cada paso tiene un comando y un "Debes ver". Si tu pantalla se ve distinta, avisa. Nadie queda atrás: todo lo de hoy está en este repo.
+**No necesitas saber Python.** Esta clase lo explica desde cero, leyendo cada línea de lo que ejecutamos. Vamos paso a paso; cada paso tiene un comando y un "Debes ver". Nadie queda atrás: todo lo de hoy está en este repo.
 
 ---
 
@@ -28,64 +28,54 @@ Si el último comando termina con **TODO LISTO**, estás al día. Si algo dice *
 
 ## Qué haremos hoy
 
-El primer bloque es **exclusivo para dejar el entorno listo y validado**: preparar un entorno es lento y tiene dificultades, pero el objetivo es que todos tengamos las mismas herramientas, sin importar el computador o sistema operativo. Es una etapa clave de buenas prácticas para trabajar en equipo. Levanta la mano y pregunta: para eso estamos.
-
 | Bloque | Qué hacemos |
 |---|---|
-| 1 | **Entorno listo y validado** (se extiende el tiempo que haga falta) |
-| 2 | Teoría: qué es cada cosa de tu stack (Git, GitHub, Python, `.venv`, pip, VS Code) y cómo mirar el repo en la web |
-| 3 | Cómo leer un script y cómo ejecutarlo en VS Code, un archivo a la vez |
-| 4 | Las 4 estructuras de Python, una por una: lista, tupla, set y diccionario |
-| 5 | Comparación, cierre y tarea |
+| 1 | **Entorno listo y validado** (el tiempo que haga falta) |
+| 2 | Teoría: qué es cada cosa de tu *stack* y cómo mirar GitHub en la web |
+| 3 | Cómo **leer un script** y cómo **ejecutarlo** en VS Code, línea por línea |
+| 4 | Cierre y tarea corta |
 
-El contenido sobre **cómo encontrar datasets ricos** (que quedó pendiente de la Clase 1) está al final de la presentación, como **anexo para leer en casa**.
+> Las cuatro estructuras de Python (lista, tupla, set y diccionario) se ven en la [Clase 3](../clase-03/).
 
-## Los scripts de hoy: `03a` a `03e`
+## Scripts de la clase
 
-Hoy hay **5 scripts cortos, uno por tema**. Cada uno se abre, se lee y se ejecuta por separado:
+| Script | Qué hace |
+|---|---|
+| `00_verificar_entorno.py` | "Semáforo" del entorno: Python 3.12, `.venv`, pandas, pytest y las 9 tablas de Olist. Dice **OK** o **FALTA** y cómo arreglarlo. |
+| `03a_leer_datos.py` | Tu primer script: lee dos tablas de Olist y muestra cuántas filas tiene cada una (99441 y 99224). |
 
-| Script | Tema | Ejemplo con Olist |
-|---|---|---|
-| `03a_leer_datos.py` | `import`, variables, leer tablas | Cargar `orders` y `reviews` |
-| `03b_listas.py` | **Lista** `[ ]`: ordenada, modificable | Los estados de una orden |
-| `03c_tuplas.py` | **Tupla** `( )`: ordenada, no modificable | La "huella" (id, estado) |
-| `03d_sets.py` | **Set** `{ }`: sin repetidos, sin orden | Estados distintos; órdenes sin reseña |
-| `03e_diccionarios.py` | **Diccionario** `{ clave: valor }` | Traducir estados; una orden como dict |
+## Cómo ejecutar un script en VS Code
 
-**Cómo ejecutar un script** (están en `clases/clase-02/material/`):
-
-1. Ábrelo en VS Code (doble clic en el Explorador).
-2. Haz clic en el botón **▶** de arriba a la derecha. El resultado aparece en la terminal de abajo.
-
-Si el botón no aparece, escribe el comando en la terminal (en la raíz del repo, con `(.venv)` activo):
+1. Abre el archivo (Explorador → `clases` → `clase-02` → `material`).
+2. Haz clic en el botón **▶** (arriba a la derecha). **Guarda** antes (Cmd+S / Ctrl+S) si cambiaste algo.
+3. Si no aparece el botón, usa el comando en la terminal, con `(.venv)` activo y en la raíz del repo:
 
 ```bash
 python clases/clase-02/material/03a_leer_datos.py
 ```
 
-Para **probar cosas**: cambia algo en el script (por ejemplo, agrega un estado a la lista), **guarda** (Cmd+S en Mac, Ctrl+S en Windows) y vuelve a ejecutar.
+> Si ves `((.venv) )` o dos entornos (`.venv` y `.venv-1`), usa solo `.venv`: no lo actives dos veces.
 
-## Resto de los scripts
+## Otros scripts de esta carpeta (opcionales, para más adelante)
 
 | Script | Para qué |
 |---|---|
-| `00_verificar_entorno.py` | Semáforo OK / FALTA: Python 3.12, entorno activo, pandas, pytest y las 9 tablas de Olist |
-| `07_estructuras_avanzado_opcional.py` | *Opcional.* Las mismas estructuras, escritas como programa "profesional" (con funciones). Se puede correr por sección: `python clases/clase-02/material/07_estructuras_avanzado_opcional.py listas` |
-| `04_validar_olist.py` | *Se verá en la Clase 3.* Validar pagos con `if`, `try/except` y logging |
-| `05_refactor_olist.py` y `test_clase2.py` | *Se verán en las próximas clases.* Refactorizar con IA y probar con `pytest` |
+| `04_validar_olist.py` | Validar pagos con `if`, `try/except` y logging |
+| `05_refactor_olist.py` y `test_clase2.py` | Refactorizar código con IA y probarlo con `pytest` |
 
-> Los archivos generados (`pagos_*.csv`, `*.log`) viven en `data/` y **no** se suben al repo: ya están en el `.gitignore`.
+No son parte de la tarea. La versión "profesional" de las 4 estructuras está en la carpeta de la Clase 3.
 
 ## Si te quedaste atrás
 
-1. Haz la puesta al día (`git pull`, activar entorno, `pip install`, verificador).
-2. Ejecuta `03a` y luego `03b`, `03c`, `03d` y `03e`, de a uno, comparando con el "Debes ver" de la presentación.
-3. Anota tus dudas: las revisamos al inicio de la Clase 3.
+1. Haz los pasos de "Antes de la clase".
+2. Ejecuta `03a_leer_datos.py` con el botón ▶.
+3. Compara con el "Debes ver" de la presentación y anota tus dudas.
 
 ## Tarea para la próxima clase (corta)
 
-1. Ejecuta de nuevo **03a a 03e** en tu computador, de a uno, y **cambia algo** en cada script (agrega un estado, una traducción...), guarda y vuelve a ejecutar. Anota qué pasó.
-2. Escribe con tus palabras: ¿cuándo usarías una lista, una tupla, un set y un diccionario?
-3. Trae tus dudas para la Clase 3 (lectura de datos del mundo real: archivos, APIs y fuentes locales).
+1. Antes de la clase: entra a la carpeta del repo, activa el entorno y haz `git pull`.
+2. Ejecuta de nuevo `00_verificar_entorno.py` y `03a_leer_datos.py`.
+3. Cambia algo en `03a`: lee también `olist_customers_dataset.csv` y muestra cuántas filas tiene. Guarda y ejecuta.
+4. Ve pensando con quién harás el **proyecto integrador**: será en **parejas**.
 
 > **Seguridad:** nunca subas a Git tu carpeta `data/`.

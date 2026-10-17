@@ -218,10 +218,39 @@
       <div class="accent"></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="clase anim">CLASE 2</div>
-      <h1 class="ttl anim">Estructuras de Datos y Control<br>de Flujo con Foco Industrial</h1>
+      <h1 class="ttl anim">Entorno listo y<br>primeros pasos en Python</h1>
       <div class="sub anim">Diplomado en Ingeniería de Datos con Python</div>
       <div class="meta anim">PhD. Juan Manuel Rozas<br>Unidad 1 · Sesión 2 de 9 · 100% local · paso a paso</div>
       <div class="barbottom"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar orange"><h2>Antes de empezar: tu rutina de inicio</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l top">
+            <ol class="steps">
+              <li class="anim">Abre la <b>terminal</b> (Mac) o <b>Git Bash</b> (Windows) y entra a la carpeta: <code>cd ~/diplomado-idsdata-juanmarozas</code></li>
+              <li class="anim">Abre VS Code en esa carpeta: <code>code .</code></li>
+              <li class="anim"><b>Activa el entorno</b> (mira el comando de tu sistema →). Debe aparecer <b>(.venv)</b>.</li>
+              <li class="anim">Trae el material nuevo: <code>git pull</code></li>
+              <li class="anim">Valida: <code>python clases/clase-02/material/00_verificar_entorno.py</code></li>
+            </ol>
+          </div>
+          <div class="col-r ok anim">
+            <div class="big">Activar .venv</div>
+            <div class="small"><b>Windows (Git Bash)</b></div>
+            <pre class="cmd">source .venv/Scripts/activate</pre>
+            <div class="small"><b>Mac (Terminal)</b></div>
+            <pre class="cmd">source .venv/bin/activate</pre>
+            <div class="small">Si algo falla, avísame y lo resolvemos juntos: <b>nadie se queda atrás</b>.</div>
+          </div>
+        </div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
     </section>
 
     <section class="slide">
@@ -273,9 +302,8 @@
           <tr><th style="width:120px">Bloque</th><th>Qué hacemos</th></tr>
           <tr><td>1</td><td><b>Entorno listo y validado</b> (el tiempo que haga falta)</td></tr>
           <tr><td>2</td><td>Teoría: qué es cada cosa de tu stack y GitHub en la web</td></tr>
-          <tr><td>3</td><td>Cómo leer un script y cómo ejecutarlo en VS Code, un archivo a la vez</td></tr>
-          <tr><td>4</td><td>Las 4 estructuras de Python, una por una: lista, tupla, set y diccionario</td></tr>
-          <tr><td>5</td><td>Comparación, cierre y tarea</td></tr>
+          <tr><td>3</td><td>Cómo leer un script y cómo ejecutarlo en VS Code, línea por línea</td></tr>
+          <tr><td>4</td><td>Cierre y tarea corta</td></tr>
         </table>
         <div class="quote anim">Hoy vemos menos temas, pero entendemos cada línea de lo que ejecutamos.</div>
       </div>
@@ -531,7 +559,7 @@ print(<span class="s">"Órdenes:"</span>, total)</pre>
           </div>
           <div class="col-r ok anim">
             <div class="big">Debes ver</div>
-            <div class="small">Hoy hay <b>5 scripts cortos</b>, uno por tema:<br><code>03a</code> leer datos · <code>03b</code> listas · <code>03c</code> tuplas · <code>03d</code> sets · <code>03e</code> diccionarios.<br><br>Cada uno se abre, se lee y se ejecuta por separado.</div>
+            <div class="small">Hoy trabajamos con <b>un script corto</b>: <code>03a_leer_datos.py</code>, que lee dos tablas de Olist.<br><br>Lo abrimos, lo leemos línea por línea y lo ejecutamos. En la Clase 3 haremos lo mismo con las 4 estructuras de Python.</div>
           </div>
         </div>
       </div>
@@ -636,480 +664,28 @@ Filas en reviews: 99224</pre>
     <section class="slide l2">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="kicker anim">Bloque 4</div>
-      <div class="stitle anim">Las 4 estructuras<br>de Python, una por una</div>
+      <div class="stitle anim">Cierre del día</div>
       <div class="num">04</div>
     </section>
 
     <section class="slide">
-      <div class="header-bar orange"><h2>El mapa: 4 formas de guardar varios datos</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <table class="brand">
-          <tr><th style="width:170px">Estructura</th><th style="width:130px">Símbolo</th><th>En una frase</th></tr>
-          <tr><td><b>Lista</b></td><td><code>[ ]</code></td><td>Elementos en orden; se pueden modificar</td></tr>
-          <tr><td><b>Tupla</b></td><td><code>( )</code></td><td>Elementos en orden; <b>no</b> se pueden modificar</td></tr>
-          <tr><td><b>Set</b></td><td><code>{ }</code></td><td>Elementos <b>sin repetidos</b> y sin orden</td></tr>
-          <tr><td><b>Diccionario</b></td><td><code>{ : }</code></td><td>Pares <b>clave → valor</b>, como una libreta de contactos</td></tr>
-        </table>
-        <div class="quote anim">Los símbolos importan: Python distingue una estructura de otra por el tipo de paréntesis.</div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>1 · ¿Qué es una lista?</h2></div>
+      <div class="header-bar orange"><h2>Lo que logramos hoy</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
             <ul class="bul">
-              <li class="anim">Guarda <b>varios elementos en orden</b>, como una lista de compras.</li>
-              <li class="anim">Se escribe entre <b>corchetes</b> <code>[ ]</code> y separada por <b>comas</b>.</li>
-              <li class="anim">Cada elemento tiene una <b>posición</b>, y se cuenta <b>desde 0</b>.</li>
-              <li class="anim">Se puede <b>modificar</b>: agregar, quitar, cambiar.</li>
-            </ul>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Ejemplo Olist: estados de una orden</div>
-            <pre class="cmd out">posición → elemento
-0 → &quot;created&quot;
-1 → &quot;approved&quot;
-2 → &quot;processing&quot;
-3 → &quot;shipped&quot;
-4 → &quot;delivered&quot;  (también -1)</pre>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>03b · Leamos las listas línea por línea (1/2)</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code">estados = [<span class="s">"created"</span>, <span class="s">"approved"</span>,
-           <span class="s">"processing"</span>, <span class="s">"shipped"</span>,
-           <span class="s">"delivered"</span>]
-
-print(<span class="s">"La lista:"</span>, estados)
-print(<span class="s">"Cuántos:"</span>, len(estados))
-print(<span class="s">"El primero:"</span>, estados[0])
-print(<span class="s">"El último:"</span>, estados[-1])</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim"><code>[ ... ]</code> los corchetes crean una <b>lista</b>; las comas separan.</div>
-            <div class="row anim"><code>"created"</code> cada texto va entre comillas.</div>
-            <div class="row anim"><code>estados[0]</code> el elemento en la posición 0: el <b>primero</b>.</div>
-            <div class="row anim"><code>estados[-1]</code> el <b>último</b> (-1 cuenta desde el final).</div>
-            <div class="row anim"><code>len(estados)</code> cuántos elementos hay.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>03b · Leamos las listas línea por línea (2/2)</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code">estados.append(<span class="s">"canceled"</span>)   <span class="c"># agrega al final</span>
-print(<span class="s">"Ahora:"</span>, estados)
-
-for estado in estados:      <span class="c"># repite para cada elemento</span>
-    print(<span class="s">" - estado:"</span>, estado)</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim"><code>append("canceled")</code> agrega un elemento <b>al final</b> de la lista.</div>
-            <div class="row anim"><code>for estado in estados:</code> "repite lo de abajo <b>para cada</b> elemento".</div>
-            <div class="row anim"><code>    print(...)</code> los 4 espacios al inicio (<b>sangría</b>) le dicen a Python qué se repite.</div>
-            <div class="row anim"><code>estado</code> un nombre temporal: vale "created", luego "approved"...</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>03b · Ejecuta las listas</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ol class="steps">
-              <li class="anim">Abre <code>03b_listas.py</code> (Explorador → clase-02 → material).</li>
-              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-02/material/03b_listas.py</pre></li>
-              <li class="anim"><b>Pruébalo</b>: agrega otro estado con <code>append</code>, <b>guarda</b> (Cmd+S / Ctrl+S) y vuelve a ▶.</li>
-            </ol>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Debes ver (abreviado)</div>
-            <pre class="cmd out">La lista: [&#x27;created&#x27;, ..., &#x27;delivered&#x27;]
-Cuántos: 5
-El primero: created
-El último: delivered
-Ahora: [..., &#x27;canceled&#x27;]
- - estado: created
- ... (uno por línea)</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2>Pausa</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ul class="bul">
-              <li class="anim">Entendemos qué es una lista, una variable y un <code>print</code>.</li>
-              <li class="anim">Sabemos ejecutar un script con el botón ▶.</li>
-              <li class="anim">Si algo no calza, es el momento de preguntar.</li>
+              <li class="anim"><b>Entorno validado</b>: Python 3.12, <code>.venv</code>, pandas, pytest y las 9 tablas de Olist.</li>
+              <li class="anim"><b>Conocemos el stack</b>: Terminal, Git, GitHub, Python, <code>.venv</code>, pip y VS Code, y cómo se conectan.</li>
+              <li class="anim"><b>Primer script</b>: leímos <code>03a_leer_datos.py</code> línea por línea y lo ejecutamos.</li>
+              <li class="anim"><b>Vocabulario nuevo</b>: comentario, variable, <code>print</code>, <code>import</code>, ruta.</li>
             </ul>
           </div>
           <div class="col-r anim">
-            <div class="big">Pausa de 10 minutos</div>
-            <div class="small">Aprovecha para ponerte al día, tomar agua o preguntarme lo que quedó pendiente. Después seguimos con tuplas, sets y diccionarios.</div>
+            <div class="big">Qué sigue</div>
+            <div class="small"><b>Clase 3</b>: las 4 estructuras de Python (lista, tupla, set y diccionario), una por una, con su código línea por línea. Y al final de la clase, el <b>proyecto integrador</b>: rúbrica, formato de la presentación y template.<br><br>Para trabajar en <b>parejas</b>: ve pensando con quién.</div>
           </div>
         </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>2 · ¿Qué es una tupla?</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ul class="bul">
-              <li class="anim">Parecida a una lista, pero <b>no se puede modificar</b> después de crearla.</li>
-              <li class="anim">Se escribe entre <b>paréntesis</b> <code>( )</code>.</li>
-              <li class="anim">Sirve para datos que <b>no deben cambiar</b>: la "huella" de una orden (id, estado).</li>
-            </ul>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Lista vs. tupla</div>
-            <pre class="cmd out">            Lista      Tupla
-Símbolo     [ ]        ( )
-Modificar   sí         no
-Orden       sí         sí</pre>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2>03c · Leamos las tuplas línea por línea</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code">ids = orders[<span class="s">"order_id"</span>].tolist()    <span class="c"># columna -&gt; lista</span>
-estado_orden = orders[<span class="s">"order_status"</span>].tolist()
-
-huella = (ids[0], estado_orden[0])   <span class="c"># ( ) = tupla</span>
-
-print(<span class="s">"La tupla:"</span>, huella)
-print(<span class="s">"Id:"</span>, huella[0])
-print(<span class="s">"Estado:"</span>, huella[1])
-
-<span class="c"># huella[1] = &quot;otro&quot;</span>
-<span class="c"># Si quitas el # de arriba, guardas y corres de nuevo,</span></pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim"><code>.tolist()</code> convierte una columna de la tabla en una <b>lista</b>.</div>
-            <div class="row anim"><code>(ids[0], estado_orden[0])</code> los paréntesis crean una <b>tupla</b> con dos datos.</div>
-            <div class="row anim"><code>huella[0]</code> se accede por posición, igual que una lista.</div>
-            <div class="row anim"><code># huella[1] = ...</code> si quitas el <code>#</code>, guardas y corres: <code>TypeError</code>. Python te protege.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>03c · Ejecuta las tuplas</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ol class="steps">
-              <li class="anim">Abre <code>03c_tuplas.py</code> (Explorador → clase-02 → material).</li>
-              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-02/material/03c_tuplas.py</pre></li>
-              <li class="anim"><b>Prueba el error</b>: quita el <code>#</code> de la línea comentada, guarda y vuelve a ▶. Un error es información, no un fracaso.</li>
-            </ol>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Debes ver (abreviado)</div>
-            <pre class="cmd out">La tupla: (&#x27;e481f51c...&#x27;, &#x27;delivered&#x27;)
-Id: e481f51cbdc54678...
-Estado: delivered</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>3 · ¿Qué es un set?</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ul class="bul">
-              <li class="anim">Un <b>conjunto</b>: guarda valores <b>sin repetidos</b> y <b>sin orden</b>.</li>
-              <li class="anim">Se crea con <code>set( )</code> a partir de una lista o columna.</li>
-              <li class="anim">Sirve para saber <b>cuáles hay</b> (distintos) y para <b>comparar grupos</b> (restar, unir).</li>
-            </ul>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Ejemplo Olist</div>
-            <pre class="cmd out">99.441 órdenes → 8 estados
-distintos
-
-todas − con reseña
-= sin reseña</pre>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2>03d · Leamos los sets línea por línea (1/2)</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code">estado_orden = orders[<span class="s">"order_status"</span>].tolist()
-print(<span class="s">"Con repetidos:"</span>, len(estado_orden))
-
-estados_unicos = set(estado_orden)  <span class="c"># sin repetidos</span>
-print(<span class="s">"Distintos:"</span>, estados_unicos)
-print(<span class="s">"Cuántos:"</span>, len(estados_unicos))</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim"><code>estado_orden</code> una lista con el estado de las 99.441 órdenes (con repetidos).</div>
-            <div class="row anim"><code>set(estado_orden)</code> convierte la lista en un set: <b>quita los repetidos</b>.</div>
-            <div class="row anim"><code>len(...)</code> cuenta cuántos estados distintos quedaron.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2>03d · Leamos los sets línea por línea (2/2)</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code">todas = set(orders[<span class="s">"order_id"</span>])      <span class="c"># todas</span>
-con_resena = set(reviews[<span class="s">"order_id"</span>])  <span class="c"># con reseña</span>
-sin_resena = todas - con_resena      <span class="c"># resta</span>
-
-print(<span class="s">"Sin reseña:"</span>, len(sin_resena))</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim"><code>todas</code> el set con los id de <b>todas</b> las órdenes.</div>
-            <div class="row anim"><code>con_resena</code> el set con los id de las órdenes que <b>tienen reseña</b>.</div>
-            <div class="row anim"><code>todas - con_resena</code> la <b>resta</b>: están en una y no en la otra.</div>
-            <div class="row anim"><code>len(sin_resena)</code> cuántas órdenes <b>no tienen</b> reseña.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>03d · Ejecuta los sets</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ol class="steps">
-              <li class="anim">Abre <code>03d_sets.py</code> (Explorador → clase-02 → material).</li>
-              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-02/material/03d_sets.py</pre></li>
-              <li class="anim">Ejecútalo <b>dos veces</b> y mira los estados distintos: ¿cambió el orden? Los sets no tienen orden.</li>
-            </ol>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Debes ver (abreviado)</div>
-            <pre class="cmd out">Con repetidos: 99441
-Distintos: {&#x27;delivered&#x27;, &#x27;shipped&#x27;, ...}
-Cuántos: 8
-Sin reseña: 768</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>4 · ¿Qué es un diccionario?</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ul class="bul">
-              <li class="anim">Guarda <b>pares clave → valor</b>, como una libreta de contactos: buscas por el nombre, no por la posición.</li>
-              <li class="anim">Se escribe con <b>llaves y dos puntos</b>: <code>{ "clave": valor }</code>.</li>
-              <li class="anim">Así llega un registro desde una <b>API</b> o un sistema de la empresa.</li>
-            </ul>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Ejemplo Olist: traducir estados</div>
-            <pre class="cmd out">clave        → valor
-&quot;delivered&quot;  → &quot;Entregado&quot;
-&quot;shipped&quot;    → &quot;Enviado&quot;
-&quot;canceled&quot;   → &quot;Cancelado&quot;</pre>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2>03e · Leamos los diccionarios línea por línea (1/2)</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code">traduccion = {
-    <span class="s">"delivered"</span>: <span class="s">"Entregado"</span>,
-    <span class="s">"shipped"</span>: <span class="s">"Enviado"</span>,
-    <span class="s">"canceled"</span>: <span class="s">"Cancelado"</span>,
-}
-
-print(<span class="s">"El diccionario:"</span>, traduccion)
-print(<span class="s">"delivered:"</span>, traduccion[<span class="s">"delivered"</span>])
-print(<span class="s">"invoiced:"</span>,
-      traduccion.get(<span class="s">"invoiced"</span>, <span class="s">"no lo tengo"</span>))</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim"><code>{ "delivered": "Entregado", ... }</code> llaves con pares <code>clave: valor</code>.</div>
-            <div class="row anim"><code>traduccion["delivered"]</code> busca por <b>clave</b> y devuelve su valor.</div>
-            <div class="row anim"><code>.get("invoiced", "no lo tengo")</code> busca, y si la clave <b>no existe</b>, devuelve un texto por defecto (sin error).</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2>03e · Leamos los diccionarios línea por línea (2/2)</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code">traduccion[<span class="s">"processing"</span>] = <span class="s">"En proceso"</span>   <span class="c"># pareja nueva</span>
-print(<span class="s">"Ahora:"</span>, traduccion)
-
-orden = {<span class="s">"id"</span>: ids[0], <span class="s">"estado"</span>: estado_orden[0]}
-print(<span class="s">"Una orden:"</span>, orden)
-print(<span class="s">"En español:"</span>, traduccion[orden[<span class="s">"estado"</span>]])</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim"><code>traduccion["processing"] = ...</code> <b>agrega</b> una pareja nueva.</div>
-            <div class="row anim"><code>orden = {...}</code> una orden descrita como diccionario: <code>id</code> y <code>estado</code>.</div>
-            <div class="row anim"><code>orden["estado"]</code> el valor de la clave <code>estado</code>.</div>
-            <div class="row anim"><code>traduccion[orden["estado"]]</code> usa ese valor como clave para traducirlo.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>03e · Ejecuta los diccionarios</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ol class="steps">
-              <li class="anim">Abre <code>03e_diccionarios.py</code> (Explorador → clase-02 → material).</li>
-              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-02/material/03e_diccionarios.py</pre></li>
-              <li class="anim"><b>Prueba</b>: agrega <code>"invoiced": "Facturado"</code> al diccionario, guarda y vuelve a ▶.</li>
-            </ol>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Debes ver (abreviado)</div>
-            <pre class="cmd out">El diccionario: {&#x27;delivered&#x27;: &#x27;Entregado&#x27;, ...}
-delivered: Entregado
-invoiced: no lo tengo
-Ahora: {..., &#x27;processing&#x27;: &#x27;En proceso&#x27;}
-Una orden: {&#x27;id&#x27;: &#x27;e481f51c...&#x27;, &#x27;estado&#x27;: &#x27;delivered&#x27;}
-En español: Entregado</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2>Comparemos las 4</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <table class="brand">
-          <tr><th>Estructura</th><th>Símbolo</th><th>Orden</th><th>Modificable</th><th>Repetidos</th><th>Ejemplo Olist</th></tr>
-          <tr><td><b>Lista</b></td><td><code>[ ]</code></td><td>sí</td><td>sí</td><td>sí</td><td>flujo de estados</td></tr>
-          <tr><td><b>Tupla</b></td><td><code>( )</code></td><td>sí</td><td>no</td><td>sí</td><td>(id, estado)</td></tr>
-          <tr><td><b>Set</b></td><td><code>{ }</code></td><td>no</td><td>sí</td><td>no</td><td>órdenes sin reseña</td></tr>
-          <tr><td><b>Diccionario</b></td><td><code>{ : }</code></td><td>por clave</td><td>sí</td><td>claves no</td><td>traducción de estados</td></tr>
-        </table>
-        <div class="quote anim">Elegir bien la estructura es una de las primeras decisiones de cualquier programa de datos.</div>
       </div>
       <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
       <div class="foot-num"></div>
@@ -1123,15 +699,15 @@ En español: Entregado</pre>
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">Haz los pasos 1, 2 y 3 de la puesta al día.</li>
-              <li class="anim">Ejecuta 03a y luego 03b, 03c, 03d y 03e, de a uno.</li>
+              <li class="anim">Haz los pasos 1, 2 y 3 del Bloque 1: carpeta y entorno, <code>git pull</code>, instalar y verificar.</li>
+              <li class="anim">Ejecuta <code>03a_leer_datos.py</code> con el botón ▶.</li>
               <li class="anim">Compara con el "Debes ver" de cada diapositiva.</li>
-              <li class="anim">Anota dudas: las revisamos al inicio de la Clase 3.</li>
+              <li class="anim">Anota tus dudas: las revisamos al inicio de la Clase 3.</li>
             </ol>
           </div>
           <div class="col-r ok anim">
             <div class="big">Nadie queda atrás</div>
-            <div class="small">Todo lo de hoy está en el repo y en esta presentación. Con internet lento, ejecuta con calma y escríbeme si algo no cuadra.</div>
+            <div class="small">Todo lo de hoy está en el repo y en esta presentación. Con internet lento, avanza con calma y escríbeme si algo no cuadra.</div>
           </div>
         </div>
       </div>
@@ -1142,15 +718,15 @@ En español: Entregado</pre>
 
     <section class="slide l6">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="q anim">¿Qué estructura de datos usas más<br>en tu trabajo, sin saber que<br>tenía un nombre técnico?</div>
+      <div class="q anim">¿Qué fue lo más difícil<br>de dejar el entorno listo<br>en tu computador?</div>
       <div class="uline"></div>
-      <div class="hint anim">Comparte tu respuesta antes de seguir a la Clase 3.</div>
+      <div class="hint anim">Cuéntalo: a alguien más le pasó lo mismo.</div>
     </section>
 
     <section class="slide l1 slide-closing">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <h1 class="ttl closing anim">Lista, tupla, set y diccionario</h1>
-      <div class="closing-sub anim">Ejecuta los scripts, cámbiales algo y observa · trae tus dudas</div>
+      <h1 class="ttl closing anim">Entorno listo, primer script</h1>
+      <div class="closing-sub anim">Ejecuta el verificador y 03a otra vez · trae tus dudas a la Clase 3</div>
       <div class="meta anim">DPL1046 · Programación en Python y Manipulación de Datos · PhD. Juan Manuel Rozas</div>
       <div class="barbottom"></div>
     </section>
@@ -1162,14 +738,15 @@ En español: Entregado</pre>
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">Ejecuta de nuevo <b>03a a 03e</b> en tu computador, de a uno, con el botón ▶.</li>
-              <li class="anim">Cambia algo en cada script (agrega un estado, una traducción...), <b>guarda</b> y vuelve a ejecutar. Anota qué pasó.</li>
-              <li class="anim">Escribe con tus palabras: ¿cuándo usarías una lista, una tupla, un set y un diccionario?</li>
+              <li class="anim">Antes de la clase, entra a la carpeta del repo, activa el entorno y corre <code>git pull</code>: te aparecerá <code>clases/clase-03</code>.</li>
+              <li class="anim">Ejecuta de nuevo <code>00_verificar_entorno.py</code> y <code>03a_leer_datos.py</code>. Deben seguir funcionando.</li>
+              <li class="anim">Cambia algo en <code>03a</code>: lee también <code>olist_customers_dataset.csv</code> y muestra cuántas filas tiene. <b>Guarda</b> y ejecuta.</li>
+              <li class="anim">Ve pensando con quién harás el <b>proyecto integrador</b>: será en <b>parejas</b>.</li>
             </ol>
           </div>
           <div class="col-r anim">
             <div class="big">Qué sigue</div>
-            <div class="small">En la Clase 3 usamos estas estructuras para leer datos del mundo real: archivos, APIs y fuentes locales. Trae tus dudas.<br><br><b>Opcional:</b> corre <code>07_estructuras_avanzado_opcional.py</code>, la versión "profesional" del mismo contenido.</div>
+            <div class="small">En la Clase 3 vemos lista, tupla, set y diccionario, y cerramos con el proyecto integrador: rúbrica, formato y template de la presentación.<br><br><b>Opcional:</b> abre <code>04_validar_olist.py</code> y mira cómo se ve un script "más grande". No es tarea.</div>
           </div>
         </div>
       </div>
@@ -1200,7 +777,7 @@ else:
           </div>
           <div class="col-r anim">
             <div class="big">Qué hace</div>
-            <div class="small"><code>import sys</code>: trae herramientas de Python.<br><code>sys.version_info</code>: la versión que estás usando.<br><code>if / else</code>: "si pasa esto, haz aquello; si no, lo otro". Lo veremos en la Clase 3.<br><br>El verificador real hace esto mismo con pandas, pytest y las 9 tablas de Olist.</div>
+            <div class="small"><code>import sys</code>: trae herramientas de Python.<br><code>sys.version_info</code>: la versión que estás usando.<br><code>if / else</code>: "si pasa esto, haz aquello; si no, lo otro". Lo veremos más adelante.<br><br>El verificador real hace esto mismo con pandas, pytest y las 9 tablas de Olist.</div>
           </div>
         </div>
       </div>
@@ -1210,20 +787,20 @@ else:
     </section>
 
     <section class="slide">
-      <div class="header-bar black"><h2>Scripts avanzados de la Clase 2 (opcionales)</h2></div>
+      <div class="header-bar black"><h2>Scripts avanzados de esta carpeta (opcionales)</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
             <ul class="bul">
-              <li class="anim"><code>07_estructuras_avanzado_opcional.py</code>: las mismas 4 estructuras, escritas como un programa "profesional" con funciones.</li>
               <li class="anim"><code>04_validar_olist.py</code>: validar pagos con <code>if</code>, <code>try/except</code> y logging.</li>
               <li class="anim"><code>05_refactor_olist.py</code> y <code>test_clase2.py</code>: refactorizar código con IA y probarlo con <code>pytest</code>.</li>
+              <li class="anim">La versión "profesional" de las 4 estructuras está en la carpeta de la Clase 3: <code>99_opcional_estructuras_avanzado.py</code>.</li>
             </ul>
           </div>
           <div class="col-r anim">
             <div class="big">Para curiosos</div>
-            <div class="small">Estos tres los trabajaremos en las próximas clases, cuando ya manejemos las bases. Puedes abrirlos y correrlos si quieres adelantarte; no son parte de la tarea.</div>
+            <div class="small">Estos scripts los trabajaremos más adelante, cuando ya manejemos las bases. Puedes abrirlos y correrlos si quieres adelantarte; no son parte de la tarea.</div>
           </div>
         </div>
       </div>
@@ -1314,7 +891,7 @@ else:
               <li class="anim"><b>9 tablas relacionales</b>: órdenes, clientes, productos, vendedores, pagos, reseñas, geolocalización.</li>
               <li class="anim"><b>~100.000 órdenes</b> de e-commerce, con fechas reales de compra, envío y entrega.</li>
               <li class="anim"><b>Reseñas en texto</b> → insumo natural para la IA de la Unidad 3.</li>
-              <li class="anim"><b>Datos anonimizados</b> (empresas reemplazadas por casas de <i>Game of Thrones</i>) → gancho para PII en la Clase 3.</li>
+              <li class="anim"><b>Datos anonimizados</b> (empresas reemplazadas por casas de <i>Game of Thrones</i>) → gancho para PII en la Clase 4.</li>
             </ul>
           </div>
           <div class="col-r anim">

@@ -2,14 +2,14 @@
 
 **Programación en Python y Manipulación de Datos** · Diplomado en Ingeniería de Datos con Python · UDLA
 
-El proyecto integrador es la **evaluación central del curso (100% del examen)**. Construyes un **pipeline de datos completo en Python**, que corre **localmente en tu computador**, sobre el dataset del curso (Olist). Se desarrolla en equipo a lo largo de las tres unidades y se presenta en la **Clase 9**.
+El proyecto integrador es la **evaluación central del curso (100% del examen)**. Construyes un **pipeline de datos completo en Python**, que corre **localmente en tu computador**, sobre el dataset del curso (Olist). Se desarrolla **en parejas** a lo largo de las tres unidades y se presenta en la **Clase 9**.
 
 ---
 
 ## Cómo funciona
 
-- **Se trabaja en equipos** (el tamaño se define en clase).
-- Cada equipo **elige uno de los 10 temas** de abajo, todos sobre el **dataset del curso (Olist Brazilian E-Commerce)**.
+- **Se trabaja en parejas.**
+- Cada pareja **elige uno de los 10 temas** de abajo, todos sobre el **dataset del curso (Olist Brazilian E-Commerce)**.
 - El tema se desarrolla en **tres entregas**, una por unidad, que se van construyendo en las prácticas de cada clase.
 - **Opcional (suma valor):** complementar el análisis con un **dataset propio** (datos.gob.cl, INE, Banco Central, CMF, Kaggle, etc.) o con una **API externa**.
 - **La IA es tu copiloto, no tu piloto:** puedes y se espera que la uses como asistente de código, pero tienes que entender y poder explicar cada parte de lo que entregas.
@@ -87,10 +87,39 @@ Un ejemplo completo de proyecto que cumple la rúbrica, y la revisión de esta r
 - [ ] Tests con `pytest` (incluye la salida de `pytest -v` en el README).
 - [ ] `requirements.txt` con las dependencias.
 - [ ] README claro: qué hace, cómo instalarlo y cómo ejecutarlo.
-- [ ] Presentación final (15 min) basada en el template del curso.
+- [ ] Presentación final (15 min) basada en el template del curso (`clases/clase-03/material/template_presentacion_proyecto.pptx`).
 
 ---
 
 ## Presentación final (Clase 9)
 
-Formato demo ejecutiva: **problema de negocio → datos → arquitectura → demo del pipeline → resultados → valor generado**. **15 minutos por equipo + 5 de preguntas.**
+Formato demo ejecutiva: **problema de negocio → datos → arquitectura → demo del pipeline → resultados → valor generado**. **15 minutos por pareja + 5 de preguntas.** Ambos integrantes presentan.
+
+---
+
+## Template de la presentación
+
+El archivo editable está en [`clases/clase-03/material/template_presentacion_proyecto.pptx`](clases/clase-03/material/template_presentacion_proyecto.pptx). Es solo de **formato**: cada slide indica qué debe ir y cuánto tiempo. Total: 15 minutos.
+
+| # | Slide | Qué debe ir | Min |
+|---|---|---|---|
+| 1 | Portada | Título del proyecto, tema, nombres de la pareja | 0,5 |
+| 2 | Problema de negocio | ¿Qué pregunta responde? ¿Para quién? ¿Por qué importa? | 2 |
+| 3 | Los datos | Tablas o fuentes, tamaño, formatos y calidad | 2 |
+| 4 | Arquitectura | Diagrama entrada → proceso → salida y herramientas | 2 |
+| 5 | Demo | El pipeline corriendo en vivo, con un comando | 3 |
+| 6 | Resultados | 2 o 3 hallazgos con tabla o gráfico | 2 |
+| 7 | Calidad y buenas prácticas | Validación, logging, tests, `.env`, README | 1 |
+| 8 | Valor de negocio | Qué decisión permite y próximos pasos | 1,5 |
+| 9 | Aprendizajes e IA | Cómo usaron la IA y qué aprendieron | 1 |
+
+## Mapa: de cada clase a tu presentación
+
+Esta tabla se completa a medida que avanza el curso: en cada clase conectamos lo aprendido con una slide de tu presentación.
+
+| Clase | Qué aprendes | Dónde cae en tu presentación |
+|---|---|---|
+| 1–2 | Entorno, Git, leer y ejecutar un script | 7 · Calidad y buenas prácticas (entorno reproducible) |
+| 3 | Lista, tupla, set y diccionario | 3 · Los datos · 4 · Arquitectura · 5 · Demo |
+| 4 | CSV, Excel, JSON, Parquet, API, `.env`, PII | 3 · Los datos · 4 · Arquitectura · 7 · Buenas prácticas |
+| Siguientes | (se agregan clase a clase) | 4 · Arquitectura · 6 · Resultados · 7 · Calidad · 9 · IA |
