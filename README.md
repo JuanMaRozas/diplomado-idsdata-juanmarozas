@@ -31,14 +31,14 @@ Aquí está todo el material del curso: por cada clase, la **presentación**, la
 | Clase | Sesión | Material |
 |---|---|---|
 | 4 | Leer datos del mundo real: archivos, APIs y secretos | *próximamente* |
-| 5 | Persistencia Local: De pandas a una Base de Datos | *próximamente* |
-| 6 | Automatización, Orquestación y Buenas Prácticas de Producción | *próximamente* |
+| 5 | Pandas desde cero: leer, explorar, filtrar y limpiar | *próximamente* |
+| 6 | Resumir, combinar y guardar: groupby, merge y SQLite | *próximamente* |
 
 ### Unidad 3 — Integración de Datos y Automatización con Python
 | Clase | Sesión | Material |
 |---|---|---|
-| 7 | Integración Avanzada de APIs: Pedir, Combinar y Enriquecer | *próximamente* |
-| 8 | IA Aplicada a Datos, 100% Local (+ rúbrica y proyecto de referencia) | *próximamente* |
+| 7 | Del script al programa: funciones, errores, logging, tests y un proyecto de ejemplo | *próximamente* |
+| 8 | APIs avanzadas, IA local y taller de proyecto | *próximamente* |
 | 9 | Presentaciones del Proyecto Integrador | *próximamente* |
 
 ---
@@ -69,7 +69,7 @@ Trabajamos con **Olist Brazilian E-Commerce** (Kaggle), un dataset relacional de
 
 ## Proyecto integrador
 
-Es el 100% del examen. Se desarrolla en **equipos** y se presenta en la Clase 9. Cada equipo elige uno de **10 temas** sobre el dataset del curso.
+Es el 100% del examen. Se desarrolla en **parejas** y se presenta en la Clase 9. Cada pareja elige uno de **10 temas** sobre el dataset del curso.
 
 ➡️ **Temas, entregables y rúbrica:** [`proyecto-integrador.md`](proyecto-integrador.md)
 

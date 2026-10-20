@@ -58,8 +58,8 @@ Panorama ejecutivo con KPIs integrales (GMV, ticket promedio, satisfacción, ent
 | Unidad | Entregable |
 |---|---|
 | **Unidad 1 (Clases 1–3)** | Script que lee ≥2 tablas/fuentes del dataset, valida la calidad de los datos y genera un reporte básico del tema elegido. |
-| **Unidad 2 (Clases 4–6)** | Pipeline ETL con pandas: limpieza, transformación y carga a Parquet o base de datos local (SQLite/PostgreSQL). Logging, tests y configuración externalizada. |
-| **Unidad 3 (Clases 7–9)** | Pipeline integrado: ≥2 fuentes (idealmente una API externa) y resultados en formato ejecutivo. Un componente de IA local suma valor. |
+| **Unidad 2 (Clases 4–6)** | Pipeline ETL con pandas: lee ≥2 tablas, limpia, combina (`merge`), resume (`groupby`) y guarda el resultado en SQLite o Parquet sin duplicar al repetir la ejecución. |
+| **Unidad 3 (Clases 7–9)** | Programa robusto: funciones, manejo de errores, logging, tests con `pytest` y configuración externa; ≥2 fuentes (idealmente una API externa) y resultados en formato ejecutivo. Un componente de IA local suma valor. Presentación en la Clase 9. |
 
 ---
 
@@ -74,7 +74,7 @@ Panorama ejecutivo con KPIs integrales (GMV, ticket promedio, satisfacción, ent
 
 Aprobación: nota 4,0 · asistencia mínima de 70% a las sesiones sincrónicas.
 
-Un ejemplo completo de proyecto que cumple la rúbrica, y la revisión de esta rúbrica, se trabajan en la Clase 8.
+La rúbrica se revisa en la Clase 3. Un ejemplo completo de proyecto que la cumple se presenta en la Clase 7, y en la Clase 8 hay un taller para ordenar tu entrega.
 
 ---
 
@@ -120,6 +120,10 @@ Esta tabla se completa a medida que avanza el curso: en cada clase conectamos lo
 | Clase | Qué aprendes | Dónde cae en tu presentación |
 |---|---|---|
 | 1–2 | Entorno, Git, leer y ejecutar un script | 7 · Calidad y buenas prácticas (entorno reproducible) |
-| 3 | Lista, tupla, set y diccionario | 3 · Los datos · 4 · Arquitectura · 5 · Demo |
+| 3 | Lista, tupla, set y diccionario; rúbrica y formato | 3 · Los datos · 4 · Arquitectura · 5 · Demo |
 | 4 | CSV, Excel, JSON, Parquet, API, `.env`, PII | 3 · Los datos · 4 · Arquitectura · 7 · Buenas prácticas |
-| Siguientes | (se agregan clase a clase) | 4 · Arquitectura · 6 · Resultados · 7 · Calidad · 9 · IA |
+| 5 | pandas: DataFrame, filtrar, columnas nuevas y fechas, limpiar | 3 · Los datos · 4 · Arquitectura · 6 · Resultados · 7 · Calidad |
+| 6 | `groupby`, `merge`, SQLite y cargas que no duplican | 3 · Los datos · 4 · Arquitectura · 6 · Resultados · 7 · Calidad |
+| 7 | Funciones, errores, logging, tests, config; proyecto de ejemplo | 7 · Calidad y buenas prácticas · 5 · Demo |
+| 8 | Paginación, dos fuentes en una tabla, IA local; taller de proyecto | 3 · Los datos · 4 · Arquitectura · 8 · Valor · 9 · Aprendizajes e IA |
+| 9 | Presentaciones y cierre | Todas |
