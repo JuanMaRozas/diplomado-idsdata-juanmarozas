@@ -23,10 +23,10 @@ Debe aparecer la carpeta `clases/clase-03`. Si el botón ▶ de VS Code no funci
 
 | Bloque | Qué hacemos |
 |---|---|
-| 1 | **Puesta al día**: `git pull`, entorno y repaso de `03a_leer_datos.py` |
+| 1 | **Puesta al día**: repaso de `03a_leer_datos.py` |
 | 2 | **Las 4 estructuras**, una por una, con su código línea por línea: lista, tupla, set y diccionario |
 | 3 | **Tu proyecto integrador**: rúbrica, formato de la presentación, template y tu primera ficha (en parejas) |
-| 4 | Cierre y tarea |
+| 4 | Cierre y qué sigue |
 
 ## Scripts de la clase
 
@@ -63,10 +63,8 @@ python clases/clase-03/material/05_ficha_proyecto.py
 2. Ejecuta `01` a `04`, de a uno, y compara con el "Debes ver" de la presentación.
 3. Anota tus dudas: las revisamos al inicio de la Clase 4.
 
-## Tarea para la próxima clase
+## Qué sigue
 
-1. Ejecuta de nuevo `01` a `04`. En cada uno **cambia algo** (un estado, una traducción), guarda y ejecuta. Anota qué pasó.
-2. Con tu pareja: **elijan el tema** del proyecto, completen `05_ficha_proyecto.py` y descarguen el template.
-3. Escribe con tus palabras: ¿cuándo usarías una lista, una tupla, un set y un diccionario?
+No hay tareas entre clases: todo se trabaja en clase. Lo único que se evalúa es el **proyecto integrador** (Clase 9). Con tu pareja, ve pensando el tema; lo afinamos en clase.
 
 > **Seguridad:** nunca subas a Git tu carpeta `data/` ni tu archivo `.env`.
