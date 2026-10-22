@@ -21,11 +21,3 @@ print("Ahora:", estados)
 
 for estado in estados:      # repite para cada elemento
     print(" - estado:", estado)
-
-estados.append("returned")   # agrega al final
-print("Ahora:", estados)
-
-for estado in estados:      # repite para cada elemento
-    print(" - estado:", estado)
-
-print("El último:", estados[-1])
