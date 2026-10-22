@@ -19,6 +19,7 @@ traduccion = {
     "delivered": "Entregado",
     "shipped": "Enviado",
     "canceled": "Cancelado",
+    "invoiced": "Facturado"
 }
 
 print("El diccionario:", traduccion)

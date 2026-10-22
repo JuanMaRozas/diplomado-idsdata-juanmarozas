@@ -36,7 +36,7 @@ Debe aparecer la carpeta `clases/clase-03`. Si el botón ▶ de VS Code no funci
 | `02_tuplas.py` | Tupla `( )` | La "huella" de una orden (id, estado), que no se puede modificar |
 | `03_sets.py` | Set `{ }` | Estados distintos y órdenes sin reseña (768) |
 | `04_diccionarios.py` | Diccionario `{ : }` | Traducir estados y describir una orden |
-| `05_ficha_proyecto.py` | Las 4 juntas | La ficha de tu proyecto: tema, integrantes, tablas y entregas |
+| `05_ficha_proyecto.py` | Las 4 juntas | La ficha de tu proyecto: tema, integrantes, tablas y unidades |
 | `99_opcional_estructuras_avanzado.py` | — | Versión "profesional" de las 4 estructuras (opcional) |
 
 ## Cómo ejecutar un script
@@ -53,9 +53,17 @@ python clases/clase-03/material/05_ficha_proyecto.py
 
 ## Proyecto integrador
 
-- Reglas, 10 temas, rúbrica y entregas: [`proyecto-integrador.md`](../../proyecto-integrador.md).
+- Reglas, 10 temas y rúbrica: [`proyecto-integrador.md`](../../proyecto-integrador.md), o la versión para abrir en el navegador: [`material/rubrica_y_temas.html`](material/rubrica_y_temas.html).
 - **Template de la presentación** (editable): [`material/template_presentacion_proyecto.pptx`](material/template_presentacion_proyecto.pptx). Es solo de formato: cada slide indica qué debe ir y cuánto tiempo (15 min en total).
 - Se trabaja **en parejas**.
+
+## Guías para repasar en casa
+
+Carpeta [`guias/`](guias/) (cada una en `.md` y `.pdf`):
+
+1. **Listas y tuplas**: ejemplos simples, errores frecuentes y práctica opcional.
+2. **Sets y diccionarios**: incluye cómo se relacionan con una tabla y con una API.
+3. **Material y referencias de apoyo**: lecturas recomendadas (todas opcionales).
 
 ## Si te quedaste atrás
 

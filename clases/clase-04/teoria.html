@@ -254,7 +254,7 @@
     </section>
 
     <section class="slide">
-      <div class="header-bar orange"><h2>Hoy: despacio, un script a la vez</h2></div>
+      <div class="header-bar orange"><h2>Hoy: un script a la vez</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <ul class="bul">
@@ -277,11 +277,11 @@
       <div class="body">
         <table class="brand" style="font-size:22px">
           <tr><th style="width:120px">Bloque</th><th>Qué hacemos</th></tr>
-          <tr><td>1</td><td><b>Puesta al día</b>: <code>git pull</code>, instalar <code>pyarrow</code> y repaso de estructuras</td></tr>
+          <tr><td>1</td><td><b>Puesta al día</b>: instalar <code>pyarrow</code> y repaso de estructuras</td></tr>
           <tr><td>2</td><td><b>Archivos</b>: CSV, Excel, JSON y Parquet, un script por formato</td></tr>
           <tr><td>3</td><td><b>Una API pública real</b>: pedir datos a internet y convertirlos en tabla</td></tr>
           <tr><td>4</td><td><b>Secretos y datos personales</b>: <code>.env</code>, hashing y masking</td></tr>
-          <tr><td>5</td><td><b>Tu proyecto</b>: dónde cae lo de hoy en tu presentación, y tarea</td></tr>
+          <tr><td>5</td><td><b>Tu proyecto</b>: dónde cae lo de hoy en tu presentación, y qué sigue</td></tr>
         </table>
       </div>
       <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
@@ -296,24 +296,21 @@
       <div class="num">01</div>
     </section>
 
-    <section class="slide os-both">
-      <div class="header-bar black"><h2><span class="os both">Mac y Windows</span>Rutina de cada clase + una librería nueva</h2></div>
+    <section class="slide">
+      <div class="header-bar black"><h2>Una librería nueva: <code>pyarrow</code></h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">Entra a la carpeta del repo y activa el entorno <b>una sola vez</b>:<pre class="cmd">cd ~/diplomado-idsdata-juanmarozas
-source .venv/bin/activate        # Mac
-source .venv/Scripts/activate    # Windows</pre></li>
-              <li class="anim">Trae el material nuevo:<pre class="cmd">git pull</pre></li>
-              <li class="anim">Instala la librería de hoy (<code>pyarrow</code>, para Parquet):<pre class="cmd">pip install -r clases/clase-04/material/requirements.txt</pre></li>
+              <li class="anim">Con el entorno ya activo (primera diapositiva de hoy), instala la librería de hoy, <code>pyarrow</code>, para el formato Parquet:<pre class="cmd">pip install -r clases/clase-04/material/requirements.txt</pre></li>
+              <li class="anim">Comprueba que quedó instalada:<pre class="cmd">python -c "import pyarrow; print(pyarrow.__version__)"</pre></li>
             </ol>
           </div>
           <div class="col-r ok anim">
             <div class="big">Debes ver</div>
-            <div class="small"><b>(.venv)</b> al inicio de la línea, la carpeta <b>clase-04</b> en VS Code, y al final del <code>pip</code>: <b>Successfully installed pyarrow</b> (o "already satisfied").</div>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small"><code>pip</code> no se encuentra: falta activar el entorno. Internet lento: el <code>pip</code> puede tardar, espera. Si el botón ▶ falla, mira la diapositiva "Si el botón ▶ no aparece" de la Clase 3.</div></div>
+            <div class="small">Al final del <code>pip</code>: <b>Successfully installed pyarrow</b> (o "already satisfied"). Y después, un <b>número de versión</b>.</div>
+            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small"><code>pip</code> no se encuentra: falta activar el entorno (primera diapositiva de hoy). Internet lento: el <code>pip</code> puede tardar, espera.</div></div>
           </div>
         </div>
       </div>
@@ -347,14 +344,14 @@ source .venv/Scripts/activate    # Windows</pre></li>
         <div class="twocol">
           <div class="col-l top">
             <ul class="bul">
-              <li class="anim">Veo <b>(.venv)</b> en mi terminal.</li>
+              <li class="anim">Hice la <b>rutina de inicio</b> (la primera diapositiva de hoy).</li>
               <li class="anim">Veo la carpeta <code>clase-04</code>.</li>
               <li class="anim">El <code>pip</code> terminó sin errores.</li>
             </ul>
           </div>
           <div class="col-r anim">
             <div class="big">¿Todos aquí?</div>
-            <div class="small">Levanta la mano o escribe "listo" en el chat. Quien no lo logre, lo ayudamos en la pausa.</div>
+            <div class="small">Levanta la mano o escribe "listo" en el chat. Quien no lo logre, lo ayudamos mientras seguimos.</div>
           </div>
         </div>
       </div>
@@ -775,30 +772,7 @@ Su nombre: Tienda A
       <div class="footer-bar"></div>
     </section>
 
-    <section class="slide">
-      <div class="header-bar orange"><h2>Pausa</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ul class="bul">
-              <li class="anim">Vimos CSV, Excel y JSON: tres formas de llegar a una tabla.</li>
-              <li class="anim">Repasamos listas y diccionarios, ahora anidados.</li>
-              <li class="anim">Si algo no calza, es el momento de preguntar.</li>
-            </ul>
-          </div>
-          <div class="col-r anim">
-            <div class="big">Pausa de 10 minutos</div>
-            <div class="small">Aprovecha para ponerte al día. Después vemos Parquet y pasamos a pedir datos a internet con una API.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
+        <section class="slide">
       <div class="header-bar black"><h2>Parquet: el formato liviano y rápido</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
@@ -1045,10 +1019,10 @@ except requests.exceptions.RequestException:
           <div class="col-r narrow ann anim">
             <div class="big">Qué significa</div>
             <div class="row anim"><code>filas = []</code> una <b>lista vacía</b> donde iremos agregando filas.</div>
-            <div class="row anim"><code>for nombre in [...]:</code> repite para cada indicador de la lista.</div>
+            <div class="row anim"><code>for nombre in [...]:</code> repite por cada indicador.</div>
             <div class="row anim"><code>filas.append({...})</code> agrega <b>un diccionario</b> por indicador.</div>
-            <div class="row anim"><code>pd.DataFrame(filas)</code> convierte la lista de diccionarios en una tabla.</div>
-            <div class="row anim"><code>except ...:</code> si no hubo conexión: avisa, sin romper el programa.</div>
+            <div class="row anim"><code>pd.DataFrame(filas)</code> lo convierte en una tabla.</div>
+            <div class="row anim"><code>except ...:</code> sin conexión, avisa sin romper el programa.</div>
           </div>
         </div>
       </div>
@@ -1418,7 +1392,7 @@ Email enmascarado: j***@gmail.com</pre>
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">Haz la rutina: entrar, activar, <code>git pull</code>, <code>pip install</code>.</li>
+              <li class="anim">Repite la <b>rutina de inicio</b> (segunda diapositiva de hoy) e instala <code>pyarrow</code>.</li>
               <li class="anim">Ejecuta <code>01</code> a <code>07</code>, de a uno, con ▶.</li>
               <li class="anim">Compara con el "Debes ver" de cada diapositiva.</li>
               <li class="anim">Anota dudas: las revisamos al inicio de la próxima clase.</li>
@@ -1435,14 +1409,7 @@ Email enmascarado: j***@gmail.com</pre>
       <div class="footer-bar"></div>
     </section>
 
-    <section class="slide l6">
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="q anim">¿De qué formato o fuente<br>llegan los datos en tu trabajo,<br>y cuál te cuesta más leer?</div>
-      <div class="uline"></div>
-      <div class="hint anim">Comparte tu respuesta antes de cerrar.</div>
-    </section>
-
-    <section class="slide l1 slide-closing">
+        <section class="slide l1 slide-closing">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <h1 class="ttl closing anim">Leer, proteger, conectar</h1>
       <div class="closing-sub anim">CSV, Excel, JSON, Parquet, una API y cuidado de secretos · trae tu ficha actualizada</div>
@@ -1451,19 +1418,19 @@ Email enmascarado: j***@gmail.com</pre>
     </section>
 
     <section class="slide">
-      <div class="header-bar orange"><h2>Tarea para la próxima clase</h2></div>
+      <div class="header-bar orange"><h2>Qué sigue</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">Ejecuta de nuevo <b>01 a 07</b>, de a uno. En cada uno <b>cambia algo</b> y anota qué pasó.</li>
-              <li class="anim">Con tu pareja: confirmen el <b>tema</b>, listen las <b>tablas</b> y las <b>fuentes</b> de su proyecto, y actualicen su <code>05_ficha_proyecto.py</code>.</li>
-              <li class="anim">Si tu tema usa datos personales, escribe cuál columna protegerías y con qué técnica (hashing o masking).</li>
+              <li class="anim">No hay tareas entre clases: todo lo trabajamos <b>aquí, en clase</b>.</li>
+              <li class="anim">Lo único que se evalúa es el <b>proyecto integrador</b>, que se presenta en la Clase 9.</li>
+              <li class="anim">Con tu pareja, vayan afinando el <b>tema</b>, las <b>tablas</b> y las <b>fuentes</b>; lo trabajamos en clase.</li>
             </ol>
           </div>
           <div class="col-r anim">
-            <div class="big">Qué sigue</div>
+            <div class="big">La Clase 5</div>
             <div class="small">Con los datos ya leídos, el siguiente paso es <b>trabajarlos con pandas</b>: seleccionar, limpiar, combinar y resumir. Veremos en qué slide de tu presentación caen los resultados.<br><br><b>Opcional:</b> los scripts <code>99_opcional_*</code> son versiones "profesionales" de lo de hoy.</div>
           </div>
         </div>
@@ -1495,7 +1462,7 @@ Email enmascarado: j***@gmail.com</pre>
           </div>
           <div class="col-r anim">
             <div class="big">Para curiosos</div>
-            <div class="small">Son la versión "profesional" de los scripts de hoy. Usan funciones, logging y ciclos que veremos más adelante. No son parte de la tarea.</div>
+            <div class="small">Son la versión "profesional" de los scripts de hoy. Usan funciones, logging y ciclos que veremos más adelante. Son opcionales.</div>
           </div>
         </div>
       </div>

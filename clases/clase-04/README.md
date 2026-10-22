@@ -24,11 +24,11 @@ Debe aparecer la carpeta `clases/clase-04` y el `pip` debe terminar sin errores.
 
 | Bloque | Qué hacemos |
 |---|---|
-| 1 | **Puesta al día**: `git pull`, instalar `pyarrow` y repaso de estructuras |
+| 1 | **Puesta al día**: instalar `pyarrow` y repaso de estructuras |
 | 2 | **Archivos**: CSV, Excel, JSON y Parquet, un script por formato |
 | 3 | **Una API pública real** (mindicador.cl): pedir datos a internet y convertirlos en tabla |
 | 4 | **Secretos y datos personales**: `.env`, hashing y masking |
-| 5 | **Tu proyecto**: dónde cae lo de hoy en tu presentación, y tarea |
+| 5 | **Tu proyecto**: dónde cae lo de hoy en tu presentación, y qué sigue |
 
 ## Scripts de la clase
 
@@ -76,10 +76,8 @@ Lo de hoy alimenta tu presentación: los formatos y fuentes → slide 3 (**Los d
 2. Ejecuta `01` a `07`, de a uno. Solo `05` y `06` necesitan internet.
 3. Compara con el "Debes ver" de la presentación y anota tus dudas.
 
-## Tarea para la próxima clase
+## Qué sigue
 
-1. Ejecuta de nuevo `01` a `07` y **cambia algo** en cada uno. Anota qué pasó.
-2. Con tu pareja: confirmen el tema, listen las **tablas** y las **fuentes** de su proyecto, y actualicen su `05_ficha_proyecto.py`.
-3. Si tu tema usa datos personales, escribe qué columna protegerías y con qué técnica (hashing o masking).
+No hay tareas entre clases: todo se trabaja en clase. Lo único que se evalúa es el **proyecto integrador** (Clase 9). Con tu pareja, vayan afinando el tema, las tablas y las fuentes; lo trabajamos en clase.
 
 > **Seguridad:** nunca subas a Git tu carpeta `data/` ni tu archivo `.env`.

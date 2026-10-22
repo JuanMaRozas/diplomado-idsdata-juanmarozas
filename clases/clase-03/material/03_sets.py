@@ -21,8 +21,19 @@ estados_unicos = set(estado_orden)  # sin repetidos
 print("Distintos:", estados_unicos)
 print("Cuántos:", len(estados_unicos))
 
-todas = set(orders["order_id"])      # todas
-con_resena = set(reviews["order_id"])  # con reseña
+todas_1 = orders["order_id"]
+todas = set(orders["order_id"])
+
+print(len(todas_1))
+print(len(todas))
+
+con_resena_1 = reviews["order_id"]     # todas
+con_resena = set(reviews["order_id"])  
+
+print(len(con_resena_1))
+print(len(con_resena))
+
+# con reseña
 sin_resena = todas - con_resena      # resta
 
 print("Sin reseña:", len(sin_resena))

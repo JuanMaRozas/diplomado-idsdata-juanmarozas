@@ -10,7 +10,7 @@ El proyecto integrador es la **evaluación central del curso (100% del examen)**
 
 - **Se trabaja en parejas.**
 - Cada pareja **elige uno de los 10 temas** de abajo, todos sobre el **dataset del curso (Olist Brazilian E-Commerce)**.
-- El tema se desarrolla en **tres entregas**, una por unidad, que se van construyendo en las prácticas de cada clase.
+- El proyecto **crece unidad a unidad**, con lo que vemos en cada clase. No hay tareas entre clases: todo se trabaja en clase, y lo único que se evalúa es el proyecto final.
 - **Opcional (suma valor):** complementar el análisis con un **dataset propio** (datos.gob.cl, INE, Banco Central, CMF, Kaggle, etc.) o con una **API externa**.
 - **La IA es tu copiloto, no tu piloto:** puedes y se espera que la uses como asistente de código, pero tienes que entender y poder explicar cada parte de lo que entregas.
 - Tu proyecto **no se sube a este repositorio**: este repo es del profesor y sirve para recibir el material de las clases. La entrega se hace como indique el profesor (Blackboard u otro).
@@ -53,9 +53,9 @@ Panorama ejecutivo con KPIs integrales (GMV, ticket promedio, satisfacción, ent
 
 ---
 
-## Entregables por unidad
+## Cómo crece el proyecto por unidad
 
-| Unidad | Entregable |
+| Unidad | Qué incluye el proyecto para entonces |
 |---|---|
 | **Unidad 1 (Clases 1–3)** | Script que lee ≥2 tablas/fuentes del dataset, valida la calidad de los datos y genera un reporte básico del tema elegido. |
 | **Unidad 2 (Clases 4–6)** | Pipeline ETL con pandas: lee ≥2 tablas, limpia, combina (`merge`), resume (`groupby`) y guarda el resultado en SQLite o Parquet sin duplicar al repetir la ejecución. |
@@ -74,7 +74,7 @@ Panorama ejecutivo con KPIs integrales (GMV, ticket promedio, satisfacción, ent
 
 Aprobación: nota 4,0 · asistencia mínima de 70% a las sesiones sincrónicas.
 
-La rúbrica se revisa en la Clase 3. Un ejemplo completo de proyecto que la cumple se presenta en la Clase 7, y en la Clase 8 hay un taller para ordenar tu entrega.
+La rúbrica se revisa en la Clase 3 (también está en [`rubrica_y_temas.html`](clases/clase-03/material/rubrica_y_temas.html), con el listado de temas). Un ejemplo completo de proyecto que la cumple se presenta en la Clase 7, y en la Clase 8 hay un taller para ordenar tu entrega.
 
 ---
 
