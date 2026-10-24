@@ -14,5 +14,5 @@
 #                instalada junto con otras librerías; si es así, pip lo
 #                dirá ("already satisfied") y no reinstala nada.
 
-pyarrow>=15.0
+pyarrow>=15.0,<18   # <18: compatible con el numpy 1.26.4 de la Clase 1
 requests>=2.31

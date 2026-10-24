@@ -1,7 +1,7 @@
 """
 99_opcional_api_segura.py
 ================
-CLASE 4 · Lectura de Datos del Mundo Real (Bloque 2: APIs seguras)
+CLASE 5 · Lectura de Datos del Mundo Real (Bloque 2: APIs seguras)
 DPL1046 · Programación en Python y Manipulación de Datos · UDLA
 
 OBJETIVO DEL SCRIPT
@@ -26,7 +26,7 @@ ARCHIVO .env (NO se sube a GitHub; va en .gitignore)
 
 CÓMO SE EJECUTA
 ---------------
-    python clases/clase-04/material/99_opcional_api_segura.py
+    python clases/clase-05/material/99_opcional_api_segura.py
     (requests y python-dotenv ya están instalados desde la Clase 1)
 """
 
@@ -98,7 +98,7 @@ def get_con_reintentos(url: str, headers: dict) -> requests.Response | None:
 
 
 def main() -> None:
-    logging.info("CLASE 4 · Consumiendo una API con secretos y reintentos")
+    logging.info("CLASE 5 · Consumiendo una API con secretos y reintentos")
 
     clave = obtener_api_key()
 

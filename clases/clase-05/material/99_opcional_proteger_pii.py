@@ -1,7 +1,7 @@
 """
 99_opcional_proteger_pii.py
 ==================
-CLASE 4 · Lectura de Datos del Mundo Real (Bloque 2: Seguridad y privacidad)
+CLASE 5 · Lectura de Datos del Mundo Real (Bloque 2: Seguridad y privacidad)
 DPL1046 · Programación en Python y Manipulación de Datos · UDLA
 
 OBJETIVO DEL SCRIPT
@@ -26,7 +26,7 @@ DOS TÉCNICAS QUE MUESTRA
 
 CÓMO SE EJECUTA
 ---------------
-    python clases/clase-04/material/99_opcional_proteger_pii.py
+    python clases/clase-05/material/99_opcional_proteger_pii.py
 """
 
 import hashlib
@@ -72,7 +72,7 @@ def enmascarar_email(email: str) -> str:
 
 
 def main() -> None:
-    logging.info("CLASE 4 · Protegiendo datos personales antes de procesarlos")
+    logging.info("CLASE 5 · Protegiendo datos personales antes de procesarlos")
 
     # Datos de ejemplo que simulan una tabla de clientes con PII real.
     clientes = pd.DataFrame(

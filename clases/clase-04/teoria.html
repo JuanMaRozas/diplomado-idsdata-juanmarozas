@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DPL1046 · Clase 4 — Leer datos del mundo real: archivos, APIs y secretos</title>
+<title>DPL1046 · Clase 4 — Leer datos del mundo real: archivos y APIs</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Barlow+Condensed:wght@700;800&display=swap');
 
@@ -261,7 +261,6 @@
           <li class="anim"><b>Los datos reales llegan de muchas formas</b>: archivos CSV, Excel, JSON, Parquet, y también desde internet (APIs).</li>
           <li class="anim"><b>Cada script se explica línea por línea</b>, y luego lo ejecutamos: nada se corre sin entenderlo.</li>
           <li class="anim"><b>Usamos lo de la Clase 3</b>: listas y diccionarios aparecen en cada archivo y respuesta de una API.</li>
-          <li class="anim"><b>Cuidamos lo sensible</b>: claves fuera del código y datos personales protegidos.</li>
           <li class="anim"><b>Al final, conectamos con tu proyecto</b>: en qué slide de tu presentación cae cada cosa.</li>
         </ul>
         <div class="quote anim">Pregunta cuando quieras: ningún paso es "obvio".</div>
@@ -280,8 +279,7 @@
           <tr><td>1</td><td><b>Puesta al día</b>: instalar <code>pyarrow</code> y repaso de estructuras</td></tr>
           <tr><td>2</td><td><b>Archivos</b>: CSV, Excel, JSON y Parquet, un script por formato</td></tr>
           <tr><td>3</td><td><b>Una API pública real</b>: pedir datos a internet y convertirlos en tabla</td></tr>
-          <tr><td>4</td><td><b>Secretos y datos personales</b>: <code>.env</code>, hashing y masking</td></tr>
-          <tr><td>5</td><td><b>Tu proyecto</b>: dónde cae lo de hoy en tu presentación, y qué sigue</td></tr>
+          <tr><td>4</td><td><b>Tu proyecto</b>: dónde cae lo de hoy en tu presentación, y qué sigue</td></tr>
         </table>
       </div>
       <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
@@ -1065,282 +1063,8 @@ UF hoy: (un valor)
     <section class="slide l2">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="kicker anim">Bloque 4</div>
-      <div class="stitle anim">Secretos y<br>datos personales</div>
-      <div class="num">04</div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2>¿Por qué una clave no se escribe en el código?</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ul class="bul">
-              <li class="anim">Una <b>clave de API</b> es como la contraseña de un servicio: quien la tenga, puede usarlo <b>a tu nombre</b>.</li>
-              <li class="anim">Si la escribes en el código y subes el código a GitHub, <b>cualquiera la ve</b>. Hay robots que revisan GitHub todo el día buscando claves.</li>
-              <li class="anim">La clave se guarda <b>aparte</b>, en un archivo que <b>nunca se sube</b>.</li>
-              <li class="anim">Lo mismo vale para contraseñas, tokens y direcciones privadas.</li>
-            </ul>
-          </div>
-          <div class="col-r anim">
-            <div class="big">Regla de oro</div>
-            <div class="small">En el código: <b>nunca</b> una clave escrita. En un archivo <code>.env</code>: sí, y ese archivo está en <code>.gitignore</code>.<br><br>La IA a veces sugiere código con claves escritas: <b>reconócelo y corrígelo</b>.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Cómo se guarda un secreto: <code>.env</code></h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="cards">
-          <div class="card anim"><div class="ic">📄</div><div class="t">1 · .env</div><div class="d">Un archivo de texto en la raíz del repo: <code>API_KEY=mi_clave</code>.</div></div>
-          <div class="card anim"><div class="ic">🚫</div><div class="t">2 · .gitignore</div><div class="d">Le dice a Git que <b>no suba</b> ese archivo. Ya lo incluye el repo.</div></div>
-          <div class="card anim"><div class="ic">🔑</div><div class="t">3 · Tu script</div><div class="d">Lo lee con <code>load_dotenv()</code> y <code>os.getenv("API_KEY")</code>.</div></div>
-        </div>
-        <div class="quote anim">El script lee el secreto, pero el secreto <b>nunca viaja con el código</b>.</div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2>Crea tu archivo <code>.env</code></h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ol class="steps">
-              <li class="anim">En la terminal, en la raíz del repo, con el entorno activo:<pre class="cmd">echo "API_KEY=clave_de_ejemplo_1234" > .env</pre></li>
-              <li class="anim">Comprueba que se creó:<pre class="cmd">ls -a</pre></li>
-              <li class="anim">Comprueba que Git lo ignora (no debe aparecer):<pre class="cmd">git status</pre></li>
-            </ol>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Debes ver</div>
-            <div class="small">En <code>ls -a</code> aparece <b>.env</b>. En <code>git status</code> <b>no aparece</b> .env como archivo nuevo.<br><br>Si ya tenías un <code>.env</code>, no lo borres: agrégale esa línea.</div>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small"><code>ls -a</code> no existe en CMD: usa <b>Git Bash</b>. Si <code>.env</code> aparece en <code>git status</code>, avísame: no lo subas.</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2><code>06_secretos_env.py</code> · Leamos línea por línea (1/2)</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code">import os
-import requests
-from dotenv import load_dotenv
-
-load_dotenv()                      <span class="c"># lee el archivo .env</span>
-clave = os.getenv(<span class="s">"API_KEY"</span>)       <span class="c"># busca la variable API_KEY</span>
-
-if clave is None:
-    print(<span class="s">"No hay API_KEY en tu archivo .env"</span>)
-    print(<span class="s">"Crea el archivo .env en la raíz del repo (ver el comando arriba)."</span>)</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim"><code>load_dotenv</code> herramienta que lee el <code>.env</code>.</div>
-            <div class="row anim"><code>load_dotenv()</code> lee el <code>.env</code>.</div>
-            <div class="row anim"><code>os.getenv("API_KEY")</code> busca <code>API_KEY</code>; si no existe, da <code>None</code>.</div>
-            <div class="row anim"><code>if clave is None:</code> "si no hay clave": avisa.</div>
-            <div class="row anim"><code>else:</code> si hay clave, sigue.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2><code>06_secretos_env.py</code> · Leamos línea por línea (2/2)</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code">else:
-    print(<span class="s">"Clave cargada. Termina en:"</span>, clave[-4:])
-    cabeceras = {<span class="s">"Authorization"</span>: <span class="s">"Bearer "</span> + clave}
-    try:
-        r = requests.get(<span class="s">"https://mindicador.cl/api/dolar"</span>,
-                         headers=cabeceras, timeout=10)
-        r.raise_for_status()
-        ultimo = r.json()[<span class="s">"serie"</span>][0]
-        print(<span class="s">"Dólar al"</span>, ultimo[<span class="s">"fecha"</span>][:10], <span class="s">":"</span>, ultimo[<span class="s">"valor"</span>])
-    except requests.exceptions.RequestException:
-        print(<span class="s">"No pude conectar con la API."</span>)</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim"><code>clave[-4:]</code> los <b>últimos 4 caracteres</b>: confirmamos la clave sin mostrarla completa.</div>
-            <div class="row anim"><code>cabeceras = {...}</code> un <b>diccionario</b> con el formato estándar para mandar la clave.</div>
-            <div class="row anim"><code>"Bearer " + clave</code> el texto "Bearer " pegado a la clave.</div>
-            <div class="row anim"><code>headers=cabeceras</code> manda esas cabeceras junto con el pedido.</div>
-            <div class="row anim"><code>["serie"][0]</code> la lista "serie", primer elemento: el valor más reciente.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Ejecuta <code>06_secretos_env.py</code></h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ol class="steps">
-              <li class="anim">Abre <code>06_secretos_env.py</code> (Explorador → clase-04 → material).</li>
-              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-04/material/06_secretos_env.py</pre></li>
-              <li class="anim"><b>Prueba</b>: cambia la clave en el <code>.env</code>, guarda y vuelve a ▶: ¿cambian los 4 últimos caracteres?</li>
-            </ol>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Debes ver (abreviado)</div>
-            <pre class="cmd out">Clave cargada. Termina en: 1234
-Dólar al 2026-..-.. : (un valor)
-
-(si no hay .env:)
-No hay API_KEY en tu archivo .env</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Datos personales (PII): qué son y por qué protegerlos</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ul class="bul">
-              <li class="anim"><b>PII</b> = información que identifica a una persona: <b>RUT, nombre, email, teléfono, dirección</b>.</li>
-              <li class="anim">En Chile la protege la <b>Ley 19.628</b>. Un buen ingeniero de datos no trabaja con RUT y correos "en crudo" si puede evitarlo.</li>
-              <li class="anim"><b>Antes de enviar datos a un sistema externo o a una IA</b>, protégelos.</li>
-              <li class="anim">Dos técnicas simples: <b>hashing</b> y <b>masking</b>.</li>
-            </ul>
-          </div>
-          <div class="col-r anim">
-            <div class="big">Dos técnicas</div>
-            <div class="small"><b>Hashing</b>: el RUT se convierte en un código que no se puede revertir; el mismo RUT da siempre el mismo código, así puedes cruzar tablas sin guardar el RUT real.<br><br><b>Masking</b>: del email solo se ve una parte: <code>j***@gmail.com</code>.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2><code>07_proteger_pii.py</code> · Leamos línea por línea (1/2)</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code">import hashlib
-
-SALT = <span class="s">"udla-dpl1046"</span>          <span class="c"># texto secreto que se mezcla antes de hashear</span>
-rut = <span class="s">"12.345.678-9"</span>
-email = <span class="s">"juan@gmail.com"</span>
-
-<span class="c"># 1) Hashing: el RUT se convierte en un código que no se puede revertir</span>
-texto = (SALT + rut).encode(<span class="s">"utf-8"</span>)
-rut_hash = hashlib.sha256(texto).hexdigest()[:16]
-print(<span class="s">"RUT original:"</span>, rut)
-print(<span class="s">"RUT hasheado:"</span>, rut_hash)</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim"><code>import hashlib</code> trae la herramienta de hashing.</div>
-            <div class="row anim"><code>SALT = "..."</code> texto secreto que se mezcla con el dato: hace más difícil adivinarlo.</div>
-            <div class="row anim"><code>.encode("utf-8")</code> convierte el texto a bytes, que es lo que necesita el hash.</div>
-            <div class="row anim"><code>sha256(...).hexdigest()</code> calcula el código irreversible.</div>
-            <div class="row anim"><code>[:16]</code> nos quedamos con los primeros 16 caracteres.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2><code>07_proteger_pii.py</code> · Leamos línea por línea (2/2)</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code"><span class="c"># 2) Masking: del email solo se ve la primera letra</span>
-usuario, dominio = email.split(<span class="s">"@"</span>)
-email_masked = usuario[0] + <span class="s">"***@"</span> + dominio
-print(<span class="s">"Email original:"</span>, email)
-print(<span class="s">"Email enmascarado:"</span>, email_masked)</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim"><code>email.split("@")</code> parte el texto en dos, en la arroba: usuario y dominio.</div>
-            <div class="row anim"><code>usuario, dominio = ...</code> guarda cada parte en su propia variable.</div>
-            <div class="row anim"><code>usuario[0]</code> la primera letra del usuario.</div>
-            <div class="row anim"><code>+ "***@" +</code> une la letra, los asteriscos y el dominio.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Ejecuta <code>07_proteger_pii.py</code></h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ol class="steps">
-              <li class="anim">Abre <code>07_proteger_pii.py</code> (Explorador → clase-04 → material).</li>
-              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-04/material/07_proteger_pii.py</pre></li>
-              <li class="anim"><b>Ejecútalo dos veces</b>: el hash del mismo RUT es idéntico. Luego cambia un dígito del RUT: el hash cambia por completo.</li>
-            </ol>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Debes ver (abreviado)</div>
-            <pre class="cmd out">RUT original: 12.345.678-9
-RUT hasheado: 4387f2a3680b827c
-Email original: juan@gmail.com
-Email enmascarado: j***@gmail.com</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide l2">
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="kicker anim">Bloque 5</div>
       <div class="stitle anim">Tu proyecto</div>
-      <div class="num">05</div>
+      <div class="num">04</div>
     </section>
 
     <section class="slide">
@@ -1352,8 +1076,6 @@ Email enmascarado: j***@gmail.com</pre>
           <tr><td><b>CSV, Excel, JSON, Parquet</b></td><td>Describir de dónde vienen tus datos y en qué formato</td><td>3 · Los datos</td></tr>
           <tr><td><b>API pública</b></td><td>Una segunda fuente para integrar (opcional, suma valor)</td><td>3 · Los datos · 4 · Arquitectura</td></tr>
           <tr><td><b>Parquet</b></td><td>Formato de salida de tu pipeline</td><td>4 · Arquitectura</td></tr>
-          <tr><td><b><code>.env</code> y secretos</b></td><td>"Sin credenciales en el código" (15% de la rúbrica)</td><td>7 · Calidad y buenas prácticas</td></tr>
-          <tr><td><b>PII: hashing y masking</b></td><td>Cuidar datos personales si tu tema los usa</td><td>7 · Calidad y buenas prácticas</td></tr>
         </table>
         <div class="quote anim">Recuerda: <b>≥2 fuentes o tablas</b> es parte de la rúbrica. Hoy viste varias formas de conseguirlas.</div>
       </div>
@@ -1411,8 +1133,8 @@ Email enmascarado: j***@gmail.com</pre>
 
         <section class="slide l1 slide-closing">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <h1 class="ttl closing anim">Leer, proteger, conectar</h1>
-      <div class="closing-sub anim">CSV, Excel, JSON, Parquet, una API y cuidado de secretos · trae tu ficha actualizada</div>
+      <h1 class="ttl closing anim">Leer y conectar</h1>
+      <div class="closing-sub anim">CSV, Excel, JSON, Parquet y una API · trae tu ficha actualizada</div>
       <div class="meta anim">DPL1046 · Programación en Python y Manipulación de Datos · PhD. Juan Manuel Rozas</div>
       <div class="barbottom"></div>
     </section>
@@ -1431,7 +1153,7 @@ Email enmascarado: j***@gmail.com</pre>
           </div>
           <div class="col-r anim">
             <div class="big">La Clase 5</div>
-            <div class="small">Con los datos ya leídos, el siguiente paso es <b>trabajarlos con pandas</b>: seleccionar, limpiar, combinar y resumir. Veremos en qué slide de tu presentación caen los resultados.<br><br><b>Opcional:</b> los scripts <code>99_opcional_*</code> son versiones "profesionales" de lo de hoy.</div>
+            <div class="small">Empezamos con <b>secretos y datos personales</b> (<code>.env</code>, hashing y masking) y luego <b>trabajamos los datos con pandas</b>: seleccionar, limpiar y combinar.<br><br><b>Opcional:</b> los scripts <code>99_opcional_*</code> son versiones "profesionales" de lo de hoy.</div>
           </div>
         </div>
       </div>
@@ -1456,8 +1178,6 @@ Email enmascarado: j***@gmail.com</pre>
             <ul class="bul">
               <li class="anim"><code>99_opcional_leer_formatos.py</code>: los 4 formatos juntos, con logging y funciones.</li>
               <li class="anim"><code>99_opcional_consumir_api.py</code>: la API con manejo de errores completo.</li>
-              <li class="anim"><code>99_opcional_api_segura.py</code>: secretos en <code>.env</code> y <b>reintentos con espera creciente</b> (backoff).</li>
-              <li class="anim"><code>99_opcional_proteger_pii.py</code>: hashing y masking aplicados a toda una columna de una tabla.</li>
             </ul>
           </div>
           <div class="col-r anim">

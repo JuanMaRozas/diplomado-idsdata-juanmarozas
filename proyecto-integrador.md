@@ -121,8 +121,8 @@ Esta tabla se completa a medida que avanza el curso: en cada clase conectamos lo
 |---|---|---|
 | 1–2 | Entorno, Git, leer y ejecutar un script | 7 · Calidad y buenas prácticas (entorno reproducible) |
 | 3 | Lista, tupla, set y diccionario; rúbrica y formato | 3 · Los datos · 4 · Arquitectura · 5 · Demo |
-| 4 | CSV, Excel, JSON, Parquet, API, `.env`, PII | 3 · Los datos · 4 · Arquitectura · 7 · Buenas prácticas |
-| 5 | pandas: DataFrame, filtrar, columnas nuevas y fechas, limpiar | 3 · Los datos · 4 · Arquitectura · 6 · Resultados · 7 · Calidad |
+| 4 | CSV, Excel, JSON, Parquet y API | 3 · Los datos · 4 · Arquitectura |
+| 5 | pandas: DataFrame, filtrar, columnas nuevas y fechas, limpiar; `.env` y datos personales (PII) | 3 · Los datos · 4 · Arquitectura · 6 · Resultados · 7 · Calidad |
 | 6 | `groupby`, `merge`, SQLite y cargas que no duplican | 3 · Los datos · 4 · Arquitectura · 6 · Resultados · 7 · Calidad |
 | 7 | Funciones, errores, logging, tests, config; proyecto de ejemplo | 7 · Calidad y buenas prácticas · 5 · Demo |
 | 8 | Paginación, dos fuentes en una tabla, IA local; taller de proyecto | 3 · Los datos · 4 · Arquitectura · 8 · Valor · 9 · Aprendizajes e IA |

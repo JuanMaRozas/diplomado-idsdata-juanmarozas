@@ -1,9 +1,9 @@
 """
-DPL1046 · Clase 4 · 07_proteger_pii.py
+DPL1046 · Clase 5 · 07_proteger_pii.py
 Proteger datos personales (PII): hashing de un RUT y masking de un email.
 
 Córrelo con el botón ▶ o con:
-    python clases/clase-04/material/07_proteger_pii.py
+    python clases/clase-05/material/07_proteger_pii.py
 """
 
 import hashlib

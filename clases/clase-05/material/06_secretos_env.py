@@ -1,12 +1,12 @@
 """
-DPL1046 · Clase 4 · 06_secretos_env.py
+DPL1046 · Clase 5 · 06_secretos_env.py
 Guardar un secreto (clave de una API) FUERA del código, en el archivo .env.
 
 Antes de correrlo, crea el archivo .env en la raíz del repo:
     echo "API_KEY=clave_de_ejemplo_1234" > .env
 
 Córrelo con el botón ▶ o con:
-    python clases/clase-04/material/06_secretos_env.py
+    python clases/clase-05/material/06_secretos_env.py
 """
 
 import os

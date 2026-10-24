@@ -30,8 +30,8 @@ Aquí está todo el material del curso: por cada clase, la **presentación**, la
 ### Unidad 2 — Manipulación y Transformación de Datos con Python
 | Clase | Sesión | Material |
 |---|---|---|
-| 4 | Leer datos del mundo real: archivos, APIs y secretos | *próximamente* |
-| 5 | Pandas desde cero: leer, explorar, filtrar y limpiar | *próximamente* |
+| 4 | Leer datos del mundo real: archivos y APIs | *próximamente* |
+| 5 | Pandas desde cero: secretos, datos personales, filtrar y limpiar | *próximamente* |
 | 6 | Resumir, combinar y guardar: groupby, merge y SQLite | *próximamente* |
 
 ### Unidad 3 — Integración de Datos y Automatización con Python
