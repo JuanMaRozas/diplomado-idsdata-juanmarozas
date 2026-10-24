@@ -25,13 +25,13 @@ Aquí está todo el material del curso: por cada clase, la **presentación**, la
 |---|---|---|
 | 1 | Python en la Industria Real: por qué domina el dato | [clase-01](clases/clase-01/) |
 | 2 | Entorno listo y primeros pasos en Python | [clase-02](clases/clase-02/) |
-| 3 | Las 4 estructuras de Python y tu proyecto integrador | *próximamente* |
+| 3 | Las 4 estructuras de Python y tu proyecto integrador | [clase-03](clases/clase-03/) |
 
 ### Unidad 2 — Manipulación y Transformación de Datos con Python
 | Clase | Sesión | Material |
 |---|---|---|
-| 4 | Leer datos del mundo real: archivos y APIs | *próximamente* |
-| 5 | Pandas desde cero: secretos, datos personales, filtrar y limpiar | *próximamente* |
+| 4 | Leer datos del mundo real: archivos y APIs | [clase-04](clases/clase-04/) |
+| 5 | Pandas desde cero: secretos, datos personales, filtrar y limpiar | [clase-05](clases/clase-05/) |
 | 6 | Resumir, combinar y guardar: groupby, merge y SQLite | *próximamente* |
 
 ### Unidad 3 — Integración de Datos y Automatización con Python
