@@ -1,0 +1,5 @@
+# Configuración del programa: se cambia aquí, sin tocar el código
+datos:
+  carpeta: "data/raw/"
+  pedidos: "olist_orders_dataset.csv"
+umbral_dias_lento: 20

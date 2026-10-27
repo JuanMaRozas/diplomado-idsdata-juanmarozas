@@ -197,6 +197,34 @@
   .nav .count{color:#ccc;font-size:13px;font-variant-numeric:tabular-nums;min-width:52px;text-align:center;}
   .progress{position:fixed;top:0;left:0;height:3px;background:var(--orange);z-index:60;transition:width .3s ease;box-shadow:0 0 8px rgba(255,107,26,.6);}
   .hint-help{position:fixed;bottom:20px;right:20px;color:rgba(255,255,255,.4);font-size:11px;z-index:50;}
+
+  /* ===== MAPA DEL PIPELINE ===== */
+  .pl-row{display:flex;gap:18px;height:290px;}
+  .pl-card{flex:1;position:relative;border-radius:12px;padding:12px 10px 40px;background:#fff;border:2px solid var(--border-light);display:flex;flex-direction:column;}
+  .pl-card:not(:last-child)::after{content:"\25B6";position:absolute;right:-16px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--orange);}
+  .pl-card .cl{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--caption);}
+  .pl-card .n{width:26px;height:26px;border-radius:50%;background:var(--lgray);color:var(--dgray);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;margin:8px 0 6px;}
+  .pl-card .t{font-size:21px;font-weight:800;line-height:1.1;color:var(--black);font-family:'Barlow Condensed',var(--font);}
+  .pl-card .d{font-size:15px;line-height:1.25;color:var(--dgray);margin-top:6px;}
+  .pl-card .st{position:absolute;left:8px;right:8px;bottom:9px;text-align:center;font-size:13.5px;font-weight:700;border-radius:6px;padding:4px 0;}
+  .pl-card.done{background:var(--tint);border-color:#F3C7AE;}
+  .pl-card.done .n{background:var(--orange);color:#fff;}
+  .pl-card.done .st{color:var(--green);}
+  .pl-card.now{background:var(--orange);border-color:var(--orange);box-shadow:0 8px 22px rgba(255,107,26,.35);transform:translateY(-6px);}
+  .pl-card.now .cl,.pl-card.now .t,.pl-card.now .d{color:#fff;}
+  .pl-card.now .n{background:#fff;color:var(--orange);}
+  .pl-card.now .st{background:#fff;color:var(--orange);}
+  .pl-card.next{border-style:dashed;border-color:var(--orange);}
+  .pl-card.next .st{color:var(--orange);}
+  .pl-card.later{opacity:.55;}
+  .pl-card.later .st{color:var(--caption);}
+  .pl-base{margin-top:18px;border-radius:10px;background:var(--black);color:#fff;font-size:16px;padding:9px 16px;text-align:center;}
+  .pl-base b{color:var(--orange);}
+  .pl-msg{display:flex;gap:18px;margin-top:16px;}
+  .pl-msg>div{flex:1;border-radius:12px;padding:16px 20px;font-size:21px;line-height:1.3;color:var(--dgray);background:var(--lgray);}
+  .pl-msg>div:first-child{background:var(--tint);border-left:6px solid var(--orange);}
+  .pl-msg b{color:var(--black);}
+  .pl-msg .k{display:block;color:var(--orange);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
 </style>
 </head>
 <body>
@@ -287,6 +315,19 @@
           <tr><td>7</td><td><b>Secretos y datos personales</b>: <code>.env</code>, hashing y masking</td></tr>
           <tr><td>8</td><td><b>Tu proyecto</b>: dónde cae lo de hoy en tu presentación</td></tr>
         </table>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar orange"><h2>Dónde estamos en el pipeline</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="pl-row"><div class="pl-card done"><div class="cl">Clase 4</div><div class="n">1</div><div class="t">Obtener</div><div class="d">Archivos y APIs</div><div class="st">Hecho ✓</div></div><div class="pl-card now"><div class="cl">Clase 5</div><div class="n">2</div><div class="t">Proteger</div><div class="d">Secretos y datos personales</div><div class="st">Estás aquí</div></div><div class="pl-card now"><div class="cl">Clase 5</div><div class="n">3</div><div class="t">Explorar y limpiar</div><div class="d">pandas: filtrar y limpiar</div><div class="st">Estás aquí</div></div><div class="pl-card later"><div class="cl">Clase 6</div><div class="n">4</div><div class="t">Combinar y resumir</div><div class="d">merge y groupby</div><div class="st">Después</div></div><div class="pl-card later"><div class="cl">Clase 6</div><div class="n">5</div><div class="t">Guardar</div><div class="d">Base de datos SQLite</div><div class="st">Después</div></div><div class="pl-card later"><div class="cl">Clase 7</div><div class="n">6</div><div class="t">Automatizar</div><div class="d">Funciones, errores, logging y tests</div><div class="st">Después</div></div><div class="pl-card later"><div class="cl">Clase 8</div><div class="n">7</div><div class="t">Ampliar</div><div class="d">APIs por partes, dos fuentes e IA local</div><div class="st">Después</div></div><div class="pl-card later"><div class="cl">Clase 9</div><div class="n">8</div><div class="t">Presentar</div><div class="d">Tu proyecto integrador</div><div class="st">Después</div></div></div>
+        <div class="pl-base"><b>Base · Clases 1 a 3:</b> entorno listo, Python y sus 4 estructuras, tu proyecto integrador</div>
+        <div class="pl-msg"><div><span class="k">Hoy</span>Proteger lo sensible y explorar y limpiar una tabla.</div><div><span class="k">Cómo se conecta</span>Cada clase construyó una estación. Hoy sumamos la que está en naranja.</div></div>
       </div>
       <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
       <div class="foot-num"></div>
@@ -1405,7 +1446,21 @@ Email enmascarado: j***@gmail.com</pre>
       <div class="barbottom"></div>
     </section>
 
+    
     <section class="slide">
+      <div class="header-bar orange"><h2>Dónde quedamos hoy</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="pl-row"><div class="pl-card done"><div class="cl">Clase 4</div><div class="n">1</div><div class="t">Obtener</div><div class="d">Archivos y APIs</div><div class="st">Hecho ✓</div></div><div class="pl-card now"><div class="cl">Clase 5</div><div class="n">2</div><div class="t">Proteger</div><div class="d">Secretos y datos personales</div><div class="st">Hoy lo hicimos ✓</div></div><div class="pl-card now"><div class="cl">Clase 5</div><div class="n">3</div><div class="t">Explorar y limpiar</div><div class="d">pandas: filtrar y limpiar</div><div class="st">Hoy lo hicimos ✓</div></div><div class="pl-card next"><div class="cl">Clase 6</div><div class="n">4</div><div class="t">Combinar y resumir</div><div class="d">merge y groupby</div><div class="st">Sigue →</div></div><div class="pl-card next"><div class="cl">Clase 6</div><div class="n">5</div><div class="t">Guardar</div><div class="d">Base de datos SQLite</div><div class="st">Sigue →</div></div><div class="pl-card later"><div class="cl">Clase 7</div><div class="n">6</div><div class="t">Automatizar</div><div class="d">Funciones, errores, logging y tests</div><div class="st">Después</div></div><div class="pl-card later"><div class="cl">Clase 8</div><div class="n">7</div><div class="t">Ampliar</div><div class="d">APIs por partes, dos fuentes e IA local</div><div class="st">Después</div></div><div class="pl-card later"><div class="cl">Clase 9</div><div class="n">8</div><div class="t">Presentar</div><div class="d">Tu proyecto integrador</div><div class="st">Después</div></div></div>
+        <div class="pl-base"><b>Base · Clases 1 a 3:</b> entorno listo, Python y sus 4 estructuras, tu proyecto integrador</div>
+        <div class="pl-msg"><div><span class="k">Hoy completaste</span>Proteger lo sensible y explorar y limpiar una tabla.</div><div><span class="k">Lo que sigue</span>Combinar y resumir (Clase 6)</div></div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+<section class="slide">
       <div class="header-bar black"><h2>Qué sigue</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">

@@ -1,0 +1,7 @@
+pandas
+requests
+sqlalchemy
+loguru
+pyyaml
+numpy
+pytest

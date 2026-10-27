@@ -1,0 +1,7 @@
+# Clase 7 · Librerías nuevas
+# Instalar con:  pip install -r clases/clase-07/material/requirements.txt
+pyyaml>=6.0     # leer config.yaml
+loguru>=0.7     # logging simple (lo usa el proyecto de ejemplo)
+requests>=2.31  # llamadas a APIs (lo usa el proyecto de ejemplo)
+sqlalchemy>=2.0 # base de datos (lo usa el proyecto de ejemplo)
+numpy           # cálculo numérico (ya viene con pandas)

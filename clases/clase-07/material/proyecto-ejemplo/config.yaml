@@ -1,0 +1,11 @@
+datos:
+  carpeta: "../../../../data/raw"   # los CSV de Olist del repo (4 carpetas hacia arriba)
+
+pronostico:
+  semanas: 8
+
+base_datos:
+  uri: "sqlite:///salida/demanda.db"
+
+salida:
+  carpeta: "salida"
