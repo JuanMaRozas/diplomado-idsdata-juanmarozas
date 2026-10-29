@@ -309,7 +309,7 @@
           <tr><td>2</td><td><b>Resumir</b>: <code>groupby</code> (como una tabla dinámica)</td></tr>
           <tr><td>3</td><td><b>Combinar</b>: <code>merge</code> entre tablas</td></tr>
           <tr><td>4</td><td><b>Una pregunta completa</b>: tres tablas, un resultado</td></tr>
-          <tr><td>5</td><td><b>Guardar</b>: SQLite, SQL y cargas que no duplican</td></tr>
+          <tr><td>5</td><td><b>Guardar</b>: SQLite, SQL y correr dos veces sin duplicar</td></tr>
           <tr><td>6</td><td><b>Tu proyecto</b>: mapa y avance de la Unidad 2</td></tr>
         </table>
       </div>
@@ -322,7 +322,7 @@
       <div class="header-bar orange"><h2>Dónde estamos en el pipeline</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
-        <div class="pl-row"><div class="pl-card done"><div class="cl">Clase 4</div><div class="n">1</div><div class="t">Obtener</div><div class="d">Archivos y APIs</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">2</div><div class="t">Proteger</div><div class="d">Secretos y datos personales</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">3</div><div class="t">Explorar y limpiar</div><div class="d">pandas: filtrar y limpiar</div><div class="st">Hecho ✓</div></div><div class="pl-card now"><div class="cl">Clase 6</div><div class="n">4</div><div class="t">Combinar y resumir</div><div class="d">merge y groupby</div><div class="st">Estás aquí</div></div><div class="pl-card now"><div class="cl">Clase 6</div><div class="n">5</div><div class="t">Guardar</div><div class="d">Base de datos SQLite</div><div class="st">Estás aquí</div></div><div class="pl-card later"><div class="cl">Clase 7</div><div class="n">6</div><div class="t">Automatizar</div><div class="d">Funciones, errores, logging y tests</div><div class="st">Después</div></div><div class="pl-card later"><div class="cl">Clase 8</div><div class="n">7</div><div class="t">Ampliar</div><div class="d">APIs por partes, dos fuentes e IA local</div><div class="st">Después</div></div><div class="pl-card later"><div class="cl">Clase 9</div><div class="n">8</div><div class="t">Presentar</div><div class="d">Tu proyecto integrador</div><div class="st">Después</div></div></div>
+        <div class="pl-row"><div class="pl-card done"><div class="cl">Clase 4</div><div class="n">1</div><div class="t">Obtener</div><div class="d">Archivos y APIs</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">2</div><div class="t">Proteger</div><div class="d">Secretos y datos personales</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">3</div><div class="t">Explorar y limpiar</div><div class="d">pandas: filtrar y limpiar</div><div class="st">Hecho ✓</div></div><div class="pl-card now"><div class="cl">Clase 6</div><div class="n">4</div><div class="t">Combinar y resumir</div><div class="d">merge y groupby</div><div class="st">Estás aquí</div></div><div class="pl-card now"><div class="cl">Clase 6</div><div class="n">5</div><div class="t">Guardar</div><div class="d">Base de datos SQLite</div><div class="st">Estás aquí</div></div><div class="pl-card later"><div class="cl">Clase 7</div><div class="n">6</div><div class="t">Automatizar</div><div class="d">Funciones, errores, logging y tests</div><div class="st">Después</div></div><div class="pl-card later"><div class="cl">Clase 8</div><div class="n">7</div><div class="t">Integrar</div><div class="d">Un proyecto completo, de punta a punta</div><div class="st">Después</div></div><div class="pl-card later"><div class="cl">Clase 9</div><div class="n">8</div><div class="t">Presentar</div><div class="d">Tu proyecto integrador</div><div class="st">Después</div></div></div>
         <div class="pl-base"><b>Base · Clases 1 a 3:</b> entorno listo, Python y sus 4 estructuras, tu proyecto integrador</div>
         <div class="pl-msg"><div><span class="k">Hoy</span>Combinar tablas, resumir con groupby y guardar en SQLite.</div><div><span class="k">Cómo se conecta</span>Cada clase construyó una estación. Hoy sumamos la que está en naranja.</div></div>
       </div>
@@ -899,71 +899,8 @@ conexion.close()</pre>
       <div class="footer-bar"></div>
     </section>
 
-    <section class="slide">
-      <div class="header-bar orange"><h2><code>05_carga_repetible.py</code> · Leamos línea por línea</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code" style="font-size:13px">def contar_filas():
-    <span class="s">""</span><span class="s">"Cuenta las filas que hay hoy en la tabla 'pagos'."</span><span class="s">""</span>
-    return pd.read_sql_query(<span class="s">"SELECT COUNT(*) AS n FROM pagos"</span>, conexion)[<span class="s">"n"</span>][0]
-
-
-<span class="c"># 1) Partimos de cero</span>
-pagos.to_sql(<span class="s">"pagos"</span>, conexion, if_exists=<span class="s">"replace"</span>, index=False)
-print(<span class="s">"Primera carga:"</span>, contar_filas())
-
-<span class="c"># 2) Mala idea: append agrega OTRA copia de todo</span>
-pagos.to_sql(<span class="s">"pagos"</span>, conexion, if_exists=<span class="s">"append"</span>, index=False)
-print(<span class="s">"Con append (duplica):"</span>, contar_filas())
-
-<span class="c"># 3) Buena idea: replace deja siempre el mismo resultado</span>
-pagos.to_sql(<span class="s">"pagos"</span>, conexion, if_exists=<span class="s">"replace"</span>, index=False)
-print(<span class="s">"Con replace (no duplica):"</span>, contar_filas())</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim" style="font-size:17px"><code>def contar_filas():</code> define una <b>función</b>: una receta con nombre (la vemos en detalle en la Clase 7).</div>
-            <div class="row anim" style="font-size:17px"><code>"""..."""</code> una nota que explica para qué sirve.</div>
-            <div class="row anim" style="font-size:17px"><code>SELECT COUNT(*) AS n FROM pagos</code> SQL que <b>cuenta las filas</b> de la tabla.</div>
-            <div class="row anim" style="font-size:17px"><code>if_exists="replace"</code> 1ª carga: parte de cero. Resultado: 103.886.</div>
-            <div class="row anim" style="font-size:17px"><code>if_exists="append"</code> 2ª carga: <b>agrega otra copia</b>. Resultado: 207.772.</div>
-            <div class="row anim" style="font-size:17px"><code>if_exists="replace"</code> 3ª carga: vuelve a 103.886.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Ejecuta <code>05_carga_repetible.py</code></h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ol class="steps">
-              <li class="anim">Abre <code>05_carga_repetible.py</code> (Explorador → clase-06 → material).</li>
-              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-06/material/05_carga_repetible.py</pre></li>
-              <li class="anim"><b>Prueba</b>: ejecuta el script <b>dos veces seguidas</b>. ¿Cambian los resultados? ¿Por qué?</li>
-            </ol>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Debes ver (abreviado)</div>
-            <pre class="cmd out">Primera carga: 103886
-Con append (duplica): 207772
-Con replace (no duplica): 103886</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
+    
+    
     <section class="slide l2">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="kicker anim">Bloque 6</div>
@@ -1006,7 +943,7 @@ Con replace (no duplica): 103886</pre>
           </div>
           <div class="col-r anim">
             <div class="big">Aún falta</div>
-            <div class="small">Funciones, manejo de errores, logging y pruebas: lo vemos en la <b>Clase 7</b>. Y un proyecto de ejemplo completo.</div>
+            <div class="small">Funciones, manejo de errores, logging y pruebas: lo vemos en la <b>Clase 7</b>. Y, en la Clase 8, un proyecto de ejemplo completo.</div>
           </div>
         </div>
       </div>
@@ -1075,7 +1012,7 @@ Con replace (no duplica): 103886</pre>
       <div class="header-bar orange"><h2>Dónde quedamos hoy</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
-        <div class="pl-row"><div class="pl-card done"><div class="cl">Clase 4</div><div class="n">1</div><div class="t">Obtener</div><div class="d">Archivos y APIs</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">2</div><div class="t">Proteger</div><div class="d">Secretos y datos personales</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">3</div><div class="t">Explorar y limpiar</div><div class="d">pandas: filtrar y limpiar</div><div class="st">Hecho ✓</div></div><div class="pl-card now"><div class="cl">Clase 6</div><div class="n">4</div><div class="t">Combinar y resumir</div><div class="d">merge y groupby</div><div class="st">Hoy lo hicimos ✓</div></div><div class="pl-card now"><div class="cl">Clase 6</div><div class="n">5</div><div class="t">Guardar</div><div class="d">Base de datos SQLite</div><div class="st">Hoy lo hicimos ✓</div></div><div class="pl-card next"><div class="cl">Clase 7</div><div class="n">6</div><div class="t">Automatizar</div><div class="d">Funciones, errores, logging y tests</div><div class="st">Sigue →</div></div><div class="pl-card later"><div class="cl">Clase 8</div><div class="n">7</div><div class="t">Ampliar</div><div class="d">APIs por partes, dos fuentes e IA local</div><div class="st">Después</div></div><div class="pl-card later"><div class="cl">Clase 9</div><div class="n">8</div><div class="t">Presentar</div><div class="d">Tu proyecto integrador</div><div class="st">Después</div></div></div>
+        <div class="pl-row"><div class="pl-card done"><div class="cl">Clase 4</div><div class="n">1</div><div class="t">Obtener</div><div class="d">Archivos y APIs</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">2</div><div class="t">Proteger</div><div class="d">Secretos y datos personales</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">3</div><div class="t">Explorar y limpiar</div><div class="d">pandas: filtrar y limpiar</div><div class="st">Hecho ✓</div></div><div class="pl-card now"><div class="cl">Clase 6</div><div class="n">4</div><div class="t">Combinar y resumir</div><div class="d">merge y groupby</div><div class="st">Hoy lo hicimos ✓</div></div><div class="pl-card now"><div class="cl">Clase 6</div><div class="n">5</div><div class="t">Guardar</div><div class="d">Base de datos SQLite</div><div class="st">Hoy lo hicimos ✓</div></div><div class="pl-card next"><div class="cl">Clase 7</div><div class="n">6</div><div class="t">Automatizar</div><div class="d">Funciones, errores, logging y tests</div><div class="st">Sigue →</div></div><div class="pl-card later"><div class="cl">Clase 8</div><div class="n">7</div><div class="t">Integrar</div><div class="d">Un proyecto completo, de punta a punta</div><div class="st">Después</div></div><div class="pl-card later"><div class="cl">Clase 9</div><div class="n">8</div><div class="t">Presentar</div><div class="d">Tu proyecto integrador</div><div class="st">Después</div></div></div>
         <div class="pl-base"><b>Base · Clases 1 a 3:</b> entorno listo, Python y sus 4 estructuras, tu proyecto integrador</div>
         <div class="pl-msg"><div><span class="k">Hoy completaste</span>Combinar tablas, resumir con groupby y guardar en SQLite.</div><div><span class="k">Lo que sigue</span>Automatizar con funciones, logging y tests (Clase 7)</div></div>
       </div>

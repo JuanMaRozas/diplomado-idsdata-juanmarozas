@@ -1,9 +1,9 @@
 """
-DPL1046 · Clase 6 · 05_carga_repetible.py
+DPL1046 · Clase 6 (opcional) · 99_opcional_carga_repetible.py
 Cargar a la base de datos SIN duplicar: correr dos veces = mismo resultado.
 
 Córrelo con el botón ▶ o con:
-    python clases/clase-06/material/05_carga_repetible.py
+    python clases/clase-06/material/99_opcional_carga_repetible.py
 """
 
 import sqlite3

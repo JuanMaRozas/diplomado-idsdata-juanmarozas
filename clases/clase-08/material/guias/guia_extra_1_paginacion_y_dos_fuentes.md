@@ -1,6 +1,6 @@
-# Guía 1 de 3 — APIs avanzadas: paginación y combinar dos fuentes
+# Guía extra 1 de 2 — APIs avanzadas: paginación y combinar dos fuentes
 
-**DPL1046 · Clase 8 · Para repasar en casa, a tu ritmo.**
+**DPL1046 · Clase 8 (material extra, opcional) · Para repasar en casa, a tu ritmo.**
 
 En proyectos reales los datos vienen **por partes** y desde **más de un lugar**. Esta guía repasa cómo pedir una API **página por página** (`while`) y cómo **combinar un CSV con una API** en una sola tabla.
 

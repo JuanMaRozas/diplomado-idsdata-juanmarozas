@@ -124,6 +124,8 @@ Para ejecutarlas: `pytest clases/clase-07/material/ -v`. Cada prueba muestra `PA
 
 ## 3. Configuración externa
 
+> **Esta parte es opcional en clase:** el script `99_opcional_config.py` la practica en casa, y la verás en uso en `config.yaml` del proyecto de ejemplo de la Clase 8.
+
 Un **termostato**: la temperatura que quieres la cambias en el dial, no abres la caldera a modificar los cables. Los números que se ajustan (carpetas, umbrales) van en un archivo aparte, `config.yaml`; el código no se toca.
 
 `config.yaml`:

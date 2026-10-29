@@ -39,7 +39,8 @@ Debe aparecer la carpeta `clases/clase-06`. Hoy no hay librerías nuevas.
 | `02_merge.py` | Unir dos tablas con `merge` (`on`, `how`) | No |
 | `03_pregunta_completa.py` | Ventas por estado: 3 tablas, `merge` y `groupby`; guarda un CSV | No |
 | `04_pandas_a_sqlite.py` | Guardar en SQLite (`to_sql`) y consultar con SQL | No |
-| `05_carga_repetible.py` | Cargas que no duplican: `append` vs `replace` | No |
+
+**Para casa (opcional):** `99_opcional_carga_repetible.py` muestra cargas que no duplican (`append` vs `replace`). No se ve en clase.
 
 ## Cómo ejecutar un script
 
@@ -50,7 +51,6 @@ python clases/clase-06/material/01_groupby.py
 python clases/clase-06/material/02_merge.py
 python clases/clase-06/material/03_pregunta_completa.py
 python clases/clase-06/material/04_pandas_a_sqlite.py
-python clases/clase-06/material/05_carga_repetible.py
 ```
 
 
@@ -62,7 +62,7 @@ Lo de hoy alimenta tu presentación: `groupby` → slide 6 (**Resultados**); `me
 ## Si te quedaste atrás
 
 1. Repite el bloque "Antes de la clase".
-2. Ejecuta `01` a `05`, de a uno. Ninguno necesita internet.
+2. Ejecuta `01` a `04`, de a uno. Ninguno necesita internet.
 3. Compara con el "Debes ver" de la presentación y anota tus dudas.
 
 ## Qué sigue

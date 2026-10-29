@@ -1,9 +1,9 @@
 """
-DPL1046 · Clase 8 · 05_resumen_ejecutivo.py
+DPL1046 · Clase 8 (extra, opcional) · 05_resumen_ejecutivo.py
 Pandas calcula los números, la IA los explica. Nunca al revés.
 
 Córrelo con el botón ▶ o con:
-    python clases/clase-08/material/05_resumen_ejecutivo.py
+    python clases/clase-08/material/extra/05_resumen_ejecutivo.py
 """
 
 import requests

@@ -225,6 +225,36 @@
   .pl-msg>div:first-child{background:var(--tint);border-left:6px solid var(--orange);}
   .pl-msg b{color:var(--black);}
   .pl-msg .k{display:block;color:var(--orange);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
+
+  /* ===== PRESENTACION MODELO ===== */
+  .mp-tag{position:absolute;right:52px;top:62px;font-size:12.5px;color:var(--caption);z-index:5;font-weight:600;letter-spacing:.02em;}
+  .mp-tag b{color:var(--orange);}
+  .mp-flow{display:flex;gap:26px;align-items:stretch;margin-top:6px;}
+  .mp-box{flex:1;position:relative;border-radius:14px;border:2px solid var(--orange);background:var(--tint);padding:22px 20px 20px;min-height:300px;}
+  .mp-box:not(:last-child)::after{content:"\25B6";position:absolute;right:-22px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--orange);}
+  .mp-box .k{font-family:'Barlow Condensed',var(--font);font-size:40px;font-weight:800;color:var(--orange);line-height:1;}
+  .mp-box .f{font-size:17px;font-weight:700;color:var(--black);margin:6px 0 14px;font-family:'SF Mono',Menlo,Consolas,monospace;}
+  .mp-box ul{list-style:none;}
+  .mp-box li{font-size:20px;color:var(--dgray);line-height:1.3;margin-bottom:10px;padding-left:16px;position:relative;}
+  .mp-box li::before{content:"";position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:var(--orange);}
+  .mp-under{display:flex;gap:14px;margin-top:26px;}
+  .mp-under>div{flex:1;background:var(--lgray);border-radius:10px;padding:14px 16px;font-size:19px;color:var(--dgray);}
+  .mp-under b{color:var(--black);}
+  .mp-bars{display:flex;align-items:flex-end;gap:8px;height:290px;padding:0 4px;border-bottom:2px solid #cfc7bf;}
+  .mp-bars .b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;}
+  .mp-bars .b i{display:block;width:100%;background:#E9C9B5;border-radius:5px 5px 0 0;}
+  .mp-bars .b.hi i{background:var(--orange);}
+  .mp-bars .b span{font-size:13px;color:var(--dgray);margin-bottom:3px;font-weight:700;}
+  .mp-lab{display:flex;gap:8px;padding:4px 4px 0;}
+  .mp-lab span{flex:1;text-align:center;font-size:15px;color:var(--caption);font-weight:600;}
+  .mp-kpi{display:flex;gap:12px;margin-bottom:12px;}
+  .mp-kpi>div{flex:1;background:var(--lgray);border-radius:10px;padding:10px 12px;}
+  .mp-kpi .v{font-family:'Barlow Condensed',var(--font);font-size:38px;font-weight:800;color:var(--orange);line-height:1;}
+  .mp-kpi .l{font-size:15.5px;color:var(--dgray);margin-top:3px;line-height:1.2;}
+  .mp-cover{position:absolute;left:60px;top:230px;right:200px;}
+  .mp-cover .t{font-family:'Barlow Condensed',var(--font);font-size:58px;font-weight:800;color:var(--black);line-height:1.05;}
+  .mp-cover .s{font-size:24px;color:var(--orange);font-weight:700;margin-top:14px;}
+  .mp-cover .m{font-size:17px;color:var(--dgray);margin-top:22px;line-height:1.5;}
 </style>
 </head>
 <body>
@@ -246,13 +276,12 @@
       <div class="accent"></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="clase anim">CLASE 8</div>
-      <h1 class="ttl anim">APIs avanzadas, IA local<br>y taller de proyecto</h1>
+      <h1 class="ttl anim">Un proyecto integrador<br>de principio a fin</h1>
       <div class="sub anim">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="meta anim">PhD. Juan Manuel Rozas<br>Unidad 3 · Sesión 8 de 9 · 100% local · paso a paso</div>
+      <div class="meta anim">PhD. Juan Manuel Rozas<br>Unidad 3 · Sesión 8 de 9 · Proyecto de ejemplo y presentación modelo · 100% local</div>
       <div class="barbottom"></div>
     </section>
-
-    <section class="slide">
+<section class="slide">
       <div class="header-bar orange"><h2>Antes de empezar: tu rutina de inicio</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
@@ -263,7 +292,7 @@
               <li class="anim">Abre VS Code en esa carpeta: <code>code .</code></li>
               <li class="anim"><b>Activa el entorno</b> (mira el comando de tu sistema →). Debe aparecer <b>(.venv)</b>.</li>
               <li class="anim">Trae el material nuevo: <code>git pull</code></li>
-              <li class="anim">Valida: <code>python clases/clase-08/material/01_paginacion.py</code> debe mostrar 3 páginas (necesita internet).</li>
+              <li class="anim">Valida: <code>git pull</code> termina sin errores y ya existe la carpeta <code>clases/clase-08/material/proyecto-ejemplo/</code>.</li>
             </ol>
           </div>
           <div class="col-r ok anim">
@@ -280,63 +309,59 @@
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide">
+<section class="slide">
       <div class="header-bar orange"><h2>Hoy: línea por línea</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <ul class="bul">
-          <li class="anim"><b>APIs avanzadas</b>: traer datos "por páginas" y <b>combinar dos fuentes</b> en una sola tabla.</li>
-          <li class="anim"><b>IA que corre en tu computador</b> (Ollama): clasificar texto y redactar un resumen, <b>sin enviar datos a nadie</b>.</li>
-          <li class="anim"><b>Una regla de oro</b>: pandas calcula, la IA explica. Nunca al revés.</li>
-          <li class="anim"><b>Taller de proyecto</b>: checklist de entrega y ensayo de tu presentación.</li>
-          <li class="anim"><b>Cada script se explica línea por línea</b>.</li>
+          <li class="anim">Hoy ves <b>un proyecto integrador completo</b>, de principio a fin, con <b>cada script explicado</b>.</li>
+          <li class="anim">Lo ves <b>correr en vivo</b>: un comando, dos fuentes de datos y pruebas automáticas.</li>
+          <li class="anim">Una <b>presentación modelo</b> de 9 slides, para que sepas cómo armar la tuya.</li>
+          <li class="anim"><b>Tu presentación</b>: checklist, preguntas que te harán y un ensayo corto.</li>
         </ul>
-        <div class="quote anim">Esta es la <b>última clase de contenido</b>: la próxima semana es de presentaciones.</div>
+        <div class="quote anim">Es la última clase de contenido. Vamos con calma y con <b>tiempo para preguntas</b> después de cada parte.</div>
       </div>
       <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide">
+<section class="slide">
       <div class="header-bar orange"><h2>Plan de hoy</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
-        <table class="brand" style="font-size:22px">
+        <table class="brand" style="font-size:21px">
           <tr><th style="width:120px">Bloque</th><th>Qué hacemos</th></tr>
-          <tr><td>1</td><td><b>Puesta al día</b>: rutina, repaso y comprobar Ollama</td></tr>
-          <tr><td>2</td><td><b>APIs avanzadas</b>: paginación y dos fuentes en una tabla</td></tr>
-          <tr><td>3</td><td><b>IA local</b>: hablar con un modelo, clasificar y resumir</td></tr>
-          <tr><td>4</td><td><b>Taller de proyecto</b>: checklist, ensayo y dudas</td></tr>
+          <tr><td>1</td><td><b>Puesta al día</b>: rutina, repaso e instalar el proyecto de ejemplo</td></tr>
+          <tr><td>2</td><td><b>El proyecto</b>: problema de negocio y cómo está organizado</td></tr>
+          <tr><td>3</td><td><b>Recorrido por el código</b>: pipeline, extraer, transformar, cargar, config y tests</td></tr>
+          <tr><td>4</td><td><b>Demo en vivo</b> y resultados</td></tr>
+          <tr><td>5</td><td><b>La presentación modelo</b>: 9 slides y la rúbrica</td></tr>
+          <tr><td>6</td><td><b>Tu presentación</b>: checklist, preguntas y ensayo</td></tr>
         </table>
       </div>
       <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide">
+<section class="slide">
       <div class="header-bar orange"><h2>Dónde estamos en el pipeline</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
-        <div class="pl-row"><div class="pl-card done"><div class="cl">Clase 4</div><div class="n">1</div><div class="t">Obtener</div><div class="d">Archivos y APIs</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">2</div><div class="t">Proteger</div><div class="d">Secretos y datos personales</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">3</div><div class="t">Explorar y limpiar</div><div class="d">pandas: filtrar y limpiar</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 6</div><div class="n">4</div><div class="t">Combinar y resumir</div><div class="d">merge y groupby</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 6</div><div class="n">5</div><div class="t">Guardar</div><div class="d">Base de datos SQLite</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 7</div><div class="n">6</div><div class="t">Automatizar</div><div class="d">Funciones, errores, logging y tests</div><div class="st">Hecho ✓</div></div><div class="pl-card now"><div class="cl">Clase 8</div><div class="n">7</div><div class="t">Ampliar</div><div class="d">APIs por partes, dos fuentes e IA local</div><div class="st">Estás aquí</div></div><div class="pl-card later"><div class="cl">Clase 9</div><div class="n">8</div><div class="t">Presentar</div><div class="d">Tu proyecto integrador</div><div class="st">Después</div></div></div>
+        <div class="pl-row"><div class="pl-card done"><div class="cl">Clase 4</div><div class="n">1</div><div class="t">Obtener</div><div class="d">Archivos y APIs</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">2</div><div class="t">Proteger</div><div class="d">Secretos y datos personales</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">3</div><div class="t">Explorar y limpiar</div><div class="d">pandas: filtrar y limpiar</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 6</div><div class="n">4</div><div class="t">Combinar y resumir</div><div class="d">merge y groupby</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 6</div><div class="n">5</div><div class="t">Guardar</div><div class="d">Base de datos SQLite</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 7</div><div class="n">6</div><div class="t">Automatizar</div><div class="d">Funciones, errores, logging y tests</div><div class="st">Hecho ✓</div></div><div class="pl-card now"><div class="cl">Clase 8</div><div class="n">7</div><div class="t">Integrar</div><div class="d">Un proyecto completo, de punta a punta</div><div class="st">Estás aquí</div></div><div class="pl-card later"><div class="cl">Clase 9</div><div class="n">8</div><div class="t">Presentar</div><div class="d">Tu proyecto integrador</div><div class="st">Después</div></div></div>
         <div class="pl-base"><b>Base · Clases 1 a 3:</b> entorno listo, Python y sus 4 estructuras, tu proyecto integrador</div>
-        <div class="pl-msg"><div><span class="k">Hoy</span>Ampliar el pipeline: paginación, dos fuentes e IA local.</div><div><span class="k">Cómo se conecta</span>Cada clase construyó una estación. Hoy sumamos la que está en naranja.</div></div>
+        <div class="pl-msg"><div><span class="k">Hoy</span>Integrar todo: un proyecto completo, de punta a punta, con su presentación modelo.</div><div><span class="k">Cómo se conecta</span>Cada clase construyó una estación. Hoy sumamos la que está en naranja.</div></div>
       </div>
       <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide l2">
+<section class="slide l2">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="kicker anim">Bloque 1</div>
       <div class="stitle anim">Puesta al día</div>
       <div class="num">01</div>
     </section>
-
-    <section class="slide">
+<section class="slide">
       <div class="header-bar black"><h2>Repaso express: ¿qué hace esto?</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
@@ -353,23 +378,23 @@
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Comprueba Ollama</h2></div>
+<section class="slide">
+      <div class="header-bar black"><h2>Instala y prueba el proyecto de ejemplo</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">Abre una terminal y escribe:<pre class="cmd">ollama --version</pre></li>
-              <li class="anim">Mira si tienes el modelo descargado:<pre class="cmd">ollama list</pre></li>
-              <li class="anim">Si no aparece <code>llama3.2</code> y tienes buen internet, descárgalo (≈2 GB):<pre class="cmd">ollama pull llama3.2</pre></li>
+              <li class="anim">Con el entorno activo, trae lo último:<pre class="cmd">git pull</pre></li>
+              <li class="anim">Entra a la carpeta del proyecto de ejemplo:<pre class="cmd">cd clases/clase-08/material/proyecto-ejemplo</pre></li>
+              <li class="anim">Instala sus librerías y córrelo:<pre class="cmd">pip install -r requirements.txt
+python pipeline.py</pre></li>
             </ol>
           </div>
           <div class="col-r ok anim">
             <div class="big">Debes ver</div>
-            <div class="small"><code>ollama --version</code> muestra un número de versión, y <code>ollama list</code> muestra <b>llama3.2</b>.<br><br>La app de Ollama debe estar <b>abierta</b> (ícono en la barra).</div>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Sin Ollama o sin el modelo: <b>no te detengas</b>. Los scripts 04 y 05 funcionan en <b>modo simulado</b> y avisan que lo es. Lo único que cambia es que la respuesta no la escribe una IA.</div></div>
+            <div class="small">Los pasos <b>1/5 a 5/5</b> y al final <b>PIPELINE COMPLETADO</b>.<br><br>Después, la carpeta <code>salida/</code> con los resultados.</div>
+            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Si la API del dólar no responde, <b>no es un error</b>: el pipeline usa un valor de respaldo y lo avisa. Si falta un archivo, revisa que los CSV estén en <code>data/raw/</code>.</div></div>
           </div>
         </div>
       </div>
@@ -381,42 +406,25 @@
     <section class="slide l2">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="kicker anim">Bloque 2</div>
-      <div class="stitle anim">APIs avanzadas</div>
+      <div class="stitle anim">El proyecto: problema y estructura</div>
       <div class="num">02</div>
     </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2>Las APIs entregan los datos por partes</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="cards">
-          <div class="card anim"><div class="ic">📄</div><div class="t">Página 1</div><div class="d">Los primeros 20 registros + un enlace <code>next</code> a la página 2.</div></div>
-          <div class="card anim"><div class="ic">📄</div><div class="t">Página 2</div><div class="d">Los siguientes 20 + el enlace a la página 3.</div></div>
-          <div class="card anim"><div class="ic">🏁</div><div class="t">Última página</div><div class="d"><code>next</code> viene <b>vacío</b> (<code>None</code>): no hay más.</div></div>
-        </div>
-        <div class="quote anim">Si una API tiene 100.000 registros, <b>no te los da de una vez</b>. Tú sigues el enlace <code>next</code> hasta que se acabe: eso es <b>paginación</b>.</div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2><code>while</code>: repetir mientras algo sea verdad</h2></div>
+<section class="slide">
+      <div class="header-bar black"><h2>Cómo mirar un proyecto de ejemplo</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
             <ul class="bul">
-              <li class="anim"><code>for</code> repite <b>para cada elemento</b> de una lista.</li>
-              <li class="anim"><code>while</code> repite <b>mientras</b> una condición sea verdadera: no sabes cuántas veces.</li>
-              <li class="anim">Aquí: "<b>mientras exista una página siguiente</b>, pídela".</li>
-              <li class="anim">Siempre incluye un <b>tope de seguridad</b> (<code>MAX_PAGINAS</code>) para no quedar en un ciclo infinito.</li>
+              <li class="anim"><b>No es para copiar</b>: es para ver cómo se <b>ve</b> un proyecto que cumple la rúbrica.</li>
+              <li class="anim">Tres preguntas para cada parte: <b>¿qué hace? ¿qué herramienta de las últimas clases usa? ¿qué punto de la rúbrica cubre?</b></li>
+              <li class="anim">Todo lo que vamos a ver <b>ya lo viste</b> en las últimas clases.</li>
+              <li class="anim">Está en <code>clases/clase-08/material/proyecto-ejemplo/</code>: lo puedes abrir y correr en casa.</li>
             </ul>
           </div>
           <div class="col-r anim">
-            <div class="big">Ejemplo</div>
-            <div class="small"><code>while url and pagina &lt; 3:</code><br><br>= "mientras haya una url <b>y</b> no hayamos pasado de 3 páginas".</div>
+            <div class="big">Lo que haremos hoy</div>
+            <div class="small">Problema y estructura · Recorrido por el código · Demo en vivo · Presentación modelo · Tu presentación.</div>
           </div>
         </div>
       </div>
@@ -424,94 +432,50 @@
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2><code>01_paginacion.py</code> · Leamos línea por línea (1/2)</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code" style="font-size:13px">url = <span class="s">"https://pokeapi.co/api/v2/pokemon?limit=20"</span>   <span class="c"># 20 registros por página</span>
-MAX_PAGINAS = 3                                       <span class="c"># tope para la clase</span>
-registros = []
-pagina = 0
-
-try:
-    <span class="c"># Mientras exista una &quot;página siguiente&quot;, seguimos pidiendo</span>
-    while url and pagina &lt; MAX_PAGINAS:
-        pagina = pagina + 1
-        respuesta = requests.get(url, timeout=10)
-        respuesta.raise_for_status()
-        datos = respuesta.json()
-
-        registros.extend(datos[<span class="s">"results"</span>])   <span class="c"># sumamos lo que llegó a la lista</span>
-        print(<span class="s">"Página"</span>, pagina, <span class="s">"→ total acumulado:"</span>, len(registros))</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim" style="font-size:17px"><code>url = "https://pokeapi.co/..."</code> la dirección de la <b>primera</b> página (<code>limit=20</code>: 20 por página).</div>
-            <div class="row anim" style="font-size:17px"><code>MAX_PAGINAS = 3</code> el tope: solo 3 páginas para la clase.</div>
-            <div class="row anim" style="font-size:17px"><code>registros = []</code> lista vacía donde acumulamos.</div>
-            <div class="row anim" style="font-size:17px"><code>while url and pagina &lt; MAX_PAGINAS:</code> mientras haya url y no pasemos el tope...</div>
-            <div class="row anim" style="font-size:17px"><code>requests.get(url, timeout=10)</code> pide la página actual.</div>
-            <div class="row anim" style="font-size:17px"><code>registros.extend(datos["results"])</code> suma esos 20 registros a la lista.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2><code>01_paginacion.py</code> · Leamos línea por línea (2/2)</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code" style="font-size:13px">        url = datos[<span class="s">"next"</span>]                  <span class="c"># la API nos dice cuál es la siguiente</span>
-
-    tabla = pd.DataFrame(registros)
-    print(tabla.head(3))
-    print(<span class="s">"Filas en la tabla final:"</span>, len(tabla))
-except requests.exceptions.RequestException:
-    print(<span class="s">"No pude conectar con la API. Revisa tu internet y vuelve a intentarlo."</span>)</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim" style="font-size:17px"><code>url = datos["next"]</code> la API nos dice <b>cuál es la siguiente</b>; en la última, es <code>None</code>.</div>
-            <div class="row anim" style="font-size:17px"><code>pd.DataFrame(registros)</code> convierte la lista de diccionarios en una tabla.</div>
-            <div class="row anim" style="font-size:17px"><code>print("Filas en la tabla final:", ...)</code> 3 páginas × 20 = 60 filas.</div>
-            <div class="row anim" style="font-size:17px"><code>except requests.exceptions.RequestException:</code> si algo falla con la conexión...</div>
-            <div class="row anim" style="font-size:17px"><code>print("No pude conectar ...")</code> ...mensaje claro, sin romper el programa.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Ejecuta <code>01_paginacion.py</code></h2></div>
+<section class="slide">
+      <div class="header-bar black"><h2>El problema de negocio</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
-            <ol class="steps">
-              <li class="anim">Abre <code>01_paginacion.py</code> (Explorador → clase-08 → material).</li>
-              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-08/material/01_paginacion.py</pre></li>
-              <li class="anim"><b>Prueba</b>: cambia <code>MAX_PAGINAS = 3</code> por <code>5</code>. ¿Cuántas filas esperas?</li>
-            </ol>
+            <ul class="bul">
+              <li class="anim"><b>Pregunta:</b> ¿cuántas ventas esperamos las próximas 8 semanas?</li>
+              <li class="anim"><b>Para quién:</b> el equipo que compra inventario y planifica logística.</li>
+              <li class="anim"><b>Por qué importa:</b> sin pronóstico, se compra de más (dinero congelado) o de menos (ventas perdidas).</li>
+              <li class="anim"><b>Datos:</b> pedidos e ítems de Olist (CSV) + el valor del dólar de Chile (API).</li>
+            </ul>
+          </div>
+          <div class="col-r anim">
+            <div class="big">Slide 2 y 3 del template</div>
+            <div class="small">Esto es lo que va en <b>Problema de negocio</b> y <b>Los datos</b>: pregunta, para quién, por qué, y de dónde salen los datos.</div>
+          </div>
+        </div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+<section class="slide">
+      <div class="header-bar black"><h2>Cómo está organizado</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l top">
+            <pre class="cmd">proyecto-ejemplo/
+├── pipeline.py       ← corre todo
+├── config.yaml       ← parámetros
+├── requirements.txt  ← librerías
+├── README.md         ← cómo usarlo
+├── src/
+│   ├── extraer.py    ← lee datos
+│   ├── transformar.py← calcula
+│   └── cargar.py     ← guarda
+└── tests/
+    └── test_pipeline.py</pre>
           </div>
           <div class="col-r ok anim">
-            <div class="big">Debes ver (abreviado)</div>
-            <pre class="cmd out">Página 1 → total acumulado: 20
-Página 2 → total acumulado: 40
-Página 3 → total acumulado: 60
-(3 filas de la tabla: name y url)
-Filas en la tabla final: 60</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
+            <div class="big">Una carpeta por rol</div>
+            <div class="small"><b>extraer</b>: de dónde vienen los datos.<br><b>transformar</b>: qué se calcula.<br><b>cargar</b>: dónde se guarda.<br><b>pipeline.py</b> solo las llama, en orden.</div>
           </div>
         </div>
       </div>
@@ -519,156 +483,21 @@ Filas en la tabla final: 60</pre>
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2>Combinar dos fuentes en una sola tabla</h2></div>
+<section class="slide">
+      <div class="header-bar orange"><h2>Lo de las últimas clases, en un proyecto real</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
-        <div class="cards">
-          <div class="card anim"><div class="ic">📁</div><div class="t">Fuente 1 · CSV</div><div class="d">Ventas de Olist por <b>mes</b> (2017).</div></div>
-          <div class="card anim"><div class="ic">🌐</div><div class="t">Fuente 2 · API</div><div class="d">Dólar de Chile por <b>mes</b> (mindicador.cl).</div></div>
-          <div class="card anim"><div class="ic">🔗</div><div class="t">Resultado</div><div class="d">Una tabla: <b>mes · ventas · dólar</b>. Se unen por la columna <code>mes</code>.</div></div>
-        </div>
-        <div class="quote anim">Dos fuentes, una llave en común (<code>mes</code>), un <code>merge</code>. Esto cumple el requisito de <b>≥2 fuentes</b> de tu proyecto.</div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2><code>02_dos_fuentes.py</code> · Leamos línea por línea (1/3): la fuente CSV</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code" style="font-size:13px"><span class="c"># ---- Fuente 1: ventas por mes desde los CSV de Olist ------------------------</span>
-orders = pd.read_csv(RUTA + <span class="s">"olist_orders_dataset.csv"</span>)
-items = pd.read_csv(RUTA + <span class="s">"olist_order_items_dataset.csv"</span>)
-
-tabla = items.merge(orders, on=<span class="s">"order_id"</span>, how=<span class="s">"inner"</span>)
-tabla[<span class="s">"mes"</span>] = pd.to_datetime(tabla[<span class="s">"order_purchase_timestamp"</span>]).dt.strftime(<span class="s">"%Y-%m"</span>)
-ventas = tabla.groupby(<span class="s">"mes"</span>)[<span class="s">"price"</span>].sum().round(0).reset_index()
-ventas = ventas[ventas[<span class="s">"mes"</span>].str.startswith(<span class="s">"2017"</span>)]
-print(<span class="s">"Ventas por mes (2017):"</span>, len(ventas), <span class="s">"meses"</span>)</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim" style="font-size:17px"><code>items.merge(orders, on="order_id", ...)</code> une ítems con pedidos (Clase 6).</div>
-            <div class="row anim" style="font-size:17px"><code>pd.to_datetime(...).dt.strftime("%Y-%m")</code> de la fecha de compra, saca <b>año-mes</b> como texto: <code>"2017-10"</code>.</div>
-            <div class="row anim" style="font-size:17px"><code>tabla.groupby("mes")["price"].sum()</code> ventas por mes.</div>
-            <div class="row anim" style="font-size:17px"><code>.reset_index()</code> el mes vuelve a ser una columna.</div>
-            <div class="row anim" style="font-size:17px"><code>ventas["mes"].str.startswith("2017")</code> nos quedamos con los meses de 2017.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2><code>02_dos_fuentes.py</code> · Leamos línea por línea (2/3): la fuente API</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code" style="font-size:13px"><span class="c"># ---- Fuente 2: dólar diario de 2017 desde la API ----------------------------</span>
-try:
-    respuesta = requests.get(<span class="s">"https://mindicador.cl/api/dolar/2017"</span>, timeout=15)
-    respuesta.raise_for_status()
-    serie = respuesta.json()[<span class="s">"serie"</span>]            <span class="c"># lista de {&quot;fecha&quot;, &quot;valor&quot;}</span>
-
-    dolar = pd.DataFrame(serie)
-    dolar[<span class="s">"mes"</span>] = pd.to_datetime(dolar[<span class="s">"fecha"</span>]).dt.strftime(<span class="s">"%Y-%m"</span>)
-    dolar_mes = dolar.groupby(<span class="s">"mes"</span>)[<span class="s">"valor"</span>].mean().round(1).reset_index()
-    dolar_mes = dolar_mes.rename(columns={<span class="s">"valor"</span>: <span class="s">"dolar_clp"</span>})</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim" style="font-size:17px"><code>requests.get(".../api/dolar/2017")</code> pide el dólar de <b>todo 2017</b>.</div>
-            <div class="row anim" style="font-size:17px"><code>respuesta.json()["serie"]</code> una <b>lista</b> con un diccionario por día: fecha y valor.</div>
-            <div class="row anim" style="font-size:17px"><code>pd.DataFrame(serie)</code> la convierte en tabla.</div>
-            <div class="row anim" style="font-size:17px"><code>dolar["mes"] = ...</code> misma columna <code>mes</code> que en el CSV: <b>la llave</b>.</div>
-            <div class="row anim" style="font-size:17px"><code>groupby("mes")["valor"].mean()</code> el <b>promedio</b> del dólar por mes.</div>
-            <div class="row anim" style="font-size:17px"><code>.rename(columns={...})</code> cambia el nombre de la columna a <code>dolar_clp</code>.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2><code>02_dos_fuentes.py</code> · Leamos línea por línea (3/3): combinar</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code" style="font-size:13px">    <span class="c"># ---- Combinar: una fila por mes con las dos fuentes ---------------------</span>
-    combinada = ventas.merge(dolar_mes, on=<span class="s">"mes"</span>, how=<span class="s">"left"</span>)
-    print(combinada)
-except requests.exceptions.RequestException:
-    print(<span class="s">"No pude conectar con la API. Las ventas sí se calcularon:"</span>)</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim" style="font-size:19px"><code>ventas.merge(dolar_mes, on="mes", how="left")</code> une las dos fuentes por <code>mes</code>, conservando todos los meses de ventas.</div>
-            <div class="row anim" style="font-size:19px"><code>print(combinada)</code> una fila por mes: ventas y dólar.</div>
-            <div class="row anim" style="font-size:19px"><code>except ...:</code> si la API falla...</div>
-            <div class="row anim" style="font-size:19px"><code>print(ventas)</code> ...igual mostramos lo que sí tenemos: la fuente 1.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Buenas prácticas con APIs</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <table class="brand" style="font-size:21px">
-          <tr><th style="width:300px">Práctica</th><th style="width:420px">Cómo</th><th>Por qué</th></tr>
-          <tr><td><b>Siempre un <code>timeout</code></b></td><td><code>requests.get(url, timeout=10)</code></td><td>Evita esperar para siempre</td></tr>
-          <tr><td><b>Revisar el estado</b></td><td><code>raise_for_status()</code></td><td>Detecta 404, 500...</td></tr>
-          <tr><td><b>Atrapar el error</b></td><td><code>except requests.exceptions.RequestException</code></td><td>Mensaje claro, sin caerse</td></tr>
-          <tr><td><b>Tener un plan B</b></td><td>Valor de respaldo o dato en caché</td><td>El pipeline sigue corriendo</td></tr>
-          <tr><td><b>No escribir claves</b></td><td>Guardarlas en <code>.env</code></td><td>Seguridad (rúbrica)</td></tr>
-          <tr><td><b>No abusar</b></td><td>No pedir mil veces lo mismo</td><td>Las APIs limitan el uso</td></tr>
+        <table class="brand" style="font-size:20px">
+          <tr><th style="width:250px">Lo que aprendiste</th><th style="width:330px">Dónde aparece</th><th>Clase</th></tr>
+          <tr><td><b>Funciones</b> con docstring</td><td>Todo <code>src/</code>: <code>extraer_olist</code>, <code>generar_pronostico</code>...</td><td>7</td></tr>
+          <tr><td><b>try / except</b></td><td><code>extraer.py</code>: si la API falla, usa un respaldo</td><td>7</td></tr>
+          <tr><td><b>Logging</b></td><td>Cada paso informa qué hizo</td><td>7</td></tr>
+          <tr><td><b>Tests</b> con pytest</td><td><code>tests/test_pipeline.py</code></td><td>7</td></tr>
+          <tr><td><b>config.yaml</b></td><td><code>pipeline.py</code> lee las rutas y parámetros</td><td>8</td></tr>
+          <tr><td><b>merge y groupby</b></td><td><code>transformar.py</code></td><td>6</td></tr>
+          <tr><td><b>Carga idempotente</b> en SQLite</td><td><code>cargar.py</code></td><td>6</td></tr>
+          <tr><td><b>API pública</b></td><td><code>extraer.py</code>: dólar de mindicador.cl</td><td>4</td></tr>
         </table>
-        <div class="quote anim">Todo esto ya lo viste: <b>timeouts</b> y <b>try/except</b> (Clases 4 y 7), <b>.env</b> (Clase 5).</div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Ejecuta <code>02_dos_fuentes.py</code></h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ol class="steps">
-              <li class="anim">Abre <code>02_dos_fuentes.py</code> (Explorador → clase-08 → material).</li>
-              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-08/material/02_dos_fuentes.py</pre></li>
-              <li class="anim"><b>Prueba</b>: cambia <code>"2017"</code> por <code>"2018"</code> en la <b>dirección de la API</b> y en el filtro de ventas. ¿Qué meses aparecen?</li>
-            </ol>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Debes ver (abreviado)</div>
-            <pre class="cmd out">Ventas por mes (2017): 12 meses
-        mes      price  dolar_clp
-0   2017-01   120313.0      661.2
-1   2017-02   247303.0      643.2
-...
-11  2017-12   743914.0      636.9</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
-          </div>
-        </div>
       </div>
       <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
       <div class="foot-num"></div>
@@ -678,82 +507,35 @@ except requests.exceptions.RequestException:
     <section class="slide l2">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="kicker anim">Bloque 3</div>
-      <div class="stitle anim">IA en tu<br>computador</div>
+      <div class="stitle anim">Recorrido por el código</div>
       <div class="num">03</div>
     </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2>Una IA es solo otra API</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="cards">
-          <div class="card anim"><div class="ic">🧑‍💻</div><div class="t">Tu script</div><div class="d">Manda una <b>instrucción</b> (prompt) con <code>requests.post</code>.</div></div>
-          <div class="card anim"><div class="ic">🦙</div><div class="t">Ollama</div><div class="d">Un programa que corre <b>en tu computador</b>, en <code>localhost:11434</code>.</div></div>
-          <div class="card anim"><div class="ic">💬</div><div class="t">El modelo</div><div class="d"><code>llama3.2</code>, guardado en tu disco. Responde con <b>texto</b>.</div></div>
-        </div>
-        <div class="quote anim">Es el mismo patrón que <code>mindicador.cl</code>: mandas un pedido, recibes un JSON. <b>Solo que el servidor eres tú</b>.</div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>¿Por qué IA local?</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ul class="bul">
-              <li class="anim"><b>Privacidad</b>: los datos <b>no salen de tu computador</b>. Clave si hay datos de clientes.</li>
-              <li class="anim"><b>Costo cero</b>: sin cuenta, sin tarjeta, sin clave de API.</li>
-              <li class="anim"><b>Sin internet</b> una vez descargado el modelo.</li>
-              <li class="anim"><b>Límites</b>: más lento y menos potente que los modelos grandes en la nube.</li>
-            </ul>
-          </div>
-          <div class="col-r anim">
-            <div class="big">Un LLM, en simple</div>
-            <div class="small">Un <b>modelo de lenguaje</b> predice texto a partir de un prompt. <b>No sabe</b> de tus datos y <b>puede equivocarse</b>: por eso nunca le pides que calcule, solo que clasifique o redacte.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2><code>03_ollama_hola.py</code> · Leamos línea por línea</h2></div>
+<section class="slide">
+      <div class="header-bar orange"><h2><code>pipeline.py</code> · El director de orquesta</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top wide">
-            <pre class="code" style="font-size:13px">import requests
-
-URL = <span class="s">"http://localhost:11434/api/generate"</span>   <span class="c"># Ollama escucha en tu propio computador</span>
-MODELO = <span class="s">"llama3.2"</span>
-
-pregunta = <span class="s">"En una sola frase, ¿qué es un DataFrame de pandas?"</span>
-
-try:
-    respuesta = requests.post(
-        URL,
-        json={<span class="s">"model"</span>: MODELO, <span class="s">"prompt"</span>: pregunta, <span class="s">"stream"</span>: False},
-        timeout=120,
-    )
-    respuesta.raise_for_status()
-    texto = respuesta.json()[<span class="s">"response"</span>]
-    print(<span class="s">"Pregunta:"</span>, pregunta)
-    print(<span class="s">"Respuesta de la IA:"</span>, texto.strip())</pre>
+            <pre class="code" style="font-size:13px">    config = cargar_config()
+    <span class="c"># ...</span>
+    pedidos, items, categorias = extraer_olist(config[<span class="s">"datos"</span>][<span class="s">"carpeta"</span>])
+    tipo_cambio = extraer_tipo_cambio()
+    <span class="c"># ...</span>
+    ventas_semana = limpiar_y_agregar(pedidos, items, categorias, tipo_cambio)
+    <span class="c"># ...</span>
+    estacionalidad = calcular_estacionalidad(ventas_semana)
+    pronostico = generar_pronostico(ventas_semana, semanas_futuras=config[<span class="s">"pronostico"</span>][<span class="s">"semanas"</span>])
+    <span class="c"># ...</span>
+    n = guardar_en_base(ventas_semana, pronostico, bd)</pre>
           </div>
           <div class="col-r narrow ann anim">
             <div class="big">Qué significa</div>
-            <div class="row anim" style="font-size:17px"><code>URL = "http://localhost:11434/api/generate"</code> la dirección de Ollama: <b>tu propio computador</b>.</div>
-            <div class="row anim" style="font-size:17px"><code>MODELO = "llama3.2"</code> qué modelo usar.</div>
-            <div class="row anim" style="font-size:17px"><code>pregunta = "..."</code> el <b>prompt</b>: lo que le pedimos.</div>
-            <div class="row anim" style="font-size:17px"><code>requests.post(URL, json={...})</code> manda el pedido; <code>post</code> envía datos (como un formulario).</div>
-            <div class="row anim" style="font-size:17px"><code>"stream": False</code> que responda <b>todo junto</b>, no palabra por palabra.</div>
-            <div class="row anim" style="font-size:17px"><code>respuesta.json()["response"]</code> del JSON, el texto de la respuesta.</div>
+            <div class="row anim" style="font-size:17px"><code>cargar_config()</code> lee <code>config.yaml</code> (más adelante vemos por qué).</div>
+            <div class="row anim" style="font-size:17px"><code>extraer_olist(...)</code> <b>E</b>xtraer: lee los CSV.</div>
+            <div class="row anim" style="font-size:17px"><code>extraer_tipo_cambio()</code> <b>E</b>xtraer: pide el dólar a la API.</div>
+            <div class="row anim" style="font-size:17px"><code>limpiar_y_agregar(...)</code> <b>T</b>ransformar: limpia y suma por semana.</div>
+            <div class="row anim" style="font-size:17px"><code>calcular_estacionalidad / generar_pronostico</code> <b>T</b>ransformar: patrón y pronóstico.</div>
+            <div class="row anim" style="font-size:17px"><code>guardar_en_base(...)</code> <b>L</b>oad (cargar): guarda en SQLite.</div>
           </div>
         </div>
       </div>
@@ -761,111 +543,94 @@ try:
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Ejecuta <code>03_ollama_hola.py</code></h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ol class="steps">
-              <li class="anim">Abre <code>03_ollama_hola.py</code> (Explorador → clase-08 → material).</li>
-              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-08/material/03_ollama_hola.py</pre></li>
-              <li class="anim"><b>Prueba</b>: cambia la pregunta (por ejemplo: "Explica qué es un diccionario de Python en una frase").</li>
-            </ol>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Debes ver (abreviado)</div>
-            <pre class="cmd out">Pregunta: En una sola frase, ¿qué es un DataFrame de pandas?
-Respuesta de la IA: (una frase escrita por el modelo)
-
---- sin Ollama ---
-No encontré Ollama. ¿Está abierto? Mira el README de la clase.</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Un buen prompt: instrucciones claras</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ul class="bul">
-              <li class="anim"><b>Rol</b>: "Eres analista de datos".</li>
-              <li class="anim"><b>Tarea</b>: "Clasifica esta reseña como positiva o negativa".</li>
-              <li class="anim"><b>Formato</b>: "Responde SOLO con una palabra".</li>
-              <li class="anim"><b>Datos</b>: el texto concreto, al final.</li>
-            </ul>
-          </div>
-          <div class="col-r anim">
-            <div class="big">Compara</div>
-            <div class="small"><b>Vago:</b> "¿qué opinas de esto?"<br><br><b>Claro:</b> "Clasifica esta reseña como positiva o negativa. Responde SOLO con una palabra. Reseña: ..."<br><br>Con un prompt claro, la respuesta es <b>más corta, más consistente y más fácil de usar</b> en una tabla.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2><code>apply</code> y <code>lambda</code>: repetir una función en cada fila</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ul class="bul">
-              <li class="anim"><code>columna.apply(funcion)</code> llama a la función <b>una vez por cada fila</b> y guarda los resultados.</li>
-              <li class="anim">Con <b>varias columnas</b> usamos <code>tabla.apply(..., axis=1)</code>: una fila a la vez.</li>
-              <li class="anim"><code>lambda fila: ...</code> es una función <b>de una sola línea, sin nombre</b>.</li>
-              <li class="anim">Aquí: <code>lambda fila: clasificar(fila["texto"], fila["puntaje"])</code> = "para cada fila, clasifica".</li>
-            </ul>
-          </div>
-          <div class="col-r anim">
-            <div class="big">Una columna nueva</div>
-            <div class="small"><code>tabla["sentimiento"] = tabla.apply(...)</code><br><br>La IA <b>crea una columna que ninguna fuente traía</b>. Eso es <b>enriquecer</b> los datos.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2><code>04_clasificar_resenas.py</code> · Leamos línea por línea (1/3): la función</h2></div>
+<section class="slide">
+      <div class="header-bar orange"><h2><code>extraer.py</code> · Una API con plan B</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top wide">
-            <pre class="code" style="font-size:13px">def clasificar(texto, puntaje):
-    <span class="s">""</span><span class="s">"Devuelve 'positiva' o 'negativa' para una reseña."</span><span class="s">""</span>
-    prompt = (
-        <span class="s">"Clasifica esta reseña de un cliente como positiva o negativa. "</span>
-        <span class="s">"Responde SOLO con una palabra: positiva o negativa.\n"</span>
-        <span class="s">"Reseña: "</span> + texto
-    )
+            <pre class="code" style="font-size:13px">def extraer_tipo_cambio(moneda=<span class="s">"dolar"</span>):
+    <span class="c"># ...</span>
+    url = f<span class="s">"https://mindicador.cl/api/{moneda}"</span>
+    <span class="c"># ...</span>
     try:
-        respuesta = requests.post(
-            URL, json={<span class="s">"model"</span>: MODELO, <span class="s">"prompt"</span>: prompt, <span class="s">"stream"</span>: False}, timeout=120
+        r = requests.get(url, timeout=10)
+        r.raise_for_status()
+        valor_usd_clp = r.json()[<span class="s">"serie"</span>][0][<span class="s">"valor"</span>]
+    <span class="c"># ...</span>
+    except Exception as e:
+        logger.warning(f<span class="s">"No se pudo obtener tipo de cambio real: {e}. Usando fallback."</span>)
+        return 180.0  <span class="c"># fallback razonable: 1 BRL ≈ 180 CLP</span></pre>
+          </div>
+          <div class="col-r narrow ann anim">
+            <div class="big">Qué significa</div>
+            <div class="row anim" style="font-size:17px"><code>requests.get(url, timeout=10)</code> pide el dólar a la API (lo vimos en la Clase 4).</div>
+            <div class="row anim" style="font-size:17px"><code>raise_for_status()</code> si respondió con error, avisa.</div>
+            <div class="row anim" style="font-size:17px"><code>["serie"][0]["valor"]</code> entra al JSON: el valor más reciente.</div>
+            <div class="row anim" style="font-size:17px"><code>except Exception as e:</code> si falla <b>cualquier cosa</b>...</div>
+            <div class="row anim" style="font-size:17px"><code>logger.warning(...)</code> ...lo registra en el diario...</div>
+            <div class="row anim" style="font-size:17px"><code>return 180.0</code> ...y devuelve un <b>valor de respaldo</b>: el pipeline no se cae.</div>
+          </div>
+        </div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+<section class="slide">
+      <div class="header-bar orange"><h2><code>transformar.py</code> · Limpiar y combinar</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l top wide">
+            <pre class="code" style="font-size:14px">    <span class="c"># 1. Solo pedidos entregados (no cancelados, no en tránsito)</span>
+    entregados = pedidos[pedidos[<span class="s">"order_status"</span>] == <span class="s">"delivered"</span>].copy()
+    <span class="c"># ...</span>
+    ventas = pd.merge(
+        entregados[[<span class="s">"order_id"</span>, <span class="s">"order_purchase_timestamp"</span>]],
+        items[[<span class="s">"order_id"</span>, <span class="s">"product_id"</span>, <span class="s">"price"</span>]],
+        on=<span class="s">"order_id"</span>,
+        how=<span class="s">"inner"</span>,
+    )
+    <span class="c"># ...</span>
+    <span class="c"># 3. Convertir BRL → CLP</span>
+    ventas[<span class="s">"precio_clp"</span>] = (ventas[<span class="s">"price"</span>] * tipo_cambio_brl_clp).round(0)</pre>
+          </div>
+          <div class="col-r narrow ann anim">
+            <div class="big">Qué significa</div>
+            <div class="row anim" style="font-size:19px"><code>pedidos[pedidos["order_status"] == "delivered"]</code> <b>filtrar</b>: solo pedidos entregados (Clase 5).</div>
+            <div class="row anim" style="font-size:19px"><code>pd.merge(..., on="order_id", how="inner")</code> <b>combinar</b> pedidos con ítems (Clase 6).</div>
+            <div class="row anim" style="font-size:19px"><code>ventas["precio_clp"] = ...</code> <b>columna nueva</b>: el precio en pesos chilenos.</div>
+          </div>
+        </div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+<section class="slide">
+      <div class="header-bar orange"><h2><code>transformar.py</code> · Resumir por semana</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l top wide">
+            <pre class="code" style="font-size:18px">    semanal = (
+        ventas.groupby(<span class="s">"semana"</span>)
+        .agg(
+            n_pedidos=(<span class="s">"order_id"</span>, <span class="s">"nunique"</span>),
+            n_items=(<span class="s">"product_id"</span>, <span class="s">"count"</span>),
+            ventas_clp=(<span class="s">"precio_clp"</span>, <span class="s">"sum"</span>),
         )
-        respuesta.raise_for_status()
-        palabra = respuesta.json()[<span class="s">"response"</span>].strip().lower()
-        return <span class="s">"negativa"</span> if <span class="s">"neg"</span> in palabra else <span class="s">"positiva"</span></pre>
+        .reset_index()
+        .sort_values(<span class="s">"semana"</span>)
+    )</pre>
           </div>
           <div class="col-r narrow ann anim">
             <div class="big">Qué significa</div>
-            <div class="row anim" style="font-size:15px"><code>def clasificar(texto, puntaje):</code> recibe la reseña y su puntaje.</div>
-            <div class="row anim" style="font-size:15px"><code>prompt = ("..." + texto)</code> arma el prompt: rol, tarea, formato y la reseña al final.</div>
-            <div class="row anim" style="font-size:15px"><code>requests.post(URL, json={...}, timeout=120)</code> le pregunta a Ollama; espera hasta 120 segundos.</div>
-            <div class="row anim" style="font-size:15px"><code>.json()["response"].strip().lower()</code> el texto de la respuesta, sin espacios y en minúsculas.</div>
-            <div class="row anim" style="font-size:15px"><code>"negativa" if "neg" in palabra else "positiva"</code> si la respuesta contiene "neg", es negativa; si no, positiva.</div>
+            <div class="row anim" style="font-size:19px"><code>groupby("semana")</code> agrupa las ventas <b>por semana</b>.</div>
+            <div class="row anim" style="font-size:19px"><code>.agg(...)</code> <b>varios cálculos a la vez</b>: pedidos, ítems y ventas.</div>
+            <div class="row anim" style="font-size:19px"><code>.reset_index()</code> la semana vuelve a ser una columna normal.</div>
+            <div class="row anim" style="font-size:19px"><code>.sort_values("semana")</code> en orden cronológico.</div>
           </div>
         </div>
       </div>
@@ -873,23 +638,27 @@ No encontré Ollama. ¿Está abierto? Mira el README de la clase.</pre>
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2><code>04_clasificar_resenas.py</code> · Leamos línea por línea (2/3): el plan B</h2></div>
+<section class="slide">
+      <div class="header-bar orange"><h2><code>cargar.py</code> · Cargar sin duplicar</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top wide">
-            <pre class="code" style="font-size:13px">    except requests.exceptions.RequestException:
-        <span class="c"># Plan B: una regla simple, solo para poder seguir la clase</span>
-        return <span class="s">"positiva (simulado)"</span> if puntaje &gt;= 4 else <span class="s">"negativa (simulado)"</span></pre>
+            <pre class="code" style="font-size:13px">def guardar_en_base(ventas_semana, pronostico, uri_base):
+    <span class="c"># ...</span>
+    ya = _semanas_existentes(engine, <span class="s">"ventas_semana"</span>)
+    nuevas = ventas_semana[~ventas_semana[<span class="s">"semana"</span>].isin(ya)]
+    if not nuevas.empty:
+        nuevas.to_sql(<span class="s">"ventas_semana"</span>, engine, if_exists=<span class="s">"append"</span>, index=False)
+    <span class="c"># ...</span>
+    pronostico.to_sql(<span class="s">"pronostico"</span>, engine, if_exists=<span class="s">"replace"</span>, index=False)</pre>
           </div>
           <div class="col-r narrow ann anim">
             <div class="big">Qué significa</div>
-            <div class="row anim" style="font-size:19px"><code>except requests.exceptions.RequestException:</code> si Ollama <b>no responde</b>...</div>
-            <div class="row anim" style="font-size:19px"><code># Plan B</code> ...usamos una regla simple.</div>
-            <div class="row anim" style="font-size:19px"><code>puntaje >= 4</code> 4 o 5 estrellas → positiva; 1 a 3 → negativa.</div>
-            <div class="row anim" style="font-size:19px"><code>"(simulado)"</code> <b>se marca</b>, para no confundir una regla con una IA.</div>
+            <div class="row anim" style="font-size:19px"><code>_semanas_existentes(...)</code> <b>mira qué semanas ya están</b> en la base.</div>
+            <div class="row anim" style="font-size:19px"><code>ventas_semana[~...isin(ya)]</code> se queda <b>solo con las semanas nuevas</b> (la <code>~</code> significa "no").</div>
+            <div class="row anim" style="font-size:19px"><code>nuevas.to_sql(..., "append")</code> agrega solo esas.</div>
+            <div class="row anim" style="font-size:19px"><code>pronostico.to_sql(..., "replace")</code> el pronóstico se <b>reemplaza</b> siempre (cambia cada vez).</div>
           </div>
         </div>
       </div>
@@ -897,89 +666,22 @@ No encontré Ollama. ¿Está abierto? Mira el README de la clase.</pre>
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2><code>04_clasificar_resenas.py</code> · Leamos línea por línea (3/3): usarla</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top wide">
-            <pre class="code" style="font-size:13px"><span class="c"># 1) Tomar 8 reseñas que tengan comentario</span>
-reviews = pd.read_csv(<span class="s">"data/raw/olist_order_reviews_dataset.csv"</span>)
-con_texto = reviews.dropna(subset=[<span class="s">"review_comment_message"</span>])
-muestra = con_texto[[<span class="s">"review_score"</span>, <span class="s">"review_comment_message"</span>]].head(8).copy()
-
-<span class="c"># 2) Crear la columna nueva: una llamada a la IA por cada fila</span>
-muestra[<span class="s">"sentimiento"</span>] = muestra.apply(
-    lambda fila: clasificar(fila[<span class="s">"review_comment_message"</span>], fila[<span class="s">"review_score"</span>]), axis=1
-)
-
-<span class="c"># 3) Mostrar el resultado</span>
-print(muestra[[<span class="s">"review_score"</span>, <span class="s">"sentimiento"</span>]])
-print(muestra[<span class="s">"sentimiento"</span>].value_counts())</pre>
-          </div>
-          <div class="col-r narrow ann anim">
-            <div class="big">Qué significa</div>
-            <div class="row anim" style="font-size:19px"><code>dropna(subset=["review_comment_message"])</code> solo reseñas <b>que tienen comentario</b>.</div>
-            <div class="row anim" style="font-size:19px"><code>.head(8).copy()</code> las primeras 8 (una copia propia).</div>
-            <div class="row anim" style="font-size:19px"><code>muestra.apply(lambda fila: ..., axis=1)</code> para <b>cada fila</b>, llama a <code>clasificar</code>.</div>
-            <div class="row anim" style="font-size:19px"><code>muestra["sentimiento"] = ...</code> la <b>columna nueva</b> creada por la IA.</div>
-            <div class="row anim" style="font-size:19px"><code>.value_counts()</code> cuántas positivas y cuántas negativas.</div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Ejecuta <code>04_clasificar_resenas.py</code></h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ol class="steps">
-              <li class="anim">Abre <code>04_clasificar_resenas.py</code> (Explorador → clase-08 → material).</li>
-              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-08/material/04_clasificar_resenas.py</pre></li>
-              <li class="anim"><b>Prueba</b>: cambia <code>head(8)</code> por <code>head(3)</code> y luego imprime también <code>review_comment_message</code>. ¿Coincide la clasificación con el comentario?</li>
-            </ol>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Debes ver (abreviado)</div>
-            <pre class="cmd out">   review_score        sentimiento
-3             5           positiva
-...
-19            1           negativa
-sentimiento
-positiva    6
-negativa    2
-(con Ollama; sin él, dice &#x27;(simulado)&#x27;)</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>La regla de oro: pandas calcula, la IA explica</h2></div>
+<section class="slide">
+      <div class="header-bar black"><h2>¿Por qué sacar los parámetros del código?</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
             <ul class="bul">
-              <li class="anim"><b>Pandas</b> calcula los números: promedios, porcentajes, totales. <b>Es exacto</b>.</li>
-              <li class="anim"><b>La IA</b> recibe <b>solo esos números</b> y los <b>redacta</b> en lenguaje natural.</li>
-              <li class="anim"><b>Nunca</b> le pidas a la IA que calcule ni le des datos que no revisaste.</li>
-              <li class="anim">Siempre <b>lee y verifica</b> lo que escribe: puede inventar.</li>
+              <li class="anim">Rutas, umbrales y nombres de archivo <b>cambian</b>; el código no debería cambiar con ellos.</li>
+              <li class="anim">Se guardan en un archivo <b><code>config.yaml</code></b>, fácil de leer y editar.</li>
+              <li class="anim">El programa lo lee al empezar: <code>yaml.safe_load(...)</code> devuelve un <b>diccionario</b>.</li>
+              <li class="anim">Está en la rúbrica: <b>buenas prácticas</b> (15%).</li>
             </ul>
           </div>
           <div class="col-r anim">
-            <div class="big">Un buen uso</div>
-            <div class="small">Resumen ejecutivo automático: tú calculas el promedio de días y el % de entregas lentas, y la IA lo explica en 3 líneas para gerencia.</div>
+            <div class="big">No confundir</div>
+            <div class="small"><code>config.yaml</code>: <b>parámetros</b> (rutas, umbrales). Se puede subir a Git.<br><br><code>.env</code>: <b>secretos</b> (claves). <b>Nunca</b> se sube.</div>
           </div>
         </div>
       </div>
@@ -987,34 +689,27 @@ negativa    2
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2><code>05_resumen_ejecutivo.py</code> · Leamos línea por línea (1/2): los números</h2></div>
+<section class="slide">
+      <div class="header-bar orange"><h2><code>config.yaml</code> · Parámetros fuera del código</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top wide">
-            <pre class="code" style="font-size:15px"><span class="c"># 1) Pandas calcula los números (la IA NO calcula)</span>
-orders = pd.read_csv(<span class="s">"data/raw/olist_orders_dataset.csv"</span>)
-entregados = orders[orders[<span class="s">"order_status"</span>] == <span class="s">"delivered"</span>].dropna(
-    subset=[<span class="s">"order_delivered_customer_date"</span>]
-)
-compra = pd.to_datetime(entregados[<span class="s">"order_purchase_timestamp"</span>])
-entrega = pd.to_datetime(entregados[<span class="s">"order_delivered_customer_date"</span>])
-dias = (entrega - compra).dt.days
-
-promedio = round(dias.mean(), 1)
-lentos = round((dias &gt; 20).mean() * 100, 1)
-print(<span class="s">"Promedio de días de entrega:"</span>, promedio)
-print(<span class="s">"Porcentaje de entregas lentas (más de 20 días):"</span>, lentos)</pre>
+            <pre class="code" style="font-size:13px">datos:
+  carpeta: <span class="s">"../../../../data/raw"</span>   <span class="c"># los CSV de Olist del repo (4 carpetas hacia arriba)</span>
+pronostico:
+  semanas: 8
+base_datos:
+  uri: <span class="s">"sqlite:///salida/demanda.db"</span>
+salida:
+  carpeta: <span class="s">"salida"</span></pre>
           </div>
           <div class="col-r narrow ann anim">
             <div class="big">Qué significa</div>
-            <div class="row anim" style="font-size:17px"><code>entregados = orders[...].dropna(...)</code> pedidos entregados con fecha (Clase 5).</div>
-            <div class="row anim" style="font-size:17px"><code>dias = (entrega - compra).dt.days</code> días de entrega (Clase 5).</div>
-            <div class="row anim" style="font-size:17px"><code>promedio = round(dias.mean(), 1)</code> el promedio: <b>calculado por pandas</b>.</div>
-            <div class="row anim" style="font-size:17px"><code>lentos = round((dias > 20).mean() * 100, 1)</code> el % de entregas de más de 20 días.</div>
-            <div class="row anim" style="font-size:17px"><code>print(...)</code> mostramos los números <b>antes</b> de la IA: son la verdad.</div>
+            <div class="row anim" style="font-size:19px"><code>datos: carpeta</code> dónde están los CSV: <b>se cambia aquí</b>, no en el código.</div>
+            <div class="row anim" style="font-size:19px"><code>pronostico: semanas</code> cuántas semanas pronosticar: 8.</div>
+            <div class="row anim" style="font-size:19px"><code>base_datos: uri</code> dónde guardar la base SQLite.</div>
+            <div class="row anim" style="font-size:19px"><code>salida: carpeta</code> dónde dejar los archivos de resultados.</div>
           </div>
         </div>
       </div>
@@ -1022,101 +717,29 @@ print(<span class="s">"Porcentaje de entregas lentas (más de 20 días):"</span>
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2><code>05_resumen_ejecutivo.py</code> · Leamos línea por línea (2/2): la IA redacta</h2></div>
+<section class="slide">
+      <div class="header-bar orange"><h2><code>test_pipeline.py</code> · Una prueba del pronóstico</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top wide">
-            <pre class="code" style="font-size:13px"><span class="c"># 2) Le damos a la IA SOLO esos números y le pedimos redactar</span>
-prompt = (
-    <span class="s">"Eres analista de datos. Escribe un resumen ejecutivo de 3 líneas en español, "</span>
-    <span class="s">"usando SOLO estos datos, sin inventar otros:\n"</span>
-    f<span class="s">"- Promedio de días de entrega: {promedio}\n"</span>
-    f<span class="s">"- Entregas lentas (más de 20 días): {lentos}%\n"</span>
-)
-
-try:
-    respuesta = requests.post(
-        URL, json={<span class="s">"model"</span>: MODELO, <span class="s">"prompt"</span>: prompt, <span class="s">"stream"</span>: False}, timeout=120
-    )
-    respuesta.raise_for_status()
-    print(<span class="s">"\nResumen ejecutivo (IA):"</span>)</pre>
+            <pre class="code" style="font-size:13px">def test_pronostico_genera_semanas_correctas(ventas_ejemplo):
+    <span class="s">""</span><span class="s">"El pronóstico debe generar exactamente N semanas futuras."</span><span class="s">""</span>
+    n = 4
+    resultado = generar_pronostico(ventas_ejemplo, semanas_futuras=n)
+    assert len(resultado) == n
+    assert <span class="s">"ventas_clp_estimado"</span> in resultado.columns
+    assert (resultado[<span class="s">"ventas_clp_estimado"</span>] &gt;= 0).all(), <span class="s">"No puede haber ventas negativas"</span></pre>
           </div>
           <div class="col-r narrow ann anim">
             <div class="big">Qué significa</div>
-            <div class="row anim" style="font-size:17px"><code>prompt = ("Eres analista de datos...")</code> rol, tarea y formato: 3 líneas en español.</div>
-            <div class="row anim" style="font-size:17px"><code>"usando SOLO estos datos, sin inventar otros"</code> <b>limita</b> a la IA a lo que le damos.</div>
-            <div class="row anim" style="font-size:17px"><code>f"- Promedio de días: {promedio}\n"</code> las <b>variables</b> se insertan en el texto (f-string).</div>
-            <div class="row anim" style="font-size:17px"><code>requests.post(URL, json={...})</code> manda el prompt a Ollama.</div>
-            <div class="row anim" style="font-size:17px"><code>respuesta.json()["response"]</code> el resumen escrito por la IA.</div>
+            <div class="row anim" style="font-size:19px"><code>def test_pronostico_...():</code> el nombre empieza con <code>test_</code>.</div>
+            <div class="row anim" style="font-size:19px"><code>n = 4</code> pedimos un pronóstico de 4 semanas.</div>
+            <div class="row anim" style="font-size:19px"><code>generar_pronostico(..., semanas_futuras=n)</code> llamamos a <b>la función real</b> del proyecto.</div>
+            <div class="row anim" style="font-size:19px"><code>assert len(resultado) == n</code> afirma que salieron <b>exactamente 4</b> semanas.</div>
+            <div class="row anim" style="font-size:19px"><code>assert (... >= 0).all()</code> afirma que <b>no hay ventas negativas</b>.</div>
           </div>
         </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Ejecuta <code>05_resumen_ejecutivo.py</code></h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ol class="steps">
-              <li class="anim">Abre <code>05_resumen_ejecutivo.py</code> (Explorador → clase-08 → material).</li>
-              <li class="anim">Haz clic en <b>▶</b>. Si no aparece, usa el comando:<pre class="cmd">python clases/clase-08/material/05_resumen_ejecutivo.py</pre></li>
-              <li class="anim"><b>Prueba</b>: cambia <code>20</code> por <code>30</code> en las dos partes (cálculo y prompt) y compara el resumen. ¿Coincide con tus números?</li>
-            </ol>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Debes ver (abreviado)</div>
-            <pre class="cmd out">Promedio de días de entrega: 12.1
-Porcentaje de entregas lentas (más de 20 días): 13.0
-
-Resumen ejecutivo (IA):
-(3 líneas escritas por el modelo, con 12,1 días y 13%)</pre>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">Letras rojas = un error: lee la <b>última línea</b>, dice qué pasó. Avísame y lo vemos.</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar orange"><h2>Antes de enviar datos a una IA: 4 preguntas</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <table class="brand" style="font-size:22px">
-          <tr><th style="width:80px">#</th><th style="width:520px">Pregunta</th><th>Si la respuesta es "sí"</th></tr>
-          <tr><td>1</td><td>¿Hay <b>datos personales</b> (RUT, nombre, correo)?</td><td>Protégelos (hash/mask) o usa IA <b>local</b></td></tr>
-          <tr><td>2</td><td>¿Hay <b>claves o secretos</b> en el texto?</td><td><b>Nunca</b> los envíes</td></tr>
-          <tr><td>3</td><td>¿Los datos son <b>confidenciales</b> de tu empresa?</td><td>IA local o pide autorización</td></tr>
-          <tr><td>4</td><td>¿Revisé <b>la respuesta</b> antes de usarla?</td><td>Si no, <b>no la uses</b></td></tr>
-        </table>
-        <div class="quote anim">Por eso hoy usamos IA <b>local</b>: es la forma más simple de responder "sí" a la privacidad. Y registra tus prompts (<code>logging</code>): sirve de <b>auditoría</b>.</div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Dónde cae la IA en tu presentación</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <table class="brand" style="font-size:21px">
-          <tr><th style="width:300px">Si tu proyecto usa IA</th><th style="width:380px">Qué decir</th><th>Slide</th></tr>
-          <tr><td><b>Clasificar</b> reseñas o textos</td><td>Qué modelo, qué prompt, cómo verificaste</td><td>9 · Aprendizajes e IA</td></tr>
-          <tr><td><b>Resumir</b> resultados</td><td>Que los números los calculó pandas</td><td>8 · Valor de negocio</td></tr>
-          <tr><td><b>Código</b> escrito con ayuda de IA</td><td>Qué entendiste y qué corregiste</td><td>9 · Aprendizajes e IA</td></tr>
-          <tr><td><b>No</b> usas IA</td><td>Está bien: tampoco es obligatoria</td><td>—</td></tr>
-        </table>
-        <div class="quote anim">La IA es tu <b>copiloto, no tu piloto</b>: tienes que poder explicar <b>cada parte</b> de lo que entregas.</div>
       </div>
       <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
       <div class="foot-num"></div>
@@ -1126,11 +749,331 @@ Resumen ejecutivo (IA):
     <section class="slide l2">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="kicker anim">Bloque 4</div>
-      <div class="stitle anim">Taller de<br>proyecto</div>
+      <div class="stitle anim">Demo en vivo y resultados</div>
       <div class="num">04</div>
+    </section>
+<section class="slide">
+      <div class="header-bar orange"><h2>Demo en vivo</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l top">
+            <ol class="steps">
+              <li class="anim">Entra a la carpeta del proyecto:<pre class="cmd">cd clases/clase-08/material/proyecto-ejemplo</pre></li>
+              <li class="anim">Corre el pipeline completo, <b>con un solo comando</b>:<pre class="cmd">python pipeline.py</pre></li>
+              <li class="anim">Córrelo <b>otra vez</b>: la carga dice <b>0 filas nuevas</b>.</li>
+              <li class="anim">Corre los tests:<pre class="cmd">pytest tests -v</pre></li>
+            </ol>
+          </div>
+          <div class="col-r ok anim">
+            <div class="big">Debes ver (abreviado)</div>
+            <pre class="cmd out">Paso 1/5 ... Paso 5/5
+PIPELINE COMPLETADO
+
+RESUMEN EJECUTIVO
+Período: 2016-10-03 → 2018-08-20
+Total de semanas: 89
+Semana más fuerte: 2017-11-20
+
+4 passed</pre>
+          </div>
+        </div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+<section class="slide">
+      <div class="header-bar black"><h2>Resultados: lo que le diría el pipeline al negocio</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <table class="brand" style="font-size:22px">
+          <tr><th style="width:420px">Indicador</th><th>Valor</th></tr>
+          <tr><td>Período analizado</td><td>2016-10 → 2018-08 (89 semanas)</td></tr>
+          <tr><td>Ventas totales</td><td>≈ $2.470 millones CLP</td></tr>
+          <tr><td>Promedio semanal</td><td>≈ $27,8 millones CLP</td></tr>
+          <tr><td>Semana más fuerte</td><td>2017-11-20 (Black Friday)</td></tr>
+          <tr><td>Mes más fuerte</td><td>Noviembre</td></tr>
+          <tr><td>Pronóstico próximas 8 semanas</td><td>≈ $375 millones CLP</td></tr>
+        </table>
+        <div class="quote anim">Un buen resultado <b>responde la pregunta de negocio</b> con números y dice qué decisión permite tomar. (Slides 6 y 8 del template).</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide l2">
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="kicker anim">Bloque 5</div>
+      <div class="stitle anim">La presentación modelo</div>
+      <div class="num">05</div>
     </section>
 
     <section class="slide">
+      <div class="header-bar orange"><h2>Así se presenta este proyecto: 15 + 5 minutos</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l top">
+            <ul class="bul">
+              <li class="anim">Las próximas 9 slides son <b>la presentación del proyecto de ejemplo</b>, con el <b>template del curso</b>.</li>
+              <li class="anim">Cada slide <b>responde una pregunta</b> (abajo a la derecha). Una idea por slide.</li>
+              <li class="anim">La <b>demo corre en vivo</b>; el plan B son capturas o un video corto.</li>
+              <li class="anim">Ambos integrantes hablan y pueden explicar <b>cualquier línea</b>.</li>
+            </ul>
+          </div>
+          <div class="col-r anim">
+            <div class="big">Fíjate en</div>
+            <div class="small">Números concretos, una <b>decisión de negocio</b> clara y una limitación dicha con honestidad.<br><br>Tu proyecto <b>no tiene que ser igual</b>: tiene que cubrir lo mismo.</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar orange"><h2>Presentación modelo</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="mp-cover">
+        <div class="t">Pronóstico de demanda<br>con datos de Olist</div>
+        <div class="s">Un pipeline de datos 100% local, de principio a fin</div>
+        <div class="m">Pareja ejemplo · Diplomado en Ingeniería de Datos con Python<br>DPL1046 · Programación en Python y Manipulación de Datos</div>
+      </div>
+      <div class="mp-tag">Presentación modelo · slide <b>1 de 9</b> · 0,5 min · responde: ¿quiénes y qué proyecto?</div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar orange"><h2>El problema de negocio</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l top">
+            <ul class="bul">
+              <li><b>Pregunta:</b> ¿cuántas ventas esperamos en las próximas 8 semanas?</li>
+              <li><b>Para quién:</b> el equipo que compra inventario y planifica logística.</li>
+              <li><b>Por qué importa:</b> sin pronóstico se compra de más (dinero congelado) o de menos (ventas perdidas).</li>
+            </ul>
+          </div>
+          <div class="col-r">
+            <div class="big">Decisión que habilita</div>
+            <div class="small">Cuánto inventario comprar y <b>cuándo</b>, antes de las semanas fuertes.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mp-tag">Presentación modelo · slide <b>2 de 9</b> · 2 min · responde: ¿qué pregunta responde y para quién?</div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar orange"><h2>Los datos</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <table class="brand" style="font-size:20px">
+          <tr><th style="width:290px">Fuente</th><th style="width:370px">Qué aporta</th><th>Tamaño</th></tr>
+          <tr><td><b>Olist · pedidos</b> (CSV)</td><td>Estado y fecha de cada pedido</td><td>99.441 pedidos</td></tr>
+          <tr><td><b>Olist · ítems</b> (CSV)</td><td>Productos y precio de cada pedido</td><td>112.650 ítems</td></tr>
+          <tr><td><b>API del dólar</b> (mindicador.cl)</td><td>Tipo de cambio para pasar de BRL a CLP</td><td>1 valor, con respaldo</td></tr>
+        </table>
+        <div class="quote anim">Calidad: se usan <b>solo los pedidos entregados</b>, y si la API falla el pipeline <b>usa un valor de respaldo</b> y lo avisa en el log.</div>
+      </div>
+      <div class="mp-tag">Presentación modelo · slide <b>3 de 9</b> · 2 min · responde: ¿de dónde salen los datos y qué calidad tienen?</div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar orange"><h2>Arquitectura del pipeline</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="mp-flow">
+          <div class="mp-box"><div class="k">Extraer</div><div class="f">extraer.py</div><ul><li>Lee los CSV de Olist</li><li>Pide el dólar a la API (con plan B)</li></ul></div>
+          <div class="mp-box"><div class="k">Transformar</div><div class="f">transformar.py</div><ul><li>Filtra entregados y cruza pedidos con ítems</li><li>Resume por semana</li><li>Estacionalidad y pronóstico</li></ul></div>
+          <div class="mp-box"><div class="k">Cargar</div><div class="f">cargar.py</div><ul><li>Guarda en SQLite sin duplicar</li><li>Deja CSV en <code>salida/</code></li></ul></div>
+        </div>
+        <div class="mp-under"><div><b>pipeline.py</b> llama cada paso, en orden</div><div><b>config.yaml</b> rutas y parámetros</div><div><b>tests/</b> 4 pruebas con pytest</div></div>
+      </div>
+      <div class="mp-tag">Presentación modelo · slide <b>4 de 9</b> · 2 min · responde: ¿cómo fluye: entrada → proceso → salida?</div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar black"><h2>Demo en vivo</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l top">
+            <ol class="steps">
+              <li>Un solo comando:<pre class="cmd">python pipeline.py</pre></li>
+              <li>Otra vez: <b>0 filas nuevas</b>, no duplica.</li>
+              <li>Las pruebas:<pre class="cmd">pytest tests -v</pre></li>
+            </ol>
+          </div>
+          <div class="col-r ok">
+            <div class="big">Lo que se ve</div>
+            <pre class="cmd out">Paso 1/5 ... Paso 5/5
+PIPELINE COMPLETADO
+
+Total de semanas: 89
+Semana más fuerte: 2017-11-20
+
+4 passed</pre>
+            <div class="small" style="margin-top:8px"><b>Plan B:</b> capturas o un video corto de esta ejecución.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mp-tag">Presentación modelo · slide <b>5 de 9</b> · 3 min · responde: ¿funciona? (en vivo, con un comando)</div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar orange"><h2>Resultados</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="mp-kpi">
+          <div><div class="v">$2.470 M</div><div class="l">ventas totales (CLP), 89 semanas</div></div>
+          <div><div class="v">$27,8 M</div><div class="l">promedio semanal histórico</div></div>
+          <div><div class="v">Nov 2017</div><div class="l">semana más fuerte: Black Friday</div></div>
+          <div><div class="v">$375 M</div><div class="l">pronóstico de las próximas 8 semanas</div></div>
+        </div>
+        <div style="font-size:17px;font-weight:700;color:var(--black);margin-bottom:4px">Índice de estacionalidad por mes (1,0 = mes promedio)</div>
+        <div class="mp-bars"><div class="b"><span>0,8</span><i style="height:103px"></i></div><div class="b"><span>0,92</span><i style="height:119px"></i></div><div class="b"><span>1,0</span><i style="height:129px"></i></div><div class="b"><span>1,1</span><i style="height:142px"></i></div><div class="b"><span>1,06</span><i style="height:137px"></i></div><div class="b"><span>0,99</span><i style="height:128px"></i></div><div class="b"><span>1,07</span><i style="height:138px"></i></div><div class="b"><span>1,12</span><i style="height:145px"></i></div><div class="b"><span>0,93</span><i style="height:120px"></i></div><div class="b"><span>0,74</span><i style="height:95px"></i></div><div class="b hi"><span>1,66</span><i style="height:215px"></i></div><div class="b"><span>0,85</span><i style="height:110px"></i></div></div>
+        <div class="mp-lab"><span>E</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span></div>
+      </div>
+      <div class="mp-tag">Presentación modelo · slide <b>6 de 9</b> · 2 min · responde: ¿qué encontraste?</div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar orange"><h2>Calidad y buenas prácticas</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <table class="brand" style="font-size:20px">
+          <tr><th style="width:330px">Práctica</th><th>Cómo se ve en el proyecto</th></tr>
+          <tr><td><b>Funciones</b> con docstring</td><td>Una responsabilidad por función, en <code>src/</code></td></tr>
+          <tr><td><b>Errores</b> y logging</td><td><code>try/except</code> con respaldo; cada paso informa qué hizo</td></tr>
+          <tr><td><b>Tests</b> con pytest</td><td>4 pruebas del pronóstico y de la limpieza</td></tr>
+          <tr><td><b>Configuración</b> externa</td><td><code>config.yaml</code>, sin rutas ni números "pegados" en el código</td></tr>
+          <tr><td><b>Reproducible</b></td><td><code>requirements.txt</code>, README y carga que no duplica</td></tr>
+          <tr><td><b>Seguridad</b></td><td>Sin claves en el código</td></tr>
+        </table>
+      </div>
+      <div class="mp-tag">Presentación modelo · slide <b>7 de 9</b> · 1 min · responde: ¿cómo se cuida el código?</div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar orange"><h2>Valor de negocio</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l top">
+            <ul class="bul">
+              <li><b>Noviembre vende 66% sobre el mes promedio</b> (índice 1,66): hay que comprar inventario <b>antes</b>.</li>
+              <li>Las próximas 8 semanas proyectan <b>≈ $47 M por semana</b>, sobre el promedio histórico de $27,8 M.</li>
+              <li><b>Limitación:</b> es un modelo simple (tendencia y estacionalidad); no considera promociones.</li>
+            </ul>
+          </div>
+          <div class="col-r">
+            <div class="big">Próximo paso</div>
+            <div class="small">Automatizarlo para que corra <b>cada semana</b> sin intervención, todo en local (<code>cron</code> o Programador de tareas).</div>
+          </div>
+        </div>
+      </div>
+      <div class="mp-tag">Presentación modelo · slide <b>8 de 9</b> · 1.5 min · responde: ¿qué decisión permite?</div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar orange"><h2>Aprendizajes e IA</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l top">
+            <ul class="bul">
+              <li><b>Aprendimos:</b> separar extraer, transformar y cargar hace el código más fácil de probar.</li>
+              <li><b>Cómo usamos IA:</b> para el esqueleto de funciones y tests (ejemplo ilustrativo).</li>
+              <li><b>Qué corregimos nosotros:</b> la IA promediaba todos los pedidos; filtramos solo los <b>entregados</b> y lo comprobamos con un test.</li>
+            </ul>
+          </div>
+          <div class="col-r">
+            <div class="big">Gracias</div>
+            <div class="small">¿Preguntas? Cada integrante puede explicar cualquier línea del código.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mp-tag">Presentación modelo · slide <b>9 de 9</b> · 1 min · responde: ¿qué aprendieron y cómo usaron IA?</div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+<section class="slide">
+      <div class="header-bar orange"><h2>La rúbrica, punto por punto</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <table class="brand" style="font-size:20px">
+          <tr><th style="width:260px">Criterio</th><th style="width:640px">Cómo lo cumple el ejemplo</th><th>Peso</th></tr>
+          <tr><td><b>Funcionalidad</b></td><td>Corre completo con <code>python pipeline.py</code>, integra CSV + API, resultados reproducibles</td><td>35%</td></tr>
+          <tr><td><b>Calidad del código</b></td><td>Funciones con docstring, <code>try/except</code>, logging, 4 tests con pytest</td><td>30%</td></tr>
+          <tr><td><b>Buenas prácticas</b></td><td><code>config.yaml</code>, <code>requirements.txt</code>, README, carga idempotente, sin credenciales en el código</td><td>15%</td></tr>
+          <tr><td><b>Presentación</b></td><td>Problema claro, demo en vivo, valor de negocio (15 min + 5)</td><td>20%</td></tr>
+        </table>
+        <div class="quote anim">Tu proyecto <b>no tiene que ser igual</b>: tiene que cubrir estos cuatro criterios.</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+<section class="slide">
+      <div class="header-bar orange"><h2>Para quedarte con algo</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l top">
+            <ul class="bul">
+              <li class="anim">Un proyecto que cumple la rúbrica es <b>ordenado</b> más que complejo.</li>
+              <li class="anim">Cada archivo tiene <b>una responsabilidad</b>.</li>
+              <li class="anim">Si algo puede fallar, hay un <b>plan B</b> y queda <b>en el log</b>.</li>
+              <li class="anim">Se puede correr <b>dos veces</b> y <b>probar</b> sin miedo.</li>
+            </ul>
+          </div>
+          <div class="col-r anim">
+            <div class="big">Pregunta</div>
+            <div class="small">¿Qué parte de este ejemplo <b>ya podrías hacer</b> en tu proyecto, y cuál te falta?</div>
+          </div>
+        </div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide l2">
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="kicker anim">Bloque 6</div>
+      <div class="stitle anim">Tu presentación</div>
+      <div class="num">06</div>
+    </section>
+<section class="slide">
       <div class="header-bar black"><h2>Tu checklist de entrega</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
@@ -1156,8 +1099,7 @@ Resumen ejecutivo (IA):
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide">
+<section class="slide">
       <div class="header-bar orange"><h2>Tu presentación: 15 + 5 minutos</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
@@ -1178,33 +1120,7 @@ Resumen ejecutivo (IA):
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Ensayo en parejas (25 minutos)</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <div class="twocol">
-          <div class="col-l top">
-            <ol class="steps">
-              <li class="anim"><b>Ejecuten su pipeline</b> de principio a fin, con un comando, y miren si algún paso falla.</li>
-              <li class="anim"><b>Revisen la checklist</b> y marquen qué falta. Anótenlo.</li>
-              <li class="anim">Abran <code>template_presentacion_proyecto.pptx</code> y <b>escriban una frase</b> por slide.</li>
-              <li class="anim"><b>Cronometren</b> los 15 minutos con la demo. Ambos hablan.</li>
-            </ol>
-          </div>
-          <div class="col-r ok anim">
-            <div class="big">Debes ver</div>
-            <div class="small">Al final del taller, cada pareja tiene: <b>lo que falta</b>, <b>una frase por slide</b> y <b>una duda concreta</b> para el docente.</div>
-            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">¿Se cae la demo? Prepara un <b>plan B</b>: capturas de pantalla o un video corto de la ejecución.</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
+<section class="slide">
       <div class="header-bar black"><h2>Preguntas que te harán el día de la presentación</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
@@ -1228,23 +1144,23 @@ Resumen ejecutivo (IA):
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide">
-      <div class="header-bar black"><h2>Si te quedaste atrás</h2></div>
+<section class="slide">
+      <div class="header-bar black"><h2>Ensayo en parejas (10 minutos)</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">Haz la rutina: entrar, activar, <code>git pull</code>.</li>
-              <li class="anim">Ejecuta <code>01</code> a <code>05</code>, de a uno, con ▶ (los de IA, en modo simulado si hace falta).</li>
-              <li class="anim">Revisa la checklist de entrega y prioriza.</li>
-              <li class="anim">Escribe tu duda y llévala a la presentación o escríbela al docente.</li>
+              <li class="anim"><b>Ejecuten su pipeline</b> de principio a fin, con un comando, y miren si algún paso falla.</li>
+              <li class="anim"><b>Revisen la checklist</b> y marquen qué falta. Anótenlo.</li>
+              <li class="anim">Abran <code>template_presentacion_proyecto.pptx</code> y <b>escriban una frase</b> por slide.</li>
+              <li class="anim"><b>Cronometren</b> los 15 minutos con la demo. Ambos hablan.</li>
             </ol>
           </div>
           <div class="col-r ok anim">
-            <div class="big">Nadie queda atrás</div>
-            <div class="small">Los scripts de IA <b>nunca se caen</b>: sin Ollama, avisan que están en modo simulado.</div>
+            <div class="big">Debes ver</div>
+            <div class="small">Al final del taller, cada pareja tiene: <b>lo que falta</b>, <b>una frase por slide</b> y <b>una duda concreta</b> para el docente.</div>
+            <div class="warnbox"><div class="wt">SI FALLA</div><div class="small">¿Se cae la demo? Prepara un <b>plan B</b>: capturas de pantalla o un video corto de la ejecución.</div></div>
           </div>
         </div>
       </div>
@@ -1252,29 +1168,48 @@ Resumen ejecutivo (IA):
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide l1 slide-closing">
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <h1 class="ttl closing anim">Pide, combina, explica</h1>
-      <div class="closing-sub anim">APIs, IA local y tu proyecto listo · nos vemos en las presentaciones</div>
-      <div class="meta anim">DPL1046 · Programación en Python y Manipulación de Datos · PhD. Juan Manuel Rozas</div>
-      <div class="barbottom"></div>
-    </section>
-
-    
-    <section class="slide">
-      <div class="header-bar orange"><h2>Dónde quedamos hoy</h2></div>
+<section class="slide">
+      <div class="header-bar black"><h2>Si te quedaste atrás</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
-        <div class="pl-row"><div class="pl-card done"><div class="cl">Clase 4</div><div class="n">1</div><div class="t">Obtener</div><div class="d">Archivos y APIs</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">2</div><div class="t">Proteger</div><div class="d">Secretos y datos personales</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">3</div><div class="t">Explorar y limpiar</div><div class="d">pandas: filtrar y limpiar</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 6</div><div class="n">4</div><div class="t">Combinar y resumir</div><div class="d">merge y groupby</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 6</div><div class="n">5</div><div class="t">Guardar</div><div class="d">Base de datos SQLite</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 7</div><div class="n">6</div><div class="t">Automatizar</div><div class="d">Funciones, errores, logging y tests</div><div class="st">Hecho ✓</div></div><div class="pl-card now"><div class="cl">Clase 8</div><div class="n">7</div><div class="t">Ampliar</div><div class="d">APIs por partes, dos fuentes e IA local</div><div class="st">Hoy lo hicimos ✓</div></div><div class="pl-card next"><div class="cl">Clase 9</div><div class="n">8</div><div class="t">Presentar</div><div class="d">Tu proyecto integrador</div><div class="st">Sigue →</div></div></div>
-        <div class="pl-base"><b>Base · Clases 1 a 3:</b> entorno listo, Python y sus 4 estructuras, tu proyecto integrador</div>
-        <div class="pl-msg"><div><span class="k">Hoy completaste</span>Ampliar el pipeline: paginación, dos fuentes e IA local.</div><div><span class="k">Lo que sigue</span>Presentar el proyecto integrador (Clase 9)</div></div>
+        <div class="twocol">
+          <div class="col-l top">
+            <ol class="steps">
+              <li class="anim">Haz la rutina: entrar, activar, <code>git pull</code>.</li>
+              <li class="anim">Instala y corre el proyecto de ejemplo: <code>pip install -r requirements.txt</code> y <code>python pipeline.py</code>.</li>
+              <li class="anim">Revisa la checklist de entrega y prioriza.</li>
+              <li class="anim">Escribe tu duda y llévala a la presentación o escríbela al docente.</li>
+            </ol>
+          </div>
+          <div class="col-r ok anim">
+            <div class="big">Nadie queda atrás</div>
+            <div class="small">El proyecto de ejemplo <b>no necesita internet</b>: si la API falla, usa un respaldo.</div>
+          </div>
+        </div>
       </div>
       <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
+<section class="slide l1 slide-closing">
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <h1 class="ttl closing anim">Todo junto</h1>
+      <div class="closing-sub anim">Tu proyecto de principio a fin · nos vemos en las presentaciones</div>
+      <div class="meta anim">DPL1046 · Programación en Python y Manipulación de Datos · PhD. Juan Manuel Rozas</div>
+      <div class="barbottom"></div>
+    </section>
+<section class="slide">
+      <div class="header-bar orange"><h2>Dónde quedamos hoy</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="pl-row"><div class="pl-card done"><div class="cl">Clase 4</div><div class="n">1</div><div class="t">Obtener</div><div class="d">Archivos y APIs</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">2</div><div class="t">Proteger</div><div class="d">Secretos y datos personales</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 5</div><div class="n">3</div><div class="t">Explorar y limpiar</div><div class="d">pandas: filtrar y limpiar</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 6</div><div class="n">4</div><div class="t">Combinar y resumir</div><div class="d">merge y groupby</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 6</div><div class="n">5</div><div class="t">Guardar</div><div class="d">Base de datos SQLite</div><div class="st">Hecho ✓</div></div><div class="pl-card done"><div class="cl">Clase 7</div><div class="n">6</div><div class="t">Automatizar</div><div class="d">Funciones, errores, logging y tests</div><div class="st">Hecho ✓</div></div><div class="pl-card now"><div class="cl">Clase 8</div><div class="n">7</div><div class="t">Integrar</div><div class="d">Un proyecto completo, de punta a punta</div><div class="st">Hoy lo hicimos ✓</div></div><div class="pl-card next"><div class="cl">Clase 9</div><div class="n">8</div><div class="t">Presentar</div><div class="d">Tu proyecto integrador</div><div class="st">Sigue →</div></div></div>
+        <div class="pl-base"><b>Base · Clases 1 a 3:</b> entorno listo, Python y sus 4 estructuras, tu proyecto integrador</div>
+        <div class="pl-msg"><div><span class="k">Hoy completaste</span>Integrar todo: un proyecto completo, de punta a punta, con su presentación modelo.</div><div><span class="k">Lo que sigue</span>Presentar el proyecto integrador (Clase 9)</div></div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
 <section class="slide">
       <div class="header-bar black"><h2>Qué sigue: antes de las presentaciones</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
@@ -1298,25 +1233,23 @@ Resumen ejecutivo (IA):
       <div class="foot-num"></div>
       <div class="footer-bar"></div>
     </section>
-
-    <section class="slide l2">
+<section class="slide l2">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="kicker anim">Anexo</div>
       <div class="stitle anim">Más material<br>de la Clase 8</div>
       <div class="num">A</div>
     </section>
-
-    <section class="slide">
+<section class="slide">
       <div class="header-bar black"><h2>Para curiosos (opcional)</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
         <div class="twocol">
           <div class="col-l top">
             <ul class="bul">
-              <li class="anim"><code>99_opcional_rag_local.py</code>: <b>RAG</b> básico (buscar en tus datos y responder con un modelo). Necesita librerías pesadas (<code>sentence-transformers</code>, <code>chromadb</code>).</li>
-              <li class="anim"><b>Reintentos con espera creciente</b> (backoff) cuando una API falla a ratos.</li>
-              <li class="anim"><b>Embeddings</b>: convertir texto en números para buscar por significado.</li>
-              <li class="anim">Probar otros modelos con <code>ollama pull</code>.</li>
+              <li class="anim"><b>APIs por partes e IA local (Ollama)</b>: los 5 scripts y su presentación están en <code>clases/clase-08/material/extra/</code> y <code>teoria_extra.html</code>.</li>
+              <li class="anim"><code>99_opcional_rag_local.py</code>: RAG básico (buscar en tus datos y responder con un modelo).</li>
+              <li class="anim"><code>99_opcional_carga_repetible.py</code> (Clase 6) y <code>99_opcional_config.py</code> (Clase 7).</li>
+              <li class="anim">Automatizar el pipeline con <code>cron</code> (Mac/Linux) o el Programador de tareas (Windows).</li>
             </ul>
           </div>
           <div class="col-r anim">

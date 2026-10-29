@@ -19,7 +19,7 @@ El proyecto integrador es la **evaluación central del curso (100% del examen)**
 
 ## Los 10 temas
 
-Todos usan las 9 tablas de Olist (órdenes, ítems, pagos, reseñas, productos, vendedores, clientes, geolocalización, traducción de categorías). El "ángulo IA" es una **idea opcional** para enriquecer el proyecto con IA local (Clase 8).
+Todos usan las 9 tablas de Olist (órdenes, ítems, pagos, reseñas, productos, vendedores, clientes, geolocalización, traducción de categorías). El "ángulo IA" es una **idea opcional** para enriquecer el proyecto con IA local (material extra de la Clase 8).
 
 **1. Radar de satisfacción del cliente**
 Analizar las reseñas (puntaje + comentario) por categoría y vendedor. *Tablas:* reviews, order_items, products. *Ángulo IA:* clasificar sentimiento y temas de los comentarios.
@@ -59,7 +59,7 @@ Panorama ejecutivo con KPIs integrales (GMV, ticket promedio, satisfacción, ent
 |---|---|
 | **Unidad 1 (Clases 1–3)** | Script que lee ≥2 tablas/fuentes del dataset, valida la calidad de los datos y genera un reporte básico del tema elegido. |
 | **Unidad 2 (Clases 4–6)** | Pipeline ETL con pandas: lee ≥2 tablas, limpia, combina (`merge`), resume (`groupby`) y guarda el resultado en SQLite o Parquet sin duplicar al repetir la ejecución. |
-| **Unidad 3 (Clases 7–9)** | Programa robusto: funciones, manejo de errores, logging, tests con `pytest` y configuración externa; ≥2 fuentes (idealmente una API externa) y resultados en formato ejecutivo. Un componente de IA local suma valor. Presentación en la Clase 9. |
+| **Unidad 3 (Clases 7–9)** | Programa robusto: funciones, manejo de errores, logging, tests con `pytest` y configuración externa; ≥2 fuentes (idealmente una API externa) y resultados en formato ejecutivo. Un componente de IA local suma valor (opcional: material extra de la Clase 8). Presentación en la Clase 9. |
 
 ---
 
@@ -74,7 +74,7 @@ Panorama ejecutivo con KPIs integrales (GMV, ticket promedio, satisfacción, ent
 
 Aprobación: nota 4,0 · asistencia mínima de 70% a las sesiones sincrónicas.
 
-La rúbrica se revisa en la Clase 3 (también está en [`rubrica_y_temas.html`](clases/clase-03/material/rubrica_y_temas.html), con el listado de temas). Un ejemplo completo de proyecto que la cumple se presenta en la Clase 7, y en la Clase 8 hay un taller para ordenar tu entrega.
+La rúbrica se revisa en la Clase 3 (también está en [`rubrica_y_temas.html`](clases/clase-03/material/rubrica_y_temas.html), con el listado de temas). Un ejemplo completo de proyecto que la cumple, con su presentación modelo, se ve en la Clase 8; ahí mismo preparas la tuya.
 
 ---
 
@@ -124,6 +124,6 @@ Esta tabla se completa a medida que avanza el curso: en cada clase conectamos lo
 | 4 | CSV, Excel, JSON, Parquet y API | 3 · Los datos · 4 · Arquitectura |
 | 5 | pandas: DataFrame, filtrar, columnas nuevas y fechas, limpiar; `.env` y datos personales (PII) | 3 · Los datos · 4 · Arquitectura · 6 · Resultados · 7 · Calidad |
 | 6 | `groupby`, `merge`, SQLite y cargas que no duplican | 3 · Los datos · 4 · Arquitectura · 6 · Resultados · 7 · Calidad |
-| 7 | Funciones, errores, logging, tests, config; proyecto de ejemplo | 7 · Calidad y buenas prácticas · 5 · Demo |
-| 8 | Paginación, dos fuentes en una tabla, IA local; taller de proyecto | 3 · Los datos · 4 · Arquitectura · 8 · Valor · 9 · Aprendizajes e IA |
+| 7 | Funciones, errores, logging y tests; taller con tu ficha | 7 · Calidad y buenas prácticas · 5 · Demo |
+| 8 | Proyecto de ejemplo completo (extraer, transformar, cargar, config, tests) y presentación modelo; ensayo | Todas (modelo de las 9 slides) |
 | 9 | Presentaciones y cierre | Todas |

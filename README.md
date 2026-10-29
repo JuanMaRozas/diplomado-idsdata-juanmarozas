@@ -37,8 +37,8 @@ Aquí está todo el material del curso: por cada clase, la **presentación**, la
 ### Unidad 3 — Integración de Datos y Automatización con Python
 | Clase | Sesión | Material |
 |---|---|---|
-| 7 | Del script al programa: funciones, errores, logging, tests y un proyecto de ejemplo | *próximamente* |
-| 8 | APIs avanzadas, IA local y taller de proyecto | *próximamente* |
+| 7 | Del script al programa: funciones, errores, logging y tests | *próximamente* |
+| 8 | El proyecto integrador de principio a fin: ejemplo completo y presentación modelo | *próximamente* |
 | 9 | Presentaciones del Proyecto Integrador | *próximamente* |
 
 ---

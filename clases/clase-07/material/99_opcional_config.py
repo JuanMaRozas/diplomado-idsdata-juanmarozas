@@ -1,9 +1,9 @@
 """
-DPL1046 · Clase 7 · 05_config.py
+DPL1046 · Clase 7 (opcional) · 99_opcional_config.py
 Configuración externa: los parámetros viven en config.yaml, no en el código.
 
 Córrelo con el botón ▶ o con:
-    python clases/clase-07/material/05_config.py
+    python clases/clase-07/material/99_opcional_config.py
 """
 
 import yaml

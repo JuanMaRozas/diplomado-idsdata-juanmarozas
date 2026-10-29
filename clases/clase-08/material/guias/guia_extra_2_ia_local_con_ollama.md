@@ -1,6 +1,6 @@
-# Guía 2 de 3 — IA local con Ollama: prompts, apply y la regla de oro
+# Guía extra 2 de 2 — IA local con Ollama: prompts, apply y la regla de oro
 
-**DPL1046 · Clase 8 · Para repasar en casa, a tu ritmo.**
+**DPL1046 · Clase 8 (material extra, opcional) · Para repasar en casa, a tu ritmo.**
 
 Una IA que corre **en tu propio computador** funciona como cualquier otra API: le mandas un texto y te devuelve otro. Esta guía repasa cómo hablar con ella desde Python, cómo escribir un buen prompt y cómo usarla sin que te invente números.
 

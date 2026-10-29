@@ -1,11 +1,11 @@
 """
-DPL1046 · Clase 8 · 01_paginacion.py
+DPL1046 · Clase 8 (extra, opcional) · 01_paginacion.py
 Paginación: una API que entrega los datos por partes (páginas).
 
 Usamos PokeAPI (pública, sin clave). El patrón es el mismo en cualquier API.
 
 Córrelo con el botón ▶ o con:
-    python clases/clase-08/material/01_paginacion.py
+    python clases/clase-08/material/extra/01_paginacion.py
 """
 
 import requests

@@ -6,6 +6,9 @@ Un CSV sirve, pero una **base de datos** es mucho más cómoda para guardar y co
 
 > Antes de empezar, haz tu rutina de inicio (Guía 1 de la Clase 2) con el `.venv` activado.
 
+> **Para casa (opcional):** el script `99_opcional_carga_repetible.py` practica las cargas que no duplican (`append` vs `replace`). No se ve en clase, pero la idea vuelve en `cargar.py` del proyecto de ejemplo de la Clase 8.
+
+
 ---
 
 ## 1. ¿Por qué una base de datos y no solo un CSV?

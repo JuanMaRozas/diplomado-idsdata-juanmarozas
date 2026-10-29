@@ -1,9 +1,9 @@
 """
-DPL1046 · Clase 8 · 02_dos_fuentes.py
+DPL1046 · Clase 8 (extra, opcional) · 02_dos_fuentes.py
 Combinar DOS fuentes: ventas de Olist (CSV) + dólar de Chile (API).
 
 Córrelo con el botón ▶ o con:
-    python clases/clase-08/material/02_dos_fuentes.py
+    python clases/clase-08/material/extra/02_dos_fuentes.py
 """
 
 import requests

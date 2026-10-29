@@ -1,5 +1,5 @@
-# Clase 8 · Librerías
-# Instalar con:  pip install -r clases/clase-08/material/requirements.txt
+# Clase 8 · Extra: librerías (APIs e IA local)
+# Instalar con:  pip install -r clases/clase-08/material/extra/requirements.txt
 requests>=2.31   # APIs y también Ollama (corre en tu computador)
 # Los scripts 99_opcional_rag_local.py necesitan además:
 #   sentence-transformers y chromadb (instalación pesada: solo para curiosos)

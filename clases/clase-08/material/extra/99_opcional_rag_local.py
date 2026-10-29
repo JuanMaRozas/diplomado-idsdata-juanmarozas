@@ -23,7 +23,7 @@ Requisitos:
     Ollama corriendo con: ollama pull llama3.2
 
 Cómo correrlo:
-    python clases/clase-08/material/99_opcional_rag_local.py
+    python clases/clase-08/material/extra/99_opcional_rag_local.py
 ====================================================================
 """
 

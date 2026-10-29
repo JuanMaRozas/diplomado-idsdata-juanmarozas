@@ -1,11 +1,12 @@
-# Clase 08 — APIs avanzadas, IA local y taller de proyecto
+# Clase 08 — El proyecto integrador de principio a fin
 
 **Unidad 3 · Integración de Datos y Automatización con Python**
 
 - **Presentación:** abre [`teoria.html`](teoria.html) en el navegador (navega con ← →, tecla `F` para pantalla completa).
-- **Práctica:** los scripts están en [`material/`](material/).
+- **Proyecto de ejemplo:** [`material/proyecto-ejemplo/`](material/proyecto-ejemplo/).
+- **Material extra (opcional):** APIs por partes e IA local, en [`material/extra/`](material/extra/) y [`teoria_extra.html`](teoria_extra.html).
 
-> Continúa desde la Clase 7. **Última clase de contenido.** Para los scripts de IA necesitas **Ollama** instalado (ver abajo); sin Ollama, funcionan en **modo simulado**.
+> Continúa desde la Clase 7. **Última clase de contenido.** Hoy ves un proyecto integrador completo, script por script, y una presentación modelo.
 
 ---
 
@@ -15,68 +16,58 @@
 cd ~/diplomado-idsdata-juanmarozas
 source .venv/bin/activate               # Mac   (Windows: source .venv/Scripts/activate)
 git pull
-
 ```
 
-Debe aparecer la carpeta `clases/clase-08`. Ollama es opcional pero recomendado.
+Debe aparecer la carpeta `clases/clase-08/material/proyecto-ejemplo`. En clase lo instalamos y lo corremos juntos.
 
 ## Qué haremos hoy
 
 | Bloque | Qué hacemos |
 |---|---|
-| 1 | **Puesta al día**: rutina, repaso y comprobar Ollama |
-| 2 | **APIs avanzadas**: paginación y dos fuentes en una tabla |
-| 3 | **IA local**: hablar con un modelo, clasificar y resumir |
-| 4 | **Taller de proyecto**: checklist, ensayo y dudas |
+| 1 | **Puesta al día**: rutina, repaso e instalar el proyecto de ejemplo |
+| 2 | **El proyecto**: problema de negocio y cómo está organizado |
+| 3 | **Recorrido por el código**: `pipeline.py`, `extraer.py`, `transformar.py`, `cargar.py`, `config.yaml` y tests |
+| 4 | **Demo en vivo** y resultados |
+| 5 | **La presentación modelo**: 9 slides con el template y la rúbrica |
+| 6 | **Tu presentación**: checklist, preguntas que te harán y ensayo |
 
-## Scripts de la clase
+## El proyecto de ejemplo
 
-| Script | Qué muestra | ¿Internet? |
-|---|---|---|
-| `01_paginacion.py` | Paginación con `while` (PokeAPI) | **Sí** |
-| `02_dos_fuentes.py` | Ventas de Olist + dólar de Chile (API) en una tabla | **Sí** |
-| `03_ollama_hola.py` | Hablar con una IA local con `requests.post` | Solo local |
-| `04_clasificar_resenas.py` | Clasificar reseñas con IA (modo simulado si no hay Ollama) | Solo local |
-| `05_resumen_ejecutivo.py` | Pandas calcula, la IA redacta (modo simulado si no hay Ollama) | Solo local |
-| `99_opcional_rag_local.py` | RAG básico (requiere librerías pesadas) | Opcional |
+Un pipeline que **pronostica la demanda semanal** con datos de Olist y el dólar de Chile (API, con respaldo si no hay internet).
 
-## Cómo ejecutar un script
+| Archivo | Qué hace |
+|---|---|
+| `pipeline.py` | Corre todo, en orden |
+| `src/extraer.py` | Lee los CSV de Olist y pide el dólar a la API |
+| `src/transformar.py` | Limpia, combina, resume por semana y pronostica |
+| `src/cargar.py` | Guarda en SQLite sin duplicar |
+| `config.yaml` | Rutas y parámetros fuera del código |
+| `tests/test_pipeline.py` | 4 pruebas con `pytest` |
 
-Abre el archivo y haz clic en **▶** (guarda antes con Cmd+S / Ctrl+S), o desde la raíz del repo, con `(.venv)` activo:
-
-```bash
-python clases/clase-08/material/01_paginacion.py
-python clases/clase-08/material/02_dos_fuentes.py
-python clases/clase-08/material/03_ollama_hola.py
-python clases/clase-08/material/04_clasificar_resenas.py
-python clases/clase-08/material/05_resumen_ejecutivo.py
-```
-
-
-
-## Instalar Ollama (una sola vez, con buen internet)
-
-1. Descarga e instala desde [ollama.com](https://ollama.com).
-2. Abre una terminal y descarga el modelo (≈2 GB):
+Para correrlo (desde la carpeta del proyecto, con `(.venv)` activo):
 
 ```bash
-ollama pull llama3.2
-ollama list      # debe aparecer llama3.2
+cd clases/clase-08/material/proyecto-ejemplo
+pip install -r requirements.txt
+python pipeline.py
+pytest tests -v
 ```
 
-3. Deja la aplicación de Ollama **abierta** mientras trabajas.
+Es de **referencia**: léelo y córrelo, pero **no lo copies**. Más detalle en su [`README.md`](material/proyecto-ejemplo/README.md).
 
-Si no puedes instalarlo, no te detengas: `04` y `05` funcionan en modo simulado y lo avisan.
+## Material extra (opcional)
+
+Los scripts de APIs por partes (paginación y dos fuentes) y de IA local con Ollama **no se ven en clase**; quedan en [`material/extra/`](material/extra/) para quien quiera profundizar (necesitan `pip install -r clases/clase-08/material/extra/requirements.txt`; los de IA usan Ollama o su modo simulado). Su presentación es [`teoria_extra.html`](teoria_extra.html).
 
 ## Proyecto integrador
 
-Lo de hoy alimenta tu presentación: dos fuentes → slides 3 y 4; IA → slides 8 y 9 (**Valor de negocio** y **Aprendizajes e IA**). El **taller** final prepara tu entrega y tu ensayo. Ver [`proyecto-integrador.md`](../../proyecto-integrador.md).
+La presentación modelo de hoy te muestra qué va en cada slide del template (problema, datos, arquitectura, demo, resultados, calidad, valor de negocio y aprendizajes e IA). Ver [`proyecto-integrador.md`](../../proyecto-integrador.md).
 
 ## Si te quedaste atrás
 
 1. Repite el bloque "Antes de la clase".
-2. Ejecuta `01` a `05`, de a uno (`01` y `02` necesitan internet).
-3. Sin Ollama, `04` y `05` marcan "(simulado)". Revisa la checklist de entrega en `proyecto-integrador.md`.
+2. Entra a `proyecto-ejemplo`, instala sus librerías y ejecuta `python pipeline.py` y `pytest tests -v`.
+3. Revisa la checklist de entrega en `proyecto-integrador.md` y anota tus dudas.
 
 ## Qué sigue: antes de las presentaciones
 

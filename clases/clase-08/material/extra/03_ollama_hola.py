@@ -1,5 +1,5 @@
 """
-DPL1046 · Clase 8 · 03_ollama_hola.py
+DPL1046 · Clase 8 (extra, opcional) · 03_ollama_hola.py
 Hablar con una IA que corre en TU computador (Ollama), como con cualquier API.
 
 Requisitos (una sola vez, ver README):
@@ -7,7 +7,7 @@ Requisitos (una sola vez, ver README):
     2) ollama pull llama3.2
 
 Córrelo con el botón ▶ o con:
-    python clases/clase-08/material/03_ollama_hola.py
+    python clases/clase-08/material/extra/03_ollama_hola.py
 """
 
 import requests

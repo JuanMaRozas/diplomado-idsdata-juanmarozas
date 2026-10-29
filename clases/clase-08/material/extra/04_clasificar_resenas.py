@@ -1,12 +1,12 @@
 """
-DPL1046 · Clase 8 · 04_clasificar_resenas.py
+DPL1046 · Clase 8 (extra, opcional) · 04_clasificar_resenas.py
 Enriquecer una tabla con IA: clasificar reseñas como positivas o negativas.
 
 Si Ollama no está disponible, el script usa una regla simple (marcada como
 "simulado") para que igual puedas seguir la clase.
 
 Córrelo con el botón ▶ o con:
-    python clases/clase-08/material/04_clasificar_resenas.py
+    python clases/clase-08/material/extra/04_clasificar_resenas.py
 """
 
 import requests

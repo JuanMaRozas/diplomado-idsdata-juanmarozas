@@ -23,7 +23,7 @@ Pipeline ETL 100% local que procesa datos reales de Olist (e-commerce brasileño
 
 ```bash
 # 1. Entra a la carpeta del proyecto de ejemplo (con el .venv activo)
-cd clases/clase-07/material/proyecto-ejemplo
+cd clases/clase-08/material/proyecto-ejemplo
 
 # 2. Instala las dependencias que falten
 pip install -r requirements.txt
