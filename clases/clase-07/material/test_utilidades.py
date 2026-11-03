@@ -3,7 +3,7 @@ DPL1046 · Clase 7 · test_utilidades.py
 Pruebas automáticas (pytest) para utilidades.py.
 
 Córrelo con:
-    pytest clases/clase-07/material/ -v
+    pytest clases/clase-07/material/test_utilidades.py -v
 """
 
 import pytest

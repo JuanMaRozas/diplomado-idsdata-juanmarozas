@@ -69,7 +69,8 @@ python clases/clase-07/material/04_refactor_copilot.py
 Los tests se ejecutan con:
 
 ```bash
-pytest clases/clase-07/material/ -v
+pytest clases/clase-07/material/test_utilidades.py -v        # los 5 tests de la clase
+pytest clases/clase-07/material/test_refactor_copilot.py -v  # los 4 del refactor con IA
 ```
 
 

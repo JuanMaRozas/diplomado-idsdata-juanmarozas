@@ -116,7 +116,7 @@ def test_dias_negativos_da_error():
 - `pytest.raises(ValueError)` verifica que, ante un dato absurdo, **sí falle** con ese error. También se prueba que el error aparezca cuando debe.
 - `raise ValueError(...)` es como el programa **avisa** que algo anda mal a propósito.
 
-Para ejecutarlas: `pytest clases/clase-07/material/ -v`. Cada prueba muestra `PASSED` (verde) o `FAILED` (rojo).
+Para ejecutarlas: `pytest clases/clase-07/material/test_utilidades.py -v`. Cada prueba muestra `PASSED` (verde) o `FAILED` (rojo).
 
 > **Truco para entender:** cambia `== "rápida"` por `== "lenta"`, corre pytest, mira la prueba fallar en rojo, y luego devuélvelo.
 
@@ -190,10 +190,10 @@ Para instalar en VS Code: abre Extensiones (**Cmd+Shift+X** en Mac, **Ctrl+Shift
 1. Ejecuta los tests de antes, desde la raíz del repo y con `(.venv)` activo:
 
 ```bash
-pytest clases/clase-07/material/ -v
+pytest clases/clase-07/material/test_refactor_copilot.py -v
 ```
 
-   Deben pasar los 9 tests.
+   Deben pasar los 4 tests.
 
 2. Abre `04_refactor_copilot.py` y **selecciona la función** `resumir_pedidos` completa.
 3. Pide el cambio con tu IA. Con **Copilot**, abre el chat en línea con **Cmd+I** (Mac) o **Ctrl+I** (Windows). Con **Gemini, Claude o ChatGPT**, copia la función y pégala en su chat junto con este texto:
@@ -205,7 +205,7 @@ función ni lo que devuelve.
 ```
 
 4. Mira el cambio. Acéptalo (o pégalo en el archivo y guarda) solo si lo entiendes.
-5. Vuelve a ejecutar los tests. Deben seguir los 9 `PASSED`.
+5. Vuelve a ejecutar los tests. Deben seguir los 4 `PASSED`.
 
 > Si no puedes usar ninguna IA, hazlo a mano: cambia los nombres `p`, `t`, `c`, `l`, `a`, `x` por nombres claros y vuelve a correr los tests.
 

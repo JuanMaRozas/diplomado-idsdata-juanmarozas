@@ -880,7 +880,7 @@ def test_dias_negativos_da_error():
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">En la terminal, en la raíz del repo, con el entorno activo:<pre class="cmd">pytest clases/clase-07/material/ -v</pre></li>
+              <li class="anim">En la terminal, en la raíz del repo, con el entorno activo:<pre class="cmd">pytest clases/clase-07/material/test_utilidades.py -v</pre></li>
               <li class="anim">Mira cada línea: <code>PASSED</code> = pasó.</li>
               <li class="anim"><b>Rompe un test a propósito</b>: en <code>test_utilidades.py</code> cambia <code>== 8</code> por <code>== 9</code>, guarda y vuelve a ejecutar.</li>
             </ol>
@@ -998,11 +998,11 @@ test_dias_negativos_da_error PASSED
         <div class="twocol">
           <div class="col-l top">
             <ol class="steps">
-              <li class="anim">Ejecuta los tests de antes: <pre class="cmd">pytest clases/clase-07/material/ -v</pre> Deben pasar los <b>9</b>.</li>
+              <li class="anim">Ejecuta los tests de antes: <pre class="cmd">pytest clases/clase-07/material/test_refactor_copilot.py -v</pre> Deben pasar los <b>4</b>.</li>
               <li class="anim">Abre <code>04_refactor_copilot.py</code> y <b>selecciona la función</b> completa.</li>
               <li class="anim"><b>Copilot:</b> <b>Cmd+I</b> / <b>Ctrl+I</b> y el prompt. <b>Gemini, Claude o ChatGPT:</b> copia la función y pégala con el prompt.</li>
               <li class="anim">Mira el cambio. Acéptalo (o pégalo en el archivo y guarda) solo si lo entiendes.</li>
-              <li class="anim">Vuelve a ejecutar los tests. ¿Siguen los <b>9 PASSED</b>?</li>
+              <li class="anim">Vuelve a ejecutar los tests. ¿Siguen los <b>4 PASSED</b>?</li>
             </ol>
           </div>
           <div class="col-r ok anim">
@@ -1023,7 +1023,7 @@ test_dias_negativos_da_error PASSED
       <div class="body">
         <table class="brand" style="font-size:21px">
           <tr><th style="width:330px">Pregunta de revisión</th><th>Qué haces</th></tr>
-          <tr><td><b>¿Hace lo mismo?</b></td><td>Ejecuta <code>pytest</code>: deben seguir los 9 <code>PASSED</code>.</td></tr>
+          <tr><td><b>¿Hace lo mismo?</b></td><td>Ejecuta <code>pytest</code>: deben seguir los 4 <code>PASSED</code>.</td></tr>
           <tr><td><b>¿La entiendo?</b></td><td>Lee cada línea. Si no la entiendes, pídele a tu IA que la explique.</td></tr>
           <tr><td><b>¿Cambió algo que no pedí?</b></td><td>Compara el antes y el después (VS Code muestra las diferencias).</td></tr>
           <tr><td><b>¿Qué le estoy mostrando?</b></td><td>Nunca pegues <b>claves ni datos personales</b> en ningún chat de IA (Clase 5).</td></tr>
