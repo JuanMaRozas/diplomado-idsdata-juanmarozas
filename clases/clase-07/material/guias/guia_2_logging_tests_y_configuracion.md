@@ -1,8 +1,8 @@
-# Guía 2 de 3 — Logging, pruebas con pytest y configuración externa
+# Guía 2 de 3 — Logging, pruebas con pytest, configuración externa y refactor con IA
 
 **DPL1046 · Clase 7 · Para repasar en casa, a tu ritmo.**
 
-Un programa confiable **cuenta lo que hace** (logging), **se prueba solo** (pytest) y **no tiene parámetros escondidos en el código** (configuración externa). Esta guía repasa las tres ideas.
+Un programa confiable **cuenta lo que hace** (logging), **se prueba solo** (pytest) y **no tiene parámetros escondidos en el código** (configuración externa). Esta guía repasa las tres ideas y suma cómo ordenar tu código con una IA (Copilot, Gemini, Claude o ChatGPT), usando los tests como red de seguridad.
 
 > Antes de empezar, haz tu rutina de inicio (Guía 1 de la Clase 2) con el `.venv` activado. Las bibliotecas nuevas de esta clase (`pytest`, `pyyaml`) se instalan con `pip install -r requirements.txt`.
 
@@ -168,6 +168,60 @@ print("Entregas lentas (más de", umbral, "días):", (dias > umbral).sum())
 
 ---
 
+## 4. Refactor con IA (Copilot, Gemini, Claude o ChatGPT)
+
+**Refactor** es reescribir el código para que se lea mejor (nombres claros, sin repetir, con docstring) **sin cambiar lo que hace**. Una IA te ayuda a proponerlo; tus **tests** comprueban que no se rompió nada.
+
+### Elige y conecta tu IA (todas con plan gratis)
+
+| IA | Dónde | Cuenta | Cómo se conecta |
+|---|---|---|---|
+| GitHub Copilot Free | VS Code | GitHub | Extensión `GitHub Copilot`; atajo Cmd+I / Ctrl+I |
+| Gemini Code Assist | VS Code | Google | Extensión `Gemini Code Assist`; panel lateral |
+| Claude | Navegador | Correo o Google | [claude.ai](https://claude.ai): copias la función y la pegas |
+| ChatGPT | Navegador | Correo, Google o Apple | [chatgpt.com](https://chatgpt.com): copias la función y la pegas |
+
+Para instalar en VS Code: abre Extensiones (**Cmd+Shift+X** en Mac, **Ctrl+Shift+X** en Windows), busca la extensión, pulsa **Install** e inicia sesión. Prueba con `hola` en su chat.
+
+> Los planes gratis tienen **límites de uso** que pueden cambiar; si se acaba uno, usa otra IA. Copilot Free no está disponible con cuentas de una organización o de empresa.
+
+### Paso a paso con `04_refactor_copilot.py`
+
+1. Ejecuta los tests de antes, desde la raíz del repo y con `(.venv)` activo:
+
+```bash
+pytest clases/clase-07/material/ -v
+```
+
+   Deben pasar los 9 tests.
+
+2. Abre `04_refactor_copilot.py` y **selecciona la función** `resumir_pedidos` completa.
+3. Pide el cambio con tu IA. Con **Copilot**, abre el chat en línea con **Cmd+I** (Mac) o **Ctrl+I** (Windows). Con **Gemini, Claude o ChatGPT**, copia la función y pégala en su chat junto con este texto:
+
+```text
+Refactoriza esta función: usa nombres descriptivos, evita repetir el
+recorrido de la lista y agrega un docstring. No cambies el nombre de la
+función ni lo que devuelve.
+```
+
+4. Mira el cambio. Acéptalo (o pégalo en el archivo y guarda) solo si lo entiendes.
+5. Vuelve a ejecutar los tests. Deben seguir los 9 `PASSED`.
+
+> Si no puedes usar ninguna IA, hazlo a mano: cambia los nombres `p`, `t`, `c`, `l`, `a`, `x` por nombres claros y vuelve a correr los tests.
+
+### Cómo revisar lo que propone la IA
+
+| Pregunta | Qué haces |
+|---|---|
+| ¿Hace lo mismo? | Ejecuta `pytest`: deben seguir pasando todos |
+| ¿La entiendo? | Lee cada línea; si no, pídele a tu IA que la explique |
+| ¿Cambió algo que no pedí? | Compara el antes y el después |
+| ¿Qué le estoy mostrando? | **Nunca** pegues claves ni datos personales en ningún chat de IA |
+
+**Para tu proyecto:** refactoriza **una** función, con sus tests en verde antes y después.
+
+---
+
 ## Errores frecuentes
 
 | Qué ves | Por qué pasa | Qué hacer |
@@ -203,3 +257,4 @@ print("Entregas lentas (más de", umbral, "días):", (dias > umbral).sum())
 - **Logging** = diario de a bordo: queda escrito, con hora y nivel.
 - **pytest**: funciones `test_...` con `assert`; se prueba cada camino y también los errores.
 - **Config externa**: los parámetros en `config.yaml`, los secretos en `.env`.
+- **Refactor con IA**: primero tests, después la IA que elijas; revisa el cambio y vuelve a correr los tests.

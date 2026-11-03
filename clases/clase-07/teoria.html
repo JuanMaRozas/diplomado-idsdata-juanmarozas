@@ -282,35 +282,19 @@
     </section>
 
     <section class="slide">
-      <div class="header-bar orange"><h2>Hoy: línea por línea</h2></div>
-      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
-      <div class="body">
-        <ul class="bul">
-          <li class="anim"><b>Hasta ahora escribiste scripts</b>: hoy los conviertes en un <b>programa</b> que otra persona pueda leer y confiar.</li>
-          <li class="anim"><b>Funciones</b>: recetas con nombre que reutilizas.</li>
-          <li class="anim"><b>Decisiones, ciclos y errores</b>: <code>if</code>, <code>for</code> y <code>try / except</code>.</li>
-          <li class="anim"><b>Logging y tests</b>: un diario del programa y pruebas automáticas con <code>pytest</code>.</li>
-          <li class="anim"><b>Un taller con tu proyecto</b>: aplicas lo de hoy a tu ficha, con calma y con tiempo para preguntas.</li>
-        </ul>
-        <div class="quote anim">Un script de estudiante funciona. Un programa de producción <b>funciona, avisa cuando falla y se puede probar</b>.</div>
-      </div>
-      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
-      <div class="foot-num"></div>
-      <div class="footer-bar"></div>
-    </section>
-
-    <section class="slide">
       <div class="header-bar orange"><h2>Plan de hoy</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
-        <table class="brand" style="font-size:22px">
+        <table class="brand" style="font-size:21px">
           <tr><th style="width:120px">Bloque</th><th>Qué hacemos</th></tr>
           <tr><td>1</td><td><b>Puesta al día</b>: rutina, instalar librerías y repaso</td></tr>
           <tr><td>2</td><td><b>Funciones</b>: <code>def</code>, parámetros y <code>return</code></td></tr>
           <tr><td>3</td><td><b>Decisiones y errores</b>: <code>if</code>, <code>for</code> y <code>try / except</code></td></tr>
           <tr><td>4</td><td><b>Logging</b> y <b>tests con pytest</b></td></tr>
-          <tr><td>5</td><td><b>Tu proyecto</b>: taller con tus funciones y tus tests</td></tr>
+          <tr><td>5</td><td><b>Refactor con IA</b>: ordenar tu código con Copilot, Gemini, Claude o ChatGPT</td></tr>
+          <tr><td>6</td><td><b>Tu proyecto</b>: taller con tus funciones y tus tests</td></tr>
         </table>
+        <div class="quote anim">Un script de estudiante funciona. Un programa de producción <b>funciona, avisa cuando falla y se puede probar</b>.</div>
       </div>
       <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
       <div class="foot-num"></div>
@@ -935,20 +919,133 @@ test_dias_negativos_da_error PASSED
     <section class="slide l2">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="kicker anim">Bloque 5</div>
-      <div class="stitle anim">Tu proyecto</div>
+      <div class="stitle anim">Refactor<br>con IA</div>
       <div class="num">05</div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar orange"><h2>Refactor: ordenar el código sin cambiar lo que hace</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <ul class="bul">
+          <li class="anim"><b>Refactor</b> = reescribir el código para que se lea mejor (nombres claros, funciones pequeñas, sin repetir), <b>sin cambiar el resultado</b>.</li>
+          <li class="anim">Un <b>asistente de IA</b> (Copilot, Gemini, Claude o ChatGPT) te <b>propone</b> el cambio: se lo <b>pides</b> en lenguaje normal.</li>
+          <li class="anim">Tus <b>tests son la red de seguridad</b>: si pasaban antes y pasan después, el refactor no rompió nada.</li>
+          <li class="anim"><b>Tú decides</b>: la IA propone, tú revisas, entiendes y ejecutas los tests.</li>
+        </ul>
+        <div class="quote anim">Primero tests, después refactor. Así la IA te ayuda sin que pierdas el control.</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar orange"><h2>Elige tu IA: todas tienen plan gratis</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <table class="brand" style="font-size:20px">
+          <tr><th style="width:250px">IA</th><th style="width:230px">Dónde la usas</th><th style="width:200px">Cuenta</th><th>Cómo se conecta</th></tr>
+          <tr><td><b>GitHub Copilot Free</b></td><td>Dentro de VS Code</td><td>GitHub</td><td>Extensión <b>GitHub Copilot</b> y <b>Cmd+I / Ctrl+I</b></td></tr>
+          <tr><td><b>Gemini Code Assist</b></td><td>Dentro de VS Code</td><td>Google</td><td>Extensión <b>Gemini Code Assist</b> y panel lateral</td></tr>
+          <tr><td><b>Claude</b></td><td>Navegador</td><td>Correo o Google</td><td><b>claude.ai</b>: copias la función y la pegas</td></tr>
+          <tr><td><b>ChatGPT</b></td><td>Navegador</td><td>Correo, Google o Apple</td><td><b>chatgpt.com</b>: copias la función y la pegas</td></tr>
+        </table>
+        <div class="quote anim">Elige <b>una</b> (o dos, para comparar sus respuestas). Los planes gratis tienen límites: si se acaba uno, usa otra.</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar black"><h2>Conecta tu IA (hazlo antes de la clase)</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l top">
+            <div class="small"><b>Dentro de VS Code</b> (Copilot o Gemini)</div>
+            <ol class="steps">
+              <li class="anim">Abre Extensiones: <b>Cmd+Shift+X</b> (Mac) o <b>Ctrl+Shift+X</b> (Windows).</li>
+              <li class="anim">Busca <code>GitHub Copilot</code> o <code>Gemini Code Assist</code> y pulsa <b>Install</b>.</li>
+              <li class="anim">Inicia sesión con tu cuenta de <b>GitHub</b> o <b>Google</b>.</li>
+              <li class="anim">Prueba: abre su chat y escribe <code>hola</code>.</li>
+            </ol>
+          </div>
+          <div class="col-r ok anim">
+            <div class="big">En el navegador</div>
+            <div class="small"><b>claude.ai</b>, <b>chatgpt.com</b> o <b>gemini.google.com</b>: crea tu cuenta gratis y escribe <code>hola</code>.</div>
+            <div class="warnbox"><div class="wt">CUIDADO</div><div class="small">Con los planes gratis: <b>no pegues claves ni datos personales</b>. Si se acaba el límite, cambia de IA.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar black"><h2>Práctica: refactoriza con tu IA (<code>04_refactor_copilot.py</code>)</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <div class="twocol">
+          <div class="col-l top">
+            <ol class="steps">
+              <li class="anim">Ejecuta los tests de antes: <pre class="cmd">pytest clases/clase-07/material/ -v</pre> Deben pasar los <b>9</b>.</li>
+              <li class="anim">Abre <code>04_refactor_copilot.py</code> y <b>selecciona la función</b> completa.</li>
+              <li class="anim"><b>Copilot:</b> <b>Cmd+I</b> / <b>Ctrl+I</b> y el prompt. <b>Gemini, Claude o ChatGPT:</b> copia la función y pégala con el prompt.</li>
+              <li class="anim">Mira el cambio. Acéptalo (o pégalo en el archivo y guarda) solo si lo entiendes.</li>
+              <li class="anim">Vuelve a ejecutar los tests. ¿Siguen los <b>9 PASSED</b>?</li>
+            </ol>
+          </div>
+          <div class="col-r ok anim">
+            <div class="big">Prompt sugerido</div>
+            <pre class="cmd out" style="font-size:15.5px">Refactoriza esta función: usa nombres descriptivos, evita repetir el recorrido de la lista y agrega un docstring. No cambies el nombre de la función ni lo que devuelve.</pre>
+            <div class="warnbox"><div class="wt">SIN IA</div><div class="small">Si no logras iniciar sesión, hazlo a mano: cambia <code>p</code>, <code>t</code>, <code>c</code> por nombres claros y vuelve a correr los tests.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide">
+      <div class="header-bar orange"><h2>Revisa lo que propone la IA</h2></div>
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="body">
+        <table class="brand" style="font-size:21px">
+          <tr><th style="width:330px">Pregunta de revisión</th><th>Qué haces</th></tr>
+          <tr><td><b>¿Hace lo mismo?</b></td><td>Ejecuta <code>pytest</code>: deben seguir los 9 <code>PASSED</code>.</td></tr>
+          <tr><td><b>¿La entiendo?</b></td><td>Lee cada línea. Si no la entiendes, pídele a tu IA que la explique.</td></tr>
+          <tr><td><b>¿Cambió algo que no pedí?</b></td><td>Compara el antes y el después (VS Code muestra las diferencias).</td></tr>
+          <tr><td><b>¿Qué le estoy mostrando?</b></td><td>Nunca pegues <b>claves ni datos personales</b> en ningún chat de IA (Clase 5).</td></tr>
+        </table>
+        <div class="quote anim">Para tu proyecto: refactoriza <b>una</b> función, con sus tests en verde antes y después.</div>
+      </div>
+      <div class="foot-prog">Diplomado en Ingeniería de Datos con Python</div>
+      <div class="foot-num"></div>
+      <div class="footer-bar"></div>
+    </section>
+
+    <section class="slide l2">
+      <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
+      <div class="kicker anim">Bloque 6</div>
+      <div class="stitle anim">Tu proyecto</div>
+      <div class="num">06</div>
     </section>
 
     <section class="slide">
       <div class="header-bar orange"><h2>Lo de hoy, ¿dónde cae en tu presentación?</h2></div>
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <div class="body">
-        <table class="brand" style="font-size:20px">
+        <table class="brand" style="font-size:19px">
           <tr><th style="width:290px">Aprendimos hoy</th><th style="width:340px">Para qué te sirve en tu proyecto</th><th>Slide del template</th></tr>
           <tr><td><b>Funciones</b></td><td>Código modular y legible (30% de la rúbrica)</td><td>7 · Calidad y buenas prácticas</td></tr>
           <tr><td><b>try / except</b></td><td>Que tu pipeline avise bien cuando algo falla</td><td>7 · Calidad y buenas prácticas</td></tr>
           <tr><td><b>Logging</b></td><td>Un diario del pipeline (y evidencia para la demo)</td><td>5 · Demo · 7 · Calidad</td></tr>
           <tr><td><b>pytest</b></td><td>≥3 tests por función de transformación</td><td>7 · Calidad y buenas prácticas</td></tr>
+          <tr><td><b>Refactor con IA</b></td><td>Código más limpio, verificado con tests</td><td>7 · Calidad y buenas prácticas</td></tr>
           <tr><td><b>Proyecto de ejemplo</b></td><td>Lo ves completo, de punta a punta, en la Clase 8</td><td>Todas</td></tr>
         </table>
         <div class="quote anim">El slide <b>7 · Calidad y buenas prácticas</b> se llena con lo de hoy. Es el 45% de la rúbrica (calidad + buenas prácticas).</div>
@@ -1007,7 +1104,7 @@ test_dias_negativos_da_error PASSED
     <section class="slide l1 slide-closing">
       <div class="logo"><svg class="udla-logo-svg" role="img" aria-label="UDLA Universidad de las Américas"><use href="#udla-logo"/></svg></div>
       <h1 class="ttl closing anim">De script a programa</h1>
-      <div class="closing-sub anim">Funciones, errores, logging y tests · trae tu ficha actualizada</div>
+      <div class="closing-sub anim">Funciones, errores, logging, tests y refactor · trae tu ficha actualizada</div>
       <div class="meta anim">DPL1046 · Programación en Python y Manipulación de Datos · PhD. Juan Manuel Rozas</div>
       <div class="barbottom"></div>
     </section>

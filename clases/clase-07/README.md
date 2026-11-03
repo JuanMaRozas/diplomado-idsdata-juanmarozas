@@ -5,7 +5,7 @@
 - **Presentación:** abre [`teoria.html`](teoria.html) en el navegador (navega con ← →, tecla `F` para pantalla completa).
 - **Práctica:** los scripts están en [`material/`](material/).
 
-> Continúa desde la Clase 6. **Hay librerías nuevas** (`pyyaml`, `loguru`, `sqlalchemy`, `pytest`): necesitas internet solo para instalarlas.
+> Continúa desde la Clase 6. **Hay librerías nuevas** (`pyyaml`, `loguru`, `sqlalchemy`, `pytest`): necesitas internet solo para instalarlas. Además, deja **una IA conectada** (ver "Tarea previa").
 
 ---
 
@@ -20,6 +20,19 @@ pip install -r clases/clase-07/material/requirements.txt
 
 Debe aparecer la carpeta `clases/clase-07`. Hay librerías nuevas: `pip install` debe terminar sin errores.
 
+## Tarea previa: conecta una IA (gratis)
+
+Hoy usamos una IA para **refactorizar** código. Deja lista **al menos una** (elige la que prefieras):
+
+| IA | Dónde | Cuenta | Cómo |
+|---|---|---|---|
+| GitHub Copilot Free | VS Code | GitHub | Extensiones → `GitHub Copilot` → Install → iniciar sesión |
+| Gemini Code Assist | VS Code | Google | Extensiones → `Gemini Code Assist` → Install → Login to Google |
+| Claude | Navegador | Correo o Google | [claude.ai](https://claude.ai) |
+| ChatGPT | Navegador | Correo, Google o Apple | [chatgpt.com](https://chatgpt.com) |
+
+Prueba escribiendo `hola` en su chat. Los planes gratis tienen límites de uso. **No pegues claves ni datos personales** en ningún chat de IA. Si no puedes conectar ninguna, el ejercicio se hace a mano.
+
 ## Qué haremos hoy
 
 | Bloque | Qué hacemos |
@@ -28,7 +41,8 @@ Debe aparecer la carpeta `clases/clase-07`. Hay librerías nuevas: `pip install`
 | 2 | **Funciones**: `def`, parámetros y `return` |
 | 3 | **Decisiones y errores**: `if`, `for` y `try / except` |
 | 4 | **Logging** y **tests con pytest** |
-| 5 | **Tu proyecto**: taller con tus funciones y tus tests |
+| 5 | **Refactor con IA**: ordenar tu código con Copilot, Gemini, Claude o ChatGPT |
+| 6 | **Tu proyecto**: taller con tus funciones y tus tests |
 
 ## Scripts de la clase
 
@@ -38,6 +52,7 @@ Debe aparecer la carpeta `clases/clase-07`. Hay librerías nuevas: `pip install`
 | `02_errores.py` | `if/elif/else`, `for` y `try/except` | No |
 | `03_logging.py` | Diario en pantalla y en `data/pipeline.log` | No |
 | `utilidades.py + test_utilidades.py` | Funciones propias y 5 tests con `pytest` | No |
+| `04_refactor_copilot.py + test_refactor_copilot.py` | Código desordenado para refactorizar con una IA, con 4 tests de seguridad | No |
 | `99_opcional_config.py + config.yaml` | (Opcional, para casa) Parámetros fuera del código | No |
 
 ## Cómo ejecutar un script
@@ -48,6 +63,7 @@ Abre el archivo y haz clic en **▶** (guarda antes con Cmd+S / Ctrl+S), o desde
 python clases/clase-07/material/01_funciones.py
 python clases/clase-07/material/02_errores.py
 python clases/clase-07/material/03_logging.py
+python clases/clase-07/material/04_refactor_copilot.py
 ```
 
 Los tests se ejecutan con:
