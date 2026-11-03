@@ -846,6 +846,12 @@ logging.info(<span class="s">"Fin del programa"</span>)</pre>
 from utilidades import calcular_dias, clasificar_entrega
 def test_calcular_dias():
     assert calcular_dias(<span class="s">"2017-10-02"</span>, <span class="s">"2017-10-10"</span>) == 8
+def test_entrega_rapida():
+    assert clasificar_entrega(5) == <span class="s">"rápida"</span>
+def test_entrega_normal():
+    assert clasificar_entrega(15) == <span class="s">"normal"</span>
+def test_entrega_lenta():
+    assert clasificar_entrega(45) == <span class="s">"lenta"</span>
 def test_dias_negativos_da_error():
     with pytest.raises(ValueError):
         clasificar_entrega(-1)</pre>
@@ -856,6 +862,7 @@ def test_dias_negativos_da_error():
             <div class="row anim" style="font-size:17px"><code>from utilidades import ...</code> trae <b>las funciones de otro archivo</b>.</div>
             <div class="row anim" style="font-size:17px"><code>def test_calcular_dias():</code> un test: su nombre <b>empieza con <code>test_</code></b>.</div>
             <div class="row anim" style="font-size:17px"><code>assert calcular_dias(...) == 8</code> afirma que el resultado es 8.</div>
+            <div class="row anim" style="font-size:17px"><code>clasificar_entrega(5) == "rápida"</code> lo mismo para cada tramo: 5 rápida, 15 normal, 45 lenta. <b>Una prueba por cada camino del <code>if</code></b>.</div>
             <div class="row anim" style="font-size:17px"><code>def test_dias_negativos_da_error():</code> otro test: comprueba que un caso <b>inválido</b> falla como debe.</div>
             <div class="row anim" style="font-size:17px"><code>with pytest.raises(ValueError):</code> afirma que la función <b>da un error</b> con -1 (lo esperamos).</div>
           </div>
