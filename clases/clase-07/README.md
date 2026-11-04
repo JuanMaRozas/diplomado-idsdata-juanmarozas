@@ -26,7 +26,7 @@ Hoy usamos una IA para **refactorizar** código. Deja lista **al menos una** (el
 
 | IA | Dónde | Cuenta | Cómo |
 |---|---|---|---|
-| GitHub Copilot Free | VS Code | GitHub | Extensiones → `GitHub Copilot` → Install → iniciar sesión |
+| GitHub Copilot Free | VS Code | GitHub | Ya viene en VS Code: ícono de Copilot (arriba) → iniciar sesión con GitHub |
 | Gemini Code Assist | VS Code | Google | Extensiones → `Gemini Code Assist` → Install → Login to Google |
 | Claude | Navegador | Correo o Google | [claude.ai](https://claude.ai) |
 | ChatGPT | Navegador | Correo, Google o Apple | [chatgpt.com](https://chatgpt.com) |

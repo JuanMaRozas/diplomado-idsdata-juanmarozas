@@ -20,7 +20,7 @@ def clasificar_entrega(dias):
 
 
 # for: repetir lo mismo para cada elemento de una lista
-for dias in [3, 12, 45]:
+for dias in [3, 12, 45, 100, 0]:
     print(dias, "días →", clasificar_entrega(dias))
 
 # try / except: ¿y si el archivo no existe?

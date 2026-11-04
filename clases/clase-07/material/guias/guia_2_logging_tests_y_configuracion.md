@@ -176,12 +176,14 @@ print("Entregas lentas (más de", umbral, "días):", (dias > umbral).sum())
 
 | IA | Dónde | Cuenta | Cómo se conecta |
 |---|---|---|---|
-| GitHub Copilot Free | VS Code | GitHub | Extensión `GitHub Copilot`; atajo Cmd+I / Ctrl+I |
+| GitHub Copilot Free | VS Code | GitHub | Ya viene en VS Code; atajo Cmd+I / Ctrl+I |
 | Gemini Code Assist | VS Code | Google | Extensión `Gemini Code Assist`; panel lateral |
 | Claude | Navegador | Correo o Google | [claude.ai](https://claude.ai): copias la función y la pegas |
 | ChatGPT | Navegador | Correo, Google o Apple | [chatgpt.com](https://chatgpt.com): copias la función y la pegas |
 
-Para instalar en VS Code: abre Extensiones (**Cmd+Shift+X** en Mac, **Ctrl+Shift+X** en Windows), busca la extensión, pulsa **Install** e inicia sesión. Prueba con `hola` en su chat.
+**Copilot** ya viene incluido en las versiones recientes de VS Code: pulsa su ícono (arriba, junto a la barra de búsqueda) e inicia sesión con tu cuenta de GitHub; no hay que instalar nada ni pagar. Si no ves el ícono, actualiza VS Code. **Gemini** sí se instala: abre Extensiones (**Cmd+Shift+X** en Mac, **Ctrl+Shift+X** en Windows), busca `Gemini Code Assist`, pulsa **Install** e inicia sesión con Google. Prueba con `hola` en su chat.
+
+> Si ves la palabra "License" en la ficha de una extensión, es solo el texto de su licencia de software (MIT), **no** te pide comprar nada.
 
 > Los planes gratis tienen **límites de uso** que pueden cambiar; si se acaba uno, usa otra IA. Copilot Free no está disponible con cuentas de una organización o de empresa.
 

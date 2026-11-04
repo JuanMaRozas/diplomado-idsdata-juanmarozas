@@ -8,22 +8,28 @@ Los tests de test_refactor_copilot.py te avisan si algo cambió.
 """
 
 
-def resumir_pedidos(p):
-    t = 0
-    c = 0
-    for x in p:
-        if x["estado"] == "delivered":
-            t = t + x["precio"] + x["flete"]
-            c = c + 1
-    if c == 0:
+def resumir_pedidos(pedidos):
+    """Resume el total, promedio y entregas lentas de los pedidos entregados."""
+    total = 0
+    cantidad_entregados = 0
+    entregas_lentas = 0
+
+    for pedido in pedidos:
+        if pedido["estado"] == "delivered":
+            total += pedido["precio"] + pedido["flete"]
+            cantidad_entregados += 1
+            if pedido["dias"] > 20:
+                entregas_lentas += 1
+
+    if cantidad_entregados == 0:
         return {"total": 0, "promedio": 0, "lentas": 0}
-    a = t / c
-    l = 0
-    for x in p:
-        if x["estado"] == "delivered":
-            if x["dias"] > 20:
-                l = l + 1
-    return {"total": t, "promedio": round(a, 2), "lentas": l}
+
+    promedio = total / cantidad_entregados
+    return {
+        "total": total,
+        "promedio": round(promedio, 2),
+        "lentas": entregas_lentas,
+    }
 
 
 if __name__ == "__main__":

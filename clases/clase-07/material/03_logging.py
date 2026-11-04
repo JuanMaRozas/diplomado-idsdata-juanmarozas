@@ -28,8 +28,8 @@ sin_entrega = orders["order_delivered_customer_date"].isna().sum()
 logging.warning("Pedidos sin fecha de entrega: %s", sin_entrega)
 
 try:
-    pd.read_csv("data/raw/no_existe.csv")
+    pd.read_csv("data/raw/olist_orders_dataset.csv")
 except FileNotFoundError:
-    logging.error("No se encontró el archivo no_existe.csv")
+    logging.error("No se encontró el archivo olist_orders_dataset.csv")
 
 logging.info("Fin del programa")

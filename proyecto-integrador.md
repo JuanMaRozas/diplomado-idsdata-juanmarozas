@@ -19,7 +19,7 @@ El proyecto integrador es la **evaluación central del curso (100% del examen)**
 
 ## Los 10 temas
 
-Todos usan las 9 tablas de Olist (órdenes, ítems, pagos, reseñas, productos, vendedores, clientes, geolocalización, traducción de categorías). El "ángulo IA" es una **idea opcional** para enriquecer el proyecto con IA local (material extra de la Clase 8).
+Todos usan las 9 tablas de Olist (órdenes, ítems, pagos, reseñas, productos, vendedores, clientes, geolocalización, traducción de categorías). El "ángulo IA" es una **idea opcional** para enriquecer el proyecto con IA (por ejemplo, un modelo local o un asistente en el navegador).
 
 **1. Radar de satisfacción del cliente**
 Analizar las reseñas (puntaje + comentario) por categoría y vendedor. *Tablas:* reviews, order_items, products. *Ángulo IA:* clasificar sentimiento y temas de los comentarios.
@@ -59,7 +59,7 @@ Panorama ejecutivo con KPIs integrales (GMV, ticket promedio, satisfacción, ent
 |---|---|
 | **Unidad 1 (Clases 1–3)** | Script que lee ≥2 tablas/fuentes del dataset, valida la calidad de los datos y genera un reporte básico del tema elegido. |
 | **Unidad 2 (Clases 4–6)** | Pipeline ETL con pandas: lee ≥2 tablas, limpia, combina (`merge`), resume (`groupby`) y guarda el resultado en SQLite o Parquet sin duplicar al repetir la ejecución. |
-| **Unidad 3 (Clases 7–9)** | Programa robusto: funciones, manejo de errores, logging, tests con `pytest` y configuración externa; ≥2 fuentes (idealmente una API externa) y resultados en formato ejecutivo. Un componente de IA local suma valor (opcional: material extra de la Clase 8). Presentación en la Clase 9. |
+| **Unidad 3 (Clases 7–9)** | Programa robusto: funciones, manejo de errores, logging, tests con `pytest` y configuración externa; ≥2 fuentes (idealmente una API externa) y resultados en formato ejecutivo. Un componente de IA suma valor (opcional). Presentación en la Clase 9. |
 
 ---
 
