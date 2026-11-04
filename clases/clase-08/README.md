@@ -4,7 +4,6 @@
 
 - **Presentación:** abre [`teoria.html`](teoria.html) en el navegador (navega con ← →, tecla `F` para pantalla completa).
 - **Proyecto de ejemplo:** [`material/proyecto-ejemplo/`](material/proyecto-ejemplo/).
-- **Material extra (opcional):** APIs por partes e IA local, en [`material/extra/`](material/extra/) y [`teoria_extra.html`](teoria_extra.html).
 
 > Continúa desde la Clase 7. **Última clase de contenido.** Hoy ves un proyecto integrador completo, script por script, y una presentación modelo.
 
@@ -54,10 +53,6 @@ pytest tests -v
 ```
 
 Es de **referencia**: léelo y córrelo, pero **no lo copies**. Más detalle en su [`README.md`](material/proyecto-ejemplo/README.md).
-
-## Material extra (opcional)
-
-Los scripts de APIs por partes (paginación y dos fuentes) y de IA local con Ollama **no se ven en clase**; quedan en [`material/extra/`](material/extra/) para quien quiera profundizar (necesitan `pip install -r clases/clase-08/material/extra/requirements.txt`; los de IA usan Ollama o su modo simulado). Su presentación es [`teoria_extra.html`](teoria_extra.html).
 
 ## Proyecto integrador
 

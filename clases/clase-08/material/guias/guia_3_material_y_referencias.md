@@ -64,18 +64,7 @@ Los enlaces de este documento fueron revisados el 28 de octubre de 2026 y estaba
 - **Olist — Brazilian E-Commerce Public Dataset (Kaggle)** — [kaggle.com/datasets/olistbr/brazilian-ecommerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) `HERRAMIENTA · GRATIS`
   *Para revisar las tablas antes de tu presentación.*
 
-### Material extra de la Clase 8 (opcional)
-
-Si quieres profundizar en **APIs por partes (paginación)** y **IA local con Ollama**, usa las guías extra de esta carpeta (`guia_extra_1` y `guia_extra_2`). Algunos enlaces útiles:
-
-- **PokeAPI — Documentación (paginación con limit y offset)** — [pokeapi.co/docs/v2](https://pokeapi.co/docs/v2) `HERRAMIENTA · GRATIS`
-  *La API que usamos para practicar la paginación.*
-
-- **Ollama — Sitio oficial** — [ollama.com](https://ollama.com/) `HERRAMIENTA · GRATIS`
-  *Descarga e instalación en Mac y Windows.*
-
-- **Ollama — Modelo llama3.2** — [ollama.com/library/llama3.2](https://ollama.com/library/llama3.2) `HERRAMIENTA · GRATIS`
-  *Descripción del modelo que usamos y sus tamaños.*
+### Usar la IA con criterio
 
 - **Anthropic — Guía de prompt engineering** — [docs.anthropic.com/…/prompt-engineering/overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) `GRATIS`
   *Técnicas para escribir buenos prompts. Sirven con cualquier modelo.*
