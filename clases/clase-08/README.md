@@ -25,7 +25,7 @@ Debe aparecer la carpeta `clases/clase-08/material/proyecto-ejemplo`. En clase l
 |---|---|
 | 1 | **Puesta al día**: rutina, repaso e instalar el proyecto de ejemplo |
 | 2 | **El proyecto**: problema de negocio y cómo está organizado |
-| 3 | **Recorrido por el código**: `pipeline.py`, `extraer.py`, `transformar.py`, `cargar.py`, `config.yaml` y tests |
+| 3 | **Recorrido por el código**: `pipeline.py` (extraer, transformar y cargar) y sus tests |
 | 4 | **Demo en vivo** y resultados |
 | 5 | **La presentación modelo**: 9 slides con el template y la rúbrica |
 | 6 | **Tu presentación**: checklist, preguntas que te harán y ensayo |
@@ -36,20 +36,16 @@ Un pipeline que **pronostica la demanda semanal** con datos de Olist y el dólar
 
 | Archivo | Qué hace |
 |---|---|
-| `pipeline.py` | Corre todo, en orden |
-| `src/extraer.py` | Lee los CSV de Olist y pide el dólar a la API |
-| `src/transformar.py` | Limpia, combina, resume por semana y pronostica |
-| `src/cargar.py` | Guarda en SQLite sin duplicar |
-| `config.yaml` | Rutas y parámetros fuera del código |
-| `tests/test_pipeline.py` | 4 pruebas con `pytest` |
+| `pipeline.py` | Todo el pipeline: extrae (CSV + API), transforma (ventas por semana y mes, pronóstico) y carga (SQLite y CSV) |
+| `test_pipeline.py` | 10 pruebas con `pytest` |
+| `requirements.txt` | Las librerías |
 
-Para correrlo (desde la carpeta del proyecto, con `(.venv)` activo):
+Para correrlo (desde la **raíz del repo**, con `(.venv)` activo):
 
 ```bash
-cd clases/clase-08/material/proyecto-ejemplo
-pip install -r requirements.txt
-python pipeline.py
-pytest tests -v
+pip install -r clases/clase-08/material/proyecto-ejemplo/requirements.txt
+python clases/clase-08/material/proyecto-ejemplo/pipeline.py
+pytest clases/clase-08/material/proyecto-ejemplo/ -v
 ```
 
 Es de **referencia**: léelo y córrelo, pero **no lo copies**. Más detalle en su [`README.md`](material/proyecto-ejemplo/README.md).
@@ -61,7 +57,7 @@ La presentación modelo de hoy te muestra qué va en cada slide del template (pr
 ## Si te quedaste atrás
 
 1. Repite el bloque "Antes de la clase".
-2. Entra a `proyecto-ejemplo`, instala sus librerías y ejecuta `python pipeline.py` y `pytest tests -v`.
+2. Instala las librerías del proyecto de ejemplo, ejecútalo desde la raíz del repo y corre sus tests (ver arriba).
 3. Revisa la checklist de entrega en `proyecto-integrador.md` y anota tus dudas.
 
 ## Qué sigue: antes de las presentaciones

@@ -1,93 +1,182 @@
 """
-pipeline.py · Proyecto Integrador de Ejemplo
-=============================================
-Pronóstico de demanda: serie de tiempo y estacionalidad de ventas
-Dataset: Olist (e-commerce brasileño real)
+DPL1046 · Clase 8 · pipeline.py  (proyecto integrador de ejemplo)
 
-FLUJO:
-  1. EXTRAER   → leer CSVs de Olist + tipo de cambio BRL→CLP desde API real
-  2. TRANSFORMAR → limpiar, agregar ventas por semana, detectar estacionalidad
-  3. CARGAR     → guardar en SQLite sin duplicar (idempotencia)
-  4. ANALIZAR   → generar pronóstico y métricas clave
-  5. EXPORTAR   → CSV resumen + datos para la presentación
+Pregunta de negocio:
+    ¿Cuánto vamos a vender en las próximas semanas y qué meses venden más?
 
-Corre con:  python pipeline.py
+El pipeline tiene 3 pasos (como una cocina):
+    1) EXTRAER     -> traer los datos: CSV de Olist + el dólar desde una API
+    2) TRANSFORMAR -> limpiar, combinar y resumir (ventas por semana y por mes) y pronosticar
+    3) CARGAR      -> guardar los resultados en una base SQLite y en archivos CSV
+
+Córrelo desde la raíz del repo, con el entorno activo:
+    python clases/clase-08/material/proyecto-ejemplo/pipeline.py
+
+Los tests se ejecutan con:
+    pytest clases/clase-08/material/proyecto-ejemplo/ -v
 """
 
+import logging
 import os
-import yaml
-from loguru import logger
-from src.extraer import extraer_olist, extraer_tipo_cambio
-from src.transformar import (
-    limpiar_y_agregar,
-    calcular_estacionalidad,
-    generar_pronostico,
-)
-from src.cargar import guardar_en_base, consultar_resumen
+import sqlite3
+
+import pandas as pd
+import requests
+
+# ---------------------------------------------------------------
+# Parámetros del proyecto (los que podrías cambiar sin tocar la lógica)
+# ---------------------------------------------------------------
+RUTA_DATOS = "data/raw/"
+CARPETA_SALIDA = "salida/"
+SEMANAS_A_PRONOSTICAR = 8
+REAL_EN_DOLARES = 0.19       # 1 real brasileño vale más o menos 0,19 dólares
+REAL_EN_CLP_RESPALDO = 180   # si la API falla, usamos este valor
 
 
-def cargar_config():
-    with open("config.yaml", encoding="utf-8") as f:
-        return yaml.safe_load(f)
+# ===============================================================
+# PASO 1 · EXTRAER
+# ===============================================================
+def extraer_olist():
+    """Lee los dos CSV de Olist que necesitamos: pedidos e ítems."""
+    pedidos = pd.read_csv(RUTA_DATOS + "olist_orders_dataset.csv")
+    items = pd.read_csv(RUTA_DATOS + "olist_order_items_dataset.csv")
+    logging.info("Olist leído: %s pedidos y %s ítems", len(pedidos), len(items))
+    return pedidos, items
 
 
+def extraer_dolar():
+    """Pide a una API (mindicador.cl) el dólar y lo convierte a pesos por real."""
+    try:
+        respuesta = requests.get("https://mindicador.cl/api/dolar", timeout=10)
+        respuesta.raise_for_status()
+        dolar_en_clp = respuesta.json()["serie"][0]["valor"]
+        real_en_clp = dolar_en_clp * REAL_EN_DOLARES
+        logging.info("Dólar de la API: %s CLP -> 1 real = %.1f CLP", dolar_en_clp, real_en_clp)
+        return real_en_clp
+    except requests.RequestException:
+        logging.warning("La API del dólar no respondió: uso el valor de respaldo (%s)", REAL_EN_CLP_RESPALDO)
+        return REAL_EN_CLP_RESPALDO
+
+
+# ===============================================================
+# PASO 2 · TRANSFORMAR
+# ===============================================================
+def calcular_ventas_semanales(pedidos, items, real_en_clp):
+    """Ventas en pesos chilenos por semana, solo de pedidos entregados."""
+    # Limpiar: nos quedamos con los pedidos entregados
+    entregados = pedidos[pedidos["order_status"] == "delivered"]
+
+    # Combinar: cada ítem con la fecha de su pedido
+    tabla = items.merge(entregados, on="order_id", how="inner")
+
+    # Columnas nuevas: ventas en pesos y semana (la fecha del lunes)
+    tabla["ventas_clp"] = tabla["price"] * real_en_clp
+    fecha = pd.to_datetime(tabla["order_purchase_timestamp"])
+    tabla["semana"] = fecha.dt.to_period("W").dt.start_time.dt.strftime("%Y-%m-%d")
+
+    # Resumir: sumar las ventas de cada semana
+    semanales = tabla.groupby("semana")["ventas_clp"].sum().round(0).reset_index()
+    return semanales
+
+
+def calcular_ventas_mensuales(ventas_semanales):
+    """Promedio semanal de cada mes del año (1 = enero ... 12 = diciembre).
+
+    El índice compara cada mes con el promedio general:
+    1,50 significa que ese mes vende un 50% más que una semana normal.
+    """
+    tabla = ventas_semanales.copy()
+    tabla["mes"] = pd.to_datetime(tabla["semana"]).dt.month
+
+    mensuales = tabla.groupby("mes")["ventas_clp"].mean().round(0).reset_index()
+    mensuales = mensuales.rename(columns={"ventas_clp": "promedio_semanal_clp"})
+    mensuales["indice"] = (mensuales["promedio_semanal_clp"] / tabla["ventas_clp"].mean()).round(2)
+    return mensuales
+
+
+def pronosticar(ventas_semanales, semanas=SEMANAS_A_PRONOSTICAR):
+    """Pronóstico simple: repite el promedio de las últimas 4 semanas."""
+    promedio = ventas_semanales["ventas_clp"].tail(4).mean()
+    ultima_semana = pd.to_datetime(ventas_semanales["semana"]).max()
+
+    fechas = []
+    for i in range(1, semanas + 1):
+        fecha = ultima_semana + pd.Timedelta(weeks=i)
+        fechas.append(fecha.strftime("%Y-%m-%d"))
+
+    return pd.DataFrame({"semana": fechas, "ventas_clp_estimado": round(promedio)})
+
+
+# ===============================================================
+# PASO 3 · CARGAR
+# ===============================================================
+def cargar(tablas, carpeta):
+    """Guarda cada tabla en SQLite y en un CSV.
+
+    Usa if_exists="replace": si corres el pipeline dos veces, la tabla se
+    reescribe y queda igual (no se duplica).
+    """
+    conexion = sqlite3.connect(carpeta + "demanda.db")
+    for nombre, tabla in tablas.items():
+        tabla.to_sql(nombre, conexion, if_exists="replace", index=False)
+        tabla.to_csv(carpeta + nombre + ".csv", index=False)
+        logging.info("Guardada la tabla '%s' (%s filas)", nombre, len(tabla))
+    conexion.close()
+
+
+# ===============================================================
+# EL PIPELINE COMPLETO
+# ===============================================================
 def main():
-    logger.info("=" * 60)
-    logger.info("PIPELINE: Pronóstico de demanda — Olist")
-    logger.info("=" * 60)
+    os.makedirs(CARPETA_SALIDA, exist_ok=True)
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s | %(levelname)s | %(message)s",
+        handlers=[
+            logging.FileHandler(CARPETA_SALIDA + "pipeline.log", encoding="utf-8"),
+            logging.StreamHandler(),
+        ],
+    )
+    logging.info("Pipeline de demanda: inicio")
 
-    config = cargar_config()
+    try:
+        # 1) EXTRAER
+        pedidos, items = extraer_olist()
+        real_en_clp = extraer_dolar()
+    except FileNotFoundError:
+        logging.error("No encontré los CSV de Olist en '%s'. ¿Corriste el pipeline desde la raíz del repo?", RUTA_DATOS)
+        return
 
-    # ──── 1. EXTRAER ────
-    logger.info("Paso 1/5: Extrayendo datos de Olist (CSVs) y tipo de cambio (API)...")
-    pedidos, items, categorias = extraer_olist(config["datos"]["carpeta"])
-    tipo_cambio = extraer_tipo_cambio()
-    logger.success(f"Extraídos: {len(pedidos)} pedidos, {len(items)} items, "
-                   f"tipo de cambio BRL→CLP: ${tipo_cambio:.1f}")
+    # 2) TRANSFORMAR
+    ventas_semanales = calcular_ventas_semanales(pedidos, items, real_en_clp)
+    # La primera y la última semana suelen estar incompletas: las quitamos
+    ventas_semanales = ventas_semanales.iloc[1:-1].reset_index(drop=True)
+    ventas_mensuales = calcular_ventas_mensuales(ventas_semanales)
+    pronostico = pronosticar(ventas_semanales)
 
-    # ──── 2. TRANSFORMAR ────
-    logger.info("Paso 2/5: Limpiando y agregando ventas por semana...")
-    ventas_semana = limpiar_y_agregar(pedidos, items, categorias, tipo_cambio)
-    logger.success(f"Serie de tiempo: {len(ventas_semana)} semanas de datos.")
+    # 3) CARGAR
+    cargar(
+        {
+            "ventas_semanales": ventas_semanales,
+            "ventas_mensuales": ventas_mensuales,
+            "pronostico": pronostico,
+        },
+        CARPETA_SALIDA,
+    )
 
-    logger.info("Paso 3/5: Calculando estacionalidad y pronóstico...")
-    estacionalidad = calcular_estacionalidad(ventas_semana)
-    pronostico = generar_pronostico(ventas_semana, semanas_futuras=config["pronostico"]["semanas"])
-    logger.success(f"Pronóstico generado: {len(pronostico)} semanas hacia adelante.")
-
-    # ──── 3. CARGAR ────
-    logger.info("Paso 4/5: Guardando en base de datos (idempotente)...")
-    bd = config["base_datos"]["uri"]
-    n = guardar_en_base(ventas_semana, pronostico, bd)
-    logger.success(f"Base de datos actualizada: {n} filas nuevas.")
-
-    # ──── 4. EXPORTAR ────
-    logger.info("Paso 5/5: Exportando resumen...")
-    carpeta_salida = config["salida"]["carpeta"]
-    os.makedirs(carpeta_salida, exist_ok=True)
-
-    ventas_semana.to_csv(f"{carpeta_salida}/ventas_por_semana.csv", index=False)
-    estacionalidad.to_csv(f"{carpeta_salida}/estacionalidad.csv", index=False)
-    pronostico.to_csv(f"{carpeta_salida}/pronostico.csv", index=False)
-
-    resumen = consultar_resumen(bd)
-    resumen.to_csv(f"{carpeta_salida}/resumen_ejecutivo.csv", index=False)
-
-    logger.success(f"Archivos exportados a {carpeta_salida}/")
-
-    # ──── RESUMEN ────
-    print("\n" + "=" * 60)
-    print("RESUMEN EJECUTIVO")
-    print("=" * 60)
-    print(f"Período analizado:      {ventas_semana['semana'].min()} → {ventas_semana['semana'].max()}")
-    print(f"Total de semanas:       {len(ventas_semana)}")
-    print(f"Ventas totales (CLP):   ${ventas_semana['ventas_clp'].sum():,.0f}")
-    print(f"Promedio semanal (CLP): ${ventas_semana['ventas_clp'].mean():,.0f}")
-    print(f"Semana más fuerte:      {ventas_semana.loc[ventas_semana['ventas_clp'].idxmax(), 'semana']}")
-    print(f"Pronóstico próx. {config['pronostico']['semanas']} sem: ${pronostico['ventas_clp_estimado'].sum():,.0f}")
-    print(f"Tipo de cambio usado:   1 BRL = ${tipo_cambio:.1f} CLP")
-    print("=" * 60)
-    logger.success("PIPELINE COMPLETADO.")
+    # Resumen para la gerencia
+    mes_fuerte = ventas_mensuales.loc[ventas_mensuales["indice"].idxmax()]
+    print()
+    print("=== RESUMEN PARA LA GERENCIA ===")
+    print("Período analizado:       ", ventas_semanales["semana"].min(), "->", ventas_semanales["semana"].max())
+    print("Semanas analizadas:      ", len(ventas_semanales))
+    print("Ventas totales (CLP):    ", f"{ventas_semanales['ventas_clp'].sum():,.0f}")
+    print("Promedio semanal (CLP):  ", f"{ventas_semanales['ventas_clp'].mean():,.0f}")
+    semana_fuerte = ventas_semanales.loc[ventas_semanales["ventas_clp"].idxmax(), "semana"]
+    print("Semana más fuerte:       ", semana_fuerte)
+    print("Mes que más vende:       ", int(mes_fuerte["mes"]), "(índice", mes_fuerte["indice"], ")")
+    print("Pronóstico próximas", SEMANAS_A_PRONOSTICAR, "semanas (CLP):", f"{pronostico['ventas_clp_estimado'].sum():,.0f}")
+    logging.info("Pipeline de demanda: terminado")
 
 
 if __name__ == "__main__":

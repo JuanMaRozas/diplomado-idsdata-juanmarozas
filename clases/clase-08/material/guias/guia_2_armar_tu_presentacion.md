@@ -18,7 +18,7 @@ En la Clase 9 cada pareja presenta su proyecto integrador: **15 minutos de prese
 | 4 | **Arquitectura** | 2 | ¿Cómo fluye: entrada → proceso → salida? | Un diagrama de cajas simple (extraer, transformar, cargar). |
 | 5 | **Demo en vivo** | 3 | ¿Funciona? | Un comando, el resultado en pantalla y los tests. |
 | 6 | **Resultados** | 2 | ¿Qué encontraste? | Cifras clave y un gráfico o tabla simple. |
-| 7 | **Calidad y buenas prácticas** | 1 | ¿Cómo se cuida el código? | Funciones, errores, logging, tests, `config.yaml`, README. |
+| 7 | **Calidad y buenas prácticas** | 1 | ¿Cómo se cuida el código? | Funciones, errores, logging, tests, parámetros ordenados, README. |
 | 8 | **Valor de negocio** | 1,5 | ¿Qué decisión permite? | La decisión, el impacto y **una limitación** dicha con honestidad. |
 | 9 | **Aprendizajes e IA** | 1 | ¿Qué aprendieron y cómo usaron IA? | Aprendizajes y ejemplos reales de uso de IA (ver sección 4). |
 
@@ -28,10 +28,10 @@ En la Clase 9 cada pareja presenta su proyecto integrador: **15 minutos de prese
 |-------|--------------------|
 | Problema | ¿Cuántas ventas esperamos en las próximas 8 semanas? Para el equipo de compras. |
 | Datos | Pedidos e ítems de Olist (CSV) + dólar (API, con respaldo). Solo pedidos entregados. |
-| Arquitectura | Tres cajas: Extraer → Transformar → Cargar; abajo `pipeline.py`, `config.yaml` y `tests/`. |
+| Arquitectura | Tres cajas: Extraer → Transformar → Cargar; abajo `pipeline.py` y `test_pipeline.py`. |
 | Demo | `python pipeline.py`, correrlo otra vez (0 filas nuevas) y `pytest tests -v`. |
 | Resultados | Ventas totales, promedio semanal, semana más fuerte y un gráfico de estacionalidad por mes. |
-| Calidad | 4 tests, logging, `try/except` con respaldo, config externa, carga sin duplicar. |
+| Calidad | 10 tests, logging, `try/except` con respaldo, parámetros ordenados, carga sin duplicar. |
 | Valor | Comprar inventario **antes** de noviembre; limitación: modelo simple, sin promociones. |
 | Aprendizajes e IA | Separar extraer/transformar/cargar facilita probar; qué corrigieron de la IA. |
 

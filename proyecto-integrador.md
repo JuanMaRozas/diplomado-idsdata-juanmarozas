@@ -59,7 +59,7 @@ Panorama ejecutivo con KPIs integrales (GMV, ticket promedio, satisfacción, ent
 |---|---|
 | **Unidad 1 (Clases 1–3)** | Script que lee ≥2 tablas/fuentes del dataset, valida la calidad de los datos y genera un reporte básico del tema elegido. |
 | **Unidad 2 (Clases 4–6)** | Pipeline ETL con pandas: lee ≥2 tablas, limpia, combina (`merge`), resume (`groupby`) y guarda el resultado en SQLite o Parquet sin duplicar al repetir la ejecución. |
-| **Unidad 3 (Clases 7–9)** | Programa robusto: funciones, manejo de errores, logging, tests con `pytest` y configuración externa; ≥2 fuentes (idealmente una API externa) y resultados en formato ejecutivo. Un componente de IA suma valor (opcional). Presentación en la Clase 9. |
+| **Unidad 3 (Clases 7–9)** | Programa robusto: funciones, manejo de errores, logging, tests con `pytest` y parámetros ordenados; ≥2 fuentes (idealmente una API externa) y resultados en formato ejecutivo. Un componente de IA suma valor (opcional). Presentación en la Clase 9. |
 
 ---
 
@@ -69,7 +69,7 @@ Panorama ejecutivo con KPIs integrales (GMV, ticket promedio, satisfacción, ent
 |---|---|---|
 | Funcionalidad del pipeline | 35% | Corre de principio a fin con un solo comando, integra ≥2 fuentes (ingesta + transformación + salida) y entrega resultados reproducibles. |
 | Calidad del código | 30% | Código modular y legible (PEP 8, docstrings), `try/except` + logging, tests con `pytest` (≥3 por función de transformación) y dominio del propio código. |
-| Buenas prácticas | 15% | Rutas relativas y configuración externalizada, `requirements.txt`, estructura clara con README, pipeline idempotente, sin credenciales en el código. |
+| Buenas prácticas | 15% | Rutas relativas y parámetros ordenados (constantes al inicio o archivo de configuración), `requirements.txt`, estructura clara con README, pipeline idempotente, sin credenciales en el código. |
 | Presentación y valor de negocio | 20% | Problema → solución → valor, 15 minutos + 5 de preguntas, demo del pipeline funcionando. |
 
 Aprobación: nota 4,0 · asistencia mínima de 70% a las sesiones sincrónicas.

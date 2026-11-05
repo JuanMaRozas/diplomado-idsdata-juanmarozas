@@ -329,7 +329,7 @@
           <div class="col-l top">
             <ol class="steps">
               <li class="anim">Con el entorno activo y tras <code>git pull</code>, instala las librerías de hoy:<pre class="cmd">pip install -r clases/clase-07/material/requirements.txt</pre></li>
-              <li class="anim">Comprueba que quedaron:<pre class="cmd">python -c "import yaml, loguru; print('OK')"</pre></li>
+              <li class="anim">Comprueba que quedaron:<pre class="cmd">python -c "import pytest, requests; print('OK')"</pre></li>
               <li class="anim">Si tu <code>git pull</code> dijo "Already up to date" y no ves <code>clase-07</code>, avísame.</li>
             </ol>
           </div>
@@ -1163,8 +1163,8 @@ test_dias_negativos_da_error PASSED
         <div class="twocol">
           <div class="col-l top">
             <ul class="bul">
-              <li class="anim">Prueba <code>99_opcional_config.py</code>: sacar parámetros del código con <code>config.yaml</code> (lo verás en uso en la Clase 8).</li>
-              <li class="anim">Explora <code>loguru</code>, una alternativa más simple a <code>logging</code>: la usa el proyecto de ejemplo de la Clase 8.</li>
+              <li class="anim">Prueba <code>99_opcional_config.py</code>: sacar parámetros del código con <code>config.yaml</code> (opcional).</li>
+              <li class="anim">Cambia el nivel de <code>logging</code> de <code>INFO</code> a <code>DEBUG</code> y mira qué más aparece en el diario.</li>
               <li class="anim">Un paso natural: <b>automatizarlo</b> con <code>cron</code> (Mac/Linux) o el Programador de tareas (Windows).</li>
             </ul>
           </div>

@@ -5,7 +5,7 @@
 - **Presentación:** abre [`teoria.html`](teoria.html) en el navegador (navega con ← →, tecla `F` para pantalla completa).
 - **Práctica:** los scripts están en [`material/`](material/).
 
-> Continúa desde la Clase 6. **Hay librerías nuevas** (`pyyaml`, `loguru`, `sqlalchemy`, `pytest`): necesitas internet solo para instalarlas. Además, deja **una IA conectada** (ver "Tarea previa").
+> Continúa desde la Clase 6. **Hay librerías nuevas** (`pytest`, `requests`, `pyyaml`): necesitas internet solo para instalarlas. Además, deja **una IA conectada** (ver "Tarea previa").
 
 ---
 
